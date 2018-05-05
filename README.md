@@ -31,6 +31,10 @@ To update **ONLY** one project on Github https://github.com/uilianries/conan-lib
 
     $ conan_clang_update --remote=uilianries/conan-libusb
 
+To skip push command after to update
+
+    $ conan_clang_update --remote=uilianries/conan-libusb --skip-push
+
 To update a **LOCAL** file
 
     $ conan_clang_update --file=.travis.yml

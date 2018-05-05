@@ -50,3 +50,4 @@ dist/
 env/
 venv
 .pytest_cache/
+conan_clang_update.egg-info/
