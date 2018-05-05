@@ -11,9 +11,9 @@ import tempfile
 import requests
 import contextlib
 
-
 LOGGING_FORMAT = '[%(levelname)s]\t%(asctime)s %(message)s'
 logging.basicConfig(format=LOGGING_FORMAT, datefmt='%Y-%m-%d %H:%M:%S')
+
 
 @contextlib.contextmanager
 def chdir(newdir):
@@ -27,6 +27,7 @@ def chdir(newdir):
         yield
     finally:
         os.chdir(old_path)
+
 
 class Command(object):
     """ Execute Travis file update
@@ -49,7 +50,12 @@ class Command(object):
         group = parser.add_mutually_exclusive_group()
         group.add_argument('--file', '-f', type=str, help='Travis file to be updated')
         group.add_argument('--remote', '-r', type=str, help='Github repo to be updated')
-        parser.add_argument('--skip-push', '-sp', action='store_true', default=False, help='Do not push after update from remote')
+        parser.add_argument(
+            '--skip-push',
+            '-sp',
+            action='store_true',
+            default=False,
+            help='Do not push after update from remote')
         # TODO (uilian): Consume version from __init__
         parser.add_argument('--version', '-v', action='version', version='%(prog)s 0.2.0')
         args = parser.parse_args(*args)
@@ -81,7 +87,6 @@ class Command(object):
         :rtype file: str
         """
         return 'CONAN_APPLE_CLANG_VERSIONS=9.1' in open(file).read()
-
 
     def _dump_file(self, file, lines):
         """ Dump content on file
@@ -174,7 +179,8 @@ class Command(object):
             if self._update_file(file):
                 self._logger.debug("Add file {} on branch {}".format(file, git_repo.active_branch))
                 git_repo.index.add([file])
-                self._logger.debug("Commit file {} on branch {}".format(file, git_repo.active_branch))
+                self._logger.debug("Commit file {} on branch {}".format(
+                    file, git_repo.active_branch))
                 git_repo.index.commit("Add apple clang 9.1 job on travis file")
                 if not skip_push:
                     self._logger.debug("Push branch {} to origin".format(git_repo.active_branch))
@@ -248,6 +254,7 @@ class Command(object):
             self._update_remote_user(remote, skip_push)
         else:
             self._update_remote_project(remote, skip_push)
+
 
 def main(args):
     """ Execute command update
