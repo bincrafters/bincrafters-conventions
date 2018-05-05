@@ -23,17 +23,17 @@ Or if you want to download our pip package
     pip install conan_clang_update
 
 #### RUN
-To update **ALL** conan projects on Github
+To update **ALL** Conan projects on Github https://github.com/uilianries
 
-    $ conan_clang_update --remote=uilianries --all
+    $ conan_clang_update --remote=uilianries
 
-To update **ONLY** one project on Github
+To update **ONLY** one project on Github https://github.com/uilianries/conan-libusb
 
     $ conan_clang_update --remote=uilianries/conan-libusb
 
 To update a **LOCAL** file
 
-    $ conan_clang_update --file=.travis.yml --in-place
+    $ conan_clang_update --file=.travis.yml
 
 
 ##### Testing and Development
