@@ -10,8 +10,8 @@ import git
 import tempfile
 from contextlib import contextmanager
 
-LOGGING_FORMAT = '%(levelname)s: %(message)s'
-logging.basicConfig(format=LOGGING_FORMAT)
+LOGGING_FORMAT = '[%(levelname)s] %(asctime)s %(message)s'
+logging.basicConfig(format=LOGGING_FORMAT, datefmt='%Y-%m-%d %H:%M:%S')
 
 @contextmanager
 def chdir(newdir):
@@ -184,7 +184,10 @@ class Command(object):
 
     def _update_remote(self, remote, skip_push):
         travis_file = '.travis.yml'
-        github_url = "git@github.com:{}.git".format(remote)
+        if skip_push:
+            github_url = "https://github.com/{}.git".format(remote)
+        else:
+            github_url = "git@github.com:{}.git".format(remote)
         git_repo, project_path = self._clone_project(github_url)
         with chdir(project_path):
             branches = self._get_branch_names(git_repo)
