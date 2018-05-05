@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from conan_clang_update import main
+from conan_clang_update.conan_clang_update import main
 import sys
 
 
