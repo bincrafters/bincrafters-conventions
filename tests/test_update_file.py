@@ -100,7 +100,7 @@ script:
   - ./.travis/run.sh
 """
 
-def test_update_clang_version():
+def test_update_clang_file():
     """ Create a standard travis file and update it.
     """
     _, travis_path = tempfile.mkstemp(prefix='travis', suffix='.yml')
@@ -116,3 +116,10 @@ def test_update_clang_version():
     command.run(args)
 
     assert filecmp.cmp(travis_path, expected_path)
+
+def test_update_clang_version():
+    """ Create a standard travis file and update it.
+    """
+    args = ['--version']
+    command = Command()
+    command.run(args)
