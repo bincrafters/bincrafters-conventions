@@ -48,3 +48,5 @@ bincrafters_package_tools.egg-info/
 coverage.xml
 dist/
 env/
+venv
+.pytest_cache/
