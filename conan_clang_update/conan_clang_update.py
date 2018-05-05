@@ -10,7 +10,7 @@ import git
 import tempfile
 from contextlib import contextmanager
 
-LOGGING_FORMAT = '[%(levelname)s] %(asctime)s %(message)s'
+LOGGING_FORMAT = '[%(levelname)s]\t%(asctime)s %(message)s'
 logging.basicConfig(format=LOGGING_FORMAT, datefmt='%Y-%m-%d %H:%M:%S')
 
 @contextmanager
@@ -60,7 +60,6 @@ class Command(object):
             self._update_remote(arguments.remote, arguments.skip_push)
         else:
             self._update_file(arguments.file)
-        self._logger.info("ARGS: %s" % arguments)
 
     def _has_osx(self, file):
         """ Check for OSX support on Travis file

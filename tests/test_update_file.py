@@ -116,10 +116,3 @@ def test_update_clang_file():
     command.run(args)
 
     assert filecmp.cmp(travis_path, expected_path)
-
-def test_update_clang_version():
-    """ Create a standard travis file and update it.
-    """
-    args = ['--version']
-    command = Command()
-    command.run(args)
