@@ -31,9 +31,21 @@ To update **ONLY** one project on Github https://github.com/uilianries/conan-lib
 
     $ conan_clang_update --remote=uilianries/conan-libusb
 
-To skip push command after to update
+To **AVOID** to execute push command after to update
 
     $ conan_clang_update --remote=uilianries/conan-libusb --skip-push
+
+To filter **PROJECTS** by pattern
+
+    $ conan_clang_update --remote=uilianries --project-pattern uilianries/conan-*
+
+To filter **BRANCHES** by pattern
+
+    $ conan_clang_update --remote=uilianries --branch-pattern stable/*
+
+or
+
+    $ conan_clang_update --remote=uilianries/conan-libzip --branch-pattern stable/*
 
 To update a **LOCAL** file
 

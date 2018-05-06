@@ -61,6 +61,11 @@ class Command(object):
             '-pp',
             type=str,
             help='Project pattern to filter over user projects e.g bincrafters/conan-*')
+        parser.add_argument(
+            '--branch-pattern',
+            '-bp',
+            type=str,
+            help='Branch pattern to filter over user projects e.g stable/*')
         # TODO (uilian): Consume version from __init__
         parser.add_argument('--version', '-v', action='version', version='%(prog)s 0.2.0')
         args = parser.parse_args(*args)
@@ -73,7 +78,8 @@ class Command(object):
         """
         arguments = self._parse_arguments(*args)
         if arguments.remote:
-            self._update_remote(arguments.remote, arguments.skip_push, arguments.project_pattern)
+            self._update_remote(arguments.remote, arguments.skip_push, arguments.project_pattern,
+                                arguments.branch_pattern)
         else:
             self._update_file(arguments.file)
 
@@ -220,23 +226,23 @@ class Command(object):
             projects.append(project["full_name"])
         return projects
 
-    def _filter_projects(self, projects, pattern):
-        """ Filter project list by user pattern
+    def _filter_list(self, names, pattern):
+        """ Filter list by user pattern
 
-        :param projects: User project names
+        :param names: User list names
         :param pattern: Project user filter name
         """
         regex = re.compile(pattern)
-        self._logger.debug("Filter {} over {}".format(pattern, projects))
-        filtered_projects = [project for project in projects if regex.match(project)]
-        self._logger.debug("Filtered projects: {}".format(filtered_projects))
-        return filtered_projects
+        filtered_list = [name for name in names if regex.match(name)]
+        self._logger.debug("Filtered list: {}".format(filtered_list))
+        return filtered_list
 
-    def _update_remote_project(self, remote, skip_push):
+    def _update_remote_project(self, remote, skip_push, branch_pattern):
         """ Clone remote project, update Travis and maybe upload
 
         :param remote: Project full name
         :param skip_push: Do not push to origin after to update
+        :param branch_pattern: Filter to be applied over project branch names
         """
         travis_file = '.travis.yml'
         github_url = "git@github.com:{}.git".format(remote)
@@ -247,34 +253,38 @@ class Command(object):
         git_repo, project_path = self._clone_project(github_url)
         with chdir(project_path):
             branches = self._get_branch_names(git_repo)
+            if branch_pattern:
+                branches = self._filter_list(branches, branch_pattern)
             for branch in branches:
                 self._logger.debug("Current branch to be updated: {}".format(branch))
                 self._update_branch(git_repo, branch, travis_file, skip_push)
 
-    def _update_remote_user(self, user, skip_push, project_pattern):
+    def _update_remote_user(self, user, skip_push, project_pattern, branch_pattern):
         """ Clone remote user projects, update Travis and maybe upload
 
         :param user: Github username
         :param skip_push: Do not push to origin after to update
         :param project_pattern: Filter to be applied over user project names
+        :param branch_pattern: Filter to be applied over project branch names
         """
         projects = self._list_user_projects(user)
         if project_pattern:
-            projects = self._filter_projects(projects, project_pattern)
+            projects = self._filter_list(projects, project_pattern)
         for project in projects:
-            self._update_remote_project(project, skip_push)
+            self._update_remote_project(project, skip_push, branch_pattern)
 
-    def _update_remote(self, remote, skip_push, project_pattern):
+    def _update_remote(self, remote, skip_push, project_pattern, branch_pattern):
         """ Validate which strategy should executed to update the project
 
         :param remote: Github remote address
         :param skip_push: Do not push to origin after to update
         :param project_pattern: Filter to be applied over user project names
+        :param branch_pattern: Filter to be applied over project branch names
         """
         if "/" not in remote:
-            self._update_remote_user(remote, skip_push, project_pattern)
+            self._update_remote_user(remote, skip_push, project_pattern, branch_pattern)
         else:
-            self._update_remote_project(remote, skip_push)
+            self._update_remote_project(remote, skip_push, branch_pattern)
 
 
 def main(args):
