@@ -6,8 +6,7 @@ from conan_clang_update.conan_clang_update import Command
 import tempfile
 import filecmp
 
-
-TRAVIS_FILE="""linux: &linux
+TRAVIS_FILE = """linux: &linux
    os: linux
    sudo: required
    language: python
@@ -52,7 +51,7 @@ script:
   - ./.travis/run.sh
 """
 
-UPDATED_TRAVIS="""linux: &linux
+UPDATED_TRAVIS = """linux: &linux
    os: linux
    sudo: required
    language: python
@@ -99,6 +98,7 @@ script:
   - chmod +x .travis/run.sh
   - ./.travis/run.sh
 """
+
 
 def test_update_clang_file():
     """ Create a standard travis file and update it.
