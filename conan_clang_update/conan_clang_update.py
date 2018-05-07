@@ -67,7 +67,7 @@ class Command(object):
             type=str,
             help='Branch pattern to filter over user projects e.g stable/*')
         # TODO (uilian): Consume version from __init__
-        parser.add_argument('--version', '-v', action='version', version='%(prog)s 0.2.0')
+        parser.add_argument('--version', '-v', action='version', version='%(prog)s 0.3.0')
         args = parser.parse_args(*args)
         return args
 
@@ -192,7 +192,7 @@ class Command(object):
                 git_repo.index.add([file])
                 self._logger.debug("Commit file {} on branch {}".format(
                     file, git_repo.active_branch))
-                git_repo.index.commit("Add apple clang 9.1 job on travis file")
+                git_repo.index.commit("Add apple clang 9.1 job on travis file [build=outdated]")
                 if not skip_push:
                     self._logger.debug("Push branch {} to origin".format(git_repo.active_branch))
                     git_repo.git.push('origin', branch)
