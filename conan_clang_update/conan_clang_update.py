@@ -11,6 +11,11 @@ import tempfile
 import requests
 import contextlib
 
+__version__ = '0.3.0'
+__author__  = 'Uilian Ries <uilianries@gmail.com>'
+__license__ = 'MIT'
+
+
 LOGGING_FORMAT = '[%(levelname)s]\t%(asctime)s %(message)s'
 logging.basicConfig(format=LOGGING_FORMAT, datefmt='%Y-%m-%d %H:%M:%S')
 
@@ -66,8 +71,7 @@ class Command(object):
             '-bp',
             type=str,
             help='Branch pattern to filter over user projects e.g stable/*')
-        # TODO (uilian): Consume version from __init__
-        parser.add_argument('--version', '-v', action='version', version='%(prog)s 0.3.0')
+        parser.add_argument('--version', '-v', action='version', version='%(prog)s {}'.format(__version__))
         args = parser.parse_args(*args)
         return args
 
@@ -97,7 +101,7 @@ class Command(object):
         :param file: Travis file path
         :rtype file: str
         """
-        return 'CONAN_APPLE_CLANG_VERSIONS=9.1' in open(file).read()
+        return 'CONAN_APPLE_CLANG_VERSIONS=10.0' in open(file).read()
 
     def _dump_file(self, file, lines):
         """ Dump content on file
@@ -128,18 +132,18 @@ class Command(object):
         return reversed(lines)
 
     def _inject_clang(self, lines, spaces):
-        """ Update lines with Clang 9.1
+        """ Update lines with Clang 10.0
 
         :param lines: Travis file lines
         :param spaces: Indentation
         """
-        lines.append("{}{}".format(spaces, 'env: CONAN_APPLE_CLANG_VERSIONS=9.1'))
-        lines.append("{}{}".format(spaces, 'osx_image: xcode9.3'))
+        lines.append("{}{}".format(spaces, 'env: CONAN_APPLE_CLANG_VERSIONS=10.0'))
+        lines.append("{}{}".format(spaces, 'osx_image: xcode10'))
         lines.append("{}{}".format(spaces[2:], '- <<: *osx'))
         return lines
 
     def _update_file(self, file):
-        """ Open Travis and inject clang 9.1 if OSX is supported
+        """ Open Travis and inject clang 10.0 if OSX is supported
 
         :param file: Travis file path
         :rtype file: str
@@ -192,7 +196,7 @@ class Command(object):
                 git_repo.index.add([file])
                 self._logger.debug("Commit file {} on branch {}".format(
                     file, git_repo.active_branch))
-                git_repo.index.commit("Add apple clang 9.1 job on travis file [build=outdated]")
+                git_repo.index.commit("Add apple clang 10.0 job on travis file [build=outdated]")
                 if not skip_push:
                     self._logger.debug("Push branch {} to origin".format(git_repo.active_branch))
                     git_repo.git.push('origin', branch)

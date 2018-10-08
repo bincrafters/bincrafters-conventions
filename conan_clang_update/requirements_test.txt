@@ -1,2 +1,2 @@
-pytest>=3.5.1
-pytest_cov>=2.5.1
+pytest==3.8.2
+pytest_cov==2.6.0

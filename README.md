@@ -7,7 +7,7 @@
 
 ## A script to update Travis CI file
 
-This project contains the script to add Clang 9.1 on OSX builds
+This project contains the script to add Clang 10.0 on OSX builds
 
 #### INSTALL
 To install by pip is just one step
