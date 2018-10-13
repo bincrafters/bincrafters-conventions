@@ -35,4 +35,4 @@ deploy:
     password: ${TEST_PYPI_PASSWORD}
     on:
       branch: master
-    condition: "$TRAVIS_PYTHON_VERSION = '2.7'"
+      condition: "$TRAVIS_PYTHON_VERSION = '2.7'"
