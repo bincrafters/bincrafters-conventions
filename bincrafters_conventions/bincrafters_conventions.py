@@ -15,7 +15,7 @@ import jinja2
 import shutil
 
 
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -208,6 +208,13 @@ class Command(object):
         return (self._replace_in_file(file, " build_subfolder =", " _build_subfolder ="),
                 self._replace_in_file(file, "self.build_subfolder", "self._build_subfolder"))
 
+    def _update_install_subfolder(self, file):
+        """ Replace install subfolder from Conan recipe
+        """
+        self._logger.info("Update Install subfolder")
+        return (self._replace_in_file(file, " install_subfolder =", " _install_subfolder ="),
+                self._replace_in_file(file, "self.install_subfolder", "self._install_subfolder"))
+
     def _update_ci_path_in_travis(self, file):
         """ Update travis folder path in travis file
 
@@ -313,6 +320,7 @@ class Command(object):
                       self._update_configure_cmake(conanfile),
                       self._update_source_subfolder(conanfile),
                       self._update_build_subfolder(conanfile),
+                      self._update_install_subfolder(conanfile),
                       travis_updater(file))
             self._logger.info("RESULT: {}".format(result))
             if True in result:
