@@ -15,7 +15,7 @@ import jinja2
 import shutil
 
 
-__version__ = '0.1.0-dev'
+__version__ = '0.1.0'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
