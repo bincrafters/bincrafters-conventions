@@ -3,13 +3,13 @@
 
 import sys
 if sys.version_info.major == 3:
-    from conan_clang_update import conan_clang_update
+    from bincrafters_conventions import bincrafters_conventions
 else:
-    import conan_clang_update
+    import bincrafters_conventions
 
 
 def run():
-    conan_clang_update.main(sys.argv[1:])
+    bincrafters_conventions.main(sys.argv[1:])
 
 
 if __name__ == '__main__':

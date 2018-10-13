@@ -31,14 +31,14 @@ def get_requires(filename):
 def load_version():
     """Loads a file content"""
     filename = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                            "conan_clang_update", "conan_clang_update.py"))
+                                            "bincrafters_conventions", "bincrafters_conventions.py"))
     with open(filename, "rt") as version_file:
         conan_init = version_file.read()
         version = re.search("__version__ = '([0-9a-z.-]+)'", conan_init).group(1)
         return version
 
 setup(
-    name='conan_clang_update',
+    name='bincrafters_conventions',
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
@@ -52,16 +52,16 @@ setup(
     #
     # This field corresponds to the "Description" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#description-optional
-    long_description=long_description, # Optional
+    long_description=long_description,  # Optional
 
-    description='Conan script to update Clang on Travis CI',
+    description='Bincrafters script to apply Conan conventions and update CI jobs',
 
     # The project's main homepage.
-    url='https://github.com/uilianries/conan-clang-update',
+    url='https://github.com/bincrafters/bincrafters-conventions',
 
     # Author details
-    author='Uilian Ries',
-    author_email='uilianries@gmail.com',
+    author='Bincrafters',
+    author_email='bincrafters@gmail.com',
 
     # Choose your license
     license='MIT',
@@ -93,14 +93,14 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=get_requires(os.path.join('conan_clang_update', 'requirements.txt')),
+    install_requires=get_requires(os.path.join('bincrafters_conventions', 'requirements.txt')),
 
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
     # for example:
     # $ pip install -e .[dev,test]
     extras_require={
-        'test': get_requires(os.path.join('conan_clang_update', 'requirements_test.txt'))
+        'test': get_requires(os.path.join('bincrafters_conventions', 'requirements_test.txt'))
     },
 
     # If there are data files included in your packages that need to be
@@ -108,7 +108,7 @@ setup(
     # have to be included in MANIFEST.in as well.
     package_data={
         '': ['*.md'],
-        'conan_clang_update' : ['*.txt'],
+        'bincrafters_conventions': ['*.txt'],
     },
 
     # Although 'package_data' is the preferred approach, in some case you may
@@ -122,7 +122,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points={
         'console_scripts': [
-            'conan-clang-update=conan_clang_update.main:run',
+            'bincrafters-conventions=bincrafters_conventions.main:run',
         ],
     },
 )

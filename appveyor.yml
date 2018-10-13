@@ -15,4 +15,4 @@ install:
 
 test_script:
 - cd tests
-- pytest -v --cov=conan_clang_update
+- pytest -v --cov=bincrafters_conventions

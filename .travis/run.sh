@@ -12,6 +12,6 @@ fi
 
 python setup.py sdist
 pushd tests
-pytest -v -s --cov=conan_clang_update
+pytest -v -s --cov=bincrafters_conventions
 mv .coverage ..
 popd

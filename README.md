@@ -1,7 +1,7 @@
-[![Build Status: Linux and Macos](https://travis-ci.org/uilianries/conan-clang-update.svg?branch=master)](https://travis-ci.org/uilianries/conan-clang-update)
-[![Build status: Windows](https://ci.appveyor.com/api/projects/status/github/uilianries/conan-clang-update?svg=true)](https://ci.appveyor.com/project/uilianries/conan-clang-update)
-[![codecov](https://codecov.io/gh/uilianries/conan-clang-update/branch/master/graph/badge.svg)](https://codecov.io/gh/uilianries/conan-clang-update)
-[![Pypi Download](https://img.shields.io/badge/download-pypi-blue.svg)](https://pypi.python.org/pypi/conan-clang-update)
+[![Build Status: Linux and Macos](https://travis-ci.org/bincrafters/bincrafters-conventions.svg?branch=master)](https://travis-ci.org/bincrafters/bincrafters-conventions)
+[![Build status: Windows](https://ci.appveyor.com/api/projects/status/github/bincrafters/bincrafters-conventions?svg=true)](https://ci.appveyor.com/project/bincrafters/bincrafters-conventions)
+[![codecov](https://codecov.io/gh/bincrafters/bincrafters-conventions/branch/master/graph/badge.svg)](https://codecov.io/gh/bincrafters/bincrafters-conventions)
+[![Pypi Download](https://img.shields.io/badge/download-pypi-blue.svg)](https://pypi.python.org/pypi/bincrafters-conventions)
 
 # Conan Clang Update
 
@@ -20,36 +20,36 @@ If you want to install by local copy
 ##### Remote
 Or if you want to download our pip package
 
-    pip install conan_clang_update
+    pip install bincrafters_conventions
 
 #### RUN
-To update **ALL** Conan projects on Github https://github.com/uilianries
+To update **ALL** Conan projects on Github https://github.com/bincrafters
 
-    $ conan_clang_update --remote=uilianries
+    $ bincrafters_conventions --remote=bincrafters
 
-To update **ONLY** one project on Github https://github.com/uilianries/conan-libusb
+To update **ONLY** one project on Github https://github.com/bincrafters/conan-conversion
 
-    $ conan_clang_update --remote=uilianries/conan-libusb
+    $ bincrafters_conventions --remote=bincrafters/conan-double-conversion
 
 To **AVOID** to execute push command after to update
 
-    $ conan_clang_update --remote=uilianries/conan-libusb --skip-push
+    $ bincrafters_conventions --remote=bincrafters/conan-libusb --dry-run
 
 To filter **PROJECTS** by pattern
 
-    $ conan_clang_update --remote=uilianries --project-pattern uilianries/conan-*
+    $ bincrafters_conventions --remote=bincrafters --project-pattern bincrafters/conan-*
 
 To filter **BRANCHES** by pattern
 
-    $ conan_clang_update --remote=uilianries --branch-pattern stable/*
+    $ bincrafters_conventions --remote=bincrafters --branch-pattern stable/*
 
 or
 
-    $ conan_clang_update --remote=uilianries/conan-libzip --branch-pattern stable/*
+    $ bincrafters_conventions --remote=bincrafters/conan-libzip --branch-pattern stable/*
 
 To update a **LOCAL** file
 
-    $ conan_clang_update --file=.travis.yml
+    $ bincrafters_conventions --file=.travis.yml
 
 
 ##### Testing and Development
@@ -61,15 +61,15 @@ To install extra packages required to test
 #### TESTING
 To run all unit test + code coverage, just execute:
 
-    pip install -r conan_clang_update/requirements_test.txt
+    pip install -r bincrafters_conventions/requirements_test.txt
     cd tests
-    pytest -v --cov=conan_clang_update
+    pytest -v --cov=bincrafters_conventions
 
 
 #### REQUIREMENTS and DEVELOPMENT
 To develop or run conan clang update
 
-    pip install -r conan_clang_update/requirements.txt
+    pip install -r bincrafters_conventions/requirements.txt
 
 
 #### UPLOAD
