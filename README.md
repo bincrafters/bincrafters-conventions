@@ -3,11 +3,15 @@
 [![codecov](https://codecov.io/gh/bincrafters/bincrafters-conventions/branch/master/graph/badge.svg)](https://codecov.io/gh/bincrafters/bincrafters-conventions)
 [![Pypi Download](https://img.shields.io/badge/download-pypi-blue.svg)](https://pypi.python.org/pypi/bincrafters-conventions)
 
-# Conan Clang Update
+# Bincrafters Conventions
 
-## A script to update Travis CI file
+## A Script to update Conan projects following Conan conventions
 
-This project contains the script to add Clang 10.0 on OSX builds
+This project contains the script to add new compiler versions in Travis file and update Conan conventions
+
+#### Motivation
+
+- https://github.com/bincrafters/community/issues/482
 
 #### INSTALL
 To install by pip is just one step

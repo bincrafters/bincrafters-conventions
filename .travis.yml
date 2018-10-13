@@ -24,17 +24,15 @@ after_success:
 
 deploy:
   - provider: pypi
-    user: uilianries
-    password:
-      secure:  IPM212THyvjBlpEizeHXY5c6fSYmWtABdIY75QNF2wu37iJHQJDqfbSD7md6ncDJ6zoELXTbFj4X52TyLiGb8F6rPIRlQfqtKXJ2tD96wOAQTxV5Ft0y21HuVma70jKACm+YbkmzGee2YwDqXaZDzJ0JtPcfm19n1niuOmZwcmkOrDdGY50x62ofc0PLYbljf140AazJA7uCwLVm0j8JDWb891g9GKzbJ+xzKp7RQe8PjFh7kRfKgXz3WiiJTv56ylPoIKzM9bTTOYa6YTNEAAJkY1gWSfgm97fEOWTZXQ7M10Qi0Q3poo+d+9x374Ea+ejDiWJvGvTpmomfaRExgKd7de8ySzFfp9no8RzVTWr/ugf00qIiGH9CTg+H7egsBCBlvcDffBEqcUQu/Z4taeLp4qFUhxaOy7K3c5zlb7oa+o2MMUdzKs0mJsoTcImAmtHQw3xq8BFN46lfnNxtMkauwNlsrm7v1JEePDk96BudhXXDEpNgmh4/z+qk9YpE4y9GZmbqAhVH4no5svn7McjBsxJB8EUmLDc5XqlCvY09gm8+NnKE7HqG0lMKaZKKGPUbzPCrA6yieUo3Bl8ZNpHQJKTSesz8h9IBYDMit+l3sSIYqmIR2y92Ma+3lhTwP69t33u7/7F+ntK2+Ksl9MJm8pWMPn72pwWmh0Psgrg=
+    user: ${PYPI_USERNAME}
+    password: ${PYPI_PASSWORD}
     on:
       tags: true
       condition: "$TRAVIS_PYTHON_VERSION = '2.7'"
   - provider: pypi
-    user: uilianries
+    user: ${TEST_PYPI_USERNAME}
     server: https://test.pypi.org/legacy/
-    password:
-      secure: IPM212THyvjBlpEizeHXY5c6fSYmWtABdIY75QNF2wu37iJHQJDqfbSD7md6ncDJ6zoELXTbFj4X52TyLiGb8F6rPIRlQfqtKXJ2tD96wOAQTxV5Ft0y21HuVma70jKACm+YbkmzGee2YwDqXaZDzJ0JtPcfm19n1niuOmZwcmkOrDdGY50x62ofc0PLYbljf140AazJA7uCwLVm0j8JDWb891g9GKzbJ+xzKp7RQe8PjFh7kRfKgXz3WiiJTv56ylPoIKzM9bTTOYa6YTNEAAJkY1gWSfgm97fEOWTZXQ7M10Qi0Q3poo+d+9x374Ea+ejDiWJvGvTpmomfaRExgKd7de8ySzFfp9no8RzVTWr/ugf00qIiGH9CTg+H7egsBCBlvcDffBEqcUQu/Z4taeLp4qFUhxaOy7K3c5zlb7oa+o2MMUdzKs0mJsoTcImAmtHQw3xq8BFN46lfnNxtMkauwNlsrm7v1JEePDk96BudhXXDEpNgmh4/z+qk9YpE4y9GZmbqAhVH4no5svn7McjBsxJB8EUmLDc5XqlCvY09gm8+NnKE7HqG0lMKaZKKGPUbzPCrA6yieUo3Bl8ZNpHQJKTSesz8h9IBYDMit+l3sSIYqmIR2y92Ma+3lhTwP69t33u7/7F+ntK2+Ksl9MJm8pWMPn72pwWmh0Psgrg=
+    password: ${TEST_PYPI_PASSWORD}
     on:
       branch: master
-      condition: "$TRAVIS_PYTHON_VERSION = '2.7'"
+    condition: "$TRAVIS_PYTHON_VERSION = '2.7'"
