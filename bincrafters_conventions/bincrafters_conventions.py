@@ -13,6 +13,8 @@ import contextlib
 import collections
 import jinja2
 import shutil
+from conans.errors import ConanException
+from conans.client import conan_api
 
 
 __version__ = '0.2.0'
@@ -94,7 +96,7 @@ class Command(object):
         parser.add_argument('--dry-run', '-d', action='store_true', default=False, help='Do not push after update from remote')
         parser.add_argument('--project-pattern', '-pp', type=str, help='Project pattern to filter over user projects e.g bincrafters/conan-*')
         parser.add_argument('--branch-pattern', '-bp', type=str, help='Branch pattern to filter over user projects e.g stable/*')
-        parser.add_argument('--conanfile', '-c', type=str, default='conanfile.py', help='Conan recipe path')
+        parser.add_argument('--conanfile', '-c', type=str, help='Conan recipe path e.g conanfile.py')
         parser.add_argument('--version', '-v', action='version', version='%(prog)s {}'.format(__version__))
         args = parser.parse_args(*args)
         return args
@@ -109,10 +111,13 @@ class Command(object):
             self._update_remote(arguments.remote, arguments.conanfile, arguments.dry_run, arguments.project_pattern,
                                 arguments.branch_pattern)
         else:
-            self._update_compiler_jobs(arguments.file)
+            if arguments.conanfile:
+                self._update_conanfile(arguments.conanfile)
+            if arguments.file:
+                self._update_compiler_jobs(arguments.file)
 
     def _update_compiler_jobs(self, file):
-        """ Read Travis file and Update OSX job
+        """ Read Travis file and compiler jobs
 
         :param file: Travis file path
         """
@@ -176,6 +181,28 @@ class Command(object):
             compilers['apple_clang'] = sorted(compilers['apple_clang'].union(['9.1', '10.0']), key=float)
         return compilers
 
+    def _get_default_options(self, file):
+        conan_instance, _, _ = conan_api.Conan.factory()
+        try:
+            result = conan_instance.inspect(path=file, attributes=['default_options'])['default_options']
+            # Tuple uses old combination: "value=key"
+            if isinstance(result, tuple):
+                new_result = {}
+                for item in result:
+                    # extract key,value from string
+                    match = re.match(r'(.*)=(.*)', item)
+                    if match:
+                        key = match.group(1)
+                        value = match.group(2)
+                        # to boolean
+                        if value == 'True' or value == 'False':
+                            value = value == 'True'
+                        new_result[key] = value
+                result = new_result
+            return result
+        except ConanException:
+            return None
+
     def _update_travis_path(self):
         """ Replace Travis directory by CI dir
         """
@@ -215,6 +242,16 @@ class Command(object):
         return (self._replace_in_file(file, " install_subfolder =", " _install_subfolder ="),
                 self._replace_in_file(file, "self.install_subfolder", "self._install_subfolder"))
 
+    def _update_exception(self, file):
+        """ Replace default exception by Invalid config
+
+        :param file: Conan recipe path
+        """
+        if self._file_contains(file, "raise Exception"):
+            self._logger.info("Update Conan exception")
+            return (self._replace_in_file(file, "raise Exception", "raise ConanInvalidConfiguration"),
+                    self._replace_in_file(file, "import os", "from conans.errors import ConanInvalidConfiguration\nimport os"))
+
     def _update_ci_path_in_travis(self, file):
         """ Update travis folder path in travis file
 
@@ -222,6 +259,36 @@ class Command(object):
         :return:
         """
         return self._replace_in_file(file, ".travis", ".ci")
+
+    def _update_default_options(self, file):
+        result = False
+        attribute = 'default_options'
+        default_options = self._get_default_options(file)
+        if os.path.isfile(file):
+            with open(file) as ifd:
+                content = ifd.readlines()
+                with open(file, 'w') as ofd:
+                    found_default_options = False
+                    updated = False
+                    for line in content:
+                        if not found_default_options:
+                            # searching for default options
+                            if attribute in line:
+                                found_default_options = True
+                                line = '    {} = {}\n'.format(attribute, default_options)
+                            # searching for multiline default options
+                        elif found_default_options and not updated:
+                            if ')' in line or re.search(r'".*=', line):
+                                continue
+                            else:
+                                updated = True
+                        ofd.write('{}'.format(line))
+                    # ofd.write('\n')
+                    self._logger.info("File {} was updated".format(file))
+        else:
+            self._logger.warning("Could not update {}: File does not exist".format(file))
+        return result
+
 
     def _replace_in_file(self, file, old, new):
         """ Read file and replace ALL occurrences of old by new
@@ -244,16 +311,28 @@ class Command(object):
             self._logger.warning("Could not update {}: File does not exist".format(file))
         return result
 
+    def _file_contains(self, file, word):
+        """ Read file and search for word
+
+        :param file: File path to be read
+        :param word: word to be found
+        :return: True if found. Otherwise, False
+        """
+        if os.path.isfile(file):
+            with open(file) as ifd:
+                content = ifd.read()
+                if word in content:
+                    return True
+        return False
+
     def _is_hearder_only(self, conanfile):
         """ Check if Conan recipe is header-only
 
         :param conanfile: Conan recipe path
         :return: True if recipe is header-only. Otherwise, False.
         """
-        if os.path.isfile(conanfile):
-            with open(conanfile) as ifd:
-                content = ifd.read()
-                return "self.info.header_only()" in content
+        if self._file_contains(conanfile, "self.info.header_only()"):
+           return True
         else:
             self._logger.warning("Could not check header-only recipe")
         return False
@@ -317,10 +396,7 @@ class Command(object):
             self._logger.info(versions)
 
             result = (self._update_travis_path(),
-                      self._update_configure_cmake(conanfile),
-                      self._update_source_subfolder(conanfile),
-                      self._update_build_subfolder(conanfile),
-                      self._update_install_subfolder(conanfile),
+                      self._update_conanfile(conanfile),
                       travis_updater(file))
             self._logger.info("RESULT: {}".format(result))
             if True in result:
@@ -334,6 +410,19 @@ class Command(object):
         except Exception as error:
             self._logger.warning(error)
             pass
+
+    def _update_conanfile(self, conanfile):
+        """ Update Conan recipe with Conan conventions
+
+        :param conanfile: Conan recipe path
+        :return:
+        """
+        return (self._update_default_options(conanfile),
+                self._update_exception(conanfile),
+                self._update_configure_cmake(conanfile),
+                self._update_source_subfolder(conanfile),
+                self._update_build_subfolder(conanfile),
+                self._update_install_subfolder(conanfile))
 
     def _clone_project(self, github_url):
         """ Clone Github project to temporary directory
