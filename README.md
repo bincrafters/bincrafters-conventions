@@ -53,7 +53,15 @@ or
 
 To update a **LOCAL** file
 
-    $ bincrafters_conventions --file=.travis.yml
+    $ bincrafters_conventions --travisfile=.travis.yml
+
+To apply Conan conventions in a local file:
+
+    $ bincrafters_conventions --conanfile=conanfile.py
+    
+To update appveyor file:
+
+    $ bincrafters_conventions --appveryorfile=appveyor.yml
 
 
 ##### Testing and Development

@@ -42,7 +42,6 @@ def chdir(newdir):
 
 Compiler = collections.namedtuple('Compiler', 'name, var, version, os, osx_version')
 
-
 LINUX_TEMPLATE = """linux: &linux
    os: linux
    sudo: required
@@ -92,7 +91,8 @@ class Command(object):
         parser = argparse.ArgumentParser(description="Bincrafters Conventions")
         group = parser.add_mutually_exclusive_group()
         group.add_argument('--remote', type=str, help='Github repo to be updated e.g. bincrafters/conan-foobar')
-        group.add_argument('--file', type=str, help='Travis file to be updated e.g. .travis.yml')
+        group.add_argument('--travisfile', type=str, help='Travis file to be updated e.g. .travis.yml')
+        group.add_argument('--appveyorfile', type=str, help='Appveyor file to be updated e.g. appveyor.yml')
         parser.add_argument('--dry-run', '-d', action='store_true', default=False, help='Do not push after update from remote')
         parser.add_argument('--project-pattern', '-pp', type=str, help='Project pattern to filter over user projects e.g bincrafters/conan-*')
         parser.add_argument('--branch-pattern', '-bp', type=str, help='Branch pattern to filter over user projects e.g stable/*')
@@ -113,8 +113,10 @@ class Command(object):
         else:
             if arguments.conanfile:
                 self._update_conanfile(arguments.conanfile)
-            if arguments.file:
-                self._update_compiler_jobs(arguments.file)
+            if arguments.travisfile:
+                self._update_compiler_jobs(arguments.travisfile)
+            if arguments.appveyorfile:
+                self._update_appveyor_file(arguments.appveyorfile)
 
     def _update_compiler_jobs(self, file):
         """ Read Travis file and compiler jobs
@@ -397,7 +399,8 @@ class Command(object):
 
             result = (self._update_travis_path(),
                       self._update_conanfile(conanfile),
-                      travis_updater(file))
+                      travis_updater(file),
+                      self._update_appveyor_file('appveyor.yml'))
             self._logger.info("RESULT: {}".format(result))
             if True in result:
                 self._logger.debug("Add file {} on branch {}".format(file, git_repo.active_branch))
@@ -423,6 +426,27 @@ class Command(object):
                 self._update_source_subfolder(conanfile),
                 self._update_build_subfolder(conanfile),
                 self._update_install_subfolder(conanfile))
+
+    def _update_appveyor_file(self, path):
+        """ Replace python version
+
+        :param path: Appveyor yaml file
+        """
+        result = False
+        if os.path.isfile(path):
+            with open(path) as ifd:
+                content = ifd.readlines()
+            with open(path, 'w') as ofd:
+                for line in content:
+                    if 'PYTHON:' in line:
+                        line = '    PYTHON: "C:\\\\Python37"\n'
+                        result = True
+                    elif 'PYTHON_VERSION:' in line or 'PYTHON_ARCH:' in line:
+                        continue
+                    ofd.write(line)
+        else:
+            self._logger.warning("Could not update {}: File does not exist".format(path))
+        return result
 
     def _clone_project(self, github_url):
         """ Clone Github project to temporary directory

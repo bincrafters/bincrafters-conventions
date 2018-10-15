@@ -278,6 +278,66 @@ class DoubleConversionConan(ConanFile):
         self.cpp_info.libs = tools.collect_libs(self)
 """
 
+APPVEYOR_FILE = """build: false
+
+environment:
+    PYTHON: "C:\\\\Python27"
+    PYTHON_VERSION: "2.7.8"
+    PYTHON_ARCH: "32"
+
+    matrix:
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          CONAN_VISUAL_VERSIONS: 14
+          CONAN_BUILD_TYPES: Release
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          CONAN_VISUAL_VERSIONS: 14
+          CONAN_BUILD_TYPES: Debug
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+          CONAN_VISUAL_VERSIONS: 15
+          CONAN_BUILD_TYPES: Release
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+          CONAN_VISUAL_VERSIONS: 15
+          CONAN_BUILD_TYPES: Debug
+
+install:
+  - set PATH=%PATH%;%PYTHON%/Scripts/
+  - pip.exe install conan --upgrade
+  - pip.exe install conan_package_tools bincrafters_package_tools
+  - conan user # It creates the conan data directory
+
+test_script:
+  - python build.py
+"""
+
+EXPECTED_APPVEYOR_FILE = """build: false
+
+environment:
+    PYTHON: "C:\\\\Python37"
+
+    matrix:
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          CONAN_VISUAL_VERSIONS: 14
+          CONAN_BUILD_TYPES: Release
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          CONAN_VISUAL_VERSIONS: 14
+          CONAN_BUILD_TYPES: Debug
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+          CONAN_VISUAL_VERSIONS: 15
+          CONAN_BUILD_TYPES: Release
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+          CONAN_VISUAL_VERSIONS: 15
+          CONAN_BUILD_TYPES: Debug
+
+install:
+  - set PATH=%PATH%;%PYTHON%/Scripts/
+  - pip.exe install conan --upgrade
+  - pip.exe install conan_package_tools bincrafters_package_tools
+  - conan user # It creates the conan data directory
+
+test_script:
+  - python build.py
+"""
+
 
 def test_update_travis_file():
     """ Create a standard travis file and update it.
@@ -290,7 +350,7 @@ def test_update_travis_file():
     with open(expected_path, 'w') as file:
         file.write(EXPECTED_TRAVIS_FILE)
 
-    args = ['--file', travis_path]
+    args = ['--travisfile', travis_path]
     command = Command()
     command.run(args)
 
@@ -349,3 +409,21 @@ def test_conanfile_default_options_mutiline():
     command.run(args)
 
     assert filecmp.cmp(conan_path, expected_path)
+
+
+def test_appveyor_update():
+    """ Try to update an up-to-date file
+    """
+    _, appveyor_path = tempfile.mkstemp(prefix='appveyor', suffix='.yml')
+    with open(appveyor_path, 'w') as file:
+        file.write(APPVEYOR_FILE)
+
+    _, expected_path = tempfile.mkstemp(prefix='appveyor', suffix='.yml')
+    with open(expected_path, 'w') as file:
+        file.write(EXPECTED_APPVEYOR_FILE)
+
+    args = ['--appveyorfile', appveyor_path]
+    command = Command()
+    command.run(args)
+
+    assert filecmp.cmp(appveyor_path, expected_path)
