@@ -40,7 +40,7 @@ def chdir(newdir):
         os.chdir(old_path)
 
 
-Compiler = collections.namedtuple('Compiler', 'name, var, version, os, osx_version')
+Compiler = collections.namedtuple('Compiler', 'name, var, version, os, osx_version, page')
 
 LINUX_TEMPLATE = """linux: &linux
    os: linux
@@ -56,12 +56,12 @@ osx: &osx
    os: osx
    language: generic"""
 
-TRAVIS_TEMPLATE = """{{ linux_template }}{{ osx_template }}
+TRAVIS_TEMPLATE = """{{ travis_global_env }}{{ linux_template }}{{ osx_template }}
 matrix:
    include:{% for compiler in compilers %}
       - <<: *{{ compiler.os }}{% if compiler.os == "osx" %}
         osx_image: xcode{{ compiler.osx_version }}{% endif %}
-        {% if compiler.os == "linux" %}env: {{ compiler.var }}={{ compiler.version}} CONAN_DOCKER_IMAGE=conanio/{{ compiler.name }}{{ compiler.version.replace(".", "") }}{% else %}env: {{ compiler.var }}={{ compiler.version }}{% endif %}{% endfor %}
+        {% if compiler.os == "linux" %}env: {{ compiler.var }}={{ compiler.version}} CONAN_DOCKER_IMAGE=conanio/{{ compiler.name }}{{ compiler.version.replace(".", "") }}{% else %}env: {{ compiler.var }}={{ compiler.version }}{% endif %}{% if compiler.page != None %} CONAN_CURRENT_PAGE={{ compiler.page }}{% endif %}{% endfor %}
 
 install:
   - chmod +x .ci/install.sh
@@ -128,7 +128,8 @@ class Command(object):
         self._logger.debug("Found compilers: {}".format(compilers))
         sorted_compilers = self._add_recommended_compiler_versions(compilers)
         self._logger.debug("Updated compilers: {}".format(sorted_compilers))
-        has_linux, has_osx, compiler_objs = self._transform_compiler_list(sorted_compilers)
+        has_linux, has_osx, compiler_objs = self._transform_compiler_list(file, sorted_compilers)
+        global_envs = self._get_travis_global_env(file)
 
         self._logger.debug("compilers: {}".format(compiler_objs))
 
@@ -136,15 +137,16 @@ class Command(object):
         linux_template = LINUX_TEMPLATE if has_linux else ""
         osx_template = OSX_TEMPLATE if has_osx else ""
 
-        travis_content = template.render(linux_template=linux_template, osx_template=osx_template, compilers=compiler_objs)
+        travis_content = template.render(linux_template=linux_template, osx_template=osx_template, compilers=compiler_objs, travis_global_env=global_envs)
         with open(file, 'w') as fd:
             fd.write(travis_content)
 
         return sorted(compilers) != sorted_compilers
 
-    def _transform_compiler_list(self, compilers):
+    def _transform_compiler_list(self, file, compilers):
         """ Transform compiler version list in Compiler object list
 
+        :param file: Conan recipe
         :param compilers: Target compiler versions
         :return: Compiler metadata in a list
         """
@@ -152,19 +154,22 @@ class Command(object):
         has_osx = False
         compiler_list = []
         osx_versions = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10'}
+        total_pages = self._get_compiler_pages(file)
 
         for compiler_name in ['gcc', 'clang']:
             if compiler_name in compilers:
                 for version in compilers[compiler_name]:
-                    compiler = Compiler(compiler_name, 'CONAN_%s_VERSIONS' % compiler_name.upper(), version, 'linux', None)
-                    compiler_list.append(compiler)
-                has_linux = True
+                    for page in total_pages:
+                        compiler = Compiler(compiler_name, 'CONAN_%s_VERSIONS' % compiler_name.upper(), version, 'linux', None, page)
+                        compiler_list.append(compiler)
+                    has_linux = True
 
         compiler_name = 'apple_clang'
         if compiler_name in compilers:
             for version in compilers[compiler_name]:
-                compiler = Compiler(compiler_name, 'CONAN_%s_VERSIONS' % compiler_name.upper(), version, 'osx', osx_versions[version])
-                compiler_list.append(compiler)
+                for page in total_pages:
+                    compiler = Compiler(compiler_name, 'CONAN_%s_VERSIONS' % compiler_name.upper(), version, 'osx', osx_versions[version], page)
+                    compiler_list.append(compiler)
                 has_osx = True
 
         return has_linux, has_osx, compiler_list
@@ -205,6 +210,44 @@ class Command(object):
             return result
         except ConanException:
             return None
+
+    def _get_compiler_pages(self, file):
+        """ Search for pages in Travis file
+
+        :param file: Travis yaml file
+        :param compiler_name: Compiler name e.g. gcc
+        :param version: Compiler version used by conan versions
+        :return: A list with pages. e.g [1, 2, 3, 4]
+        """
+        if os.path.isfile(file):
+            with open(file) as ifd:
+                content = ifd.read()
+                match = re.search(r'- CONAN_TOTAL_PAGES: (\w+)', content)
+                if match:
+                    return list(range(1, int(match.group(1)) + 1))
+        return [None]
+
+    def _get_travis_global_env(self, file):
+        """ Search for global variables in Travis file
+
+        :param file: Travis file path
+        :return: global env context
+        """
+        result = ""
+        if os.path.isfile(file):
+            with open(file) as ifd:
+                content = ifd.readlines()
+                global_found = False
+                for line in content:
+                    if global_found:
+                        match = re.search(r'-(.*):(.*)', line)
+                        if not match:
+                            break
+                        result += "     {}\n".format(match.group(0))
+                    if 'global:' in line:
+                        global_found = True
+                        result = "env:\n   global:\n"
+        return result
 
     def _update_travis_path(self):
         """ Replace Travis directory by CI dir
