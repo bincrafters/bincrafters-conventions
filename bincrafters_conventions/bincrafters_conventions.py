@@ -17,7 +17,7 @@ from conans.errors import ConanException
 from conans.client import conan_api
 
 
-__version__ = '0.3.0-dev1'
+__version__ = '0.3.0-dev2'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -92,11 +92,14 @@ class Command(object):
         parser = argparse.ArgumentParser(description="Bincrafters Conventions")
         group = parser.add_mutually_exclusive_group()
         group.add_argument('--remote', type=str, help='Github repo to be updated e.g. bincrafters/conan-foobar')
-        group.add_argument('--travisfile', type=str, help='Travis file to be updated e.g. .travis.yml')
-        group.add_argument('--appveyorfile', type=str, help='Appveyor file to be updated e.g. appveyor.yml')
-        parser.add_argument('--dry-run', '-d', action='store_true', default=False, help='Do not push after update from remote')
-        parser.add_argument('--project-pattern', '-pp', type=str, help='Project pattern to filter over user projects e.g bincrafters/conan-*')
-        parser.add_argument('--branch-pattern', '-bp', type=str, help='Branch pattern to filter over user projects e.g stable/*')
+        group.add_argument('-t', '--travisfile', type=str, help='Travis file to be updated e.g. .travis.yml')
+        group.add_argument('-a', '--appveyorfile', type=str, help='Appveyor file to be updated e.g. appveyor.yml')
+        parser.add_argument('--dry-run', '-d', action='store_true', default=False,
+                            help='Do not push after update from remote')
+        parser.add_argument('--project-pattern', '-pp', type=str,
+                            help='Project pattern to filter over user projects e.g bincrafters/conan-*')
+        parser.add_argument('--branch-pattern', '-bp', type=str,
+                            help='Branch pattern to filter over user projects e.g stable/*')
         parser.add_argument('--conanfile', '-c', type=str, help='Conan recipe path e.g conanfile.py')
         parser.add_argument('--version', '-v', action='version', version='%(prog)s {}'.format(__version__))
         args = parser.parse_args(*args)
