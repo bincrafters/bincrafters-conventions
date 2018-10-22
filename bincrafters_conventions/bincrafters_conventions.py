@@ -46,7 +46,7 @@ LINUX_TEMPLATE = """linux: &linux
    os: linux
    dist: xenial
    language: python
-   python: "3.6"
+   python: "3.7"
    services:
      - docker"""
 
