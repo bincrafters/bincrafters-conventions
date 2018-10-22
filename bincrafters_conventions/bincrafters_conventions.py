@@ -187,7 +187,7 @@ class Command(object):
         if compilers.get('gcc'):
             compilers['gcc'] = sorted(compilers['gcc'].union(['6', '7', '8']), key=float)
         if compilers.get('clang'):
-            compilers['clang'] = sorted(compilers['clang'].union(['5.0', '6.0', '7']), key=float)
+            compilers['clang'] = sorted(compilers['clang'].union(['5.0', '6.0']), key=float)
         if compilers.get('apple_clang'):
             compilers['apple_clang'] = sorted(compilers['apple_clang'].union(['9.1', '10.0']), key=float)
         return compilers
