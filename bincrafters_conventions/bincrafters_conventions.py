@@ -45,7 +45,6 @@ Compiler = collections.namedtuple('Compiler', 'name, var, version, os, osx_versi
 LINUX_TEMPLATE = """linux: &linux
    os: linux
    dist: xenial
-   sudo: required
    language: python
    python: "3.6"
    services:
