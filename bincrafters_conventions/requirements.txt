@@ -1,4 +1,4 @@
-requests==2.19.1
+requests==2.20.0
 GitPython==2.1.11
 Jinja2==2.10
-conan>=1.8.2
+conan>=1.9.0
