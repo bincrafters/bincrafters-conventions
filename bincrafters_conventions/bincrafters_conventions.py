@@ -155,7 +155,7 @@ class Command(object):
         has_linux = False
         has_osx = False
         compiler_list = []
-        osx_versions = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10'}
+        osx_versions = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10.1'}
         total_pages = self._get_compiler_pages(file)
 
         for compiler_name in ['gcc', 'clang']:
