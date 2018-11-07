@@ -112,9 +112,8 @@ EXPECTED_TRAVIS_FILE_WITH_GLOBAL = """env:
 linux: &linux
    os: linux
    dist: xenial
-   sudo: required
    language: python
-   python: "3.6"
+   python: "3.7"
    services:
      - docker
 osx: &osx
@@ -187,10 +186,10 @@ matrix:
         osx_image: xcode9.4
         env: CONAN_APPLE_CLANG_VERSIONS=9.1 CONAN_CURRENT_PAGE=2
       - <<: *osx
-        osx_image: xcode10
+        osx_image: xcode10.1
         env: CONAN_APPLE_CLANG_VERSIONS=10.0 CONAN_CURRENT_PAGE=1
       - <<: *osx
-        osx_image: xcode10
+        osx_image: xcode10.1
         env: CONAN_APPLE_CLANG_VERSIONS=10.0 CONAN_CURRENT_PAGE=2
 
 install:
@@ -205,9 +204,8 @@ script:
 EXPECTED_TRAVIS_FILE = """linux: &linux
    os: linux
    dist: xenial
-   sudo: required
    language: python
-   python: "3.6"
+   python: "3.7"
    services:
      - docker
 osx: &osx
@@ -248,7 +246,7 @@ matrix:
         osx_image: xcode9.4
         env: CONAN_APPLE_CLANG_VERSIONS=9.1
       - <<: *osx
-        osx_image: xcode10
+        osx_image: xcode10.1
         env: CONAN_APPLE_CLANG_VERSIONS=10.0
 
 install:
