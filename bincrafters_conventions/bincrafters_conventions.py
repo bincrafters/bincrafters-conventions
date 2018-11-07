@@ -17,7 +17,7 @@ from conans.errors import ConanException
 from conans.client import conan_api
 
 
-__version__ = '0.3.0-dev3'
+__version__ = '0.3.0-dev4'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
