@@ -208,8 +208,8 @@ class Command(object):
                         if value == 'True' or value == 'False':
                             value = value == 'True'
                         new_result[key] = value
-                result = new_result
-            return result
+                return new_result
+            return None
         except ConanException:
             return None
 
@@ -312,6 +312,8 @@ class Command(object):
         result = False
         attribute = 'default_options'
         default_options = self._get_default_options(file)
+        if default_options is None:
+            return False
         if os.path.isfile(file):
             with open(file) as ifd:
                 content = ifd.readlines()
