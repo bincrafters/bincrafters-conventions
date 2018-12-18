@@ -13,6 +13,7 @@ import contextlib
 import collections
 import jinja2
 import shutil
+import re
 import spdx_lookup
 from conans.errors import ConanException
 from conans.client import conan_api
@@ -490,20 +491,22 @@ class Command(object):
                 self._update_configure_cmake(conanfile),
                 self._update_source_subfolder(conanfile),
                 self._update_build_subfolder(conanfile),
-                self._update_install_subfolder(conanfile),
-                )
+                self._update_install_subfolder(conanfile))
 
     def _run_conventions_checks(self, conanfile="conanfile.py"):
         """ Checks for conventions which we can't automatically update
         when they should fail
         """
-        return self._check_for_spdx_license(conanfile)
+        return (self._check_for_spdx_license(conanfile),
+                self._check_for_download_hash(conanfile))
 
-    def _check_results(self, passed: bool, title, reason=""):
+    def _check_results(self, passed: bool, title, reason="", skipped=False):
         if not reason == "":
             reason = ": {}".format(reason)
 
-        if passed:
+        if skipped:
+            self._logger.info("[SKIPPED]  {}{}".format(title, reason))
+        elif passed:
             self._logger.info("[PASSED]   {}{}".format(title, reason))
         else:
             self._logger.error("[FAILED]   {}{}".format(title, reason))
@@ -514,10 +517,29 @@ class Command(object):
             recipe_license = conan_instance.inspect(path=file, attributes=['license'])['license']
             if spdx_lookup.by_id(recipe_license):
                 self._check_results(passed=True, title="SPDX License")
+                return True
             else:
                 self._check_results(passed=False, title="SPDX License", reason="the license identifier doesn't seem to be a valid SPDX one. Have a look at https://spdx.org/licenses/")
+                return False
         except ConanException:
             self._check_results(passed=False, title="SPDX License", reason="could not get the license attribute from the Conanfile")
+            return False
+
+    def _check_for_download_hash(self, file):
+        conanfile = open(file, 'r')
+        recipe = conanfile.read()
+        conanfile.close()
+
+        if re.search(r'tools\.get\(.+\)', recipe):
+            if re.search(r'tools\.get\(.+,\s?sha256=.+\)', recipe):
+                self._check_results(passed=True, title="SHA256 hash in tools.get()")
+                return True
+            else:
+                self._check_results(passed=False, title="SHA256 hash in tools.get()", reason="checksum not found")
+                return False
+        self._check_results(passed=True, skipped=True, title="SHA256 hash in tools.get()", reason="tools.get() isn't used")
+        return True
+
 
     def _update_appveyor_file(self, path):
         """ Replace python version
