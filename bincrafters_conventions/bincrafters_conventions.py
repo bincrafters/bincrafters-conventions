@@ -95,6 +95,7 @@ class Command(object):
         group.add_argument('-t', '--travisfile', type=str, help='Travis file to be updated e.g. .travis.yml')
         group.add_argument('-a', '--appveyorfile', type=str, help='Appveyor file to be updated e.g. appveyor.yml')
         group.add_argument('--conanfile', '-c', type=str, help='Conan recipe path e.g conanfile.py')
+        group.add_argument('--check', action='store_true', help='Checks for additional conventions')
         parser.add_argument('--dry-run', '-d', action='store_true', default=False,
                             help='Do not push after update from remote')
         parser.add_argument('--project-pattern', '-pp', type=str,
@@ -123,12 +124,15 @@ class Command(object):
                 self._update_remote(arguments.remote, arguments.conanfile, arguments.dry_run, arguments.project_pattern,
                                     arguments.branch_pattern)
             else:
-                if arguments.conanfile:
-                    self._update_conanfile(arguments.conanfile)
-                if arguments.travisfile:
-                    self._update_compiler_jobs(arguments.travisfile)
-                if arguments.appveyorfile:
-                    self._update_appveyor_file(arguments.appveyorfile)
+                if arguments.check:
+                    self._run_conventions_checks()
+                else:
+                    if arguments.conanfile:
+                        self._update_conanfile(arguments.conanfile)
+                    if arguments.travisfile:
+                        self._update_compiler_jobs(arguments.travisfile)
+                    if arguments.appveyorfile:
+                        self._update_appveyor_file(arguments.appveyorfile)
 
     def _update_compiler_jobs(self, file):
         """ Read Travis file and compiler jobs
