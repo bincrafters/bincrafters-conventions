@@ -17,7 +17,7 @@ import spdx_lookup
 from conans.errors import ConanException
 from conans.client import conan_api
 
-__version__ = '0.3.0-dev6'
+__version__ = '0.3.0-dev7'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -91,16 +91,17 @@ class Command(object):
         parser = argparse.ArgumentParser(description="Bincrafters Conventions")
         group = parser.add_mutually_exclusive_group()
         group.add_argument('--remote', type=str, help='Github repo to be updated e.g. bincrafters/conan-foobar')
+        group.add_argument('--local', action='store_true', help='Update current local repository')
         group.add_argument('-t', '--travisfile', type=str, help='Travis file to be updated e.g. .travis.yml')
         group.add_argument('-a', '--appveyorfile', type=str, help='Appveyor file to be updated e.g. appveyor.yml')
+        group.add_argument('--conanfile', '-c', type=str, help='Conan recipe path e.g conanfile.py')
         parser.add_argument('--dry-run', '-d', action='store_true', default=False,
                             help='Do not push after update from remote')
         parser.add_argument('--project-pattern', '-pp', type=str,
                             help='Project pattern to filter over user projects e.g bincrafters/conan-*')
         parser.add_argument('--branch-pattern', '-bp', type=str,
                             help='Branch pattern to filter over user projects e.g stable/*')
-        parser.add_argument('--conanfile', '-c', type=str, help='Conan recipe path e.g conanfile.py')
-        parser.add_argument('--version', '-v', action='version', version='%(prog)s {}'.format(__version__))
+        group.add_argument('--version', '-v', action='version', version='%(prog)s {}'.format(__version__))
         args = parser.parse_args(*args)
         return args
 
@@ -110,16 +111,24 @@ class Command(object):
         :param args: User arguments
         """
         arguments = self._parse_arguments(*args)
-        if arguments.remote:
-            self._update_remote(arguments.remote, arguments.conanfile, arguments.dry_run, arguments.project_pattern,
-                                arguments.branch_pattern)
+        if not len(sys.argv) > 1 or arguments.local:
+            if os.path.isfile(".travis.yml"):
+                self._update_compiler_jobs(".travis.yml")
+            if os.path.isfile(".appveyor.yml"):
+                self._update_appveyor_file("appveyor.yml")
+            self._update_conanfile("conanfile.py")
+            self._run_conventions_checks()
         else:
-            if arguments.conanfile:
-                self._update_conanfile(arguments.conanfile)
-            if arguments.travisfile:
-                self._update_compiler_jobs(arguments.travisfile)
-            if arguments.appveyorfile:
-                self._update_appveyor_file(arguments.appveyorfile)
+            if arguments.remote:
+                self._update_remote(arguments.remote, arguments.conanfile, arguments.dry_run, arguments.project_pattern,
+                                    arguments.branch_pattern)
+            else:
+                if arguments.conanfile:
+                    self._update_conanfile(arguments.conanfile)
+                if arguments.travisfile:
+                    self._update_compiler_jobs(arguments.travisfile)
+                if arguments.appveyorfile:
+                    self._update_appveyor_file(arguments.appveyorfile)
 
     def _update_compiler_jobs(self, file):
         """ Read Travis file and compiler jobs
@@ -478,16 +487,22 @@ class Command(object):
                 self._update_source_subfolder(conanfile),
                 self._update_build_subfolder(conanfile),
                 self._update_install_subfolder(conanfile),
-                self._check_for_spdx_license(conanfile))
+                )
+
+    def _run_conventions_checks(self, conanfile="conanfile.py"):
+        """ Checks for conventions which we can't automatically update
+        when they should fail
+        """
+        return self._check_for_spdx_license(conanfile)
 
     def _check_results(self, passed: bool, title, reason=""):
         if not reason == "":
             reason = ": {}".format(reason)
 
         if passed:
-            self._logger.info("[PASSED]   Check {}{}".format(title, reason))
+            self._logger.info("[PASSED]   {}{}".format(title, reason))
         else:
-            self._logger.error("[FAILED]   Check {}{}".format(title, reason))
+            self._logger.error("[FAILED]   {}{}".format(title, reason))
 
     def _check_for_spdx_license(self, file):
         conan_instance, _, _ = conan_api.Conan.factory()
