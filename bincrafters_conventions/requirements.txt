@@ -2,3 +2,4 @@ requests==2.20.0
 GitPython==2.1.11
 Jinja2==2.10
 conan>=1.9.0
+spdx-lookup==0.3.2

@@ -13,11 +13,11 @@ import contextlib
 import collections
 import jinja2
 import shutil
+import spdx_lookup
 from conans.errors import ConanException
 from conans.client import conan_api
 
-
-__version__ = '0.3.0-dev5'
+__version__ = '0.3.0-dev6'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -477,7 +477,28 @@ class Command(object):
                 self._update_configure_cmake(conanfile),
                 self._update_source_subfolder(conanfile),
                 self._update_build_subfolder(conanfile),
-                self._update_install_subfolder(conanfile))
+                self._update_install_subfolder(conanfile),
+                self._check_for_spdx_license(conanfile))
+
+    def _check_results(self, passed: bool, title, reason=""):
+        if not reason == "":
+            reason = ": {}".format(reason)
+
+        if passed:
+            self._logger.info("[PASSED]   Check {}{}".format(title, reason))
+        else:
+            self._logger.error("[FAILED]   Check {}{}".format(title, reason))
+
+    def _check_for_spdx_license(self, file):
+        conan_instance, _, _ = conan_api.Conan.factory()
+        try:
+            recipe_license = conan_instance.inspect(path=file, attributes=['license'])['license']
+            if spdx_lookup.by_id(recipe_license):
+                self._check_results(passed=True, title="SPDX License")
+            else:
+                self._check_results(passed=False, title="SPDX License", reason="the license identifier doesn't seem to be a valid SPDX one. Have a look at https://spdx.org/licenses/")
+        except ConanException:
+            self._check_results(passed=False, title="SPDX License", reason="could not get the license attribute from the Conanfile")
 
     def _update_appveyor_file(self, path):
         """ Replace python version
