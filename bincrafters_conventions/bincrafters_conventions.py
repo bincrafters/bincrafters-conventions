@@ -126,6 +126,10 @@ class Command(object):
 
         :param file: Travis file path
         """
+
+        # Rename .travis -> .ci
+        self._update_travis_path()
+
         compilers = self._read_compiler_versions(file)
         self._logger.debug("Found compilers: {}".format(compilers))
         sorted_compilers = self._add_recommended_compiler_versions(compilers)
