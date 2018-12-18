@@ -92,9 +92,9 @@ class Command(object):
         group = parser.add_mutually_exclusive_group()
         group.add_argument('--remote', type=str, help='Github repo to be updated e.g. bincrafters/conan-foobar')
         group.add_argument('--local', action='store_true', help='Update current local repository')
-        group.add_argument('-t', '--travisfile', type=str, help='Travis file to be updated e.g. .travis.yml')
-        group.add_argument('-a', '--appveyorfile', type=str, help='Appveyor file to be updated e.g. appveyor.yml')
-        group.add_argument('--conanfile', '-c', type=str, help='Conan recipe path e.g conanfile.py')
+        group.add_argument('-t', '--travisfile', type=str, nargs='?', const='.travis.yml', help='Travis file to be updated e.g. .travis.yml')
+        group.add_argument('-a', '--appveyorfile', type=str, nargs='?', const='appveyor.yml', help='Appveyor file to be updated e.g. appveyor.yml')
+        group.add_argument('--conanfile', '-c', type=str, nargs='?', const='conanfile.py', help='Conan recipe path e.g conanfile.py')
         group.add_argument('--check', action='store_true', help='Checks for additional conventions')
         parser.add_argument('--dry-run', '-d', action='store_true', default=False,
                             help='Do not push after update from remote')
