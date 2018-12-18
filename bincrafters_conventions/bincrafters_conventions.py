@@ -507,9 +507,9 @@ class Command(object):
         if skipped:
             self._logger.info("[SKIPPED]  {}{}".format(title, reason))
         elif passed:
-            self._logger.info("[PASSED]   {}{}".format(title, reason))
+            self._logger.info("[\033[1;32mPASSED\033[0m]   {}{}".format(title, reason))
         else:
-            self._logger.error("[FAILED]   {}{}".format(title, reason))
+            self._logger.error("[\033[1;31mFAILED\033[0m]   {}{}".format(title, reason))
 
     def _check_for_spdx_license(self, file):
         conan_instance, _, _ = conan_api.Conan.factory()
