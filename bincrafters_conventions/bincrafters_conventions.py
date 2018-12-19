@@ -14,6 +14,7 @@ import jinja2
 import re
 from .actions.check_for_spdx_license import check_for_spdx_license
 from .actions.check_for_download_hash import check_for_download_hash
+from .actions.check_for_required_attributes import check_for_required_attributes
 from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic_exception_to_invalid_conf
 from .actions.update_c_install_subfolder import update_c_install_subfolder
 from .actions.update_c_build_subfolder import update_c_build_subfolder
@@ -397,7 +398,8 @@ class Command(object):
         """ Checks for conventions which we can't automatically update
         when they should fail
         """
-        return (check_for_spdx_license(self, conanfile),
+        return (check_for_required_attributes(self, conanfile),
+                check_for_spdx_license(self, conanfile),
                 check_for_download_hash(self, conanfile))
 
     def output_result_update(self, title):
