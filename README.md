@@ -51,6 +51,14 @@ or
 
     $ bincrafters_conventions --remote=bincrafters/conan-libzip --branch-pattern stable/*
 
+To update and check **LOCAL** everything
+
+    $ bincrafters_conventions
+    
+To check **LOCAL** everything
+
+    $ bincrafters_conventions --check
+    
 To update a **LOCAL** file
 
     $ bincrafters_conventions --travisfile=.travis.yml
@@ -90,7 +98,6 @@ There are two ways to upload this project.
 ##### Travis CI
 After to create a new tag, the package will be uploaded automatically to Pypi.  
 Both username and password (encrypted) are in travis file.  
-Only one job (python 2.7) will upload, the second one will be skipped.
 
 
 ##### Command line
