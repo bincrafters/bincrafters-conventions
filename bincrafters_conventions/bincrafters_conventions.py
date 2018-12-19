@@ -4,7 +4,6 @@
 import argparse
 import os
 import sys
-import re
 import logging
 import git
 import tempfile
@@ -12,16 +11,22 @@ import requests
 import contextlib
 import collections
 import jinja2
-import shutil
 import re
-import spdx_lookup
-from conans.errors import ConanException
-from conans.client import conan_api
+from .actions.check_for_spdx_license import check_for_spdx_license
+from .actions.check_for_download_hash import check_for_download_hash
+from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic_exception_to_invalid_conf
+from .actions.update_c_install_subfolder import update_c_install_subfolder
+from .actions.update_c_build_subfolder import update_c_build_subfolder
+from .actions.update_c_default_options_to_dict import update_c_default_options_to_dict
+from .actions.update_c_configure_cmake import update_c_configure_cmake
+from .actions.update_c_source_subfolder import update_c_source_subfolder
+from .actions.update_t_ci_dir_path import update_t_ci_dir_path
+from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_ci_dir_name
 
-__version__ = '0.3.0-dev7'
+
+__version__ = '0.3.0-dev8'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
-
 
 LOGGING_FORMAT = '[%(levelname)s]\t%(asctime)s %(message)s'
 logging.basicConfig(format=LOGGING_FORMAT, datefmt='%Y-%m-%d %H:%M:%S')
@@ -31,7 +36,7 @@ logging.basicConfig(format=LOGGING_FORMAT, datefmt='%Y-%m-%d %H:%M:%S')
 def chdir(newdir):
     """ Change directory using locked scope
 
-    :param newdir: Tempory folder to move
+    :param newdir: Temporary folder to move
     """
     old_path = os.getcwd()
     os.chdir(newdir)
@@ -93,9 +98,12 @@ class Command(object):
         group = parser.add_mutually_exclusive_group()
         group.add_argument('--remote', type=str, help='Github repo to be updated e.g. bincrafters/conan-foobar')
         group.add_argument('--local', action='store_true', help='Update current local repository')
-        group.add_argument('-t', '--travisfile', type=str, nargs='?', const='.travis.yml', help='Travis file to be updated e.g. .travis.yml')
-        group.add_argument('-a', '--appveyorfile', type=str, nargs='?', const='appveyor.yml', help='Appveyor file to be updated e.g. appveyor.yml')
-        group.add_argument('--conanfile', '-c', type=str, nargs='?', const='conanfile.py', help='Conan recipe path e.g conanfile.py')
+        group.add_argument('-t', '--travisfile', type=str, nargs='?', const='.travis.yml',
+                           help='Travis file to be updated e.g. .travis.yml')
+        group.add_argument('-a', '--appveyorfile', type=str, nargs='?', const='appveyor.yml',
+                           help='Appveyor file to be updated e.g. appveyor.yml')
+        group.add_argument('--conanfile', '-c', type=str, nargs='?', const='conanfile.py',
+                           help='Conan recipe path e.g conanfile.py')
         group.add_argument('--check', action='store_true', help='Checks for additional conventions')
         parser.add_argument('--dry-run', '-d', action='store_true', default=False,
                             help='Do not push after update from remote')
@@ -142,7 +150,7 @@ class Command(object):
         """
 
         # Rename .travis -> .ci
-        self._update_travis_path()
+        update_other_travis_to_ci_dir_name(self)
 
         compilers = self._read_compiler_versions(file)
         self._logger.debug("Found compilers: {}".format(compilers))
@@ -157,7 +165,8 @@ class Command(object):
         linux_template = LINUX_TEMPLATE if has_linux else ""
         osx_template = OSX_TEMPLATE if has_osx else ""
 
-        travis_content = template.render(linux_template=linux_template, osx_template=osx_template, compilers=compiler_objs, travis_global_env=global_envs)
+        travis_content = template.render(linux_template=linux_template, osx_template=osx_template,
+                                         compilers=compiler_objs, travis_global_env=global_envs)
         with open(file, 'w') as fd:
             fd.write(travis_content)
 
@@ -180,7 +189,8 @@ class Command(object):
             if compiler_name in compilers:
                 for version in compilers[compiler_name]:
                     for page in total_pages:
-                        compiler = Compiler(compiler_name, 'CONAN_%s_VERSIONS' % compiler_name.upper(), version, 'linux', None, page)
+                        compiler = Compiler(compiler_name, 'CONAN_%s_VERSIONS' % compiler_name.upper(), version,
+                                            'linux', None, page)
                         compiler_list.append(compiler)
                     has_linux = True
 
@@ -188,7 +198,8 @@ class Command(object):
         if compiler_name in compilers:
             for version in compilers[compiler_name]:
                 for page in total_pages:
-                    compiler = Compiler(compiler_name, 'CONAN_%s_VERSIONS' % compiler_name.upper(), version, 'osx', osx_versions[version], page)
+                    compiler = Compiler(compiler_name, 'CONAN_%s_VERSIONS' % compiler_name.upper(), version, 'osx',
+                                        osx_versions[version], page)
                     compiler_list.append(compiler)
                 has_osx = True
 
@@ -208,28 +219,6 @@ class Command(object):
         if compilers.get('apple_clang'):
             compilers['apple_clang'] = sorted(compilers['apple_clang'].union(['9.1', '10.0']), key=float)
         return compilers
-
-    def _get_default_options(self, file):
-        conan_instance, _, _ = conan_api.Conan.factory()
-        try:
-            result = conan_instance.inspect(path=file, attributes=['default_options'])['default_options']
-            # Tuple uses old combination: "value=key"
-            if isinstance(result, tuple):
-                new_result = {}
-                for item in result:
-                    # extract key,value from string
-                    match = re.match(r'(.*)=(.*)', item)
-                    if match:
-                        key = match.group(1)
-                        value = match.group(2)
-                        # to boolean
-                        if value == 'True' or value == 'False':
-                            value = value == 'True'
-                        new_result[key] = value
-                return new_result
-            return None
-        except ConanException:
-            return None
 
     def _get_compiler_pages(self, file):
         """ Search for pages in Travis file
@@ -269,96 +258,8 @@ class Command(object):
                         result = "env:\n   global:\n"
         return result
 
-    def _update_travis_path(self):
-        """ Replace Travis directory by CI dir
-        """
-        travis_dir = ".travis"
-        ci_dir = ".ci"
-        self._logger.info("Update Travis directory path")
-        if os.path.isdir(travis_dir):
-            shutil.move(os.path.abspath(travis_dir), os.path.abspath(ci_dir))
-            return True
-        return False
 
-    def _update_configure_cmake(self, file):
-        """ Replace configure cmake helper
-        """
-        self._logger.info("Update Configure CMake")
-        return (self._replace_in_file(file, "def configure_cmake", "def _configure_cmake"),
-                self._replace_in_file(file, "self.configure_cmake", "self._configure_cmake"))
-
-    def _update_source_subfolder(self, file):
-        """ Replace source subfolder from Conan recipe
-        """
-        self._logger.info("Update Source subfolder")
-        return (self._replace_in_file(file, " source_subfolder =", " _source_subfolder ="),
-                self._replace_in_file(file, "self.source_subfolder", "self._source_subfolder"))
-
-    def _update_build_subfolder(self, file):
-        """ Replace build subfolder from Conan recipe
-        """
-        self._logger.info("Update Build subfolder")
-        return (self._replace_in_file(file, " build_subfolder =", " _build_subfolder ="),
-                self._replace_in_file(file, "self.build_subfolder", "self._build_subfolder"))
-
-    def _update_install_subfolder(self, file):
-        """ Replace install subfolder from Conan recipe
-        """
-        self._logger.info("Update Install subfolder")
-        return (self._replace_in_file(file, " install_subfolder =", " _install_subfolder ="),
-                self._replace_in_file(file, "self.install_subfolder", "self._install_subfolder"))
-
-    def _update_exception(self, file):
-        """ Replace default exception by Invalid config
-
-        :param file: Conan recipe path
-        """
-        if self._file_contains(file, "raise Exception"):
-            self._logger.info("Update Conan exception")
-            return (self._replace_in_file(file, "raise Exception", "raise ConanInvalidConfiguration"),
-                    self._replace_in_file(file, "import os", "from conans.errors import ConanInvalidConfiguration\nimport os"))
-
-    def _update_ci_path_in_travis(self, file):
-        """ Update travis folder path in travis file
-
-        :param file: travis file path
-        :return:
-        """
-        return self._replace_in_file(file, ".travis", ".ci")
-
-    def _update_default_options(self, file):
-        result = False
-        attribute = 'default_options'
-        default_options = self._get_default_options(file)
-        if default_options is None:
-            return False
-        if os.path.isfile(file):
-            with open(file) as ifd:
-                content = ifd.readlines()
-                with open(file, 'w') as ofd:
-                    found_default_options = False
-                    updated = False
-                    for line in content:
-                        if not found_default_options:
-                            # searching for default options
-                            if attribute in line:
-                                found_default_options = True
-                                line = '    {} = {}\n'.format(attribute, default_options)
-                            # searching for multiline default options
-                        elif found_default_options and not updated:
-                            if ')' in line or re.search(r'".*=', line):
-                                continue
-                            else:
-                                updated = True
-                        ofd.write('{}'.format(line))
-                    # ofd.write('\n')
-                    self._logger.info("File {} was updated".format(file))
-        else:
-            self._logger.warning("Could not update {}: File does not exist".format(file))
-        return result
-
-
-    def _replace_in_file(self, file, old, new):
+    def replace_in_file(self, file, old, new):
         """ Read file and replace ALL occurrences of old by new
 
         :param file: target file
@@ -374,12 +275,11 @@ class Command(object):
             if result:
                 with open(file, 'w') as ofd:
                     ofd.write(content.replace(old, new))
-                    self._logger.info("File {} was updated".format(file))
         else:
             self._logger.warning("Could not update {}: File does not exist".format(file))
         return result
 
-    def _file_contains(self, file, word):
+    def file_contains(self, file, word):
         """ Read file and search for word
 
         :param file: File path to be read
@@ -399,8 +299,8 @@ class Command(object):
         :param conanfile: Conan recipe path
         :return: True if recipe is header-only. Otherwise, False.
         """
-        if self._file_contains(conanfile, "self.info.header_only()"):
-           return True
+        if self.file_contains(conanfile, "self.info.header_only()"):
+            return True
         else:
             self._logger.warning("Could not check header-only recipe")
         return False
@@ -455,7 +355,7 @@ class Command(object):
             header_only = self._is_hearder_only(conanfile)
             travis_updater = self._update_compiler_jobs
             if header_only:
-                travis_updater = self._update_ci_path_in_travis
+                travis_updater = update_t_ci_dir_path(self, conanfile)
                 self._logger.info("Conan recipe for header-only project")
             else:
                 self._logger.info("Conan recipe is not for header-only project")
@@ -463,7 +363,7 @@ class Command(object):
             versions = self._read_compiler_versions(file)
             self._logger.info(versions)
 
-            result = (self._update_travis_path(),
+            result = (update_other_travis_to_ci_dir_name(self),
                       self._update_conanfile(conanfile),
                       travis_updater(file),
                       self._update_appveyor_file('appveyor.yml'))
@@ -486,21 +386,24 @@ class Command(object):
         :param conanfile: Conan recipe path
         :return:
         """
-        return (self._update_default_options(conanfile),
-                self._update_exception(conanfile),
-                self._update_configure_cmake(conanfile),
-                self._update_source_subfolder(conanfile),
-                self._update_build_subfolder(conanfile),
-                self._update_install_subfolder(conanfile))
+        return (update_c_default_options_to_dict(self, conanfile),
+                update_c_generic_exception_to_invalid_conf(self, conanfile),
+                update_c_configure_cmake(self, conanfile),
+                update_c_source_subfolder(self, conanfile),
+                update_c_build_subfolder(self, conanfile),
+                update_c_install_subfolder(self, conanfile))
 
     def _run_conventions_checks(self, conanfile="conanfile.py"):
         """ Checks for conventions which we can't automatically update
         when they should fail
         """
-        return (self._check_for_spdx_license(conanfile),
-                self._check_for_download_hash(conanfile))
+        return (check_for_spdx_license(self, conanfile),
+                check_for_download_hash(self, conanfile))
 
-    def _check_results(self, passed: bool, title, reason="", skipped=False):
+    def output_result_update(self, title):
+        self._logger.info("[\033[1;32mUPDATED\033[0m]  {}".format(title))
+
+    def output_result_check(self, passed: bool, title, reason="", skipped=False):
         if not reason == "":
             reason = ": {}".format(reason)
 
@@ -510,36 +413,6 @@ class Command(object):
             self._logger.info("[\033[1;32mPASSED\033[0m]   {}{}".format(title, reason))
         else:
             self._logger.error("[\033[1;31mFAILED\033[0m]   {}{}".format(title, reason))
-
-    def _check_for_spdx_license(self, file):
-        conan_instance, _, _ = conan_api.Conan.factory()
-        try:
-            recipe_license = conan_instance.inspect(path=file, attributes=['license'])['license']
-            if spdx_lookup.by_id(recipe_license):
-                self._check_results(passed=True, title="SPDX License")
-                return True
-            else:
-                self._check_results(passed=False, title="SPDX License", reason="the license identifier doesn't seem to be a valid SPDX one. Have a look at https://spdx.org/licenses/")
-                return False
-        except ConanException:
-            self._check_results(passed=False, title="SPDX License", reason="could not get the license attribute from the Conanfile")
-            return False
-
-    def _check_for_download_hash(self, file):
-        conanfile = open(file, 'r')
-        recipe = conanfile.read()
-        conanfile.close()
-
-        if re.search(r'tools\.get\(.+\)', recipe):
-            if re.search(r'tools\.get\(.+,\s?sha256=.+\)', recipe):
-                self._check_results(passed=True, title="SHA256 hash in tools.get()")
-                return True
-            else:
-                self._check_results(passed=False, title="SHA256 hash in tools.get()", reason="checksum not found")
-                return False
-        self._check_results(passed=True, skipped=True, title="SHA256 hash in tools.get()", reason="tools.get() isn't used")
-        return True
-
 
     def _update_appveyor_file(self, path):
         """ Replace python version
