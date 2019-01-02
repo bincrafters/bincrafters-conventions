@@ -25,9 +25,10 @@ from .actions.update_c_configure_cmake import update_c_configure_cmake
 from .actions.update_c_source_subfolder import update_c_source_subfolder
 from .actions.update_t_ci_dir_path import update_t_ci_dir_path
 from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_ci_dir_name
+from .actions.update_other_pyenv_python_version import update_other_pyenv_python_version
 
 
-__version__ = '0.3.0-dev8'
+__version__ = '0.3.0-dev9'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -154,6 +155,7 @@ class Command(object):
 
         # Rename .travis -> .ci
         update_other_travis_to_ci_dir_name(self)
+        update_other_pyenv_python_version(self, '.ci/install.sh')
 
         compilers = self._read_compiler_versions(file)
         self._logger.debug("Found compilers: {}".format(compilers))
@@ -367,6 +369,7 @@ class Command(object):
             self._logger.info(versions)
 
             result = (update_other_travis_to_ci_dir_name(self),
+                      update_other_pyenv_python_version(self, '.ci/install.sh'),
                       self._update_conanfile(conanfile),
                       travis_updater(file),
                       self._update_appveyor_file('appveyor.yml'))
