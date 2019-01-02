@@ -7,9 +7,9 @@ def _get_default_options(file):
     conan_instance, _, _ = conan_api.Conan.factory()
     try:
         result = conan_instance.inspect(path=file, attributes=['default_options'])['default_options']
+        new_result = {}
         # Tuple uses old combination: "value=key"
         if isinstance(result, tuple):
-            new_result = {}
             for item in result:
                 # extract key,value from string
                 match = re.match(r'(.*)=(.*)', item)
@@ -20,6 +20,11 @@ def _get_default_options(file):
                     if value == 'True' or value == 'False':
                         value = value == 'True'
                     new_result[key] = value
+            return new_result
+        # if we only have one option it is a string
+        if isinstance(result, str):
+            item = result.split("=")
+            new_result[item[0]] = item[1]
             return new_result
         return None
     except ConanException:
