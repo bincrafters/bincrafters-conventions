@@ -1,9 +1,6 @@
-def update_other_pyenv_python_version(main, file):
+def update_other_pyenv_python_version(main, file, current_python_version, check_for_old_versions):
     """ Replaces which Python version is getting installed in .ci/install.sh for macOS via pyenv
     """
-
-    current_python_version = "3.7.1"
-    check_for_old_versions = ["2.7.10", "3.7.0"]
 
     current_install_string = "pyenv install {}".format(current_python_version)
     current_virtualenv_string = "pyenv virtualenv {} conan".format(current_python_version)

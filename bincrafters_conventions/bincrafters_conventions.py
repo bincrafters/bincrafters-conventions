@@ -17,6 +17,7 @@ from .actions.check_for_download_hash import check_for_download_hash
 from .actions.check_for_readme import check_for_readme
 from .actions.check_for_license import check_for_license
 from .actions.check_for_required_attributes import check_for_required_attributes
+from .actions.update_a_python_version import update_a_python_version
 from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic_exception_to_invalid_conf
 from .actions.update_c_install_subfolder import update_c_install_subfolder
 from .actions.update_c_build_subfolder import update_c_build_subfolder
@@ -35,6 +36,11 @@ __license__ = 'MIT'
 LOGGING_FORMAT = '[%(levelname)s]\t%(asctime)s %(message)s'
 logging.basicConfig(format=LOGGING_FORMAT, datefmt='%Y-%m-%d %H:%M:%S')
 
+# Python version for updating files
+python_version_current_pyenv = "3.7.1"
+python_version_current_appveyor = "37"
+# for appveyor dot zero releases need to be added without dot zero, for pyenv a seonnd time with a dot zero
+python_check_for_old_versions = ["2.7.8", "2.7", "2.7.10", "3.7.0"]
 
 @contextlib.contextmanager
 def chdir(newdir):
@@ -128,7 +134,7 @@ class Command(object):
         if not len(sys.argv) > 1 or arguments.local:
             if os.path.isfile(".travis.yml"):
                 self._update_compiler_jobs(".travis.yml")
-            if os.path.isfile(".appveyor.yml"):
+            if os.path.isfile("appveyor.yml"):
                 self._update_appveyor_file("appveyor.yml")
             self._update_conanfile("conanfile.py")
             self._run_conventions_checks()
@@ -155,7 +161,7 @@ class Command(object):
 
         # Rename .travis -> .ci
         update_other_travis_to_ci_dir_name(self)
-        update_other_pyenv_python_version(self, '.ci/install.sh')
+        update_other_pyenv_python_version(self, '.ci/install.sh', python_version_current_pyenv, python_check_for_old_versions)
 
         compilers = self._read_compiler_versions(file)
         self._logger.debug("Found compilers: {}".format(compilers))
@@ -176,6 +182,9 @@ class Command(object):
             fd.write(travis_content)
 
         return sorted(compilers) != sorted_compilers
+
+    def _update_appveyor_file(self, file):
+        update_a_python_version(self, file, python_version_current_appveyor, python_check_for_old_versions)
 
     def _transform_compiler_list(self, file, compilers):
         """ Transform compiler version list in Compiler object list
@@ -369,7 +378,7 @@ class Command(object):
             self._logger.info(versions)
 
             result = (update_other_travis_to_ci_dir_name(self),
-                      update_other_pyenv_python_version(self, '.ci/install.sh'),
+                      update_other_pyenv_python_version(self, '.ci/install.sh', python_version_current_pyenv, python_check_for_old_versions),
                       self._update_conanfile(conanfile),
                       travis_updater(file),
                       self._update_appveyor_file('appveyor.yml'))
@@ -422,27 +431,6 @@ class Command(object):
             self._logger.info("[\033[1;32mPASSED\033[0m]   {}{}".format(title, reason))
         else:
             self._logger.error("[\033[1;31mFAILED\033[0m]   {}{}".format(title, reason))
-
-    def _update_appveyor_file(self, path):
-        """ Replace python version
-
-        :param path: Appveyor yaml file
-        """
-        result = False
-        if os.path.isfile(path):
-            with open(path) as ifd:
-                content = ifd.readlines()
-            with open(path, 'w') as ofd:
-                for line in content:
-                    if 'PYTHON:' in line:
-                        line = '    PYTHON: "C:\\\\Python37"\n'
-                        result = True
-                    elif 'PYTHON_VERSION:' in line or 'PYTHON_ARCH:' in line:
-                        continue
-                    ofd.write(line)
-        else:
-            self._logger.warning("Could not update {}: File does not exist".format(path))
-        return result
 
     def _clone_project(self, github_url):
         """ Clone Github project to temporary directory
