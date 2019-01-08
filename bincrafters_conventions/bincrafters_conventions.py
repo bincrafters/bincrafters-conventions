@@ -40,7 +40,7 @@ logging.basicConfig(format=LOGGING_FORMAT, datefmt='%Y-%m-%d %H:%M:%S')
 # Python version for updating files
 python_version_current_pyenv = "3.7.1"
 python_version_current_appveyor = "37"
-# for appveyor dot zero releases need to be added without dot zero, for pyenv a seonnd time with a dot zero
+# for appveyor dot zero releases need to be added without dot zero, for pyenv a second time with a dot zero
 python_check_for_old_versions = ["2.7.8", "2.7", "2.7.10", "3.7.0"]
 
 @contextlib.contextmanager
