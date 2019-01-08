@@ -2,10 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
-if sys.version_info.major == 3:
-    from bincrafters_conventions import bincrafters_conventions
-else:
-    import bincrafters_conventions
+from bincrafters_conventions import bincrafters_conventions
 
 
 def run():
