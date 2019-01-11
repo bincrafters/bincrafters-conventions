@@ -30,12 +30,13 @@ from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_c
 from .actions.update_other_pyenv_python_version import update_other_pyenv_python_version
 
 
-__version__ = '0.3.0-dev10'
+__version__ = '0.3.1'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
 LOGGING_FORMAT = '[%(levelname)s]\t%(asctime)s %(message)s'
-logging.basicConfig(format=LOGGING_FORMAT, datefmt='%Y-%m-%d %H:%M:%S')
+LOGGING_LEVEL = os.getenv("BINCRAFTERS_LOGGING_LEVEL", logging.INFO)
+logging.basicConfig(level=int(LOGGING_LEVEL), format=LOGGING_FORMAT, datefmt='%Y-%m-%d %H:%M:%S')
 
 # Python version for updating files
 python_version_current_pyenv = "3.7.1"
@@ -59,6 +60,19 @@ def chdir(newdir):
 
 Compiler = collections.namedtuple('Compiler', 'name, var, version, os, osx_version, page')
 
+class DockerImage(object):
+    OWNER = 'conanio'
+
+    def __init__(self, compiler):
+        self._compiler = compiler
+        self._version = compiler.version.replace(".", "")
+        if compiler.name == "clang" and compiler.version == "7.0":
+            self._version = '7'
+
+    @property
+    def name(self):
+        return "{}/{}{}".format(DockerImage.OWNER, self._compiler.name, self._version)
+
 LINUX_TEMPLATE = """linux: &linux
    os: linux
    dist: xenial
@@ -77,7 +91,7 @@ matrix:
    include:{% for compiler in compilers %}
       - <<: *{{ compiler.os }}{% if compiler.os == "osx" %}
         osx_image: xcode{{ compiler.osx_version }}{% endif %}
-        {% if compiler.os == "linux" %}env: {{ compiler.var }}={{ compiler.version}} CONAN_DOCKER_IMAGE=conanio/{{ compiler.name }}{{ compiler.version.replace(".", "") }}{% else %}env: {{ compiler.var }}={{ compiler.version }}{% endif %}{% if compiler.page != None %} CONAN_CURRENT_PAGE={{ compiler.page }}{% endif %}{% endfor %}
+        {% if compiler.os == "linux" %}env: {{ compiler.var }}={{ compiler.version}} CONAN_DOCKER_IMAGE={{ images[loop.index-1].name }}{% else %}env: {{ compiler.var }}={{ compiler.version }}{% endif %}{% if compiler.page != None %} CONAN_CURRENT_PAGE={{ compiler.page }}{% endif %}{% endfor %}
 
 install:
   - chmod +x .ci/install.sh
@@ -169,6 +183,7 @@ class Command(object):
         sorted_compilers = self._add_recommended_compiler_versions(compilers)
         self._logger.debug("Updated compilers: {}".format(sorted_compilers))
         has_linux, has_osx, compiler_objs = self._transform_compiler_list(file, sorted_compilers)
+        images = [DockerImage(compiler) for compiler in compiler_objs]
         global_envs = self._get_travis_global_env(file)
 
         self._logger.debug("compilers: {}".format(compiler_objs))
@@ -178,7 +193,7 @@ class Command(object):
         osx_template = OSX_TEMPLATE if has_osx else ""
 
         travis_content = template.render(linux_template=linux_template, osx_template=osx_template,
-                                         compilers=compiler_objs, travis_global_env=global_envs)
+                                         compilers=compiler_objs, travis_global_env=global_envs, images=images)
         with open(file, 'w') as fd:
             fd.write(travis_content)
 
@@ -231,7 +246,7 @@ class Command(object):
         if compilers.get('gcc'):
             compilers['gcc'] = sorted(compilers['gcc'].union(['6', '7', '8']), key=float)
         if compilers.get('clang'):
-            compilers['clang'] = sorted(compilers['clang'].union(['5.0', '6.0', '7']), key=float)
+            compilers['clang'] = sorted(compilers['clang'].union(['5.0', '6.0', '7.0']), key=float)
         if compilers.get('apple_clang'):
             compilers['apple_clang'] = sorted(compilers['apple_clang'].union(['9.1', '10.0']), key=float)
         return compilers

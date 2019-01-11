@@ -158,9 +158,9 @@ matrix:
       - <<: *linux
         env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=conanio/clang60 CONAN_CURRENT_PAGE=2
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/clang7 CONAN_CURRENT_PAGE=1
+        env: CONAN_CLANG_VERSIONS=7.0 CONAN_DOCKER_IMAGE=conanio/clang7 CONAN_CURRENT_PAGE=1
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/clang7 CONAN_CURRENT_PAGE=2
+        env: CONAN_CLANG_VERSIONS=7.0 CONAN_DOCKER_IMAGE=conanio/clang7 CONAN_CURRENT_PAGE=2
       - <<: *osx
         osx_image: xcode7.3
         env: CONAN_APPLE_CLANG_VERSIONS=7.3 CONAN_CURRENT_PAGE=1
@@ -232,7 +232,7 @@ matrix:
       - <<: *linux
         env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=conanio/clang60
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/clang7
+        env: CONAN_CLANG_VERSIONS=7.0 CONAN_DOCKER_IMAGE=conanio/clang7
       - <<: *osx
         osx_image: xcode7.3
         env: CONAN_APPLE_CLANG_VERSIONS=7.3
@@ -485,7 +485,7 @@ environment:
           CONAN_BUILD_TYPES: Debug
 
 install:
-  - set PATH=%PATH%;%PYTHON%/Scripts/
+  - set PATH=%PYTHON%;%PYTHON%/Scripts/;%PATH%
   - pip.exe install conan --upgrade
   - pip.exe install conan_package_tools bincrafters_package_tools
   - conan user # It creates the conan data directory
