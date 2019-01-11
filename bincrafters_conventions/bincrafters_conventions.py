@@ -16,6 +16,8 @@ from .actions.check_for_spdx_license import check_for_spdx_license
 from .actions.check_for_download_hash import check_for_download_hash
 from .actions.check_for_readme import check_for_readme
 from .actions.check_for_license import check_for_license
+from .actions.check_for_deprecated_generators import check_for_deprecated_generators
+from .actions.check_for_deprecated_methods import check_for_deprecated_methods
 from .actions.check_for_required_attributes import check_for_required_attributes
 from .actions.update_a_python_version import update_a_python_version
 from .actions.update_a_path_manipulation import update_a_path_manipulation
@@ -30,7 +32,7 @@ from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_c
 from .actions.update_other_pyenv_python_version import update_other_pyenv_python_version
 
 
-__version__ = '0.3.1'
+__version__ = '0.4.0'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -433,7 +435,9 @@ class Command(object):
                 check_for_license(self),
                 check_for_required_attributes(self, conanfile),
                 check_for_spdx_license(self, conanfile),
-                check_for_download_hash(self, conanfile))
+                check_for_download_hash(self, conanfile),
+                check_for_deprecated_generators(self, conanfile),
+                check_for_deprecated_methods(self, conanfile))
 
     def output_result_update(self, title):
         self._logger.info("[\033[1;32mUPDATED\033[0m]  {}".format(title))
