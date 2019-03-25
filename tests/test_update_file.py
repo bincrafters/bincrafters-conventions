@@ -468,7 +468,7 @@ test_script:
 EXPECTED_APPVEYOR_FILE = """build: false
 
 environment:
-    PYTHON: "C:\\\\Python37"
+    PYTHON_HOME: "C:\\\\Python37"
 
     matrix:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
@@ -485,7 +485,7 @@ environment:
           CONAN_BUILD_TYPES: Debug
 
 install:
-  - set PATH=%PYTHON%;%PYTHON%/Scripts/;%PATH%
+  - set PATH=%PYTHON_HOME%;%PYTHON_HOME%/Scripts/;%PATH%
   - pip.exe install conan --upgrade
   - pip.exe install conan_package_tools bincrafters_package_tools
   - conan user # It creates the conan data directory

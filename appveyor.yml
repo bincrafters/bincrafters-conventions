@@ -2,13 +2,13 @@ build: false
 
 
 environment:
-    PYTHON: "C:\\Python37"
+    PYTHON_HOME: "C:\\Python37"
 
     matrix:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
 
 install:
-  - set PATH=%PYTHON%;%PYTHON%/Scripts/;%PATH%
+  - set PATH=%PYTHON_HOME%;%PYTHON_HOME%/Scripts/;%PATH%
   - pip.exe install -e .[test]
 
 test_script:

@@ -17,8 +17,8 @@ def update_a_python_version(main, path, current_python_version, check_for_old_ve
                     content = ifd.readlines()
                 with open(path, 'w') as ofd:
                     for line in content:
-                        if 'PYTHON:' in line:
-                            line = '    PYTHON: "C:\\\\Python{}"\n'.format(current_python_version)
+                        if 'PYTHON_HOME:' in line:
+                            line = '    PYTHON_HOME: "C:\\\\Python{}"\n'.format(current_python_version)
                             result = True
                         elif 'PYTHON_VERSION:' in line or 'PYTHON_ARCH:' in line:
                             continue
