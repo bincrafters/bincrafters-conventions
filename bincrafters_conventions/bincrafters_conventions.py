@@ -29,6 +29,7 @@ from .actions.update_c_default_options_to_dict import update_c_default_options_t
 from .actions.update_c_configure_cmake import update_c_configure_cmake
 from .actions.update_c_source_subfolder import update_c_source_subfolder
 from .actions.update_t_ci_dir_path import update_t_ci_dir_path
+from .actions.update_t_macos_images import update_t_macos_images
 from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_ci_dir_name
 from .actions.update_other_pyenv_python_version import update_other_pyenv_python_version
 
@@ -46,6 +47,12 @@ python_version_current_pyenv = "3.7.3"
 python_version_current_appveyor = "37"
 # for appveyor dot zero releases need to be added without dot zero, for pyenv a second time with a dot zero
 python_check_for_old_versions = ["2.7.8", "2.7", "2.7.10", "3.7.0", "3.7.1"]
+
+# Sometimes Travis is publishing new CI images with new XCode versions
+# but they still have the same Clang version
+# in this case we do NOT need to add new compiler versions and therefore jobs
+# but we need to update the existing jobs
+travis_macos_images_updates = [["10.1", "10.2"]]
 
 @contextlib.contextmanager
 def chdir(newdir):
@@ -179,8 +186,12 @@ class Command(object):
 
         # Rename .travis -> .ci
         update_other_travis_to_ci_dir_name(self)
+        # Update which Python version macOS is using via pyenv
         update_other_pyenv_python_version(self, '.ci/install.sh', python_version_current_pyenv, python_check_for_old_versions)
+        # Update which macOS image existing jobs are using
+        update_t_macos_images(self, file, travis_macos_images_updates)
 
+        # Update compiler jobs
         compilers = self._read_compiler_versions(file)
         self._logger.debug("Found compilers: {}".format(compilers))
         sorted_compilers = self._add_recommended_compiler_versions(compilers)
@@ -217,7 +228,7 @@ class Command(object):
         has_linux = False
         has_osx = False
         compiler_list = []
-        osx_versions = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10.1'}
+        osx_versions = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10.2'}
         total_pages = self._get_compiler_pages(file)
 
         for compiler_name in ['gcc', 'clang']:
