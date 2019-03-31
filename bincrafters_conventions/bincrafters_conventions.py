@@ -30,12 +30,13 @@ from .actions.update_c_configure_cmake import update_c_configure_cmake
 from .actions.update_c_source_subfolder import update_c_source_subfolder
 from .actions.update_t_ci_dir_path import update_t_ci_dir_path
 from .actions.update_t_macos_images import update_t_macos_images
+from .actions.update_t_new_docker_image_names import update_t_new_docker_image_names
 from .actions.update_t_add_new_compiler_versions import update_t_add_new_compiler_versions
 from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_ci_dir_name
 from .actions.update_other_pyenv_python_version import update_other_pyenv_python_version
 
 
-__version__ = '0.5.0'
+__version__ = '0.5.1'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -153,6 +154,8 @@ class Command(object):
         update_other_pyenv_python_version(self, '.ci/install.sh', python_version_current_pyenv, python_check_for_old_versions)
         # Update which macOS image existing jobs are using
         update_t_macos_images(self, file, travis_macos_images_updates)
+        # Update docker image names lasote -> conanio
+        update_t_new_docker_image_names(self, file)
 
         # Add new compiler versions to CI jobs
         update_t_add_new_compiler_versions(self, file, travis_compiler_versions, travis_macos_images_compiler_mapping)
