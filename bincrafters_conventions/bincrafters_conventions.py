@@ -148,6 +148,7 @@ class Command(object):
 
         # Rename .travis -> .ci
         update_other_travis_to_ci_dir_name(self)
+        update_t_ci_dir_path(self, file)
         # Update which Python version macOS is using via pyenv
         update_other_pyenv_python_version(self, '.ci/install.sh', python_version_current_pyenv, python_check_for_old_versions)
         # Update which macOS image existing jobs are using
@@ -155,8 +156,9 @@ class Command(object):
         # Update docker image names lasote -> conanio
         update_t_new_docker_image_names(self, file)
 
-        # Add new compiler versions to CI jobs
-        update_t_add_new_compiler_versions(self, file, travis_compiler_versions, travis_macos_images_compiler_mapping)
+        if not self._is_hearder_only("conanfile.py"):
+            # Add new compiler versions to CI jobs
+            update_t_add_new_compiler_versions(self, file, travis_compiler_versions, travis_macos_images_compiler_mapping)
 
     def _update_appveyor_file(self, file):
         update_a_python_environment_variable(self, file)
