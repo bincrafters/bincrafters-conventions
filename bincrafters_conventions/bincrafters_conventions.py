@@ -30,11 +30,12 @@ from .actions.update_c_configure_cmake import update_c_configure_cmake
 from .actions.update_c_source_subfolder import update_c_source_subfolder
 from .actions.update_t_ci_dir_path import update_t_ci_dir_path
 from .actions.update_t_macos_images import update_t_macos_images
+from .actions.update_t_add_new_compiler_versions import update_t_add_new_compiler_versions
 from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_ci_dir_name
 from .actions.update_other_pyenv_python_version import update_other_pyenv_python_version
 
 
-__version__ = '0.4.3'
+__version__ = '0.5.0'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -43,16 +44,24 @@ LOGGING_LEVEL = os.getenv("BINCRAFTERS_LOGGING_LEVEL", logging.INFO)
 logging.basicConfig(level=int(LOGGING_LEVEL), format=LOGGING_FORMAT, datefmt='%Y-%m-%d %H:%M:%S')
 
 # Python version for updating files
-python_version_current_pyenv = "3.7.3"
+python_version_current_pyenv = "3.7.1"
 python_version_current_appveyor = "37"
-# for appveyor dot zero releases need to be added without dot zero, for pyenv a second time with a dot zero
-python_check_for_old_versions = ["2.7.8", "2.7", "2.7.10", "3.7.0", "3.7.1"]
+# for AppVeyor dot zero releases need to be added without dot zero, for pyenv a second time with a dot zero
+python_check_for_old_versions = ["2.7.8", "2.7", "2.7.10", "3.7.0"]
 
 # Sometimes Travis is publishing new CI images with new XCode versions
 # but they still have the same Clang version
 # in this case we do NOT need to add new compiler versions and therefore jobs
 # but we need to update the existing jobs
 travis_macos_images_updates = [["10.1", "10.2"]]
+
+# What apple_clang version is available on which Travis image?
+travis_macos_images_compiler_mapping = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10.2'}
+
+# This compiler versions are getting added if they are newer than the existing jobs
+# and if they don't already exist
+travis_compiler_versions = {'gcc': ('6', '7', '8'), 'clang': ('5.0', '6.0', '7.0'), 'apple_clang': ('9.1', '10.0')}
+
 
 @contextlib.contextmanager
 def chdir(newdir):
@@ -66,52 +75,6 @@ def chdir(newdir):
         yield
     finally:
         os.chdir(old_path)
-
-
-Compiler = collections.namedtuple('Compiler', 'name, var, version, os, osx_version, page')
-
-class DockerImage(object):
-    OWNER = 'conanio'
-
-    def __init__(self, compiler):
-        self._compiler = compiler
-        self._version = compiler.version.replace(".", "")
-        if compiler.name == "clang" and compiler.version == "7.0":
-            self._version = '7'
-
-    @property
-    def name(self):
-        return "{}/{}{}".format(DockerImage.OWNER, self._compiler.name, self._version)
-
-LINUX_TEMPLATE = """linux: &linux
-   os: linux
-   dist: xenial
-   language: python
-   python: "3.7"
-   services:
-     - docker"""
-
-OSX_TEMPLATE = """
-osx: &osx
-   os: osx
-   language: generic"""
-
-TRAVIS_TEMPLATE = """{{ travis_global_env }}{{ linux_template }}{{ osx_template }}
-matrix:
-   include:{% for compiler in compilers %}
-      - <<: *{{ compiler.os }}{% if compiler.os == "osx" %}
-        osx_image: xcode{{ compiler.osx_version }}{% endif %}
-        {% if compiler.os == "linux" %}env: {{ compiler.var }}={{ compiler.version}} CONAN_DOCKER_IMAGE={{ images[loop.index-1].name }}{% else %}env: {{ compiler.var }}={{ compiler.version }}{% endif %}{% if compiler.page != None %} CONAN_CURRENT_PAGE={{ compiler.page }}{% endif %}{% endfor %}
-
-install:
-  - chmod +x .ci/install.sh
-  - ./.ci/install.sh
-
-script:
-  - chmod +x .ci/run.sh
-  - ./.ci/run.sh
-
-"""
 
 
 class Command(object):
@@ -191,118 +154,13 @@ class Command(object):
         # Update which macOS image existing jobs are using
         update_t_macos_images(self, file, travis_macos_images_updates)
 
-        # Update compiler jobs
-        compilers = self._read_compiler_versions(file)
-        self._logger.debug("Found compilers: {}".format(compilers))
-        sorted_compilers = self._add_recommended_compiler_versions(compilers)
-        self._logger.debug("Updated compilers: {}".format(sorted_compilers))
-        has_linux, has_osx, compiler_objs = self._transform_compiler_list(file, sorted_compilers)
-        images = [DockerImage(compiler) for compiler in compiler_objs]
-        global_envs = self._get_travis_global_env(file)
-
-        self._logger.debug("compilers: {}".format(compiler_objs))
-
-        template = jinja2.Template(TRAVIS_TEMPLATE)
-        linux_template = LINUX_TEMPLATE if has_linux else ""
-        osx_template = OSX_TEMPLATE if has_osx else ""
-
-        travis_content = template.render(linux_template=linux_template, osx_template=osx_template,
-                                         compilers=compiler_objs, travis_global_env=global_envs, images=images)
-        with open(file, 'w') as fd:
-            fd.write(travis_content)
-
-        return sorted(compilers) != sorted_compilers
+        # Add new compiler versions to CI jobs
+        update_t_add_new_compiler_versions(self, file, travis_compiler_versions, travis_macos_images_compiler_mapping)
 
     def _update_appveyor_file(self, file):
         update_a_python_environment_variable(self, file)
         update_a_python_version(self, file, python_version_current_appveyor, python_check_for_old_versions)
         update_a_path_manipulation(self, file)
-
-    def _transform_compiler_list(self, file, compilers):
-        """ Transform compiler version list in Compiler object list
-
-        :param file: Conan recipe
-        :param compilers: Target compiler versions
-        :return: Compiler metadata in a list
-        """
-        has_linux = False
-        has_osx = False
-        compiler_list = []
-        osx_versions = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10.2'}
-        total_pages = self._get_compiler_pages(file)
-
-        for compiler_name in ['gcc', 'clang']:
-            if compiler_name in compilers:
-                for version in compilers[compiler_name]:
-                    for page in total_pages:
-                        compiler = Compiler(compiler_name, 'CONAN_%s_VERSIONS' % compiler_name.upper(), version,
-                                            'linux', None, page)
-                        compiler_list.append(compiler)
-                    has_linux = True
-
-        compiler_name = 'apple_clang'
-        if compiler_name in compilers:
-            for version in compilers[compiler_name]:
-                for page in total_pages:
-                    compiler = Compiler(compiler_name, 'CONAN_%s_VERSIONS' % compiler_name.upper(), version, 'osx',
-                                        osx_versions[version], page)
-                    compiler_list.append(compiler)
-                has_osx = True
-
-        return has_linux, has_osx, compiler_list
-
-    def _add_recommended_compiler_versions(self, compilers):
-        """ Add recommended compiler versions to configured versions
-
-        :param compilers: compiler list read from travis file
-        :return:
-        """
-
-        if compilers.get('gcc'):
-            compilers['gcc'] = sorted(compilers['gcc'].union(['6', '7', '8']), key=float)
-        if compilers.get('clang'):
-            compilers['clang'] = sorted(compilers['clang'].union(['5.0', '6.0', '7.0']), key=float)
-        if compilers.get('apple_clang'):
-            compilers['apple_clang'] = sorted(compilers['apple_clang'].union(['9.1', '10.0']), key=float)
-        return compilers
-
-    def _get_compiler_pages(self, file):
-        """ Search for pages in Travis file
-
-        :param file: Travis yaml file
-        :param compiler_name: Compiler name e.g. gcc
-        :param version: Compiler version used by conan versions
-        :return: A list with pages. e.g [1, 2, 3, 4]
-        """
-        if os.path.isfile(file):
-            with open(file) as ifd:
-                content = ifd.read()
-                match = re.search(r'- CONAN_TOTAL_PAGES: (\w+)', content)
-                if match:
-                    return list(range(1, int(match.group(1)) + 1))
-        return [None]
-
-    def _get_travis_global_env(self, file):
-        """ Search for global variables in Travis file
-
-        :param file: Travis file path
-        :return: global env context
-        """
-        result = ""
-        if os.path.isfile(file):
-            with open(file) as ifd:
-                content = ifd.readlines()
-                global_found = False
-                for line in content:
-                    if global_found:
-                        match = re.search(r'-(.*):(.*)', line)
-                        if not match:
-                            break
-                        result += "     {}\n".format(match.group(0))
-                    if 'global:' in line:
-                        global_found = True
-                        result = "env:\n   global:\n"
-        return result
 
 
     def replace_in_file(self, file, old, new):
@@ -351,23 +209,6 @@ class Command(object):
             self._logger.warning("Could not check header-only recipe")
         return False
 
-    def _read_compiler_versions(self, file):
-        """ Read travis file and list all version used by compiler
-
-        :param file: Travis file path
-        :return: dictionary with present compiler and their versions
-        """
-        versions = {'gcc': set(), 'clang': set(), 'apple_clang': set()}
-        for compiler_name in versions.keys():
-            regex = re.compile(r'CONAN_{}_VERSIONS=([^\s]+)'.format(compiler_name.upper()))
-            if os.path.isfile(file):
-                with open(file) as ifd:
-                    for line in ifd:
-                        match = regex.search(line)
-                        if match:
-                            versions[compiler_name].add(match.group(1))
-        return versions
-
     def _get_branch_names(self, git_repo):
         """ Retrieve branch names from current git repo
 
@@ -406,8 +247,8 @@ class Command(object):
             else:
                 self._logger.info("Conan recipe is not for header-only project")
 
-            versions = self._read_compiler_versions(file)
-            self._logger.info(versions)
+            # versions = self._read_compiler_versions(file)
+            # self._logger.info(versions)
 
             result = (update_other_travis_to_ci_dir_name(self),
                       update_other_pyenv_python_version(self, '.ci/install.sh', python_version_current_pyenv, python_check_for_old_versions),
