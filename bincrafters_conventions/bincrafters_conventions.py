@@ -156,7 +156,7 @@ class Command(object):
         # Update docker image names lasote -> conanio
         update_t_new_docker_image_names(self, file)
 
-        if not self._is_hearder_only("conanfile.py"):
+        if not self._is_header_only("conanfile.py"):
             # Add new compiler versions to CI jobs
             update_t_add_new_compiler_versions(self, file, travis_compiler_versions, travis_macos_images_compiler_mapping)
 
@@ -200,7 +200,7 @@ class Command(object):
                     return True
         return False
 
-    def _is_hearder_only(self, conanfile):
+    def _is_header_only(self, conanfile):
         """ Check if Conan recipe is header-only
 
         :param conanfile: Conan recipe path
@@ -242,7 +242,7 @@ class Command(object):
         self._logger.info("On branch {}".format(git_repo.active_branch))
 
         try:
-            header_only = self._is_hearder_only(conanfile)
+            header_only = self._is_header_only(conanfile)
             travis_updater = self._update_compiler_jobs
             if header_only:
                 travis_updater = update_t_ci_dir_path(self, conanfile)
