@@ -9,8 +9,6 @@ import git
 import tempfile
 import requests
 import contextlib
-import collections
-import jinja2
 import re
 from .actions.check_for_spdx_license import check_for_spdx_license
 from .actions.check_for_download_hash import check_for_download_hash
