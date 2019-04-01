@@ -30,11 +30,13 @@ from .actions.update_t_ci_dir_path import update_t_ci_dir_path
 from .actions.update_t_macos_images import update_t_macos_images
 from .actions.update_t_new_docker_image_names import update_t_new_docker_image_names
 from .actions.update_t_add_new_compiler_versions import update_t_add_new_compiler_versions
+from .actions.update_t_linux_image import update_t_linux_image
+from .actions.update_t_linux_python_version import update_t_linux_python_version
 from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_ci_dir_name
 from .actions.update_other_pyenv_python_version import update_other_pyenv_python_version
 
 
-__version__ = '0.5.1'
+__version__ = '0.5.2'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -45,17 +47,19 @@ logging.basicConfig(level=int(LOGGING_LEVEL), format=LOGGING_FORMAT, datefmt='%Y
 # Python version for updating files
 python_version_current_pyenv = "3.7.1"
 python_version_current_appveyor = "37"
+python_version_current_travis_linux = "3.7"
 # for AppVeyor dot zero releases need to be added without dot zero, for pyenv a second time with a dot zero
-python_check_for_old_versions = ["2.7.8", "2.7", "2.7.10", "3.7.0"]
+python_check_for_old_versions = ["2.7.8", "2.7", "2.7.10", "3.6", "3.7.0"]
 
 # Sometimes Travis is publishing new CI images with new XCode versions
 # but they still have the same Clang version
 # in this case we do NOT need to add new compiler versions and therefore jobs
 # but we need to update the existing jobs
-travis_macos_images_updates = [["10.1", "10.2"]]
+# travis_macos_images_updates = [["10.1", "10.2"]] 10.2 isn't ready yet due to zlib problems
+travis_macos_images_updates = []
 
 # What apple_clang version is available on which Travis image?
-travis_macos_images_compiler_mapping = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10.2'}
+travis_macos_images_compiler_mapping = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10.1'}
 
 # This compiler versions are getting added if they are newer than the existing jobs
 # and if they don't already exist
@@ -151,10 +155,14 @@ class Command(object):
         update_t_ci_dir_path(self, file)
         # Update which Python version macOS is using via pyenv
         update_other_pyenv_python_version(self, '.ci/install.sh', python_version_current_pyenv, python_check_for_old_versions)
+        # Update Travis Linux Python version
+        update_t_linux_python_version(self, file, python_version_current_travis_linux, python_check_for_old_versions)
         # Update which macOS image existing jobs are using
         update_t_macos_images(self, file, travis_macos_images_updates)
         # Update docker image names lasote -> conanio
         update_t_new_docker_image_names(self, file)
+        # Update Travis Linux CI base image
+        update_t_linux_image(self, file)
 
         if not self._is_header_only("conanfile.py"):
             # Add new compiler versions to CI jobs
