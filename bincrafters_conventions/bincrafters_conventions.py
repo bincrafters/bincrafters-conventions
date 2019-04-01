@@ -208,8 +208,6 @@ class Command(object):
         """
         if self.file_contains(conanfile, "self.info.header_only()"):
             return True
-        else:
-            self._logger.warning("Could not check header-only recipe")
         return False
 
     def _get_branch_names(self, git_repo):
