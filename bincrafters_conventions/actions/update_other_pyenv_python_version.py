@@ -9,6 +9,9 @@ def update_other_pyenv_python_version(main, file, current_python_version, check_
         old_install_string = "pyenv install {}\n".format(old_version)
         old_virtualenv_string = "pyenv virtualenv {} conan\n".format(old_version)
 
+        if current_install_string == old_install_string and current_virtualenv_string == old_virtualenv_string:
+            continue
+
         if main.file_contains(file, old_install_string):
             if (main.replace_in_file(file, old_install_string, current_install_string) and
                     main.replace_in_file(file, old_virtualenv_string, current_virtualenv_string)):
