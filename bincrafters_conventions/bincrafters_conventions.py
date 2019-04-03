@@ -256,9 +256,6 @@ class Command(object):
             else:
                 self._logger.info("Conan recipe is not for header-only project")
 
-            # versions = self._read_compiler_versions(file)
-            # self._logger.info(versions)
-
             result = (update_other_travis_to_ci_dir_name(self),
                       update_other_pyenv_python_version(self, '.ci/install.sh', python_version_current_pyenv, python_check_for_old_versions),
                       self._update_conanfile(conanfile),
