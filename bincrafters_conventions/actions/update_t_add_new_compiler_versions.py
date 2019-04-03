@@ -96,7 +96,6 @@ def update_t_add_new_compiler_versions(main, file, travis_compiler_versions: dic
 
                 # Skip empty lines
                 if line.strip() is "":
-                    # new_content += line
                     continue
 
                 # Are we entering a new job?
