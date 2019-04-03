@@ -36,7 +36,7 @@ from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_c
 from .actions.update_other_pyenv_python_version import update_other_pyenv_python_version
 
 
-__version__ = '0.5.2'
+__version__ = '0.5.0'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
