@@ -56,7 +56,7 @@ python_check_for_old_versions = ["2.7.8", "2.7", "2.7.10", "3.6", "3.7.0"]
 # in this case we do NOT need to add new compiler versions and therefore jobs
 # but we need to update the existing jobs
 # travis_macos_images_updates = [["10.1", "10.2"]] 10.2 isn't ready yet due to zlib problems
-travis_macos_images_updates = []
+travis_macos_images_updates = [["9.3", "9.4"]]
 
 # What apple_clang version is available on which Travis image?
 travis_macos_images_compiler_mapping = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10.1'}
