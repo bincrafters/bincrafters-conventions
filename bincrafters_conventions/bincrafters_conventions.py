@@ -36,7 +36,7 @@ from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_c
 from .actions.update_other_pyenv_python_version import update_other_pyenv_python_version
 
 
-__version__ = '0.5.0'
+__version__ = '0.5.1'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -64,7 +64,8 @@ travis_macos_images_compiler_mapping = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', 
 # This compiler versions are getting added if they are newer than the existing jobs
 # and if they don't already exist
 travis_compiler_versions = {'gcc': ('6', '7', '8'), 'clang': ('5.0', '6.0', '7.0'), 'apple_clang': ('9.1', '10.0')}
-
+# This compiler versions are getting actively removed from existing jobs
+travis_compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': ()}
 
 @contextlib.contextmanager
 def chdir(newdir):
@@ -166,7 +167,7 @@ class Command(object):
 
         if not self._is_header_only("conanfile.py"):
             # Add new compiler versions to CI jobs
-            update_t_add_new_compiler_versions(self, file, travis_compiler_versions, travis_macos_images_compiler_mapping)
+            update_t_add_new_compiler_versions(self, file, travis_compiler_versions, travis_macos_images_compiler_mapping, travis_compiler_versions_deletion)
 
     def _update_appveyor_file(self, file):
         update_a_python_environment_variable(self, file)

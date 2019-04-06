@@ -5,6 +5,6 @@ def update_t_ci_dir_path(main, file):
     :return:
     """
     if main.replace_in_file(file, ".travis", ".ci"):
-        main.output_result_update("Updated .travis -> .ci in travis file")
+        main.output_result_update("Update .travis -> .ci in travis file")
         return True
     return False

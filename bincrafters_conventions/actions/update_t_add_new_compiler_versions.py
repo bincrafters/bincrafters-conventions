@@ -33,7 +33,7 @@ def _create_new_job(compiler: str, version, job: str, old_version, macos_images_
     return job
 
 
-def update_t_add_new_compiler_versions(main, file, travis_compiler_versions: dict, macos_images_mapping: dict):
+def update_t_add_new_compiler_versions(main, file, travis_compiler_versions: dict, macos_images_mapping: dict, compiler_deleting: dict):
     """ This update script adds new compiler versions to the Travis jobs
 
     :param file: Travis file path
@@ -53,7 +53,7 @@ def update_t_add_new_compiler_versions(main, file, travis_compiler_versions: dic
     compiler_jobs = ""
     new_content_end = "\n"
 
-    added_new_jobs = False
+    manipulated_jobs = False
     current_compiler = ""
     current_compiler_version = 0
 
@@ -145,7 +145,7 @@ def update_t_add_new_compiler_versions(main, file, travis_compiler_versions: dic
             # We are only adding compiler versions which are newer than the newest currently already existing
             # Meaning: If someone is removing older compiler versions we aren't going to re-add them
             if float(latest_versions[compiler]) < float(version):
-                added_new_jobs = True
+                manipulated_jobs = True
                 update_message = "Travis: Add job(s) for new compiler version {} {}".format(compiler, version)
                 main.output_result_update(title=update_message)
 
@@ -157,9 +157,15 @@ def update_t_add_new_compiler_versions(main, file, travis_compiler_versions: dic
     # Now use the compiler jobs information and transform them back into a writeable string
     for compiler in ["gcc", "clang", "apple_clang"]:
         for key in sorted(versions_jobs[compiler].keys(), key=lambda s: float(s[1:])):
-            compiler_jobs += versions_jobs[compiler][key]
+            # Check if we do have old compiler version which we want to delete
+            if key[1:] in compiler_deleting[compiler]:
+                manipulated_jobs = True
+                update_message = "Travis: Delete job(s) for old compiler version {} {}".format(compiler, key[1:])
+                main.output_result_update(title=update_message)
+            else:
+                compiler_jobs += versions_jobs[compiler][key]
 
     # With all gained information re-write the Travis file now if we actually found missing compiler versions
-    if added_new_jobs:
+    if manipulated_jobs:
         with open(file, 'w') as fd:
             fd.write(new_content_beginning + compiler_jobs + new_content_end)
