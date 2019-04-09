@@ -45,10 +45,6 @@ def update_t_add_new_compiler_versions(main, file, travis_compiler_versions: dic
     latest_versions = {'gcc': 0, 'clang': 0, 'apple_clang': 0}
     versions_jobs = {'gcc': {}, 'clang': {}, 'apple_clang': {}}
 
-    regex_gcc = re.compile(r'CONAN_GCC_VERSIONS=([^\s]+)')
-    regex_clang = re.compile(r'CONAN_CLANG_VERSIONS=([^\s]+)')
-    regex_apple_clang = re.compile(r'CONAN_APPLE_CLANG_VERSIONS=([^\s]+)')
-
     new_content_beginning = ""
     compiler_jobs = ""
     new_content_end = "\n"
@@ -106,21 +102,14 @@ def update_t_add_new_compiler_versions(main, file, travis_compiler_versions: dic
                     tmp = line
 
                 # What compiler are we currently looking at?
-                if regex_gcc.search(line):
-                    current_compiler = "gcc"
-                    current_compiler_version = regex_gcc.search(line).group(1)
-                    compiler_found = True
-                    versions_jobs[current_compiler]['v'+current_compiler_version] = versions_jobs[current_compiler].get("v"+current_compiler_version, "") + tmp
-                elif regex_clang.search(line):
-                    current_compiler = "clang"
-                    current_compiler_version = regex_clang.search(line).group(1)
-                    compiler_found = True
-                    versions_jobs[current_compiler]['v'+current_compiler_version] = versions_jobs[current_compiler].get("v"+current_compiler_version, "") + tmp
-                elif regex_apple_clang.search(line):
-                    current_compiler = "apple_clang"
-                    current_compiler_version = regex_apple_clang.search(line).group(1)
-                    compiler_found = True
-                    versions_jobs[current_compiler]['v'+current_compiler_version] = versions_jobs[current_compiler].get("v"+current_compiler_version, "") + tmp
+                for compiler_name, _ in travis_compiler_versions.items():
+                    regex_compiler = re.compile("CONAN_{}".format(compiler_name.upper()) + r'_VERSIONS=([^\s]+)')
+                    if regex_compiler.search(line):
+                        current_compiler = compiler_name
+                        current_compiler_version = regex_compiler.search(line).group(1)
+                        compiler_found = True
+                        versions_jobs[current_compiler]['v'+current_compiler_version] = versions_jobs[current_compiler].get("v"+current_compiler_version, "") + tmp
+                        break
 
                 if compiler_found:
                     versions_jobs[current_compiler]['v'+current_compiler_version] = versions_jobs[current_compiler].get("v"+current_compiler_version, "") + line
