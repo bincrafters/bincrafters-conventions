@@ -20,6 +20,7 @@ from .actions.check_for_required_attributes import check_for_required_attributes
 from .actions.update_a_python_version import update_a_python_version
 from .actions.update_a_path_manipulation import update_a_path_manipulation
 from .actions.update_a_python_environment_variable import update_a_python_environment_variable
+from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
 from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic_exception_to_invalid_conf
 from .actions.update_c_install_subfolder import update_c_install_subfolder
 from .actions.update_c_build_subfolder import update_c_build_subfolder
@@ -36,7 +37,7 @@ from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_c
 from .actions.update_other_pyenv_python_version import update_other_pyenv_python_version
 
 
-__version__ = '0.5.1'
+__version__ = '0.5.2'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -66,6 +67,12 @@ travis_macos_images_compiler_mapping = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', 
 travis_compiler_versions = {'gcc': ('6', '7', '8'), 'clang': ('5.0', '6.0', '7.0'), 'apple_clang': ('9.1', '10.0')}
 # This compiler versions are getting actively removed from existing jobs
 travis_compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': ()}
+
+# What are the latest patches for OpenSSL, which versions are End-Of-Life?
+openssl_version_matrix = {'1.0.2': {'latest_patch': 'r', 'eol': False},
+                          '1.1.0': {'latest_patch': 'j', 'eol': False},
+                          '1.1.1': {'latest_patch': 'b', 'eol': False},
+                          }
 
 @contextlib.contextmanager
 def chdir(newdir):
@@ -286,7 +293,8 @@ class Command(object):
                 update_c_configure_cmake(self, conanfile),
                 update_c_source_subfolder(self, conanfile),
                 update_c_build_subfolder(self, conanfile),
-                update_c_install_subfolder(self, conanfile))
+                update_c_install_subfolder(self, conanfile),
+                update_c_openssl_version_patch(self, conanfile, openssl_version_matrix))
 
     def _run_conventions_checks(self, conanfile="conanfile.py"):
         """ Checks for conventions which we can't automatically update
