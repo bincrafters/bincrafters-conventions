@@ -315,6 +315,7 @@ class DoubleConversionConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
+        self.cpp_info.cxxflags = ["-pthread"]
 """
 
 CONAN_FILE_OLD = """#!/usr/bin/env python
@@ -373,6 +374,7 @@ class DoubleConversionConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
+        self.cpp_info.cppflags = ["-pthread"]
 """
 
 CONAN_FILE_OLD_MULTILINE = """#!/usr/bin/env python
@@ -432,6 +434,7 @@ class DoubleConversionConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
+        self.cpp_info.cppflags = ["-pthread"]
 """
 
 APPVEYOR_FILE = """build: false
@@ -514,7 +517,7 @@ def test_update_travis_file():
 
 
 def test_updated_conanfile():
-    """ Try to update an up-to-date file
+    """ Try to update an already up-to-date file, nothing should change
     """
     _, conan_path = tempfile.mkstemp(prefix='conanfile', suffix='.py')
     with open(conan_path, 'w') as file:
@@ -532,7 +535,7 @@ def test_updated_conanfile():
 
 
 def test_conanfile_default_options():
-    """ Try to update an up-to-date file
+    """ Try to update an conanfile which has old styled default options
     """
     _, conan_path = tempfile.mkstemp(prefix='conanfile', suffix='.py')
     with open(conan_path, 'w') as file:
@@ -550,7 +553,7 @@ def test_conanfile_default_options():
 
 
 def test_conanfile_default_options_mutiline():
-    """ Try to update an up-to-date file
+    """ Try to update an conanfile which has old styled multiline default options
     """
     _, conan_path = tempfile.mkstemp(prefix='conanfile', suffix='.py')
     with open(conan_path, 'w') as file:

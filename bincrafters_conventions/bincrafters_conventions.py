@@ -20,6 +20,7 @@ from .actions.check_for_required_attributes import check_for_required_attributes
 from .actions.update_a_python_version import update_a_python_version
 from .actions.update_a_path_manipulation import update_a_path_manipulation
 from .actions.update_a_python_environment_variable import update_a_python_environment_variable
+from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
 from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic_exception_to_invalid_conf
 from .actions.update_c_install_subfolder import update_c_install_subfolder
@@ -37,7 +38,7 @@ from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_c
 from .actions.update_other_pyenv_python_version import update_other_pyenv_python_version
 
 
-__version__ = '0.5.2'
+__version__ = '0.5.3'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -289,7 +290,8 @@ class Command(object):
         :param conanfile: Conan recipe path
         :return:
         """
-        return (update_c_default_options_to_dict(self, conanfile),
+        return (update_c_deprecated_attributes(self, conanfile),
+                update_c_default_options_to_dict(self, conanfile),
                 update_c_generic_exception_to_invalid_conf(self, conanfile),
                 update_c_configure_cmake(self, conanfile),
                 update_c_source_subfolder(self, conanfile),
