@@ -7,6 +7,6 @@ def update_c_generic_exception_to_invalid_conf(main, file):
         if (main.replace_in_file(file, "raise Exception", "raise ConanInvalidConfiguration") and
                 main.replace_in_file(file, "import os",
                                       "from conans.errors import ConanInvalidConfiguration\nimport os")):
-            main.output_result_update(title="Generic exception to ConanInvalidConfiguration exception")
+            main.output_result_update(title="Replace generic exception with ConanInvalidConfiguration exception")
             return True
     return False

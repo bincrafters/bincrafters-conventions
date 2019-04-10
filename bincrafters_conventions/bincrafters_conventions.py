@@ -23,11 +23,7 @@ from .actions.update_a_python_environment_variable import update_a_python_enviro
 from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
 from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic_exception_to_invalid_conf
-from .actions.update_c_install_subfolder import update_c_install_subfolder
-from .actions.update_c_build_subfolder import update_c_build_subfolder
 from .actions.update_c_default_options_to_dict import update_c_default_options_to_dict
-from .actions.update_c_configure_cmake import update_c_configure_cmake
-from .actions.update_c_source_subfolder import update_c_source_subfolder
 from .actions.update_t_ci_dir_path import update_t_ci_dir_path
 from .actions.update_t_macos_images import update_t_macos_images
 from .actions.update_t_new_docker_image_names import update_t_new_docker_image_names
@@ -293,10 +289,6 @@ class Command(object):
         return (update_c_deprecated_attributes(self, conanfile),
                 update_c_default_options_to_dict(self, conanfile),
                 update_c_generic_exception_to_invalid_conf(self, conanfile),
-                update_c_configure_cmake(self, conanfile),
-                update_c_source_subfolder(self, conanfile),
-                update_c_build_subfolder(self, conanfile),
-                update_c_install_subfolder(self, conanfile),
                 update_c_openssl_version_patch(self, conanfile, openssl_version_matrix))
 
     def _run_conventions_checks(self, conanfile="conanfile.py"):
