@@ -68,8 +68,9 @@ travis_compiler_versions = {'gcc': ('6', '7', '8'), 'clang': ('5.0', '6.0', '7.0
 # This compiler versions are getting actively removed from existing jobs
 travis_compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': ()}
 
-# What are the latest patches for OpenSSL, which versions are End-Of-Life?
-openssl_version_matrix = {'1.0.2': {'latest_patch': 'r', 'eol': False},
+# What are the latest AVAILABLE patches for OpenSSL, which versions are End-Of-Life?
+openssl_version_matrix = {'1.0.1': {'latest_patch': 'h', 'eol': True},
+                          '1.0.2': {'latest_patch': 'r', 'eol': False},
                           '1.1.0': {'latest_patch': 'j', 'eol': False},
                           '1.1.1': {'latest_patch': 'b', 'eol': False},
                           }
