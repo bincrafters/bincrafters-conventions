@@ -497,6 +497,32 @@ test_script:
   - python build.py
 """
 
+README_FILE = """## Package Status
+
+| Bintray | Appveyor | Travis |
+|---------|------------|--------|
+|[![Download](https://api.bintray.com/packages/bincrafters/public-conan/glog%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/glog%3Abincrafters/_latestVersion)|[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-glog?svg=true)](https://ci.appveyor.com/project/bincrafters/conan-glog)|[![Build Status](https://travis-ci.org/bincrafters/conan-glog.svg)](https://travis-ci.org/bincrafters/conan-glog)|
+
+## Conan.io Information
+
+Bincrafters packages can be found in the following public Conan repository:
+
+[Bincrafters Public Conan Repository on Bintray](https://bintray.com/bincrafters/public-conan)
+"""
+
+EXPECTED_README_FILE = """## Package Status
+
+| Bintray | Appveyor | Travis |
+|---------|------------|--------|
+|[![Download](https://api.bintray.com/packages/bincrafters/public-conan/glog%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/glog%3Abincrafters/_latestVersion)|[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-glog?svg=true)](https://ci.appveyor.com/project/bincrafters/conan-glog)|[![Build Status](https://travis-ci.com/bincrafters/conan-glog.svg)](https://travis-ci.com/bincrafters/conan-glog)|
+
+## Conan.io Information
+
+Bincrafters packages can be found in the following public Conan repository:
+
+[Bincrafters Public Conan Repository on Bintray](https://bintray.com/bincrafters/public-conan)
+"""
+
 
 def test_update_travis_file():
     """ Create a standard travis file and update it.
@@ -604,3 +630,21 @@ def test_update_travis_file_with_global():
     command.run(args)
 
     assert filecmp.cmp(travis_path, expected_path)
+
+
+def test_travis_update_url():
+    """ Create a README.md file and update it.
+    """
+    _, readme_path = tempfile.mkstemp(prefix='README', suffix='.md')
+    with open(readme_path, 'w') as file:
+        file.write(README_FILE)
+
+    _, expected_path = tempfile.mkstemp(prefix='README', suffix='.md')
+    with open(expected_path, 'w') as file:
+        file.write(EXPECTED_README_FILE)
+
+    args = ['--readme', readme_path]
+    command = Command()
+    command.run(args)
+
+    assert filecmp.cmp(readme_path, expected_path)
