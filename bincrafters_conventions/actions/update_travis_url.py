@@ -1,4 +1,4 @@
-def update_travis_url(main, file):
+def update_readme_travis_url(main, file):
     """ Update Travis CI URL
     """
     if main.replace_in_file(file, "https://travis-ci.org/bincrafters", "https://travis-ci.com/bincrafters"):

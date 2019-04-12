@@ -32,7 +32,7 @@ from .actions.update_t_linux_image import update_t_linux_image
 from .actions.update_t_linux_python_version import update_t_linux_python_version
 from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_ci_dir_name
 from .actions.update_other_pyenv_python_version import update_other_pyenv_python_version
-from .actions.update_travis_url import update_travis_url
+from .actions.update_readme_travis_url import update_readme_travis_url
 
 
 __version__ = '0.5.3'
@@ -304,7 +304,7 @@ class Command(object):
         :param readme: Readme file path
         :return: True if updated. Otherwise, False.
         """
-        return update_travis_url(self, readme)
+        return update_readme_travis_url(self, readme)
 
     def _run_conventions_checks(self, conanfile="conanfile.py"):
         """ Checks for conventions which we can't automatically update
