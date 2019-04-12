@@ -32,6 +32,7 @@ from .actions.update_t_linux_image import update_t_linux_image
 from .actions.update_t_linux_python_version import update_t_linux_python_version
 from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_ci_dir_name
 from .actions.update_other_pyenv_python_version import update_other_pyenv_python_version
+from .actions.update_travis_url import update_travis_url
 
 
 __version__ = '0.5.3'
@@ -118,6 +119,8 @@ class Command(object):
                             help='Project pattern to filter over user projects e.g bincrafters/conan-*')
         parser.add_argument('--branch-pattern', '-bp', type=str,
                             help='Branch pattern to filter over user projects e.g stable/*')
+        parser.add_argument('--readme', '-r', type=str, nargs='?', const='README.md',
+                            help='README file path to be updated')
         group.add_argument('--version', '-v', action='version', version='%(prog)s {}'.format(__version__))
         args = parser.parse_args(*args)
         return args
@@ -134,6 +137,7 @@ class Command(object):
             if os.path.isfile("appveyor.yml"):
                 self._update_appveyor_file("appveyor.yml")
             self._update_conanfile("conanfile.py")
+            self._update_readme("README.md")
             self._run_conventions_checks()
         else:
             if arguments.remote:
@@ -145,6 +149,8 @@ class Command(object):
                 else:
                     if arguments.conanfile:
                         self._update_conanfile(arguments.conanfile)
+                    if arguments.readme:
+                        self._update_readme(arguments.readme)
                     if arguments.travisfile:
                         self._update_compiler_jobs(arguments.travisfile)
                     if arguments.appveyorfile:
@@ -290,6 +296,14 @@ class Command(object):
                 update_c_default_options_to_dict(self, conanfile),
                 update_c_generic_exception_to_invalid_conf(self, conanfile),
                 update_c_openssl_version_patch(self, conanfile, openssl_version_matrix))
+
+    def _update_readme(self, readme):
+        """ Update README.md file with new URL
+
+        :param readme: Readme file path
+        :return: True if updated. Otherwise, False.
+        """
+        return update_travis_url(self, readme)
 
     def _run_conventions_checks(self, conanfile="conanfile.py"):
         """ Checks for conventions which we can't automatically update
