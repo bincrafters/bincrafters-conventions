@@ -137,7 +137,8 @@ class Command(object):
             if os.path.isfile("appveyor.yml"):
                 self._update_appveyor_file("appveyor.yml")
             self._update_conanfile("conanfile.py")
-            self._update_readme("README.md")
+            if os.path.isfile("README.md"):
+                self._update_readme("README.md")
             self._run_conventions_checks()
         else:
             if arguments.remote:
