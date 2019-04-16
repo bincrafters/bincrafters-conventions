@@ -13,9 +13,9 @@ def _get_docker_image_name(compiler: str, version):
     return "{}/{}{}".format(OWNER, compiler, image_version)
 
 
-def _create_new_job(compiler: str, version, job: str, old_version, macos_images_mapping: dict):
-    old_version_str = "CONAN_{}_VERSIONS={}".format(compiler.upper(), old_version)
-    new_version_str = "CONAN_{}_VERSIONS={}".format(compiler.upper(), version)
+def _create_new_job(platform: dict, compiler: str, version, job: str, old_version, images_mapping: dict):
+    old_version_str = "CONAN_{}_VERSIONS{}{}".format(compiler.upper(), platform["delimiter"], old_version)
+    new_version_str = "CONAN_{}_VERSIONS{}{}".format(compiler.upper(), platform["delimiter"], version)
     job = job.replace(old_version_str, new_version_str)
 
     if compiler == "gcc" or compiler == "clang":
@@ -24,15 +24,15 @@ def _create_new_job(compiler: str, version, job: str, old_version, macos_images_
         job = job.replace(old_docker_image_str, new_docker_image_str)
 
     elif compiler == "apple_clang":
-        old_image = macos_images_mapping[old_version]
-        new_image = macos_images_mapping[version]
+        old_image = images_mapping[old_version]
+        new_image = images_mapping[version]
         old_image_str = "osx_image: xcode{}".format(old_image)
         new_image_str = "osx_image: xcode{}".format(new_image)
         job = job.replace(old_image_str, new_image_str)
 
     elif compiler == "visual":
-        old_image = macos_images_mapping[old_version]
-        new_image = macos_images_mapping[version]
+        old_image = images_mapping[old_version]
+        new_image = images_mapping[version]
         old_image_str = "APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio {}".format(old_image)
         new_image_str = "APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio {}".format(new_image)
         job = job.replace(old_image_str, new_image_str)
@@ -92,6 +92,10 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                     beginning_found = 0
                     continue
 
+                # Skip empty lines and comments between the first and last keyword
+                if line.strip() is "" or line.strip()[0] == "#":
+                    continue
+
                 # Search for all the other keywords
                 if beginning_found >= 0 and beginning_found < beginning_found_end:
                     if line.strip() == platform_jobs_beginning_keywords[beginning_found+1]:
@@ -110,8 +114,8 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                     beginning_found = beginning_found_end
                     continue
 
-                # Skip empty lines
-                if line.strip() is "":
+                # Skip empty lines and comments
+                if line.strip() is "" or line.strip()[0] == "#":
                     continue
 
                 # Are we entering a new job?
@@ -123,7 +127,9 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
 
                 # What compiler are we currently looking at?
                 for compiler_name, _ in compiler_versions.items():
-                    regex_compiler = re.compile("CONAN_{}".format(compiler_name.upper()) + r'_VERSIONS=([^\s]+)')
+                    regex_compiler = re.compile("CONAN_{}".format(compiler_name.upper())
+                                                + "_VERSIONS{}" .format(platform["delimiter"])
+                                                + r'([^\s]+)')
                     if regex_compiler.search(line):
                         current_compiler = compiler_name
                         current_compiler_version = regex_compiler.search(line).group(1)
@@ -160,7 +166,7 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
 
                 latest_version = latest_versions[compiler]
                 base_job = versions_jobs[compiler]["v"+latest_versions[compiler]]
-                new_job = _create_new_job(compiler, version, base_job, latest_version, images_mapping)
+                new_job = _create_new_job(platform, compiler, version, base_job, latest_version, images_mapping)
                 versions_jobs[compiler]['v' + version] = new_job
 
     # Now use the compiler jobs information and transform them back into a writeable string
