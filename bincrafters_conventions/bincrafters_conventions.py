@@ -211,7 +211,7 @@ class Command(object):
                 content = ifd.read()
             result = old in content
             if result:
-                with open(file, 'w') as ofd:
+                with open(file, 'w', newline="\n") as ofd:
                     ofd.write(content.replace(old, new))
         else:
             self._logger.warning("Could not update {}: File does not exist".format(file))
