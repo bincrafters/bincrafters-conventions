@@ -4,7 +4,6 @@
 from bincrafters_conventions.bincrafters_conventions import Command
 
 import tempfile
-import filecmp
 from shutil import copyfile
 
 
@@ -24,6 +23,20 @@ def _prepare_old_file(file_name: str, suffix: str, old = "", expected=""):
     return path_old, expected_path
 
 
+def _compare_file(path_old: str, expected_path: str):
+    """ This is needed to ignore differnt line endings styles
+        e.g. filecmp.cmp would throw an error with differnt line ending
+    """
+    l1 = l2 = True
+    with open(path_old, 'r') as f1, open(expected_path, 'r') as f2:
+        while l1 and l2:
+            l1 = f1.readline()
+            l2 = f2.readline()
+            if l1 != l2:
+                return False
+    return True
+
+
 def test_updated_conanfile():
     """ Try to update an already up-to-date file, nothing should change
     """
@@ -34,7 +47,7 @@ def test_updated_conanfile():
     command = Command()
     command.run(args)
 
-    assert filecmp.cmp(path_old, path_expected)
+    assert _compare_file(path_old, path_expected)
 
 
 def test_conanfile_default_options():
@@ -47,7 +60,7 @@ def test_conanfile_default_options():
     command = Command()
     command.run(args)
 
-    assert filecmp.cmp(path_old, path_expected)
+    assert _compare_file(path_old, path_expected)
 
 
 def test_conanfile_default_options_mutiline():
@@ -60,7 +73,7 @@ def test_conanfile_default_options_mutiline():
     command = Command()
     command.run(args)
 
-    assert filecmp.cmp(path_old, path_expected)
+    assert _compare_file(path_old, path_expected)
 
 
 def test_appveyor_update_up_to_date():
@@ -73,7 +86,7 @@ def test_appveyor_update_up_to_date():
     command = Command()
     command.run(args)
 
-    assert filecmp.cmp(path_old, path_expected)
+    assert _compare_file(path_old, path_expected)
 
 
 def test_appveyor_update():
@@ -86,7 +99,7 @@ def test_appveyor_update():
     command = Command()
     command.run(args)
 
-    assert filecmp.cmp(path_old, path_expected)
+    assert _compare_file(path_old, path_expected)
 
 
 def test_appveyor_update_new_compiler_jobs():
@@ -99,7 +112,7 @@ def test_appveyor_update_new_compiler_jobs():
     command = Command()
     command.run(args)
 
-    assert filecmp.cmp(path_old, path_expected)
+    assert _compare_file(path_old, path_expected)
 
 
 def test_update_travis_file():
@@ -112,7 +125,7 @@ def test_update_travis_file():
     command = Command()
     command.run(args)
 
-    assert filecmp.cmp(path_old, path_expected)
+    assert _compare_file(path_old, path_expected)
 
 def test_update_travis_file_with_global():
     """ Create a standard travis file and update it.
@@ -124,7 +137,7 @@ def test_update_travis_file_with_global():
     command = Command()
     command.run(args)
 
-    assert filecmp.cmp(path_old, path_expected)
+    assert _compare_file(path_old, path_expected)
 
 
 def test_travis_update_url():
@@ -137,4 +150,4 @@ def test_travis_update_url():
     command = Command()
     command.run(args)
 
-    assert filecmp.cmp(path_old, path_expected)
+    assert _compare_file(path_old, path_expected)
