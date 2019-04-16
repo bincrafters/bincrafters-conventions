@@ -5,7 +5,7 @@ environment:
     PYTHON_HOME: "C:\\Python37"
 
     matrix:
-        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
 
 install:
   - set PATH=%PYTHON_HOME%;%PYTHON_HOME%/Scripts/;%PATH%
