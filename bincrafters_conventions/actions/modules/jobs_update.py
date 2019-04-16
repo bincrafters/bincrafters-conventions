@@ -58,8 +58,8 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
     beginning_found_threshold = beginning_found_end - 1
     beginning_found = -1  # -1, 0 (one of two starting criteria are found) or 1 (both criteria are found), 2 end
 
-    latest_versions = {'gcc': 0, 'clang': 0, 'apple_clang': 0, 'visual': 0}
-    versions_jobs = {'gcc': {}, 'clang': {}, 'apple_clang': {}, 'visual': {}}
+    latest_versions = {'a_unidentified': 0, 'gcc': 0, 'clang': 0, 'apple_clang': 0, 'visual': 0}
+    versions_jobs = {'a_unidentified': {}, 'gcc': {}, 'clang': {}, 'apple_clang': {}, 'visual': {}}
 
     # Strings for file content
     new_content_beginning = ""
@@ -120,6 +120,12 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
 
                 # Are we entering a new job?
                 if line.strip()[0] == "-":
+                    # There are jobs which compiler we can't identify, make sure we don't delete them
+                    # This applies for e.g. mingw jobs on AppVeyor
+                    if tmp != "" and compiler_found == False:
+                        versions_jobs["a_unidentified"]["v1"] = \
+                            versions_jobs["a_unidentified"].get("v1", "") + tmp
+
                     current_compiler = ""
                     current_compiler_version = 0
                     compiler_found = False
@@ -170,15 +176,19 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                 versions_jobs[compiler]['v' + version] = new_job
 
     # Now use the compiler jobs information and transform them back into a writeable string
-    for compiler, _ in compiler_versions.items():
-        for key in sorted(versions_jobs[compiler].keys(), key=lambda s: float(s[1:])):
-            # Check if we do have old compiler version which we want to delete
-            if key[1:] in compiler_deleting[compiler]:
-                manipulated_jobs = True
-                update_message = "{}: Delete job(s) for old compiler version {} {}".format(platform_name, compiler, key[1:])
-                main.output_result_update(title=update_message)
-            else:
-                compiler_jobs += versions_jobs[compiler][key]
+    for compiler, _ in versions_jobs.items():
+        if compiler != "a_unidentified":
+            for key in sorted(versions_jobs[compiler].keys(), key=lambda s: float(s[1:])):
+                # Check if we do have old compiler version which we want to delete
+                if key[1:] in compiler_deleting[compiler]:
+                    manipulated_jobs = True
+                    update_message = "{}: Delete job(s) for old compiler version {} {}".format(platform_name, compiler, key[1:])
+                    main.output_result_update(title=update_message)
+                else:
+                    compiler_jobs += versions_jobs[compiler][key]
+        else:
+            # For jobs were we didn't identify the compiler we just leave the jobs unmodified
+            compiler_jobs += versions_jobs[compiler].get("v1", "")
 
     # With all gained information re-write the Travis file now if we actually found missing compiler versions
     if manipulated_jobs:
