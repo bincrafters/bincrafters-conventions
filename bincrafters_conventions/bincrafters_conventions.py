@@ -66,6 +66,9 @@ travis_compiler_versions = {'gcc': ('6', '7', '8'), 'clang': ('5.0', '6.0', '7.0
 # This compiler versions are getting actively removed from existing jobs
 travis_compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': ()}
 
+# What MSVC versions are available on which AppVeyor image?
+appveyor_win_images_compiler_mapping = {'14': 'Visual Studio 2015', '15': 'Visual Studio 2017'}
+
 # What are the latest AVAILABLE patches for OpenSSL, which versions are End-Of-Life?
 openssl_version_matrix = {'1.0.1': {'latest_patch': 'h', 'eol': True},
                           '1.0.2': {'latest_patch': 'r', 'eol': False},
