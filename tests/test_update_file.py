@@ -63,11 +63,37 @@ def test_conanfile_default_options_mutiline():
     assert filecmp.cmp(path_old, path_expected)
 
 
+def test_appveyor_update_up_to_date():
+    """ Try to update an up-to-date AppVeyor file
+    """
+
+    path_old, path_expected = _prepare_old_file("appveyor_1", ".yml", old="appveyor_1_expected")
+
+    args = ['--appveyorfile', path_old]
+    command = Command()
+    command.run(args)
+
+    assert filecmp.cmp(path_old, path_expected)
+
+
 def test_appveyor_update():
-    """ Try to update an up-to-date file
+    """ Try to update an AppVeyor file
     """
 
     path_old, path_expected = _prepare_old_file("appveyor_1", ".yml")
+
+    args = ['--appveyorfile', path_old]
+    command = Command()
+    command.run(args)
+
+    assert filecmp.cmp(path_old, path_expected)
+
+
+def test_appveyor_update_new_compiler_jobs():
+    """ Try to update an AppVeyor file, new compiler jobs should be added
+    """
+
+    path_old, path_expected = _prepare_old_file("appveyor_2", ".yml")
 
     args = ['--appveyorfile', path_old]
     command = Command()
