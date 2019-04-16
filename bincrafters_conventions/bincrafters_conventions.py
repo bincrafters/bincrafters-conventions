@@ -20,6 +20,7 @@ from .actions.check_for_required_attributes import check_for_required_attributes
 from .actions.update_a_python_version import update_a_python_version
 from .actions.update_a_path_manipulation import update_a_path_manipulation
 from .actions.update_a_python_environment_variable import update_a_python_environment_variable
+from .actions.update_a_add_new_compiler_versions import update_a_add_new_compiler_versions
 from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
 from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic_exception_to_invalid_conf
@@ -35,7 +36,7 @@ from .actions.update_other_pyenv_python_version import update_other_pyenv_python
 from .actions.update_readme_travis_url import update_readme_travis_url
 
 
-__version__ = '0.6.0'
+__version__ = '0.7.0'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -57,17 +58,19 @@ python_check_for_old_versions = ["2.7.8", "2.7", "2.7.10", "3.6", "3.7.0"]
 # travis_macos_images_updates = [["10.1", "10.2"]] 10.2 isn't ready yet due to zlib problems
 travis_macos_images_updates = [["9.3", "9.4"]]
 
-# What apple_clang version is available on which Travis image?
+# What apple_clang version is available on which Travis image? What MSVC versions are available on which AppVeyor image?
 travis_macos_images_compiler_mapping = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10.1'}
+appveyor_win_msvc_images_compiler_mapping = {'12': '2015', '14': '2015', '15': '2017'}
 
 # This compiler versions are getting added if they are newer than the existing jobs
 # and if they don't already exist
-travis_compiler_versions = {'gcc': ('6', '7', '8'), 'clang': ('5.0', '6.0', '7.0'), 'apple_clang': ('9.1', '10.0')}
+compiler_versions = {'gcc': ('6', '7', '8'),
+                     'clang': ('5.0', '6.0', '7.0'),
+                     'apple_clang': ('9.1', '10.0'),
+                     'visual': ('15',)}
 # This compiler versions are getting actively removed from existing jobs
-travis_compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': ()}
+compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': (), 'visual': ()}
 
-# What MSVC versions are available on which AppVeyor image?
-appveyor_win_images_compiler_mapping = {'14': 'Visual Studio 2015', '15': 'Visual Studio 2017'}
 
 # What are the latest AVAILABLE patches for OpenSSL, which versions are End-Of-Life?
 openssl_version_matrix = {'1.0.1': {'latest_patch': 'h', 'eol': True},
@@ -182,12 +185,16 @@ class Command(object):
 
         if not self._is_header_only("conanfile.py"):
             # Add new compiler versions to CI jobs
-            update_t_add_new_compiler_versions(self, file, travis_compiler_versions, travis_macos_images_compiler_mapping, travis_compiler_versions_deletion)
+            update_t_add_new_compiler_versions(self, file, compiler_versions, travis_macos_images_compiler_mapping, compiler_versions_deletion)
 
     def _update_appveyor_file(self, file):
         update_a_python_environment_variable(self, file)
         update_a_python_version(self, file, python_version_current_appveyor, python_check_for_old_versions)
         update_a_path_manipulation(self, file)
+
+        if not self._is_header_only("conanfile.py"):
+            # Add new compiler versions to CI jobs
+            update_a_add_new_compiler_versions(self, file, compiler_versions, appveyor_win_msvc_images_compiler_mapping, compiler_versions_deletion)
 
 
     def replace_in_file(self, file, old, new):
