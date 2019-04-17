@@ -1,8 +1,8 @@
 from .modules.jobs_update import update_add_new_compiler_versions
 
 
-def update_a_add_new_compiler_versions(main, file, compiler_versions: dict, images_mapping: dict, compiler_deleting: dict):
-    """ This update script adds new compiler versions to the AppVeyor jobs
+def update_t_jobs(main, file, compiler_versions: dict, images_mapping: dict, compiler_deleting: dict):
+    """ This update script adds new compiler versions to the Travis jobs
 
     :param file: CI file path
     :param compiler_versions: List of recommended new compiler versions
@@ -11,10 +11,10 @@ def update_a_add_new_compiler_versions(main, file, compiler_versions: dict, imag
     """
 
     platform = {
-        "name": "AppVeyor",
-        "beginning_keywords": ("matrix:",),
+        "name": "Travis",
+        "beginning_keywords": ("matrix:", "include:"),
         "end_keyword": "install:",
-        "delimiter": ": "
+        "delimiter": "="
     }
 
     return update_add_new_compiler_versions(main, file, platform, compiler_versions, images_mapping, compiler_deleting)

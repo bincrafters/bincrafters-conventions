@@ -20,7 +20,7 @@ from .actions.check_for_required_attributes import check_for_required_attributes
 from .actions.update_a_python_version import update_a_python_version
 from .actions.update_a_path_manipulation import update_a_path_manipulation
 from .actions.update_a_python_environment_variable import update_a_python_environment_variable
-from .actions.update_a_add_new_compiler_versions import update_a_add_new_compiler_versions
+from .actions.update_a_jobs import update_a_jobs
 from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
 from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic_exception_to_invalid_conf
@@ -28,7 +28,7 @@ from .actions.update_c_default_options_to_dict import update_c_default_options_t
 from .actions.update_t_ci_dir_path import update_t_ci_dir_path
 from .actions.update_t_macos_images import update_t_macos_images
 from .actions.update_t_new_docker_image_names import update_t_new_docker_image_names
-from .actions.update_t_add_new_compiler_versions import update_t_add_new_compiler_versions
+from .actions.update_t_jobs import update_t_jobs
 from .actions.update_t_linux_image import update_t_linux_image
 from .actions.update_t_linux_python_version import update_t_linux_python_version
 from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_ci_dir_name
@@ -185,7 +185,7 @@ class Command(object):
 
         if not self._is_header_only("conanfile.py"):
             # Add new compiler versions to CI jobs
-            update_t_add_new_compiler_versions(self, file, compiler_versions, travis_macos_images_compiler_mapping, compiler_versions_deletion)
+            update_t_jobs(self, file, compiler_versions, travis_macos_images_compiler_mapping, compiler_versions_deletion)
 
     def _update_appveyor_file(self, file):
         update_a_python_environment_variable(self, file)
@@ -194,7 +194,7 @@ class Command(object):
 
         if not self._is_header_only("conanfile.py"):
             # Add new compiler versions to CI jobs
-            update_a_add_new_compiler_versions(self, file, compiler_versions, appveyor_win_msvc_images_compiler_mapping, compiler_versions_deletion)
+            update_a_jobs(self, file, compiler_versions, appveyor_win_msvc_images_compiler_mapping, compiler_versions_deletion)
 
 
     def replace_in_file(self, file, old, new):
