@@ -36,7 +36,7 @@ from .actions.update_other_pyenv_python_version import update_other_pyenv_python
 from .actions.update_readme_travis_url import update_readme_travis_url
 
 
-__version__ = '0.7.0'
+__version__ = '0.7.1'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -65,7 +65,7 @@ appveyor_win_msvc_images_compiler_mapping = {'12': '2015', '14': '2015', '15': '
 # This compiler versions are getting added if they are newer than the existing jobs
 # and if they don't already exist
 compiler_versions = {'gcc': ('6', '7', '8'),
-                     'clang': ('5.0', '6.0', '7.0'),
+                     'clang': ('5.0', '6.0', '7.0', '8'),
                      'apple_clang': ('9.1', '10.0'),
                      'visual': ('15',)}
 # This compiler versions are getting actively removed from existing jobs
