@@ -36,7 +36,7 @@ from .actions.update_other_pyenv_python_version import update_other_pyenv_python
 from .actions.update_readme_travis_url import update_readme_travis_url
 
 
-__version__ = '0.7.1'
+__version__ = '0.7.2'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -49,7 +49,7 @@ python_version_current_pyenv = "3.7.1"
 python_version_current_appveyor = "37"
 python_version_current_travis_linux = "3.7"
 # for AppVeyor dot zero releases need to be added without dot zero, for pyenv a second time with a dot zero
-python_check_for_old_versions = ["2.7.8", "2.7", "2.7.10", "3.6", "3.7.0"]
+python_check_for_old_versions = ["2.7.8", "2.7.10", "2.7.14", "2.7", "3.6", "3.7.0"]
 
 # Sometimes Travis is publishing new CI images with new XCode versions
 # but they still have the same Clang version
