@@ -25,6 +25,7 @@ from .actions.update_c_deprecated_attributes import update_c_deprecated_attribut
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
 from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic_exception_to_invalid_conf
 from .actions.update_c_default_options_to_dict import update_c_default_options_to_dict
+from .actions.update_c_tools_version import update_c_tools_version
 from .actions.update_t_ci_dir_path import update_t_ci_dir_path
 from .actions.update_t_macos_images import update_t_macos_images
 from .actions.update_t_new_docker_image_names import update_t_new_docker_image_names
@@ -306,7 +307,8 @@ class Command(object):
         return (update_c_deprecated_attributes(self, conanfile),
                 update_c_default_options_to_dict(self, conanfile),
                 update_c_generic_exception_to_invalid_conf(self, conanfile),
-                update_c_openssl_version_patch(self, conanfile, openssl_version_matrix))
+                update_c_openssl_version_patch(self, conanfile, openssl_version_matrix),
+                update_c_tools_version(self, conanfile))
 
     def _update_readme(self, readme):
         """ Update README.md file with new URL
