@@ -37,7 +37,7 @@ from .actions.update_other_pyenv_python_version import update_other_pyenv_python
 from .actions.update_readme_travis_url import update_readme_travis_url
 
 
-__version__ = '0.7.4'
+__version__ = '0.7.5'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -61,14 +61,14 @@ travis_macos_images_updates = [["9.3", "9.4"]]
 
 # What apple_clang version is available on which Travis image? What MSVC versions are available on which AppVeyor image?
 travis_macos_images_compiler_mapping = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10.1'}
-appveyor_win_msvc_images_compiler_mapping = {'12': '2015', '14': '2015', '15': '2017'}
+appveyor_win_msvc_images_compiler_mapping = {'12': '2015', '14': '2015', '15': '2017', '16': '2019'}
 
 # This compiler versions are getting added if they are newer than the existing jobs
 # and if they don't already exist
 compiler_versions = {'gcc': ('6', '7', '8'),
                      'clang': ('5.0', '6.0', '7.0', '8'),
                      'apple_clang': ('9.1', '10.0'),
-                     'visual': ('15',)}
+                     'visual': ('15', '16')}
 # This compiler versions are getting actively removed from existing jobs
 compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': (), 'visual': ()}
 
