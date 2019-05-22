@@ -1,4 +1,4 @@
-[![Build Status: Linux and macOS](https://travis-ci.org/bincrafters/bincrafters-conventions.svg?branch=master)](https://travis-ci.org/bincrafters/bincrafters-conventions)
+[![Build Status: Linux and macOS](https://travis-ci.com/bincrafters/bincrafters-conventions.svg?branch=master)](https://travis-ci.com/bincrafters/bincrafters-conventions)
 [![Build status: Windows](https://ci.appveyor.com/api/projects/status/github/bincrafters/bincrafters-conventions?svg=true)](https://ci.appveyor.com/project/bincrafters/bincrafters-conventions)
 [![codecov](https://codecov.io/gh/bincrafters/bincrafters-conventions/branch/master/graph/badge.svg)](https://codecov.io/gh/bincrafters/bincrafters-conventions)
 [![Pypi Download](https://img.shields.io/badge/download-pypi-blue.svg)](https://pypi.python.org/pypi/bincrafters-conventions)
@@ -7,7 +7,8 @@
 
 ## A Script to update Conan projects following Conan conventions
 
-This project contains the script to add new compiler versions in Travis file and update Conan conventions
+This project contains scripts to add new compiler versions in Travis and AppVeyor files,
+update Conan conventions in general and performing some linting.
 
 #### Motivation
 
@@ -27,11 +28,11 @@ Or if you want to download our pip package
     pip install bincrafters_conventions
 
 #### RUN
-To update **ALL** Conan projects on Github https://github.com/bincrafters
+To update **ALL** Conan projects on GitHub https://github.com/bincrafters
 
     $ bincrafters_conventions --remote=bincrafters
 
-To update **ONLY** one project on Github https://github.com/bincrafters/conan-conversion
+To update **ONLY** one project on GitHub https://github.com/bincrafters/conan-conversion
 
     $ bincrafters_conventions --remote=bincrafters/conan-double-conversion
 
@@ -67,7 +68,7 @@ To apply Conan conventions in a local file:
 
     $ bincrafters_conventions --conanfile=conanfile.py
 
-To update appveyor file:
+To update AppVeyor file:
 
     $ bincrafters_conventions --appveryorfile=appveyor.yml
 
@@ -96,12 +97,12 @@ To develop or run conan clang update
 There are two ways to upload this project.
 
 ##### Travis CI
-After to create a new tag, the package will be uploaded automatically to Pypi.  
-Both username and password (encrypted) are in travis file.  
+After to create a new tag, the package will be uploaded automatically to PyPi.  
+Both username and password (encrypted) are in Travis file.  
 
 
 ##### Command line
-To upload this package on pypi (legacy mode):
+To upload this package on PyPi (legacy mode):
 
     pip install twine
     python setup.py sdist
