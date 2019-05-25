@@ -13,6 +13,10 @@ def _get_docker_image_name(compiler: str, version):
     return "{}/{}{}".format(OWNER, compiler, image_version)
 
 
+def _get_docker_use_32_images():
+    return "CONAN_DOCKER_32_IMAGES=1"
+
+
 def _create_new_job(platform: dict, compiler: str, version, job: str, old_version, images_mapping: dict):
     old_version_str = "CONAN_{}_VERSIONS{}{}".format(compiler.upper(), platform["delimiter"], old_version)
     new_version_str = "CONAN_{}_VERSIONS{}{}".format(compiler.upper(), platform["delimiter"], version)
@@ -21,6 +25,8 @@ def _create_new_job(platform: dict, compiler: str, version, job: str, old_versio
     if compiler == "gcc" or compiler == "clang":
         old_docker_image_str = "CONAN_DOCKER_IMAGE={}".format(_get_docker_image_name(compiler, old_version))
         new_docker_image_str = "CONAN_DOCKER_IMAGE={}".format(_get_docker_image_name(compiler, version))
+        if compiler == "clang" and version == "8":
+            new_docker_image_str += " " + _get_docker_use_32_images()
         job = job.replace(old_docker_image_str, new_docker_image_str)
 
     elif compiler == "apple_clang":
