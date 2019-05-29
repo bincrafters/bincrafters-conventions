@@ -37,7 +37,7 @@ from .actions.update_other_pyenv_python_version import update_other_pyenv_python
 from .actions.update_readme_travis_url import update_readme_travis_url
 
 
-__version__ = '0.7.5'
+__version__ = '0.7.6'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -75,9 +75,9 @@ compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': (), 'visual
 
 # What are the latest AVAILABLE patches for OpenSSL, which versions are End-Of-Life?
 openssl_version_matrix = {'1.0.1': {'latest_patch': 'h', 'eol': True},
-                          '1.0.2': {'latest_patch': 'r', 'eol': False},
-                          '1.1.0': {'latest_patch': 'j', 'eol': False},
-                          '1.1.1': {'latest_patch': 'b', 'eol': False},
+                          '1.0.2': {'latest_patch': 's', 'eol': False},
+                          '1.1.0': {'latest_patch': 'k', 'eol': False},
+                          '1.1.1': {'latest_patch': 'c', 'eol': False},
                           }
 
 @contextlib.contextmanager
