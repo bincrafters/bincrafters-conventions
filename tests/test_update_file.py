@@ -127,6 +127,20 @@ def test_update_travis_file():
 
     assert _compare_file(path_old, path_expected)
 
+
+def test_update_travis_file_macos_images():
+    """ Travis file with old macOS images
+    """
+
+    path_old, path_expected = _prepare_old_file("travis_1", ".yml", old="travis_1_old_macos_images")
+
+    args = ['--travisfile', path_old]
+    command = Command()
+    command.run(args)
+
+    assert _compare_file(path_old, path_expected)
+
+
 def test_update_travis_file_with_global():
     """ Create a standard travis file and update it.
     """

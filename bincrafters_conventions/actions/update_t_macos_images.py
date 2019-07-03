@@ -5,6 +5,8 @@ def update_t_macos_images(main, file, xcode_versions_to_check):
         but we need to update the existing jobs
     """
 
+    updated = False
+
     for xcode_update in xcode_versions_to_check:
         old_image_version = xcode_update[0]
         new_image_version = xcode_update[1]
@@ -15,5 +17,9 @@ def update_t_macos_images(main, file, xcode_versions_to_check):
         if main.file_contains(file, current_image_string):
             if (main.replace_in_file(file, current_image_string, new_image_string)):
                 main.output_result_update(title="Travis: Update macOS CI image from {} to {}".format(old_image_version, new_image_version))
-                return True
+                updated = True
+
+    if updated:
+        return True
+
     return False
