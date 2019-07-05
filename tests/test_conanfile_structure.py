@@ -23,7 +23,8 @@ def test_sha256_checksum_no_tools_get():
     mock_output = MockOutputResultCheck()
 
     recipe = _create_recipe(CONANFILE_SRC_TOOLS_GET.format(source_body='pass'))
-    check_for_download_hash(mock_output, recipe)
+    res = check_for_download_hash(mock_output, recipe)
+    assert res == True
     assert mock_output.passed == True
     assert mock_output.skipped == True
     assert 'tools.get() isn\'t used' in mock_output.reason
@@ -33,7 +34,8 @@ def test_sha256_checksum_tools_get_missing_checksum():
     mock_output = MockOutputResultCheck()
 
     recipe = _create_recipe(CONANFILE_SRC_TOOLS_GET.format(source_body='tools.get("some_url")'))
-    check_for_download_hash(mock_output, recipe)
+    res = check_for_download_hash(mock_output, recipe)
+    assert res == False
     assert mock_output.passed == False
     assert 'checksum not found' in mock_output.reason
 
@@ -42,7 +44,8 @@ def test_sha256_checksum_tools_get_checksum():
     mock_output = MockOutputResultCheck()
 
     recipe = _create_recipe(CONANFILE_SRC_TOOLS_GET.format(source_body='tools.get("some_url", sha256="256")'))
-    check_for_download_hash(mock_output, recipe)
+    res = check_for_download_hash(mock_output, recipe)
+    assert res == True
     assert mock_output.passed == True
     assert mock_output.skipped == False
     assert 'SHA256 hash in tools.get()' in mock_output.title
@@ -52,7 +55,8 @@ def test_sha256_checksum_tools_get_checksum_multiline():
     mock_output = MockOutputResultCheck()
 
     recipe = _create_recipe(CONANFILE_SRC_TOOLS_GET.format(source_body='tools.get("some_url",\n        sha256="256")'))
-    check_for_download_hash(mock_output, recipe)
+    res = check_for_download_hash(mock_output, recipe)
+    assert res == True
     assert mock_output.passed == True
     assert mock_output.skipped == False
     assert 'SHA256 hash in tools.get()' in mock_output.title
@@ -62,7 +66,8 @@ def test_sha256_checksum_tools_get_false_positive():
     mock_output = MockOutputResultCheck()
 
     recipe = _create_recipe(CONANFILE_SRC_TOOLS_GET.format(source_body='tools.get("some\\") _url")\n        method(sha256="abcdef")'))
-    check_for_download_hash(mock_output, recipe)
+    res = check_for_download_hash(mock_output, recipe)
+    assert res == False
     assert mock_output.passed == False
     assert 'checksum not found' in mock_output.reason
 
@@ -71,7 +76,8 @@ def test_sha256_checksum_tools_get_multiple_fail():
     mock_output = MockOutputResultCheck()
 
     recipe = _create_recipe(CONANFILE_SRC_TOOLS_GET.format(source_body='tools.get("some", sha256="abcdef")\n        tools.get("abc")'))
-    check_for_download_hash(mock_output, recipe)
+    res = check_for_download_hash(mock_output, recipe)
+    assert res == False
     assert mock_output.passed == False
     assert 'checksum not found' in mock_output.reason
 
@@ -80,7 +86,8 @@ def test_sha256_checksum_tools_get_multiple_success():
     mock_output = MockOutputResultCheck()
 
     recipe = _create_recipe(CONANFILE_SRC_TOOLS_GET.format(source_body='tools.get("some", sha256="abcdef")\n        tools.get("abc", sha256="abcdef")'))
-    check_for_download_hash(mock_output, recipe)
+    res = check_for_download_hash(mock_output, recipe)
+    assert res == True
     assert mock_output.passed == True
     assert mock_output.skipped == False
 
