@@ -5,7 +5,7 @@ from conans import tools
 from .test_check_for_deprecation import _create_recipe, MockOutputResultCheck
 from bincrafters_conventions.actions.check_for_download_hash import check_for_download_hash
 from bincrafters_conventions.actions.check_for_required_attributes import check_for_required_attributes
-from bincrafters_conventions.actions.update_c_attributes import update_c_topics
+from bincrafters_conventions.actions.update_c_attributes import update_c_topics, update_c_author
 
 CONANFILE_SRC_TOOLS_GET = '''
 from conans import ConanFile, tools
@@ -134,4 +134,42 @@ def test_update_topics_parentheses():
 
     conanfile_new = open(recipe).read()
     assert conanfile_original == conanfile_new
-    
+
+
+def test_update_missing_author():
+    mock_output = MockOutputResultCheck()
+
+    conanfile_original = CONANFILE_SRC_ATTRIBUTE.format(attribute='')
+    recipe = _create_recipe(conanfile_original)
+    check_for_required_attributes(mock_output, recipe)
+
+    assert mock_output.passed == False
+    assert mock_output.title == 'Required recipe attributes'
+    assert 'author' in mock_output.reason
+
+    mock_main = MockCommand()
+    res = update_c_author(mock_main, recipe)
+    assert res is False
+
+    conanfile_new = open(recipe).read()
+    assert conanfile_original == conanfile_new
+
+
+def test_update_author_bincrafters_no_uppercase():
+    mock_output = MockOutputResultCheck()
+
+    conanfile_original = CONANFILE_SRC_ATTRIBUTE.format(attribute="""author = 'bincrafters <bincrafters@gmail.com>'""")
+    recipe = _create_recipe(conanfile_original)
+    check_for_required_attributes(mock_output, recipe)
+
+    assert mock_output.passed == False
+    assert mock_output.title == 'Required recipe attributes'
+    assert 'author' not in mock_output.reason
+
+    mock_main = MockCommand()
+    res = update_c_author(mock_main, recipe)
+    assert res is True
+
+    conanfile_new = open(recipe).read()
+    assert conanfile_original != conanfile_new
+    assert """author = 'Bincrafters <bincrafters@gmail.com>""" in conanfile_new
