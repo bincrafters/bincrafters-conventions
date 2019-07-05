@@ -51,6 +51,17 @@ def test_sha256_checksum_tools_get_checksum():
     assert 'SHA256 hash in tools.get()' in mock_output.title
 
 
+def test_sha256_checksum_tools_get_checksum_variable():
+    mock_output = MockOutputResultCheck()
+
+    recipe = _create_recipe(CONANFILE_SRC_TOOLS_GET.format(source_body='tools.get("www.{}.com".format(domain), sha256=sha256)'))
+    res = check_for_download_hash(mock_output, recipe)
+    assert res == True
+    assert mock_output.passed == True
+    assert mock_output.skipped == False
+    assert 'SHA256 hash in tools.get()' in mock_output.title
+
+
 def test_sha256_checksum_tools_get_checksum_multiline():
     mock_output = MockOutputResultCheck()
 
