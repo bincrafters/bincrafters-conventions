@@ -6,12 +6,15 @@ def check_for_download_hash(main, file):
     recipe = conanfile.read()
     conanfile.close()
 
-    if re.search(r'tools\.get\(.+\)', recipe, re.DOTALL):
-        if re.search(r'tools\.get\(.+,\s+sha256=.+\)', recipe, re.DOTALL):
+    result_passed = None
+
+    for m in re.finditer(r"tools\.get\((?P<args>.*?[^\\])\)", recipe, re.DOTALL):
+        if re.search(r"sha256\s*=\s*(['\"]).*?\1", m["args"], re.DOTALL):
             main.output_result_check(passed=True, title="SHA256 hash in tools.get()")
-            return True
+            result_passed = True if result_passed is None else result_passed
         else:
             main.output_result_check(passed=False, title="SHA256 hash in tools.get()", reason="checksum not found")
-            return False
-    main.output_result_check(passed=True, skipped=True, title="SHA256 hash in tools.get()", reason="tools.get() isn't used")
-    return True
+            result_passed = False
+    if result_passed is None:
+        main.output_result_check(passed=True, skipped=True, title="SHA256 hash in tools.get()", reason="tools.get() isn't used")
+    return result_passed
