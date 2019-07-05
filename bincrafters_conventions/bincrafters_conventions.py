@@ -21,6 +21,7 @@ from .actions.update_a_python_version import update_a_python_version
 from .actions.update_a_path_manipulation import update_a_path_manipulation
 from .actions.update_a_python_environment_variable import update_a_python_environment_variable
 from .actions.update_a_jobs import update_a_jobs
+from .actions.update_c_attributes import update_c_topics
 from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
 from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic_exception_to_invalid_conf
@@ -307,7 +308,8 @@ class Command(object):
                 update_c_default_options_to_dict(self, conanfile),
                 update_c_generic_exception_to_invalid_conf(self, conanfile),
                 update_c_openssl_version_patch(self, conanfile, openssl_version_matrix),
-                update_c_tools_version(self, conanfile))
+                update_c_tools_version(self, conanfile),
+                update_c_topics(self, conanfile),)
 
     def _update_readme(self, readme):
         """ Update README.md file with new URL
