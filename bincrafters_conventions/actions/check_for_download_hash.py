@@ -6,8 +6,8 @@ def check_for_download_hash(main, file):
     recipe = conanfile.read()
     conanfile.close()
 
-    if re.search(r'tools\.get\(.+\)', recipe):
-        if re.search(r'tools\.get\(.+,\s?sha256=.+\)', recipe):
+    if re.search(r'tools\.get\(.+\)', recipe, re.DOTALL):
+        if re.search(r'tools\.get\(.+,\s+sha256=.+\)', recipe, re.DOTALL):
             main.output_result_check(passed=True, title="SHA256 hash in tools.get()")
             return True
         else:
