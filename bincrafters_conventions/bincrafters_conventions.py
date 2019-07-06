@@ -25,6 +25,7 @@ from .actions.update_c_attributes import update_c_author, update_c_topics
 from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
 from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic_exception_to_invalid_conf
+from .actions.update_c_header import update_c_check_header
 from .actions.update_c_default_options_to_dict import update_c_default_options_to_dict
 from .actions.update_c_tools_version import update_c_tools_version
 from .actions.update_t_ci_dir_path import update_t_ci_dir_path
@@ -144,6 +145,8 @@ class Command(object):
             if os.path.isfile("appveyor.yml"):
                 self._update_appveyor_file("appveyor.yml")
             self._update_conanfile("conanfile.py")
+            if os.path.exists(os.path.join("test_package", "conanfile.py")):
+                self._update_testpackage_conanfile(os.path.join("test_package", "conanfile.py"))
             if os.path.isfile("README.md"):
                 self._update_readme("README.md")
             self._run_conventions_checks()
@@ -196,7 +199,6 @@ class Command(object):
         if not self._is_header_only("conanfile.py"):
             # Add new compiler versions to CI jobs
             update_a_jobs(self, file, compiler_versions, appveyor_win_msvc_images_compiler_mapping, compiler_versions_deletion)
-
 
     def replace_in_file(self, file, old, new):
         """ Read file and replace ALL occurrences of old by new
@@ -309,7 +311,16 @@ class Command(object):
                 update_c_generic_exception_to_invalid_conf(self, conanfile),
                 update_c_openssl_version_patch(self, conanfile, openssl_version_matrix),
                 update_c_tools_version(self, conanfile),
+                update_c_check_header(self, conanfile),
                 update_c_author(self, conanfile), update_c_topics(self, conanfile),)
+
+    def _update_testpackage_conanfile(self, conanfile):
+        """ Update Conan recipe with Conan conventions
+
+        :param conanfile: Conan recipe path
+        :return:
+        """
+        return (update_c_check_header(self, conanfile), )
 
     def _update_readme(self, readme):
         """ Update README.md file with new URL
