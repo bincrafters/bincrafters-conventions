@@ -7,11 +7,11 @@ import tempfile
 from shutil import copyfile
 
 
-def _prepare_old_file(file_name: str, suffix: str, old = "", expected=""):
-    if old == "":
+def _prepare_old_file(file_name: str, suffix: str, old=None, expected=None):
+    if old is None:
         old = file_name + "_old"
 
-    if expected == "":
+    if expected is None:
         expected = file_name + "_expected"
 
     _, path_old = tempfile.mkstemp(prefix=old, suffix=suffix)
@@ -24,7 +24,7 @@ def _prepare_old_file(file_name: str, suffix: str, old = "", expected=""):
 
 
 def _compare_file(path_old: str, expected_path: str):
-    """ This is needed to ignore differnt line endings styles
+    """ This is needed to ignore different line endings styles
         e.g. filecmp.cmp would throw an error with differnt line ending
     """
     l1 = l2 = True
