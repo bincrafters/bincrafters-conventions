@@ -9,8 +9,8 @@ def check_license(main, recipe_license):
         return True
     else:
         main.output_result_check(passed=False, title="SPDX License identifier",
-                                 reason="identifier doesn't seem to be a valid SPDX one. "
-                                        "Have a look at https://spdx.org/licenses/")
+                                 reason="{} doesn't seem to be a valid SPDX one. "
+                                        "Have a look at https://spdx.org/licenses/".format(recipe_license))
         return False
 
 def check_for_spdx_license(main, file):
