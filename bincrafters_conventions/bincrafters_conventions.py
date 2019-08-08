@@ -115,7 +115,7 @@ class Command(object):
         group.add_argument('--local', action='store_true', help='Update current local repository')
         group.add_argument('-t', '--travisfile', type=str, nargs='?', const='.travis.yml',
                            help='Travis file to be updated e.g. .travis.yml')
-        group.add_argument('-a', '--appveyorfile', type=str, nargs='?',
+        group.add_argument('-a', '--appveyorfile', type=str, nargs='?', const='appveyor.yml',
                            help='Appveyor file to be updated e.g. appveyor.yml')
         group.add_argument('--conanfile', '-c', type=str, nargs='?', const='conanfile.py',
                            help='Conan recipe path e.g conanfile.py')
