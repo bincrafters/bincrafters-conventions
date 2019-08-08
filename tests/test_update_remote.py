@@ -19,3 +19,10 @@ def test_update_clang_filter_branch():
     command = Command()
     command.run(args)
 
+
+def test_const_dry_run():
+    """ Clone dummy project, filter by branch and update it.
+    """
+    args = ["--remote=bincrafters/conan-libmodplug", "--dry-run"]
+    command = Command()
+    result = command.run(args)

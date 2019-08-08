@@ -115,7 +115,7 @@ class Command(object):
         group.add_argument('--local', action='store_true', help='Update current local repository')
         group.add_argument('-t', '--travisfile', type=str, nargs='?', const='.travis.yml',
                            help='Travis file to be updated e.g. .travis.yml')
-        group.add_argument('-a', '--appveyorfile', type=str, nargs='?', const='appveyor.yml',
+        group.add_argument('-a', '--appveyorfile', type=str, nargs='?',
                            help='Appveyor file to be updated e.g. appveyor.yml')
         group.add_argument('--conanfile', '-c', type=str, nargs='?', const='conanfile.py',
                            help='Conan recipe path e.g conanfile.py')
@@ -238,7 +238,8 @@ class Command(object):
         :param conanfile: Conan recipe path
         :return: True if recipe is header-only. Otherwise, False.
         """
-        if self.file_contains(conanfile, "self.info.header_only()"):
+        if conanfile and os.path.isfile(conanfile) and \
+           self.file_contains(conanfile, "self.info.header_only()"):
             return True
         return False
 
@@ -272,6 +273,7 @@ class Command(object):
         self._logger.info("On branch {}".format(git_repo.active_branch))
 
         try:
+            conanfile = "conanfile.py" if conanfile is None else conanfile
             header_only = self._is_header_only(conanfile)
             travis_updater = self._update_compiler_jobs
             if header_only:
@@ -285,7 +287,6 @@ class Command(object):
                       self._update_conanfile(conanfile),
                       travis_updater(file),
                       self._update_appveyor_file('appveyor.yml'))
-            self._logger.info("RESULT: {}".format(result))
             if True in result:
                 self._logger.debug("Add file {} on branch {}".format(file, git_repo.active_branch))
                 git_repo.git.add('--all')
