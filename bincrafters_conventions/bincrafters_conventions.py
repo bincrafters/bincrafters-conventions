@@ -171,33 +171,45 @@ class Command(object):
 
         :param file: Travis file path
         """
-
-        # Rename .travis -> .ci
-        update_other_travis_to_ci_dir_name(self)
-        update_t_ci_dir_path(self, file)
-        # Update which Python version macOS is using via pyenv
-        update_other_pyenv_python_version(self, '.ci/install.sh', python_version_current_pyenv, python_check_for_old_versions)
-        # Update Travis Linux Python version
-        update_t_linux_python_version(self, file, python_version_current_travis_linux, python_check_for_old_versions)
-        # Update which macOS image existing jobs are using
-        update_t_macos_images(self, file, travis_macos_images_updates)
-        # Update docker image names lasote -> conanio
-        update_t_new_docker_image_names(self, file)
-        # Update Travis Linux CI base image
-        update_t_linux_image(self, file)
+        result = []
 
         if not self._is_header_only("conanfile.py"):
-            # Add new compiler versions to CI jobs
-            update_t_jobs(self, file, compiler_versions, travis_macos_images_compiler_mapping, compiler_versions_deletion)
+            result.extend([update_t_jobs(self, file, compiler_versions, travis_macos_images_compiler_mapping,
+                          compiler_versions_deletion)])
+
+        result.extend([
+            # Rename .travis -> .ci
+            update_other_travis_to_ci_dir_name(self),
+            update_t_ci_dir_path(self, file),
+            # Update which Python version macOS is using via pyenv
+            update_other_pyenv_python_version(self, '.ci/install.sh', python_version_current_pyenv,
+                                              python_check_for_old_versions),
+            # Update Travis Linux Python version
+            update_t_linux_python_version(self, file, python_version_current_travis_linux, python_check_for_old_versions),
+            # Update which macOS image existing jobs are using
+            update_t_macos_images(self, file, travis_macos_images_updates),
+            # Update docker image names lasote -> conanio
+            update_t_new_docker_image_names(self, file),
+            # Update Travis Linux CI base image
+            update_t_linux_image(self, file),
+        ])
+
+        return result
 
     def _update_appveyor_file(self, file):
-        update_a_python_environment_variable(self, file)
-        update_a_python_version(self, file, python_version_current_appveyor, python_check_for_old_versions)
-        update_a_path_manipulation(self, file)
+        result = [
+            update_a_python_environment_variable(self, file),
+            update_a_python_version(self, file, python_version_current_appveyor, python_check_for_old_versions),
+            update_a_path_manipulation(self, file),
+        ]
 
         if not self._is_header_only("conanfile.py"):
             # Add new compiler versions to CI jobs
-            update_a_jobs(self, file, compiler_versions, appveyor_win_msvc_images_compiler_mapping, compiler_versions_deletion)
+            result.extend([
+                update_a_jobs(self, file, compiler_versions, appveyor_win_msvc_images_compiler_mapping, compiler_versions_deletion)
+            ])
+
+        return result
 
 
     def replace_in_file(self, file, old, new):
@@ -274,22 +286,42 @@ class Command(object):
         git_repo.git.checkout(branch)
 
         print("\n")
-        self._logger.info("\033[1;32mOn branch {}\033[0m".format(git_repo.active_branch))
+        self.output_remote_update("On branch {}".format(git_repo.active_branch))
 
         try:
             conanfile = "conanfile.py" if conanfile is None else conanfile
-            result = (self._update_conanfile(conanfile),
-                      self._update_readme('README.md'),
-                      self._update_compiler_jobs('.travis.yml'),
-                      self._update_appveyor_file('appveyor.yml')
+            result_conanfile = self._update_conanfile(conanfile)
+            result_readme = self._update_readme("README.md")
+            result_travis = self._update_compiler_jobs(".travis.yml")
+            result_appveyor = self._update_appveyor_file("appveyor.yml")
+
+            result = (result_conanfile,
+                      result_readme,
+                      result_travis,
+                      result_appveyor
             )
             if True in result:
-                self._logger.debug("Add file {} on branch {}".format(file, git_repo.active_branch))
+                changedFiles = [item.a_path for item in git_repo.index.diff(None)]
                 git_repo.git.add('--all')
-                self._logger.debug("Commit file {} on branch {}".format(file, git_repo.active_branch))
-                git_repo.index.commit("#482 Update Conan conventions [build=outdated]")
+
+                self.output_remote_update("On branch {} committing files: {}".format(git_repo.active_branch,
+                                                                        " ".join(map(str, changedFiles))))
+
+                commitMsg = "Update Conan conventions [build=outdated]"
+                if True not in result_travis and True not in result_conanfile and True not in result_appveyor:
+                    commitMsg += "[skip ci]"
+                else:
+                    if True not in result_travis and True not in result_conanfile:
+                        commitMsg += "[skip travis]"
+                    if True not in result_appveyor and True not in result_conanfile:
+                        commitMsg += "[skip appveyor]"
+
+                self.output_remote_update("Commit message: {}".format(commitMsg))
+
+                commitMsg += "\n\nAutomatically created by bincrafters-conventions {}".format(__version__)
+                git_repo.index.commit(commitMsg)
                 if not skip_push:
-                    self._logger.debug("Push branch {} to origin".format(git_repo.active_branch))
+                    self.output_remote_update("Pushing branch {} to origin".format(git_repo.active_branch))
                     git_repo.git.push('origin', branch)
         except Exception as error:
             self._logger.warning(error)
@@ -328,6 +360,9 @@ class Command(object):
                 check_for_deprecated_generators(self, conanfile),
                 check_for_deprecated_methods(self, conanfile))
 
+    def output_remote_update(self, title):
+        self._logger.info("[\033[1;35mREMOTE\033[0m]  {}".format(title))
+
     def output_result_update(self, title):
         self._logger.info("[\033[1;32mUPDATED\033[0m]  {}".format(title))
 
@@ -351,7 +386,7 @@ class Command(object):
         project = github_url[(github_url.rfind('/') + 1):]
         project_path = os.path.join(temp_dir, project)
         repo = git.Repo.clone_from(github_url, project_path)
-        self._logger.info("Clone project {} to {}".format(github_url, project_path))
+        self.output_remote_update("Clone project {} to {}".format(github_url, project_path))
         return repo, project_path
 
     def _list_user_projects(self, user):
@@ -397,10 +432,10 @@ class Command(object):
         with chdir(project_path):
             branches = []
             if all_branches:
-                self._logger.warning("\033[1;32mUpdate ALL remote branches\033[0m")
+                self.output_remote_update("Update ALL remote branches")
                 branches.extend(self._get_branch_names(git_repo))
             else:
-                self._logger.info("\033[1;32mUpdate remote default branch\033[0m")
+                self.output_remote_update("Update remote default branch")
                 branches.extend([git_repo.head.ref])
             if branch_pattern:
                 branches = self._filter_list(branches, branch_pattern)
