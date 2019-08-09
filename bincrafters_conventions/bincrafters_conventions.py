@@ -128,6 +128,8 @@ class Command(object):
                             help='Project pattern to filter over user projects e.g bincrafters/conan-*')
         parser.add_argument('--branch-pattern', '-bp', type=str,
                             help='Branch pattern to filter over user projects e.g stable/*')
+        parser.add_argument('--remote-token', type=str,
+                            help='Remote only, user:token pair for auth')
         parser.add_argument('--readme', '-r', type=str, nargs='?', const='README.md',
                             help='README file path to be updated')
         group.add_argument('--version', '-v', action='version', version='%(prog)s {}'.format(__version__))
@@ -152,7 +154,7 @@ class Command(object):
         else:
             if arguments.remote:
                 self._update_remote(arguments.remote, arguments.conanfile, arguments.dry_run, arguments.project_pattern,
-                                    arguments.branch_pattern, arguments.all_branches)
+                                    arguments.branch_pattern, arguments.all_branches, arguments.remote_token)
             else:
                 if arguments.check:
                     self._run_conventions_checks()
@@ -414,7 +416,7 @@ class Command(object):
         self._logger.debug("Filtered list: {}".format(filtered_list))
         return filtered_list
 
-    def _update_remote_project(self, remote, conanfile, skip_push, branch_pattern, all_branches):
+    def _update_remote_project(self, remote, conanfile, skip_push, branch_pattern, all_branches, token=False):
         """ Clone remote project, update Travis and maybe upload
 
         :param remote: Project full name
@@ -427,6 +429,8 @@ class Command(object):
 
         if skip_push:
             github_url = "https://github.com/{}.git".format(remote)
+        elif token:
+            github_url = "https://{}@github.com/{}".format(token, remote)
 
         git_repo, project_path = self._clone_project(github_url)
         with chdir(project_path):
@@ -443,7 +447,7 @@ class Command(object):
                 self._logger.debug("Current branch to be updated: {}".format(branch))
                 self._update_branch(git_repo, branch, travis_file, conanfile, skip_push)
 
-    def _update_remote_user(self, user, conanfile, skip_push, project_pattern, branch_pattern, all_branches):
+    def _update_remote_user(self, user, conanfile, skip_push, project_pattern, branch_pattern, all_branches, token):
         """ Clone remote user projects, update Travis and maybe upload
 
         :param user: Github username
@@ -456,9 +460,9 @@ class Command(object):
         if project_pattern:
             projects = self._filter_list(projects, project_pattern)
         for project in projects:
-            self._update_remote_project(project, conanfile, skip_push, branch_pattern, all_branches)
+            self._update_remote_project(project, conanfile, skip_push, branch_pattern, all_branches, token)
 
-    def _update_remote(self, remote, conanfile, skip_push, project_pattern, branch_pattern, all_branches):
+    def _update_remote(self, remote, conanfile, skip_push, project_pattern, branch_pattern, all_branches, token):
         """ Validate which strategy should executed to update the project
 
         :param remote: Github remote address
@@ -468,9 +472,9 @@ class Command(object):
         :param branch_pattern: Filter to be applied over project branch names
         """
         if "/" not in remote:
-            self._update_remote_user(remote, conanfile, skip_push, project_pattern, branch_pattern, all_branches)
+            self._update_remote_user(remote, conanfile, skip_push, project_pattern, branch_pattern, all_branches, token)
         else:
-            self._update_remote_project(remote, conanfile, skip_push, branch_pattern, all_branches)
+            self._update_remote_project(remote, conanfile, skip_push, branch_pattern, all_branches, token)
 
 
 def main(args):
