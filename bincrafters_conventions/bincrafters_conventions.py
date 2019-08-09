@@ -120,6 +120,8 @@ class Command(object):
         group.add_argument('--conanfile', '-c', type=str, nargs='?', const='conanfile.py',
                            help='Conan recipe path e.g conanfile.py')
         group.add_argument('--check', action='store_true', help='Checks for additional conventions')
+        parser.add_argument('--all-branches', action='store_true', default=False,
+                            help='Remote only, update all branches')
         parser.add_argument('--dry-run', '-d', action='store_true', default=False,
                             help='Do not push after update from remote')
         parser.add_argument('--project-pattern', '-pp', type=str,
@@ -150,7 +152,7 @@ class Command(object):
         else:
             if arguments.remote:
                 self._update_remote(arguments.remote, arguments.conanfile, arguments.dry_run, arguments.project_pattern,
-                                    arguments.branch_pattern)
+                                    arguments.branch_pattern, arguments.all_branches)
             else:
                 if arguments.check:
                     self._run_conventions_checks()
@@ -377,7 +379,7 @@ class Command(object):
         self._logger.debug("Filtered list: {}".format(filtered_list))
         return filtered_list
 
-    def _update_remote_project(self, remote, conanfile, skip_push, branch_pattern):
+    def _update_remote_project(self, remote, conanfile, skip_push, branch_pattern, all_branches):
         """ Clone remote project, update Travis and maybe upload
 
         :param remote: Project full name
@@ -393,14 +395,20 @@ class Command(object):
 
         git_repo, project_path = self._clone_project(github_url)
         with chdir(project_path):
-            branches = self._get_branch_names(git_repo)
+            branches = []
+            if all_branches:
+                self._logger.warning("\033[1;32mUpdate ALL remote branches\033[0m")
+                branches.extend(self._get_branch_names(git_repo))
+            else:
+                self._logger.info("\033[1;32mUpdate remote default branch\033[0m")
+                branches.extend([git_repo.head.ref])
             if branch_pattern:
                 branches = self._filter_list(branches, branch_pattern)
             for branch in branches:
                 self._logger.debug("Current branch to be updated: {}".format(branch))
                 self._update_branch(git_repo, branch, travis_file, conanfile, skip_push)
 
-    def _update_remote_user(self, user, conanfile, skip_push, project_pattern, branch_pattern):
+    def _update_remote_user(self, user, conanfile, skip_push, project_pattern, branch_pattern, all_branches):
         """ Clone remote user projects, update Travis and maybe upload
 
         :param user: Github username
@@ -413,9 +421,9 @@ class Command(object):
         if project_pattern:
             projects = self._filter_list(projects, project_pattern)
         for project in projects:
-            self._update_remote_project(project, conanfile, skip_push, branch_pattern)
+            self._update_remote_project(project, conanfile, skip_push, branch_pattern, all_branches)
 
-    def _update_remote(self, remote, conanfile, skip_push, project_pattern, branch_pattern):
+    def _update_remote(self, remote, conanfile, skip_push, project_pattern, branch_pattern, all_branches):
         """ Validate which strategy should executed to update the project
 
         :param remote: Github remote address
@@ -425,9 +433,9 @@ class Command(object):
         :param branch_pattern: Filter to be applied over project branch names
         """
         if "/" not in remote:
-            self._update_remote_user(remote, conanfile, skip_push, project_pattern, branch_pattern)
+            self._update_remote_user(remote, conanfile, skip_push, project_pattern, branch_pattern, all_branches)
         else:
-            self._update_remote_project(remote, conanfile, skip_push, branch_pattern)
+            self._update_remote_project(remote, conanfile, skip_push, branch_pattern, all_branches)
 
 
 def main(args):
