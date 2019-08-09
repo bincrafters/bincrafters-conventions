@@ -270,23 +270,17 @@ class Command(object):
         :param skip_push: Do not push
         """
         git_repo.git.checkout(branch)
-        self._logger.info("On branch {}".format(git_repo.active_branch))
+
+        print("\n")
+        self._logger.info("\033[1;32mOn branch {}\033[0m".format(git_repo.active_branch))
 
         try:
             conanfile = "conanfile.py" if conanfile is None else conanfile
-            header_only = self._is_header_only(conanfile)
-            travis_updater = self._update_compiler_jobs
-            if header_only:
-                travis_updater = update_t_ci_dir_path(self, conanfile)
-                self._logger.info("Conan recipe for header-only project")
-            else:
-                self._logger.info("Conan recipe is not for header-only project")
-
-            result = (update_other_travis_to_ci_dir_name(self),
-                      update_other_pyenv_python_version(self, '.ci/install.sh', python_version_current_pyenv, python_check_for_old_versions),
-                      self._update_conanfile(conanfile),
-                      travis_updater(file),
-                      self._update_appveyor_file('appveyor.yml'))
+            result = (self._update_conanfile(conanfile),
+                      self._update_readme('README.md'),
+                      self._update_compiler_jobs('.travis.yml'),
+                      self._update_appveyor_file('appveyor.yml')
+            )
             if True in result:
                 self._logger.debug("Add file {} on branch {}".format(file, git_repo.active_branch))
                 git_repo.git.add('--all')

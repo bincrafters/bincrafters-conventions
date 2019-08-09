@@ -12,6 +12,6 @@ def update_t_linux_python_version(main, file, current_python_version, check_for_
 
         if main.file_contains(file, old_install_string):
             if main.replace_in_file(file, old_install_string, current_install_string):
-                main.output_result_update(title="Update Python version which is installed in Linux Travis CI {}".format(current_install_string))
+                main.output_result_update(title="Update Python version which is installed in Linux Travis CI to {}".format(current_python_version))
                 return True
     return False
