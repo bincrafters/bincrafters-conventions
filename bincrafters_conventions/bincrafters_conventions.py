@@ -130,6 +130,8 @@ class Command(object):
                             help='Branch pattern to filter over user projects e.g stable/*')
         parser.add_argument('--remote-token', type=str,
                             help='Remote only, user:token pair for auth')
+        parser.add_argument('--remote-max-repos', '-rmr', type=int, default=3,
+                            help='Remote only, max amount of repositories which should get updated. Default: 3')
         parser.add_argument('--readme', '-r', type=str, nargs='?', const='README.md',
                             help='README file path to be updated')
         group.add_argument('--version', '-v', action='version', version='%(prog)s {}'.format(__version__))
@@ -154,7 +156,8 @@ class Command(object):
         else:
             if arguments.remote:
                 self._update_remote(arguments.remote, arguments.conanfile, arguments.dry_run, arguments.project_pattern,
-                                    arguments.branch_pattern, arguments.all_branches, arguments.remote_token)
+                                    arguments.branch_pattern, arguments.all_branches, arguments.remote_token,
+                                    arguments.remote_max_repos)
             else:
                 if arguments.check:
                     self._run_conventions_checks()
@@ -287,7 +290,6 @@ class Command(object):
         """
         git_repo.git.checkout(branch)
 
-        print("\n")
         self.output_remote_update("On branch {}".format(git_repo.active_branch))
 
         try:
@@ -297,11 +299,12 @@ class Command(object):
             result_travis = self._update_compiler_jobs(".travis.yml")
             result_appveyor = self._update_appveyor_file("appveyor.yml")
 
-            result = (result_conanfile,
-                      result_readme,
-                      result_travis,
-                      result_appveyor
-            )
+            result = []
+            result.extend(result_conanfile)
+            result.extend(result_readme)
+            result.extend(result_travis)
+            result.extend(result_appveyor)
+
             if True in result:
                 changedFiles = [item.a_path for item in git_repo.index.diff(None)]
                 git_repo.git.add('--all')
@@ -325,9 +328,13 @@ class Command(object):
                 if not skip_push:
                     self.output_remote_update("Pushing branch {} to origin".format(git_repo.active_branch))
                     git_repo.git.push('origin', branch)
+
+                return True
+
         except Exception as error:
             self._logger.warning(error)
-            pass
+
+        return False
 
     def _update_conanfile(self, conanfile):
         """ Update Conan recipe with Conan conventions
@@ -335,12 +342,12 @@ class Command(object):
         :param conanfile: Conan recipe path
         :return:
         """
-        return (update_c_deprecated_attributes(self, conanfile),
+        return [update_c_deprecated_attributes(self, conanfile),
                 update_c_default_options_to_dict(self, conanfile),
                 update_c_generic_exception_to_invalid_conf(self, conanfile),
                 update_c_openssl_version_patch(self, conanfile, openssl_version_matrix),
                 update_c_tools_version(self, conanfile),
-                update_c_author(self, conanfile), update_c_topics(self, conanfile),)
+                update_c_author(self, conanfile), update_c_topics(self, conanfile)]
 
     def _update_readme(self, readme):
         """ Update README.md file with new URL
@@ -348,7 +355,9 @@ class Command(object):
         :param readme: Readme file path
         :return: True if updated. Otherwise, False.
         """
-        return update_readme_travis_url(self, readme)
+        return [
+            update_readme_travis_url(self, readme)
+        ]
 
     def _run_conventions_checks(self, conanfile="conanfile.py"):
         """ Checks for conventions which we can't automatically update
@@ -399,15 +408,19 @@ class Command(object):
         projects = []
         pages = (1, 2)
         for page in pages:
-            repos_url = 'https://api.github.com/users/{}}/repos?sort=updated&direction=asc&per_page=100&page={}'\
+            repos_url = 'https://api.github.com/users/{}/repos?sort=updated&direction=asc&per_page=100&page={}'\
                 .format(user, page)
             response = requests.get(repos_url)
             if page == 1 and not response.ok:
                 raise Exception("Could not retrieve {}".format(repos_url))
             for project in response.json():
-                if not project["archived"] and not project["fork"] and not project["disabled"]:
+                if project["name"].startswith("conan-") \
+                        and not project["name"].startswith("conan-boost") \
+                        and not project["archived"] \
+                        and not project["fork"] \
+                        and not project["disabled"]:
                     projects.append(project["full_name"])
-        self._logger.info(" ".join(map(str, projects)))
+        self.output_remote_update("Repository list: " + " ".join(map(str, projects)))
         return projects
 
     def _filter_list(self, names, pattern):
@@ -429,6 +442,7 @@ class Command(object):
         :param skip_push: Do not push to origin after to update
         :param branch_pattern: Filter to be applied over project branch names
         """
+        result = []
         travis_file = '.travis.yml'
         github_url = "git@github.com:{}.git".format(remote)
 
@@ -441,18 +455,21 @@ class Command(object):
         with chdir(project_path):
             branches = []
             if all_branches:
-                self.output_remote_update("Update ALL remote branches")
+                self.output_remote_update("Update ALL branches of remote")
                 branches.extend(self._get_branch_names(git_repo))
             else:
-                self.output_remote_update("Update remote default branch")
+                self.output_remote_update("Update default branch only")
                 branches.extend([git_repo.head.ref])
             if branch_pattern:
                 branches = self._filter_list(branches, branch_pattern)
             for branch in branches:
                 self._logger.debug("Current branch to be updated: {}".format(branch))
-                self._update_branch(git_repo, branch, travis_file, conanfile, skip_push)
+                result.append(self._update_branch(git_repo, branch, travis_file, conanfile, skip_push))
 
-    def _update_remote_user(self, user, conanfile, skip_push, project_pattern, branch_pattern, all_branches, token):
+        return True if True in result else False
+
+    def _update_remote_user(self, user, conanfile, skip_push, project_pattern,
+                            branch_pattern, all_branches, token, max_repos):
         """ Clone remote user projects, update Travis and maybe upload
 
         :param user: Github username
@@ -460,14 +477,27 @@ class Command(object):
         :param skip_push: Do not push to origin after to update
         :param project_pattern: Filter to be applied over user project names
         :param branch_pattern: Filter to be applied over project branch names
+        :param all_branches: Bool if all branches or only the default one should get updated
+        :param token: GitHub username:token for login
+        :param max_repos: Int, how many repositories should get updated max in one run
         """
+
+        repos_updated = 0
         projects = self._list_user_projects(user)
         if project_pattern:
             projects = self._filter_list(projects, project_pattern)
         for project in projects:
-            self._update_remote_project(project, conanfile, skip_push, branch_pattern, all_branches, token)
+            if repos_updated < max_repos:
+                print("\n")
+                if self._update_remote_project(project, conanfile, skip_push, branch_pattern, all_branches, token):
+                    repos_updated += 1
+            else:
+                print("\n")
+                self.output_remote_update("Reached max updated remote repositories amount of {}".format(max_repos))
+                return True
 
-    def _update_remote(self, remote, conanfile, skip_push, project_pattern, branch_pattern, all_branches, token):
+    def _update_remote(self, remote, conanfile, skip_push, project_pattern, branch_pattern,
+                       all_branches, token, max_repos):
         """ Validate which strategy should executed to update the project
 
         :param remote: Github remote address
@@ -477,7 +507,8 @@ class Command(object):
         :param branch_pattern: Filter to be applied over project branch names
         """
         if "/" not in remote:
-            self._update_remote_user(remote, conanfile, skip_push, project_pattern, branch_pattern, all_branches, token)
+            self._update_remote_user(remote, conanfile, skip_push, project_pattern, branch_pattern,
+                                     all_branches, token, max_repos)
         else:
             self._update_remote_project(remote, conanfile, skip_push, branch_pattern, all_branches, token)
 
