@@ -392,17 +392,22 @@ class Command(object):
         return repo, project_path
 
     def _list_user_projects(self, user):
-        """ List all projects from Github public account
+        """ List all projects from GitHub public account
 
         :param user: User name
         """
         projects = []
-        repos_url = 'https://api.github.com/users/{}/repos'.format(user)
-        response = requests.get(repos_url)
-        if not response.ok:
-            raise Exception("Could not retrieve {}".format(repos_url))
-        for project in response.json():
-            projects.append(project["full_name"])
+        pages = (1, 2)
+        for page in pages:
+            repos_url = 'https://api.github.com/users/{}}/repos?sort=updated&direction=asc&per_page=100&page={}'\
+                .format(user, page)
+            response = requests.get(repos_url)
+            if page == 1 and not response.ok:
+                raise Exception("Could not retrieve {}".format(repos_url))
+            for project in response.json():
+                if not project["archived"] and not project["fork"] and not project["disabled"]:
+                    projects.append(project["full_name"])
+        self._logger.info(" ".join(map(str, projects)))
         return projects
 
     def _filter_list(self, names, pattern):
