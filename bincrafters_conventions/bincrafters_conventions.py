@@ -178,10 +178,6 @@ class Command(object):
         """
         result = []
 
-        if not self._is_header_only("conanfile.py"):
-            result.extend([update_t_jobs(self, file, compiler_versions, travis_macos_images_compiler_mapping,
-                          compiler_versions_deletion)])
-
         result.extend([
             # Rename .travis -> .ci
             update_other_travis_to_ci_dir_name(self),
@@ -198,6 +194,10 @@ class Command(object):
             # Update Travis Linux CI base image
             update_t_linux_image(self, file),
         ])
+
+        if not self._is_header_only("conanfile.py"):
+            result.extend([update_t_jobs(self, file, compiler_versions, travis_macos_images_compiler_mapping,
+                          compiler_versions_deletion)])
 
         return result
 
@@ -459,7 +459,8 @@ class Command(object):
                 branches.extend(self._get_branch_names(git_repo))
             else:
                 self.output_remote_update("Update default branch only")
-                branches.extend([git_repo.head.ref])
+                default_branch = str(git_repo.head.ref)
+                branches.extend([default_branch])
             if branch_pattern:
                 branches = self._filter_list(branches, branch_pattern)
             for branch in branches:
