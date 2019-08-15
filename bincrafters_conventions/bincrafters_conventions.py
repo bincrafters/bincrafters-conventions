@@ -16,6 +16,7 @@ from .actions.check_for_readme import check_for_readme
 from .actions.check_for_license import check_for_license
 from .actions.check_for_deprecated_generators import check_for_deprecated_generators
 from .actions.check_for_deprecated_methods import check_for_deprecated_methods
+from .actions.check_for_deprecated_settings import check_for_deprecated_settings
 from .actions.check_for_required_attributes import check_for_required_attributes
 from .actions.update_a_python_version import update_a_python_version
 from .actions.update_a_path_manipulation import update_a_path_manipulation
@@ -369,7 +370,8 @@ class Command(object):
                 check_for_spdx_license(self, conanfile),
                 check_for_download_hash(self, conanfile),
                 check_for_deprecated_generators(self, conanfile),
-                check_for_deprecated_methods(self, conanfile))
+                check_for_deprecated_methods(self, conanfile),
+                check_for_deprecated_settings(self, conanfile))
 
     def output_remote_update(self, title):
         self._logger.info("[\033[1;35mREMOTE\033[0m]  {}".format(title))
