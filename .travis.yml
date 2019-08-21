@@ -5,4 +5,4 @@ python: "3.7"
 
 script:
   - pip install bincrafters-conventions 
-  - bincrafters-conventions --remote bincrafters --dry-run --remote-max-repos ${CRON_REMOTE_MAX_REPOS} --remote-token="${GITHUB_USERNAME}:${GITHUB_TOKEN}"
+  - bincrafters-conventions --remote bincrafters --remote-max-repos ${CRON_REMOTE_MAX_REPOS} --remote-token="${GITHUB_USERNAME}:${GITHUB_TOKEN}"
