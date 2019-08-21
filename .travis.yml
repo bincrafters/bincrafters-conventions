@@ -1,0 +1,8 @@
+os: linux
+dist: xenial
+language: python
+python: "3.7"
+
+script:
+  - pip install --user bincrafters-conventions 
+  - bincrafters-conventions --remote bincrafters --dry-run --remote-max-repos ${CRON_REMOTE_MAX_REPOS} --remote-token="${GITHUB_USERNAME}:${GITHUB_TOKEN}"

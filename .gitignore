@@ -1,0 +1,54 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Cache
+__pycache__/*
+test_package/__pycache__/*
+test_package/build/*
+build/*
+*.pyc
+tmp/
+
+# IDE
+.idea/*
+
+
+.cache/
+.coverage
+.coveragerc
+.pypirc
+bincrafters_package_tools.egg-info/
+bincrafters_conventions.egg-info/
+coverage.xml
+dist/
+env/
+venv
+.pytest_cache/
+conan_clang_update.egg-info/
