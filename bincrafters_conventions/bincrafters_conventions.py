@@ -39,7 +39,7 @@ from .actions.update_other_pyenv_python_version import update_other_pyenv_python
 from .actions.update_readme_travis_url import update_readme_travis_url
 
 
-__version__ = '0.9.0'
+__version__ = '0.9.1'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -402,17 +402,25 @@ class Command(object):
         self.output_remote_update("Clone project {} to {}".format(github_url, project_path))
         return repo, project_path
 
-    def _list_user_projects(self, user):
+    def _list_user_projects(self, user, token):
         """ List all projects from GitHub public account
 
         :param user: User name
         """
         projects = []
+
+        # If user provided a GitHub token lets use it for the API request to avoid strict request limits
+        auth = None
+        if token:
+            credentials = token.split(":", 1)
+            auth = (credentials[0], credentials[1])
+
         pages = (1, 2)
         for page in pages:
             repos_url = 'https://api.github.com/users/{}/repos?sort=updated&direction=asc&per_page=100&page={}'\
                 .format(user, page)
-            response = requests.get(repos_url)
+
+            response = requests.get(repos_url, auth=auth)
             if page == 1 and not response.ok:
                 raise Exception("Could not retrieve {}".format(repos_url))
             for project in response.json():
@@ -486,7 +494,7 @@ class Command(object):
         """
 
         repos_updated = 0
-        projects = self._list_user_projects(user)
+        projects = self._list_user_projects(user, token)
         if project_pattern:
             projects = self._filter_list(projects, project_pattern)
         for project in projects:
