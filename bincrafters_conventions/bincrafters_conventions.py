@@ -39,7 +39,7 @@ from .actions.update_other_pyenv_python_version import update_other_pyenv_python
 from .actions.update_readme_travis_url import update_readme_travis_url
 
 
-__version__ = '0.9.1'
+__version__ = '0.9.2'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -71,7 +71,7 @@ compiler_versions = {'gcc': ('6', '7', '8', '9'),
                      'apple_clang': ('9.1', '10.0'),  # TODO: Add '11.0' when stable
                      'visual': ('15', '16')}
 # This compiler versions are getting actively removed from existing jobs
-compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': (), 'visual': ()}
+compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': ('7.3',), 'visual': ()}
 
 
 # What are the latest AVAILABLE patches for OpenSSL, which versions are End-Of-Life?
