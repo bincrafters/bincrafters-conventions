@@ -165,3 +165,18 @@ def test_travis_update_url():
     command.run(args)
 
     assert _compare_file(path_old, path_expected)
+
+
+def test_azp_update_new_compiler_jobs():
+    """ Try to update an Azure Pipelines file,
+    new compiler jobs should be added
+    deprecated ones should be getting removed
+    """
+
+    path_old, path_expected = _prepare_old_file("azp_1", ".yml")
+
+    args = ['--azpfile', path_old]
+    command = Command()
+    command.run(args)
+
+    assert _compare_file(path_old, path_expected)

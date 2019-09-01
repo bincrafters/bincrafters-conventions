@@ -2,6 +2,10 @@ import os
 import re
 
 
+def _leading_line_spaces(line):
+    return len(line) - len(line.lstrip())
+
+
 def _get_docker_image_name(compiler: str, version):
     OWNER = 'conanio'
 
@@ -19,8 +23,10 @@ def _create_new_job(platform: dict, compiler: str, version, job: str, old_versio
     job = job.replace(old_version_str, new_version_str)
 
     if compiler == "gcc" or compiler == "clang":
-        old_docker_image_str = "CONAN_DOCKER_IMAGE={}".format(_get_docker_image_name(compiler, old_version))
-        new_docker_image_str = "CONAN_DOCKER_IMAGE={}".format(_get_docker_image_name(compiler, version))
+        old_docker_image_str = "CONAN_DOCKER_IMAGE{}{}".format(platform["delimiter"],
+                                                               _get_docker_image_name(compiler, old_version))
+        new_docker_image_str = "CONAN_DOCKER_IMAGE{}{}".format(platform["delimiter"],
+                                                               _get_docker_image_name(compiler, version))
         job = job.replace(old_docker_image_str, new_docker_image_str)
 
     elif compiler == "apple_clang":
@@ -37,10 +43,17 @@ def _create_new_job(platform: dict, compiler: str, version, job: str, old_versio
         new_image_str = "APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio {}".format(new_image)
         job = job.replace(old_image_str, new_image_str)
 
+    # For AZP we also want to update the version in the title line, which is the first line of each job
+    if platform["name"] == "Azure Pipelines":
+        old_title_str = "{} {}".format(compiler.title(), old_version)
+        new_title_str = "{} {}".format(compiler.title(), version)
+        job = job.replace(old_title_str, new_title_str)
+
     return job
 
 
-def update_add_new_compiler_versions(main, file, platform: dict, compiler_versions: dict, images_mapping: dict, compiler_deleting: dict):
+def update_add_new_compiler_versions(main, file, platform: dict, compiler_versions: dict, images_mapping: dict,
+                                     compiler_deleting: dict):
     """ This update script updates CI jobs, adds new compilers, deleted obsolete ones
 
     :param file: CI file path
@@ -53,10 +66,15 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
     platform_name = platform["name"]
     platform_jobs_beginning_keywords = platform["beginning_keywords"]
     platform_jobs_end_keyword = platform["end_keyword"]
+    # Indication that a new job in the matrix is beginning, i.e. "-" (a hyphen)
+    platform_job_beginning_indication = platform["job_beginning_indication"]
+    # Some platforms like AZP don't use a symbol to indicate new jobs, we need to interprete the indentation correctly
+    platform_job_beginning_indication_use_spaces = platform["job_beginning_indication_use_spaces"]
+    platform_job_beginning_indication_spaces_amount = -1
 
     beginning_found_end = len(platform_jobs_beginning_keywords)
     beginning_found_threshold = beginning_found_end - 1
-    beginning_found = -1  # -1, 0 (one of two starting criteria are found) or 1 (both criteria are found), 2 end
+    beginning_found = -1
 
     latest_versions = {'a_unidentified': 0, 'gcc': 0, 'clang': 0, 'apple_clang': 0, 'visual': 0}
     versions_jobs = {'a_unidentified': {}, 'gcc': {}, 'clang': {}, 'apple_clang': {}, 'visual': {}}
@@ -64,7 +82,7 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
     # Strings for file content
     new_content_beginning = ""
     compiler_jobs = ""
-    new_content_end = "\n"
+    new_content_end = "\n" if platform_name != "Azure Pipelines" else ""
 
     manipulated_jobs = False
     current_compiler = ""
@@ -118,11 +136,21 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                 if line.strip() is "" or line.strip()[0] == "#":
                     continue
 
+                if platform_job_beginning_indication_use_spaces \
+                        and platform_job_beginning_indication_spaces_amount == -1:
+                    # This is a platform which uses indentation to signalizes the beginning of a new build job
+                    # On the very first job we need to figure out the amount of spaces so we can detect the beginning of
+                    # all following build jobs. This is the case on i.e. AZP
+                    platform_job_beginning_indication_spaces_amount = _leading_line_spaces(line)
+
                 # Are we entering a new job?
-                if line.strip()[0] == "-":
+                if (platform_job_beginning_indication_use_spaces \
+                        and platform_job_beginning_indication_spaces_amount == _leading_line_spaces(line)) \
+                        or (platform_job_beginning_indication_use_spaces is False
+                            and line.strip()[0] == platform_job_beginning_indication):
                     # There are jobs which compiler we can't identify, make sure we don't delete them
                     # This applies for e.g. mingw jobs on AppVeyor
-                    if tmp != "" and compiler_found == False:
+                    if tmp != "" and compiler_found is False:
                         versions_jobs["a_unidentified"]["v1"] = \
                             versions_jobs["a_unidentified"].get("v1", "") + tmp
 

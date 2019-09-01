@@ -22,6 +22,7 @@ from .actions.update_a_python_version import update_a_python_version
 from .actions.update_a_path_manipulation import update_a_path_manipulation
 from .actions.update_a_python_environment_variable import update_a_python_environment_variable
 from .actions.update_a_jobs import update_a_jobs
+from .actions.update_azp_jobs import update_azp_jobs
 from .actions.update_c_attributes import update_c_author, update_c_topics
 from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
@@ -39,7 +40,7 @@ from .actions.update_other_pyenv_python_version import update_other_pyenv_python
 from .actions.update_readme_travis_url import update_readme_travis_url
 
 
-__version__ = '0.9.2'
+__version__ = '0.10.0'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -118,6 +119,8 @@ class Command(object):
                            help='Travis file to be updated e.g. .travis.yml')
         group.add_argument('-a', '--appveyorfile', type=str, nargs='?', const='appveyor.yml',
                            help='Appveyor file to be updated e.g. appveyor.yml')
+        group.add_argument('-azp', '--azpfile', type=str, nargs='?', const='azure-pipelines.yml',
+                           help='Azure Pipelines file to be updated e.g. azure-pipelines.yml')
         group.add_argument('--conanfile', '-c', type=str, nargs='?', const='conanfile.py',
                            help='Conan recipe path e.g conanfile.py')
         group.add_argument('--check', action='store_true', help='Checks for additional conventions')
@@ -150,6 +153,8 @@ class Command(object):
                 self._update_compiler_jobs(".travis.yml")
             if os.path.isfile("appveyor.yml"):
                 self._update_appveyor_file("appveyor.yml")
+            if os.path.isfile("azure-pipelines.yml"):
+                self._update_azp_file("azure-pipelines.yml")
             self._update_conanfile("conanfile.py")
             if os.path.isfile("README.md"):
                 self._update_readme("README.md")
@@ -171,6 +176,8 @@ class Command(object):
                         self._update_compiler_jobs(arguments.travisfile)
                     if arguments.appveyorfile:
                         self._update_appveyor_file(arguments.appveyorfile)
+                    if arguments.azpfile:
+                        self._update_azp_file(arguments.azpfile)
 
     def _update_compiler_jobs(self, file):
         """ Read Travis file and compiler jobs
@@ -213,6 +220,17 @@ class Command(object):
             # Add new compiler versions to CI jobs
             result.extend([
                 update_a_jobs(self, file, compiler_versions, appveyor_win_msvc_images_compiler_mapping, compiler_versions_deletion)
+            ])
+
+        return result
+
+    def _update_azp_file(self, file):
+        result = []
+
+        if not self._is_header_only("conanfile.py"):
+            # Add new compiler versions to CI jobs
+            result.extend([
+                update_azp_jobs(self, file, compiler_versions, appveyor_win_msvc_images_compiler_mapping, compiler_versions_deletion)
             ])
 
         return result
@@ -299,12 +317,14 @@ class Command(object):
             result_readme = self._update_readme("README.md")
             result_travis = self._update_compiler_jobs(".travis.yml")
             result_appveyor = self._update_appveyor_file("appveyor.yml")
+            result_azp = self._update_azp_file("azure-pipelines.yml")
 
             result = []
             result.extend(result_conanfile)
             result.extend(result_readme)
             result.extend(result_travis)
             result.extend(result_appveyor)
+            result.extend(result_azp)
 
             if True in result:
                 changedFiles = [item.a_path for item in git_repo.index.diff(None)]
@@ -321,6 +341,8 @@ class Command(object):
                         commitMsg += "[skip travis]"
                     if True not in result_appveyor and True not in result_conanfile:
                         commitMsg += "[skip appveyor]"
+                    if True not in result_azp and True not in result_conanfile:
+                        commitMsg += "[skip azp]"
 
                 self.output_remote_update("Commit message: {}".format(commitMsg))
 
