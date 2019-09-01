@@ -14,7 +14,9 @@ def update_a_jobs(main, file, compiler_versions: dict, images_mapping: dict, com
         "name": "AppVeyor",
         "beginning_keywords": ("matrix:",),
         "end_keyword": "install:",
-        "delimiter": ": "
+        "delimiter": ": ",
+        "job_beginning_indication": "-",
+        "job_beginning_indication_use_spaces": False,
     }
 
     return update_add_new_compiler_versions(main, file, platform, compiler_versions, images_mapping, compiler_deleting)
