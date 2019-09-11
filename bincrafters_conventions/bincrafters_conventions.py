@@ -77,9 +77,9 @@ compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': ('7.3',), '
 
 # What are the latest AVAILABLE patches for OpenSSL, which versions are End-Of-Life?
 openssl_version_matrix = {'1.0.1': {'latest_patch': 'h', 'eol': True},
-                          '1.0.2': {'latest_patch': 's', 'eol': False},
-                          '1.1.0': {'latest_patch': 'k', 'eol': False},
-                          '1.1.1': {'latest_patch': 'c', 'eol': False},
+                          '1.0.2': {'latest_patch': 't', 'eol': False},
+                          '1.1.0': {'latest_patch': 'l', 'eol': True},
+                          '1.1.1': {'latest_patch': 'd', 'eol': False},
                           }
 
 @contextlib.contextmanager
