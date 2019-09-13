@@ -24,7 +24,6 @@ class DoubleConversionConan(ConanFile):
     source_subfolder = "source_subfolder"
     build_subfolder = "build_subfolder"
 
-
     def config_options(self):
         if self.settings.os == "Windows":
             self.options.remove("fPIC")

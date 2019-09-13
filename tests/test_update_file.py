@@ -76,6 +76,19 @@ def test_conanfile_default_options_mutiline():
     assert _compare_file(path_old, path_expected)
 
 
+def test_conanfile_2():
+    """ Try to update an conanfile which old Conan recipe references
+    """
+
+    path_old, path_expected = _prepare_old_file("conan_2", ".py")
+
+    args = ['--conanfile', path_old]
+    command = Command()
+    command.run(args)
+
+    assert _compare_file(path_old, path_expected)
+
+
 def test_appveyor_update_up_to_date():
     """ Try to update an up-to-date AppVeyor file
     """
