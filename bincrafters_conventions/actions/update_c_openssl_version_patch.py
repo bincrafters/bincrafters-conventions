@@ -21,8 +21,6 @@ def update_c_openssl_version_patch(main, file, openssl_version_matrix: dict):
 
     for line in ccontent:
         for key, version_matrix in openssl_version_matrix.items():
-            # TODO: After OpenSSL 3 release we need to handle the rename of the recipe to lower-case
-            #  + change of version schema
             regex_patches = [
                 re.compile('OpenSSL/{}'.format(key) + r'([^\s]+)@conan/stable'),
                 re.compile('openssl/{}'.format(key) + r'([^\s]+)(\'|\")')
