@@ -25,9 +25,13 @@ def update_c_recipe_references(main, file):
 
         "sqlite3/3.29.0@bincrafters/stable": "sqlite3/3.29.0",
 
+        "self.deps_cpp_info['Poco']": "self.deps_cpp_info['poco']",
+        'self.deps_cpp_info["Poco"]': 'self.deps_cpp_info["poco"]',
         "Poco/1.8.1@pocoproject/stable": "poco/1.8.1",
         "Poco/1.9.3@pocoproject/stable": "poco/1.9.3",
 
+        "self.deps_cpp_info['OpenSSL']": "self.deps_cpp_info['openssl']",
+        'self.deps_cpp_info["OpenSSL"]': 'self.deps_cpp_info["openssl"]',
         "OpenSSL/1.0.2s@conan/stable": "openssl/1.0.2t",
         "OpenSSL/1.0.2t@conan/stable": "openssl/1.0.2t",
         "OpenSSL/1.1.0k@conan/stable": "openssl/1.1.0l",
@@ -45,6 +49,8 @@ def update_c_recipe_references(main, file):
 
         "fmt/5.3.0@bincrafters/stable": "fmt/5.3.0",
 
+        "self.deps_cpp_info['Expat']": "self.deps_cpp_info['expat']",
+        'self.deps_cpp_info["Expat"]': 'self.deps_cpp_info["expat"]',
         "Expat/2.2.1@pix4d/stable": "expat/2.2.7",
         "Expat/2.2.2@pix4d/stable": "expat/2.2.7",
         "Expat/2.2.3@pix4d/stable": "expat/2.2.7",
