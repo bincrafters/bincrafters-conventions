@@ -464,7 +464,7 @@ class Command(object):
             credentials = token.split(":", 1)
             auth = (credentials[0], credentials[1])
 
-        pages = (1, 2)
+        pages = (1, 2, 3)
         for page in pages:
             repos_url = 'https://api.github.com/users/{}/repos?sort=updated&direction=asc&per_page=100&page={}'\
                 .format(user, page)
