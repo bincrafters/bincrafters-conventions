@@ -29,6 +29,7 @@ def update_c_recipe_references(main, file):
         'self.deps_cpp_info["Poco"]': 'self.deps_cpp_info["poco"]',
         "Poco/1.8.1@pocoproject/stable": "poco/1.8.1",
         "Poco/1.9.3@pocoproject/stable": "poco/1.9.3",
+        "Poco/1.9.4@pocoproject/stable": "poco/1.9.4",
 
         "self.deps_cpp_info['OpenSSL']": "self.deps_cpp_info['openssl']",
         'self.deps_cpp_info["OpenSSL"]': 'self.deps_cpp_info["openssl"]',
