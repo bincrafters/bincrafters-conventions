@@ -36,12 +36,11 @@ def update_c_openssl_version_patch(main, file, openssl_version_matrix: dict):
                         new_version = "{}{}".format(key, latest_patch)
 
                         old_string_deprecated = "OpenSSL/{}@conan/stable".format(old_version)
-                        new_string_deprecated = "OpenSSL/{}@conan/stable".format(new_version)
                         old_string = "openssl/{}".format(old_version)
                         new_string = "openssl/{}".format(new_version)
 
                         if main.replace_in_file(file, old_string, new_string) \
-                                or main.replace_in_file(file, old_string_deprecated, new_string_deprecated):
+                                or main.replace_in_file(file, old_string_deprecated, new_string):
                             msg = "Update OpenSSL version patch from {} to {}".format(old_version, new_version)
                             main.output_result_update(title=msg)
                             openssl_updated = True
