@@ -65,6 +65,24 @@ def update_c_recipe_references(main, file):
 
         "boost/1.70.0@conan/stable": "boost/1.70.0",
         "boost/1.71.0@conan/stable": "boost/1.71.0",
+
+        "gtest/1.8.1@bincrafters/stable": "gtest/1.8.1",
+
+        "libjpeg-turbo/2.0.2@bincrafters/stable": "libjpeg-turbo/2.0.2",
+
+        "libpng/1.6.32@bincrafters/stable": "libpng/1.6.37",
+        "libpng/1.6.34@bincrafters/stable": "libpng/1.6.37",
+        "libpng/1.6.36@bincrafters/stable": "libpng/1.6.37",
+        "libpng/1.6.37@bincrafters/stable": "libpng/1.6.37",
+
+        "libiconv/1.15@bincrafters/stable": "libiconv/1.15",
+
+        "glm/0.9.8.5@bincrafters/stable": "glm/0.9.9.5",
+        "glm/0.9.8.5@g-truc/stable": "glm/0.9.9.5",
+        "glm/0.9.9.0@g-truc/stable": "glm/0.9.9.5",
+        "glm/0.9.9.1@g-truc/stable": "glm/0.9.9.5",
+        "glm/0.9.9.4@g-truc/stable": "glm/0.9.9.5",
+        "glm/0.9.9.5@g-truc/stable": "glm/0.9.9.5",
     }
 
     for old_ref, new_ref in references.items():
