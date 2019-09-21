@@ -83,6 +83,8 @@ def update_c_recipe_references(main, file):
         "glm/0.9.9.1@g-truc/stable": "glm/0.9.9.5",
         "glm/0.9.9.4@g-truc/stable": "glm/0.9.9.5",
         "glm/0.9.9.5@g-truc/stable": "glm/0.9.9.5",
+
+        "gsl_microsoft/2.0.0@bincrafters/stable": "ms-gsl/2.0.0",
     }
 
     for old_ref, new_ref in references.items():
