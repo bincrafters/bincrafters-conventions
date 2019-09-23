@@ -216,7 +216,12 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                     compiler_jobs += versions_jobs[compiler][key]
         else:
             # For jobs were we didn't identify the compiler we just leave the jobs unmodified
-            compiler_jobs += versions_jobs[compiler].get("v1", "")
+            # Note: The only compiler at Bincrafters we don't identify
+            #   in the way we identify the others within this script
+            #   is MinGW. MinGW prebuilds offerings are obsolete since Conan Center Index started.
+            #   As a consequence let's just remove all unidentified compiler jobs
+            # compiler_jobs += versions_jobs[compiler].get("v1", "")
+            pass
 
     # With all gained information re-write the Travis file now if we actually found missing compiler versions
     if manipulated_jobs:
