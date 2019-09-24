@@ -12,6 +12,7 @@ def update_c_recipe_references(main, file):
 
     references_updated = False
 
+    # noinspection SpellCheckingInspection
     references = {
         "zlib/1.2.8@conan/stable": "zlib/1.2.11",
         "zlib/1.2.9@conan/stable": "zlib/1.2.11",
@@ -28,7 +29,7 @@ def update_c_recipe_references(main, file):
         "self.deps_cpp_info['Poco']": "self.deps_cpp_info['poco']",
         'self.deps_cpp_info["Poco"]': 'self.deps_cpp_info["poco"]',
         "Poco/1.8.1@pocoproject/stable": "poco/1.8.1",
-        "Poco/1.9.3@pocoproject/stable": "poco/1.9.3",
+        "Poco/1.9.3@pocoproject/stable": "poco/1.9.4",
         "Poco/1.9.4@pocoproject/stable": "poco/1.9.4",
 
         "self.deps_cpp_info['OpenSSL']": "self.deps_cpp_info['openssl']",
@@ -85,6 +86,21 @@ def update_c_recipe_references(main, file):
         "glm/0.9.9.5@g-truc/stable": "glm/0.9.9.5",
 
         "gsl_microsoft/2.0.0@bincrafters/stable": "ms-gsl/2.0.0",
+
+        "optional-lite/3.2.0@bincrafters/stable": "optional-lite/3.2.0",
+
+        "self.deps_cpp_info['Catch2']": "self.deps_cpp_info['catch2']",
+        'self.deps_cpp_info["Catch2"]': 'self.deps_cpp_info["catch2"]',
+        "Catch2/2.9.0@catchorg/stable": "catch2/2.9.2",
+        "Catch2/2.9.1@catchorg/stable": "catch2/2.9.2",
+        "Catch2/2.9.2@catchorg/stable": "catch2/2.9.2",
+
+        "libwebp/1.0.0@bincrafters/stable": "libwebp/1.0.3",
+        "libwebp/1.0.3@bincrafters/stable": "libwebp/1.0.3",
+
+        "protobuf/3.9.1@bincrafters/stable": "protobuf/3.9.1",
+
+        "flatbuffers/1.11.0@google/stable": "flatbuffers/1.11.0",
     }
 
     for old_ref, new_ref in references.items():
