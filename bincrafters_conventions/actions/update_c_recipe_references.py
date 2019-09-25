@@ -101,6 +101,9 @@ def update_c_recipe_references(main, file):
         "lz4/1.8.0@bincrafters/stable": "lz4/1.9.2",
         "lz4/1.8.2@bincrafters/stable": "lz4/1.9.2",
         "lz4/1.8.3@bincrafters/stable": "lz4/1.9.2",
+
+        "lzma/5.2.3@bincrafters/stable": "xz_utils/5.2.4",
+        "lzma/5.2.4@bincrafters/stable": "xz_utils/5.2.4",
     }
 
     reference_names = {
@@ -111,7 +114,8 @@ def update_c_recipe_references(main, file):
         "boost_build": "b2",
         "gsl_microsoft": "ms-gsl",
         "nasm_installer": "nasm",
-        "msys2_installer": "mysys2",
+        "msys2_installer": "msys2",
+        "lzma": "xz_utils",
     }
 
     for old_name, new_name in reference_names.items():
