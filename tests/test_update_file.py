@@ -24,8 +24,8 @@ def _prepare_old_file(file_name: str, suffix: str, old = "", expected=""):
 
 
 def _compare_file(path_old: str, expected_path: str):
-    """ This is needed to ignore differnt line endings styles
-        e.g. filecmp.cmp would throw an error with differnt line ending
+    """ This is needed to ignore different line endings styles
+        e.g. filecmp.cmp would throw an error with different line ending
     """
     l1 = l2 = True
     with open(path_old, 'r') as f1, open(expected_path, 'r') as f2:
@@ -128,6 +128,19 @@ def test_appveyor_update_new_compiler_jobs():
     assert _compare_file(path_old, path_expected)
 
 
+def test_appveyor_3_32bit_builds_update():
+    """ Update AppVeyor config file with 32bit builds, which should get removed
+    """
+
+    path_old, path_expected = _prepare_old_file("appveyor_3_32bit_builds", ".yml")
+
+    args = ['--appveyorfile', path_old]
+    command = Command()
+    command.run(args)
+
+    assert _compare_file(path_old, path_expected)
+
+
 def test_update_travis_file():
     """ Create a standard travis file and update it.
     """
@@ -159,6 +172,19 @@ def test_update_travis_file_with_global():
     """
 
     path_old, path_expected = _prepare_old_file("travis_with_globals", ".yml")
+
+    args = ['--travisfile', path_old]
+    command = Command()
+    command.run(args)
+
+    assert _compare_file(path_old, path_expected)
+
+
+def test_update_travis_2_32bit_file():
+    """ Update Travis config file with 32-bit builds with should get removed
+    """
+
+    path_old, path_expected = _prepare_old_file("travis_2_32bit_builds", ".yml")
 
     args = ['--travisfile', path_old]
     command = Command()

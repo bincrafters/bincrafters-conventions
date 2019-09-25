@@ -91,6 +91,27 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
     tmp = ""
     compiler_found = False
 
+    arch_marker32 = "CONAN_ARCHS{}x86".format(platform["delimiter"])
+    arch_marker32_alt1 = "CONAN_ARCHS{}'x86'".format(platform["delimiter"])
+    arch_marker32_alt2 = 'CONAN_ARCHS{}"x86"'.format(platform["delimiter"])
+    arch_marker64 = "CONAN_ARCHS{}x86_64".format(platform["delimiter"])
+    arch_marker64_alt1 = "CONAN_ARCHS{}'x86_64'".format(platform["delimiter"])
+    arch_marker64_alt2 = 'CONAN_ARCHS{}"x86_64"'.format(platform["delimiter"])
+
+    remove_current_job = False
+
+    def _save_tmp_to_job(tmp_string):
+        if remove_current_job is False:
+            if tmp_string != "":
+                # There are jobs which compiler we can't identify, make sure we don't delete them
+                # This applies for e.g. mingw jobs on AppVeyor
+                if compiler_found is False:
+                    versions_jobs["a_unidentified"]["v1"] = \
+                        versions_jobs["a_unidentified"].get("v1", "") + tmp_string
+                else:
+                    versions_jobs[current_compiler]['v' + current_compiler_version] = \
+                        versions_jobs[current_compiler].get("v" + current_compiler_version, "") + tmp_string
+
     if not os.path.isfile(file):
         return False
 
@@ -144,20 +165,25 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                     platform_job_beginning_indication_spaces_amount = _leading_line_spaces(line)
 
                 # Are we entering a new job?
-                if (platform_job_beginning_indication_use_spaces \
+                if (platform_job_beginning_indication_use_spaces
                         and platform_job_beginning_indication_spaces_amount == _leading_line_spaces(line)) \
                         or (platform_job_beginning_indication_use_spaces is False
                             and line.strip()[0] == platform_job_beginning_indication):
-                    # There are jobs which compiler we can't identify, make sure we don't delete them
-                    # This applies for e.g. mingw jobs on AppVeyor
-                    if tmp != "" and compiler_found is False:
-                        versions_jobs["a_unidentified"]["v1"] = \
-                            versions_jobs["a_unidentified"].get("v1", "") + tmp
 
+                    _save_tmp_to_job(tmp)
+
+                    tmp = ""
+                    remove_current_job = False
                     current_compiler = ""
                     current_compiler_version = 0
                     compiler_found = False
-                    tmp = line
+
+                if (arch_marker64 not in line and arch_marker32 in line) \
+                        or (arch_marker64_alt1 not in line and arch_marker32_alt1 in line) \
+                        or (arch_marker64_alt2 not in line and arch_marker32_alt2 in line):
+                    remove_current_job = True
+                    manipulated_jobs = True
+                    continue
 
                 # What compiler are we currently looking at?
                 for compiler_name, _ in compiler_versions.items():
@@ -168,18 +194,17 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                         current_compiler = compiler_name
                         current_compiler_version = regex_compiler.search(line).group(1)
                         compiler_found = True
-                        versions_jobs[current_compiler]['v'+current_compiler_version] = versions_jobs[current_compiler].get("v"+current_compiler_version, "") + tmp
+
+                        # Did we found a newer compiler version?
+                        if float(latest_versions[current_compiler]) < float(current_compiler_version):
+                            latest_versions[current_compiler] = current_compiler_version
+
                         break
 
-                if compiler_found:
-                    versions_jobs[current_compiler]['v'+current_compiler_version] = versions_jobs[current_compiler].get("v"+current_compiler_version, "") + line
+                tmp += line
 
-                    # Did we found a newer compiler version?
-                    if float(latest_versions[current_compiler]) < float(current_compiler_version):
-                        latest_versions[current_compiler] = current_compiler_version
-
-                elif tmp != line:
-                    tmp += line
+    # Add very last job
+    _save_tmp_to_job(tmp)
 
     # Add new compiler versions
     # Loop over recommended new compiler versions
