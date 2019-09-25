@@ -26,14 +26,11 @@ def update_c_recipe_references(main, file):
 
         "sqlite3/3.29.0@bincrafters/stable": "sqlite3/3.29.0",
 
-        "self.deps_cpp_info['Poco']": "self.deps_cpp_info['poco']",
-        'self.deps_cpp_info["Poco"]': 'self.deps_cpp_info["poco"]',
         "Poco/1.8.1@pocoproject/stable": "poco/1.8.1",
         "Poco/1.9.3@pocoproject/stable": "poco/1.9.4",
         "Poco/1.9.4@pocoproject/stable": "poco/1.9.4",
 
-        "self.deps_cpp_info['OpenSSL']": "self.deps_cpp_info['openssl']",
-        'self.deps_cpp_info["OpenSSL"]': 'self.deps_cpp_info["openssl"]',
+        # For newer OpenSSL versions the dedicated update OpenSSL version update script is enough
         "OpenSSL/1.0.2s@conan/stable": "openssl/1.0.2t",
         "OpenSSL/1.0.2t@conan/stable": "openssl/1.0.2t",
         "OpenSSL/1.1.0k@conan/stable": "openssl/1.1.0l",
@@ -51,8 +48,6 @@ def update_c_recipe_references(main, file):
 
         "fmt/5.3.0@bincrafters/stable": "fmt/5.3.0",
 
-        "self.deps_cpp_info['Expat']": "self.deps_cpp_info['expat']",
-        'self.deps_cpp_info["Expat"]': 'self.deps_cpp_info["expat"]',
         "Expat/2.2.1@pix4d/stable": "expat/2.2.7",
         "Expat/2.2.2@pix4d/stable": "expat/2.2.7",
         "Expat/2.2.3@pix4d/stable": "expat/2.2.7",
@@ -89,8 +84,6 @@ def update_c_recipe_references(main, file):
 
         "optional-lite/3.2.0@bincrafters/stable": "optional-lite/3.2.0",
 
-        "self.deps_cpp_info['Catch2']": "self.deps_cpp_info['catch2']",
-        'self.deps_cpp_info["Catch2"]': 'self.deps_cpp_info["catch2"]',
         "Catch2/2.9.0@catchorg/stable": "catch2/2.9.2",
         "Catch2/2.9.1@catchorg/stable": "catch2/2.9.2",
         "Catch2/2.9.2@catchorg/stable": "catch2/2.9.2",
@@ -109,6 +102,30 @@ def update_c_recipe_references(main, file):
         "lz4/1.8.2@bincrafters/stable": "lz4/1.9.2",
         "lz4/1.8.3@bincrafters/stable": "lz4/1.9.2",
     }
+
+    reference_names = {
+        "OpenSSL": "openssl",
+        "Expat": "expat",
+        "Poco": "poco",
+        "Catch2": "catch2",
+        "boost_build": "b2",
+        "gsl_microsoft": "ms-gsl",
+        "nasm_installer": "nasm",
+        "msys2_installer": "mysys2",
+    }
+
+    for old_name, new_name in reference_names.items():
+        update_cases = {
+            "self.deps_cpp_info['{}']".format(old_name): "self.deps_cpp_info['{}']".format(new_name),
+            'self.deps_cpp_info["{}"]'.format(old_name): 'self.deps_cpp_info["{}"]'.format(new_name),
+            "self.options['{}']".format(old_name): "self.options['{}']".format(new_name),
+            'self.options["{}"]'.format(old_name): 'self.options["{}"]'.format(new_name),
+        }
+        for old_ref, new_ref in update_cases.items():
+            if main.replace_in_file(file, old_ref, new_ref):
+                msg = "Update reference from {} to {}".format(old_ref, new_ref)
+                main.output_result_update(title=msg)
+                references_updated = True
 
     for old_ref, new_ref in references.items():
         if main.replace_in_file(file, old_ref, new_ref):

@@ -39,6 +39,9 @@ class GrpcConan(ConanFile):
         "c-ares/1.15.0@conan/stable"
     )
 
+    def requirements(self):
+        self.options["OpenSSL"].shared = False
+
     def configure(self):
         if self.settings.os == "Windows" and self.settings.compiler == "Visual Studio":
             del self.options.fPIC
@@ -62,6 +65,7 @@ class GrpcConan(ConanFile):
         return cmake
 
     def build(self):
+        dummy = self.deps_cpp_info["OpenSSL"].include_paths[0]
         cmake = self._configure_cmake()
         cmake.build()
 
