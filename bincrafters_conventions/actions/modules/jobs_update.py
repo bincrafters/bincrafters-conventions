@@ -91,18 +91,23 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
     tmp = ""
     compiler_found = False
 
+    # Markers to categorize a single CI job
     arch_marker32 = "CONAN_ARCHS{}x86".format(platform["delimiter"])
     arch_marker32_alt1 = "CONAN_ARCHS{}'x86'".format(platform["delimiter"])
     arch_marker32_alt2 = 'CONAN_ARCHS{}"x86"'.format(platform["delimiter"])
     arch_marker64 = "CONAN_ARCHS{}x86_64".format(platform["delimiter"])
     arch_marker64_alt1 = "CONAN_ARCHS{}'x86_64'".format(platform["delimiter"])
     arch_marker64_alt2 = 'CONAN_ARCHS{}"x86_64"'.format(platform["delimiter"])
+    mingw_marker = "MINGW_CONFIGURATIONS"
+    convention_tag = "bincrafters-conventions:"
+    convention_tag_preserve_job = "preserve-build-job"
 
     remove_current_job = False
+    preserve_current_job = False
 
     def _save_tmp_to_job(tmp_string):
-        if remove_current_job is False:
-            if tmp_string != "":
+        if tmp_string != "":
+            if preserve_current_job or remove_current_job is False:
                 # There are jobs which compiler we can't identify, make sure we don't delete them
                 # This applies for e.g. mingw jobs on AppVeyor
                 if compiler_found is False:
@@ -111,6 +116,9 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                 else:
                     versions_jobs[current_compiler]['v' + current_compiler_version] = \
                         versions_jobs[current_compiler].get("v" + current_compiler_version, "") + tmp_string
+            else:
+                main.output_result_update(title="{}: Removed obsolete job(s) (e.g. 32-bit, MinGW) for {} {}"
+                                          .format(platform_name, current_compiler, current_compiler_version))
 
     if not os.path.isfile(file):
         return False
@@ -137,7 +145,7 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
 
                 # Search for all the other keywords
                 if beginning_found >= 0 and beginning_found < beginning_found_end:
-                    if line.strip() == platform_jobs_beginning_keywords[beginning_found+1]:
+                    if line.strip() == platform_jobs_beginning_keywords[beginning_found + 1]:
                         beginning_found += 1
                         continue
 
@@ -166,29 +174,32 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
 
                 # Are we entering a new job?
                 if (platform_job_beginning_indication_use_spaces
-                        and platform_job_beginning_indication_spaces_amount == _leading_line_spaces(line)) \
+                    and platform_job_beginning_indication_spaces_amount == _leading_line_spaces(line)) \
                         or (platform_job_beginning_indication_use_spaces is False
                             and line.strip()[0] == platform_job_beginning_indication):
-
                     _save_tmp_to_job(tmp)
 
                     tmp = ""
                     remove_current_job = False
+                    preserve_current_job = False
                     current_compiler = ""
                     current_compiler_version = 0
                     compiler_found = False
 
                 if (arch_marker64 not in line and arch_marker32 in line) \
                         or (arch_marker64_alt1 not in line and arch_marker32_alt1 in line) \
-                        or (arch_marker64_alt2 not in line and arch_marker32_alt2 in line):
+                        or (arch_marker64_alt2 not in line and arch_marker32_alt2 in line) \
+                        or mingw_marker in line:
                     remove_current_job = True
                     manipulated_jobs = True
-                    continue
+
+                if "{}{}".format(convention_tag, convention_tag_preserve_job) in line:
+                    preserve_current_job = True
 
                 # What compiler are we currently looking at?
                 for compiler_name, _ in compiler_versions.items():
                     regex_compiler = re.compile("CONAN_{}".format(compiler_name.upper())
-                                                + "_VERSIONS{}" .format(platform["delimiter"])
+                                                + "_VERSIONS{}".format(platform["delimiter"])
                                                 + r'([^\s]+)')
                     if regex_compiler.search(line):
                         current_compiler = compiler_name
@@ -220,11 +231,12 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
             # Meaning: If someone is removing older compiler versions we aren't going to re-add them
             if float(latest_versions[compiler]) < float(version):
                 manipulated_jobs = True
-                update_message = "{}: Add job(s) for new compiler version {} {}".format(platform_name, compiler, version)
+                update_message = "{}: Add job(s) for new compiler version {} {}".format(platform_name, compiler,
+                                                                                        version)
                 main.output_result_update(title=update_message)
 
                 latest_version = latest_versions[compiler]
-                base_job = versions_jobs[compiler]["v"+latest_versions[compiler]]
+                base_job = versions_jobs[compiler]["v" + latest_versions[compiler]]
                 new_job = _create_new_job(platform, compiler, version, base_job, latest_version, images_mapping)
                 versions_jobs[compiler]['v' + version] = new_job
 
@@ -235,18 +247,14 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                 # Check if we do have old compiler version which we want to delete
                 if key[1:] in compiler_deleting[compiler]:
                     manipulated_jobs = True
-                    update_message = "{}: Delete job(s) for old compiler version {} {}".format(platform_name, compiler, key[1:])
+                    update_message = "{}: Delete job(s) for old compiler version {} {}".format(platform_name, compiler,
+                                                                                               key[1:])
                     main.output_result_update(title=update_message)
                 else:
                     compiler_jobs += versions_jobs[compiler][key]
         else:
             # For jobs were we didn't identify the compiler we just leave the jobs unmodified
-            # Note: The only compiler at Bincrafters we don't identify
-            #   in the way we identify the others within this script
-            #   is MinGW. MinGW prebuilds offerings are obsolete since Conan Center Index started.
-            #   As a consequence let's just remove all unidentified compiler jobs
-            # compiler_jobs += versions_jobs[compiler].get("v1", "")
-            pass
+            compiler_jobs += versions_jobs[compiler].get("v1", "")
 
     # With all gained information re-write the Travis file now if we actually found missing compiler versions
     if manipulated_jobs:

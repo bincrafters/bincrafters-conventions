@@ -85,7 +85,7 @@ jobs:
       Clang 3.9 x86 Page 1:
         CONAN_CLANG_VERSIONS: 3.9
         CONAN_DOCKER_IMAGE: conanio/clang39
-        CONAN_ARCHS: "x86"
+        CONAN_ARCHS: "x86" # bincrafters-conventions:preserve-build-job
         CONAN_CURRENT_PAGE: 1
       Clang 3.9 x86 Page 2:
         CONAN_CLANG_VERSIONS: 3.9

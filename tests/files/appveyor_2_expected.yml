@@ -4,6 +4,9 @@ environment:
     PYTHON_HOME: "C:\\Python37"
 
     matrix:
+        - MINGW_CONFIGURATIONS: '7@x86@dwarf2@posix' # bincrafters-conventions:preserve-build-job
+        - MINGW_CONFIGURATIONS: '8@x86@dwarf2@posix' # bincrafters-conventions:preserve-build-job
+        - MINGW_CONFIGURATIONS: '8@x86_64@seh@posix' # bincrafters-conventions:preserve-build-job
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 14
           CONAN_BUILD_TYPES: Release
