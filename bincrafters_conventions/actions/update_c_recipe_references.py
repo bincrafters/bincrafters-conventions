@@ -101,6 +101,13 @@ def update_c_recipe_references(main, file):
         "protobuf/3.9.1@bincrafters/stable": "protobuf/3.9.1",
 
         "flatbuffers/1.11.0@google/stable": "flatbuffers/1.11.0",
+
+        "boost_build/4.0.0@bincrafters/testing": "b2/4.0.0",
+        "boost_build/4.0.0@bincrafters/stable": "b2/4.0.0",
+
+        "lz4/1.8.0@bincrafters/stable": "lz4/1.9.2",
+        "lz4/1.8.2@bincrafters/stable": "lz4/1.9.2",
+        "lz4/1.8.3@bincrafters/stable": "lz4/1.9.2",
     }
 
     for old_ref, new_ref in references.items():
