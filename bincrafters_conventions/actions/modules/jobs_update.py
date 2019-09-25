@@ -99,11 +99,15 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
     arch_marker64_alt1 = "CONAN_ARCHS{}'x86_64'".format(platform["delimiter"])
     arch_marker64_alt2 = 'CONAN_ARCHS{}"x86_64"'.format(platform["delimiter"])
     mingw_marker = "MINGW_CONFIGURATIONS"
+
+    # Tags, which can be added to individual config files
     convention_tag = "bincrafters-conventions:"
     convention_tag_preserve_job = "preserve-build-job"
+    convention_tag_no_new_compiler_versions = "no-new-compiler-versions"
 
     remove_current_job = False
     preserve_current_job = False
+    tag_no_new_compiler_versions = False
 
     def _save_tmp_to_job(tmp_string):
         if tmp_string != "":
@@ -117,7 +121,10 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                     versions_jobs[current_compiler]['v' + current_compiler_version] = \
                         versions_jobs[current_compiler].get("v" + current_compiler_version, "") + tmp_string
             else:
-                main.output_result_update(title="{}: Removed obsolete job(s) (e.g. 32-bit, MinGW) for {} {}"
+                if current_compiler_version == 0:
+                    main.output_result_update(title="{}: Removed obsolete MinGW build job".format(platform_name))
+                else:
+                    main.output_result_update(title="{}: Removed obsolete 32-bit build job for {} {}"
                                           .format(platform_name, current_compiler, current_compiler_version))
 
     if not os.path.isfile(file):
@@ -125,6 +132,9 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
 
     with open(file) as ifd:
         for line in ifd:
+            if "{}{}".format(convention_tag, convention_tag_no_new_compiler_versions) in line:
+                tag_no_new_compiler_versions = True
+
             # search for the start of the actual jobs
             if beginning_found != beginning_found_threshold:
 
@@ -219,26 +229,27 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
 
     # Add new compiler versions
     # Loop over recommended new compiler versions
-    for compiler, versions in compiler_versions.items():
-        # Version 0 means that there are no jobs for this compiler existing
-        # So we don't want to add new jobs for this compiler either
-        # Not all packages support all compiler/platforms
-        if latest_versions[compiler] == 0:
-            continue
+    if tag_no_new_compiler_versions is False:
+        for compiler, versions in compiler_versions.items():
+            # Version 0 means that there are no jobs for this compiler existing
+            # So we don't want to add new jobs for this compiler either
+            # Not all packages support all compiler/platforms
+            if latest_versions[compiler] == 0:
+                continue
 
-        for version in versions:
-            # We are only adding compiler versions which are newer than the newest currently already existing
-            # Meaning: If someone is removing older compiler versions we aren't going to re-add them
-            if float(latest_versions[compiler]) < float(version):
-                manipulated_jobs = True
-                update_message = "{}: Add job(s) for new compiler version {} {}".format(platform_name, compiler,
-                                                                                        version)
-                main.output_result_update(title=update_message)
+            for version in versions:
+                # We are only adding compiler versions which are newer than the newest currently already existing
+                # Meaning: If someone is removing older compiler versions we aren't going to re-add them
+                if float(latest_versions[compiler]) < float(version):
+                    manipulated_jobs = True
+                    update_message = "{}: Add job(s) for new compiler version {} {}".format(platform_name, compiler,
+                                                                                            version)
+                    main.output_result_update(title=update_message)
 
-                latest_version = latest_versions[compiler]
-                base_job = versions_jobs[compiler]["v" + latest_versions[compiler]]
-                new_job = _create_new_job(platform, compiler, version, base_job, latest_version, images_mapping)
-                versions_jobs[compiler]['v' + version] = new_job
+                    latest_version = latest_versions[compiler]
+                    base_job = versions_jobs[compiler]["v" + latest_versions[compiler]]
+                    new_job = _create_new_job(platform, compiler, version, base_job, latest_version, images_mapping)
+                    versions_jobs[compiler]['v' + version] = new_job
 
     # Now use the compiler jobs information and transform them back into a writeable string
     for compiler, _ in versions_jobs.items():

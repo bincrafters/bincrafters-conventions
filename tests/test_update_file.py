@@ -193,6 +193,19 @@ def test_update_travis_2_32bit_file():
     assert _compare_file(path_old, path_expected)
 
 
+def test_update_travis_2_32bit_file():
+    """ Update Travis config file with no-new-compiler-versions tag
+    """
+
+    path_old, path_expected = _prepare_old_file("travis_3_no_new_jobs", ".yml")
+
+    args = ['--travisfile', path_old]
+    command = Command()
+    command.run(args)
+
+    assert _compare_file(path_old, path_expected)
+
+
 def test_travis_update_url():
     """ Create a README.md file and update it.
     """
