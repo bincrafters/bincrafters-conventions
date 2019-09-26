@@ -104,6 +104,16 @@ def update_c_recipe_references(main, file):
 
         "lzma/5.2.3@bincrafters/stable": "xz_utils/5.2.4",
         "lzma/5.2.4@bincrafters/stable": "xz_utils/5.2.4",
+        
+        "pcre2/10.32@bincrafters/stable": "pcre2/10.32",
+        "pcre2/10.33@bincrafters/stable": "pcre2/10.33",
+        
+        "double-conversion/3.1.4@bincrafters/stable": "double-conversion/3.1.4",
+        "double-conversion/3.1.5@bincrafters/stable": "double-conversion/3.1.5",
+        
+        "libpq/11.5@bincrafters/stable": "libpq/11.5",
+        
+        "odbc/2.3.7@bincrafters/stable": "odbc/2.3.7",
     }
 
     reference_names = {
