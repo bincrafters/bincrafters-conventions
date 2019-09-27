@@ -92,12 +92,22 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
     compiler_found = False
 
     # Markers to categorize a single CI job
+    # ARCH for installer, CONAN_ARCHS for libraries
     arch_marker32 = "CONAN_ARCHS{}x86".format(platform["delimiter"])
     arch_marker32_alt1 = "CONAN_ARCHS{}'x86'".format(platform["delimiter"])
     arch_marker32_alt2 = 'CONAN_ARCHS{}"x86"'.format(platform["delimiter"])
+    arch_marker32_alt3 = "CONAN_ARCHS{}x86".format(platform["delimiter"])
+    arch_marker32_alt4 = 'ARCH{}"x86"'.format(platform["delimiter"])
+    arch_marker32_alt5 = "ARCH{}'x86'".format(platform["delimiter"])
+    arch_marker32_alt6 = "ARCH{}x86".format(platform["delimiter"])
     arch_marker64 = "CONAN_ARCHS{}x86_64".format(platform["delimiter"])
     arch_marker64_alt1 = "CONAN_ARCHS{}'x86_64'".format(platform["delimiter"])
     arch_marker64_alt2 = 'CONAN_ARCHS{}"x86_64"'.format(platform["delimiter"])
+    arch_marker64_alt3 = "CONAN_ARCHS{}x86_64".format(platform["delimiter"])
+    arch_marker64_alt4 = 'ARCH{}"x86_64"'.format(platform["delimiter"])
+    arch_marker64_alt5 = "ARCH{}'x86_64'".format(platform["delimiter"])
+    arch_marker64_alt6 = "ARCH{}x86_64".format(platform["delimiter"])
+
     mingw_marker = "MINGW_CONFIGURATIONS"
 
     # Tags, which can be added to individual config files
@@ -199,6 +209,10 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                 if (arch_marker64 not in line and arch_marker32 in line) \
                         or (arch_marker64_alt1 not in line and arch_marker32_alt1 in line) \
                         or (arch_marker64_alt2 not in line and arch_marker32_alt2 in line) \
+                        or (arch_marker64_alt3 not in line and arch_marker32_alt3 in line) \
+                        or (arch_marker64_alt4 not in line and arch_marker32_alt4 in line) \
+                        or (arch_marker64_alt5 not in line and arch_marker32_alt5 in line) \
+                        or (arch_marker64_alt6 not in line and arch_marker32_alt6 in line) \
                         or mingw_marker in line:
                     remove_current_job = True
                     manipulated_jobs = True
