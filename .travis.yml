@@ -8,6 +8,7 @@ script:
   - git config --global user.name "bincrafters-user"
   # Run bincrafters-conventions
   - pip install bincrafters-conventions
+  - conan user  # initialize Conan registry file
   - bincrafters-conventions --remote bincrafters --remote-max-repos ${CRON_REMOTE_MAX_REPOS} --remote-token="${GITHUB_USERNAME}:${GITHUB_TOKEN}"
   # Update Bincrafters' fork of Conan Center Index
   - git clone "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/bincrafters/conan-center-index"
