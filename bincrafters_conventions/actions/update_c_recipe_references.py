@@ -108,7 +108,9 @@ def update_c_recipe_references(main, file):
 
         "lzma/5.2.3@bincrafters/stable": "xz_utils/5.2.4",
         "lzma/5.2.4@bincrafters/stable": "xz_utils/5.2.4",
-        
+
+        "pcre/8.41@bincrafters/stable": "pcre/8.41",
+
         "pcre2/10.31@bincrafters/stable": "pcre2/10.33",
         "pcre2/10.32@bincrafters/stable": "pcre2/10.33",
         
@@ -119,6 +121,19 @@ def update_c_recipe_references(main, file):
         "libpq/11.5@bincrafters/stable": "libpq/11.5",
         
         "odbc/2.3.7@bincrafters/stable": "odbc/2.3.7",
+
+        "libffi/3.2.1@bincrafters/stable": "libffi/3.2.1",
+
+        "gflags/2.2.1@bincrafters/stable": "gflags/2.2.2",
+        "gflags/2.2.2@bincrafters/stable": "gflags/2.2.2",
+
+        "yas/7.0.2@bincrafters/stable": "yas/7.0.4",
+        "yas/7.0.3@bincrafters/stable": "yas/7.0.4",
+
+        "freetype/2.10.0@bincrafters/stable": "freetype/2.10.0",
+
+        "libtiff/4.0.8@bincrafters/stable": "libtiff/4.0.9",
+        "libtiff/4.0.9@bincrafters/stable": "libtiff/4.0.9",
     }
 
     reference_names = {
