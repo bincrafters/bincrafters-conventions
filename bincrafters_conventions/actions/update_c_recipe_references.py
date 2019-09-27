@@ -14,6 +14,10 @@ def update_c_recipe_references(main, file):
 
     # noinspection SpellCheckingInspection
     references = {
+        # Let's eliminate master/latest versions...
+        "depot_tools_installer/master@bincrafters/stable": "depot_tools_installer/20190909@bincrafters/stable",
+
+        # CCI adoptions...
         "zlib/1.2.8@conan/stable": "zlib/1.2.11",
         "zlib/1.2.9@conan/stable": "zlib/1.2.11",
         "zlib/1.2.11@conan/stable": "zlib/1.2.11",
