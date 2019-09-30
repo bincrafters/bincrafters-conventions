@@ -152,15 +152,11 @@ class Command(object):
         """
         arguments = self._parse_arguments(*args)
         if not len(sys.argv) > 1 or arguments.local:
-            if os.path.isfile(".travis.yml"):
-                self._update_compiler_jobs(".travis.yml")
-            if os.path.isfile("appveyor.yml"):
-                self._update_appveyor_file("appveyor.yml")
-            if os.path.isfile("azure-pipelines.yml"):
-                self._update_azp_file("azure-pipelines.yml")
+            self._update_compiler_jobs(".travis.yml")
+            self._update_appveyor_file("appveyor.yml")
+            self._update_azp_file("azure-pipelines.yml")
             self._update_conanfile("conanfile.py")
-            if os.path.isfile("README.md"):
-                self._update_readme("README.md")
+            self._update_readme("README.md")
             self._run_conventions_checks()
         else:
             if arguments.remote:
@@ -187,6 +183,10 @@ class Command(object):
 
         :param file: Travis file path
         """
+
+        if not os.path.isfile(file):
+            return [False, ]
+
         result = []
 
         result.extend([
@@ -213,6 +213,9 @@ class Command(object):
         return result
 
     def _update_appveyor_file(self, file):
+        if not os.path.isfile(file):
+            return [False, ]
+
         result = [
             update_a_python_environment_variable(self, file),
             update_a_python_version(self, file, python_version_current_appveyor, python_check_for_old_versions),
@@ -228,6 +231,9 @@ class Command(object):
         return result
 
     def _update_azp_file(self, file):
+        if not os.path.isfile(file):
+            return [False, ]
+
         result = []
 
         if self._is_getting_new_compiler_versions("conanfile.py"):
@@ -237,7 +243,6 @@ class Command(object):
             ])
 
         return result
-
 
     def replace_in_file(self, file, old, new):
         """ Read file and replace ALL occurrences of old by new
@@ -389,6 +394,10 @@ class Command(object):
         :param conanfile: Conan recipe path
         :return:
         """
+
+        if not os.path.isfile(conanfile):
+            return [False, ]
+
         return [update_c_deprecated_attributes(self, conanfile),
                 update_c_default_options_to_dict(self, conanfile),
                 update_c_generic_exception_to_invalid_conf(self, conanfile),
@@ -406,6 +415,9 @@ class Command(object):
         :param readme: Readme file path
         :return: True if updated. Otherwise, False.
         """
+        if not os.path.isfile(readme):
+            return [False, ]
+
         return [
             update_readme_travis_url(self, readme)
         ]

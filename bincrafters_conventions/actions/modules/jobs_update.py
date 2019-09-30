@@ -137,9 +137,6 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                     main.output_result_update(title="{}: Removed obsolete 32-bit build job for {} {}"
                                           .format(platform_name, current_compiler, current_compiler_version))
 
-    if not os.path.isfile(file):
-        return False
-
     with open(file) as ifd:
         for line in ifd:
             if "{}{}".format(convention_tag, convention_tag_no_new_compiler_versions) in line:
