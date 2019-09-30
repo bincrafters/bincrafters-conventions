@@ -13,6 +13,7 @@ def check_license(main, recipe_license):
                                         "Have a look at https://spdx.org/licenses/".format(recipe_license))
         return False
 
+
 def check_for_spdx_license(main, file):
     conan_instance, _, _ = conan_api.Conan.factory()
     try:

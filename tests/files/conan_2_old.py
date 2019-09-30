@@ -43,6 +43,8 @@ class GrpcConan(ConanFile):
         self.options["OpenSSL"].shared = False
 
     def configure(self):
+        del self.settings.compiler.libcxx
+
         if self.settings.os == "Windows" and self.settings.compiler == "Visual Studio":
             del self.options.fPIC
             compiler_version = int(str(self.settings.compiler.version))

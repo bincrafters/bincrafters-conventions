@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import argparse
 import os
@@ -32,6 +31,7 @@ from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic
 from .actions.update_c_default_options_to_dict import update_c_default_options_to_dict
 from .actions.update_c_tools_version import update_c_tools_version
 from .actions.update_c_recipe_references import update_c_recipe_references
+from .actions.update_c_remove_compiler_cppstd import update_c_remove_compiler_cppstd
 from .actions.update_t_ci_dir_path import update_t_ci_dir_path
 from .actions.update_t_macos_images import update_t_macos_images
 from .actions.update_t_new_docker_image_names import update_t_new_docker_image_names
@@ -396,7 +396,8 @@ class Command(object):
                 update_c_tools_version(self, conanfile),
                 update_c_author(self, conanfile),
                 update_c_topics(self, conanfile),
-                update_c_recipe_references(self, conanfile)
+                update_c_recipe_references(self, conanfile),
+                update_c_remove_compiler_cppstd(self, conanfile)
                 ]
 
     def _update_readme(self, readme):
