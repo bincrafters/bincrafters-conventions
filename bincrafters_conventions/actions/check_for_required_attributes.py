@@ -9,7 +9,7 @@ def check_for_required_attributes(main, file):
     """
     conan_instance, _, _ = conan_api.Conan.factory()
     not_found = []
-    for field in ["name", "description", "topics", "url", "homepage", "author", "license"]:
+    for field in ["name", "description", "topics", "url", "homepage", "license"]:
         try:
             if conan_instance.inspect(path=file, attributes=[field])[field] is None:
                 not_found.append(field)
