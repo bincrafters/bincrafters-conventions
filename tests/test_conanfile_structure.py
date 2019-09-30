@@ -181,7 +181,7 @@ def test_update_topics_parentheses():
     assert conanfile_original == conanfile_new
 
 
-def test_update_missing_author():
+def test_missing_license():
     mock_output = MockOutputResultCheck()
 
     conanfile_original = CONANFILE_SRC_ATTRIBUTE.format(attribute='')
@@ -190,14 +190,7 @@ def test_update_missing_author():
 
     assert mock_output.passed == False
     assert mock_output.title == 'Required recipe attributes'
-    assert 'author' in mock_output.reason
-
-    mock_main = MockCommand()
-    res = update_c_author(mock_main, recipe)
-    assert res is False
-
-    conanfile_new = open(recipe).read()
-    assert conanfile_original == conanfile_new
+    assert 'license' in mock_output.reason
 
 
 def test_update_author_bincrafters_no_uppercase():
@@ -206,10 +199,6 @@ def test_update_author_bincrafters_no_uppercase():
     conanfile_original = CONANFILE_SRC_ATTRIBUTE.format(attribute="""author = 'bincrafters <bincrafters@gmail.com>'""")
     recipe = _create_recipe(conanfile_original)
     check_for_required_attributes(mock_output, recipe)
-
-    assert mock_output.passed == False
-    assert mock_output.title == 'Required recipe attributes'
-    assert 'author' not in mock_output.reason
 
     mock_main = MockCommand()
     res = update_c_author(mock_main, recipe)
