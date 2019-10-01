@@ -134,6 +134,15 @@ def update_c_recipe_references(main, file):
 
         "libtiff/4.0.8@bincrafters/stable": "libtiff/4.0.9",
         "libtiff/4.0.9@bincrafters/stable": "libtiff/4.0.9",
+        
+        "libev/4.25@bincrafters/stable": "libev/4.25",
+        "libev/4.27@bincrafters/stable": "libev/4.27",    
+        
+        "jansson/2.12@bincrafters/stable": "jansson/2.12",
+        
+        "libuuid/1.0.3@bincrafters/stable": "libuuid/1.0.3",
+        
+        "yaml-cpp/0.6.2@bincrafters/stable": "yaml-cpp/0.6.2",
     }
 
     reference_names = {
