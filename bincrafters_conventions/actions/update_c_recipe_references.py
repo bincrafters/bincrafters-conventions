@@ -95,6 +95,7 @@ def update_c_recipe_references(main, file):
         "libwebp/1.0.0@bincrafters/stable": "libwebp/1.0.3",
         "libwebp/1.0.3@bincrafters/stable": "libwebp/1.0.3",
 
+        # TODO: protoc
         "protobuf/3.9.1@bincrafters/stable": "protobuf/3.9.1",
 
         "flatbuffers/1.11.0@google/stable": "flatbuffers/1.11.0",
@@ -113,13 +114,13 @@ def update_c_recipe_references(main, file):
 
         "pcre2/10.31@bincrafters/stable": "pcre2/10.33",
         "pcre2/10.32@bincrafters/stable": "pcre2/10.33",
-        
+
         "double-conversion/3.1.1@bincrafters/stable": "double-conversion/3.1.5",
         "double-conversion/3.1.4@bincrafters/stable": "double-conversion/3.1.5",
         "double-conversion/3.1.5@bincrafters/stable": "double-conversion/3.1.5",
-        
+
         "libpq/11.5@bincrafters/stable": "libpq/11.5",
-        
+
         "odbc/2.3.7@bincrafters/stable": "odbc/2.3.7",
 
         "libffi/3.2.1@bincrafters/stable": "libffi/3.2.1",
@@ -134,15 +135,39 @@ def update_c_recipe_references(main, file):
 
         "libtiff/4.0.8@bincrafters/stable": "libtiff/4.0.9",
         "libtiff/4.0.9@bincrafters/stable": "libtiff/4.0.9",
-        
+
         "libev/4.25@bincrafters/stable": "libev/4.25",
-        "libev/4.27@bincrafters/stable": "libev/4.27",    
-        
-        "jansson/2.12@bincrafters/stable": "jansson/2.12",
-        
+        "libev/4.27@bincrafters/stable": "libev/4.27",
+
         "libuuid/1.0.3@bincrafters/stable": "libuuid/1.0.3",
-        
-        "yaml-cpp/0.6.2@bincrafters/stable": "yaml-cpp/0.6.2",
+
+        "yaml-cpp/0.6.2@bincrafters/stable": "yaml-cpp/0.6.3",
+
+        "c-ares/1.14.0@conan/stable": "c-ares/1.15.0",
+        "c-ares/1.15.0@conan/stable": "c-ares/1.15.0",
+
+        "libssh2/1.8.0@bincrafters/stable": "libssh2/1.8.2",
+        "libssh2/1.8.2@bincrafters/stable": "libssh2/1.8.2",
+
+        "jansson/2.10@bincrafters/stable": "jansson/2.12",
+        "jansson/2.11@bincrafters/stable": "jansson/2.12",
+        "jansson/2.12@bincrafters/stable": "jansson/2.12",
+
+        "giflib/5.1.3@bincrafters/stable": "giflib/5.1.4",
+        "giflib/5.1.4@bincrafters/stable": "giflib/5.1.4",
+
+        "yasm_installer/1.3.0@bincrafters/stable": "yasm/1.3.0",
+
+        "ninja_installer/1.8.2@bincrafters/stable": "ninja/1.9.0",
+        "ninja_installer/1.9.0@bincrafters/stable": "ninja/1.9.0",
+
+        "libelf/0.8.13@bincrafters/stable": "libelf/0.8.13",
+
+        "mysql-connector-c/6.1.11@bincrafters/stable": "mysql-connector-c/6.1.11",
+
+        # TODO:
+        # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
+        # asio: header-only for now https://github.com/conan-io/conan-center-index/pull/136
     }
 
     reference_names = {
