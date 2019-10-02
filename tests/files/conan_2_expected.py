@@ -36,7 +36,7 @@ class GrpcConan(ConanFile):
         "zlib/1.2.11",
         "openssl/1.0.2t",
         "protobuf/3.9.1",
-        "c-ares/1.15.0@conan/stable"
+        "c-ares/1.15.0"
     )
 
     def requirements(self):
