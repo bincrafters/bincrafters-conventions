@@ -72,7 +72,7 @@ appveyor_win_msvc_images_compiler_mapping = {'12': '2015', '14': '2015', '15': '
 # and if they don't already exist
 compiler_versions = {'gcc': ('6', '7', '8', '9'),
                      'clang': ('5.0', '6.0', '7.0', '8'),
-                     'apple_clang': ('9.1', '10.0'),  # TODO: Add '11.0' when stable
+                     'apple_clang': ('9.1', '10.0', '11.0'),
                      'visual': ('15', '16')}
 # This compiler versions are getting actively removed from existing jobs
 compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': ('7.3', '8.1'), 'visual': ('12',)}
