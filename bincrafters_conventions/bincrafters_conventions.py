@@ -75,7 +75,7 @@ compiler_versions = {'gcc': ('6', '7', '8', '9'),
                      'apple_clang': ('9.1', '10.0', '11.0'),
                      'visual': ('15', '16')}
 # This compiler versions are getting actively removed from existing jobs
-compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': ('7.3', '8.1'), 'visual': ('12',)}
+compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': ('7.3', '8.1', '9.0'), 'visual': ('12',)}
 
 
 # What are the latest AVAILABLE patches for OpenSSL, which versions are End-Of-Life?
