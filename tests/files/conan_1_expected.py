@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 from conans import ConanFile, CMake, tools
 from conans.tools import Version
 from conans.errors import ConanInvalidConfiguration

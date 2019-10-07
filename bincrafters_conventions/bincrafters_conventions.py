@@ -29,6 +29,7 @@ from .actions.update_c_deprecated_attributes import update_c_deprecated_attribut
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
 from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic_exception_to_invalid_conf
 from .actions.update_c_default_options_to_dict import update_c_default_options_to_dict
+from .actions.update_c_delete_meta_lines import update_c_delete_meta_lines
 from .actions.update_c_tools_version import update_c_tools_version
 from .actions.update_c_recipe_references import update_c_recipe_references
 from .actions.update_c_remove_compiler_cppstd import update_c_remove_compiler_cppstd
@@ -398,7 +399,8 @@ class Command(object):
         if not os.path.isfile(conanfile):
             return [False, ]
 
-        return [update_c_deprecated_attributes(self, conanfile),
+        return [update_c_delete_meta_lines(self, conanfile),
+                update_c_deprecated_attributes(self, conanfile),
                 update_c_default_options_to_dict(self, conanfile),
                 update_c_generic_exception_to_invalid_conf(self, conanfile),
                 update_c_openssl_version_patch(self, conanfile, openssl_version_matrix),
