@@ -165,6 +165,10 @@ def update_c_recipe_references(main, file):
 
         "mysql-connector-c/6.1.11@bincrafters/stable": "mysql-connector-c/6.1.11",
 
+        "libevent/2.1.8@bincrafters/stable": "libevent/2.1.11",
+        "libevent/2.1.10@bincrafters/stable": "libevent/2.1.11",
+        "libevent/2.1.11@bincrafters/stable": "libevent/2.1.11",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
         # asio: header-only for now https://github.com/conan-io/conan-center-index/pull/136
