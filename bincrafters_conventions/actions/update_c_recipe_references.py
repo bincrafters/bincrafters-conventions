@@ -171,6 +171,10 @@ def update_c_recipe_references(main, file):
 
         "rapidjson/1.1.0@bincrafters/stable": "rapidjson/1.1.0",
 
+        "glog/20181109@bincrafters/stable": "glog/0.4.0",
+        "glog/0.3.5@bincrafters/stable": "glog/0.4.0",
+        "glog/0.4.0@bincrafters/stable": "glog/0.4.0",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
         # asio: header-only for now https://github.com/conan-io/conan-center-index/pull/136
