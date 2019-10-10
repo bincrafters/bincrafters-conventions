@@ -169,6 +169,8 @@ def update_c_recipe_references(main, file):
         "libevent/2.1.10@bincrafters/stable": "libevent/2.1.11",
         "libevent/2.1.11@bincrafters/stable": "libevent/2.1.11",
 
+        "rapidjson/1.1.0@bincrafters/stable": "rapidjson/1.1.0",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
         # asio: header-only for now https://github.com/conan-io/conan-center-index/pull/136
