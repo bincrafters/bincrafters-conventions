@@ -175,6 +175,13 @@ def update_c_recipe_references(main, file):
         "glog/0.3.5@bincrafters/stable": "glog/0.4.0",
         "glog/0.4.0@bincrafters/stable": "glog/0.4.0",
 
+        "meson_installer/0.49.0@bincrafters/stable": "meson/0.51.2",
+        "meson_installer/0.49.2@bincrafters/stable": "meson/0.51.2",
+        "meson_installer/0.50.0@bincrafters/stable": "meson/0.51.2",
+        "meson_installer/0.51.0@bincrafters/stable": "meson/0.51.2",
+
+        "lcms/2.9@bincrafters/stable": "lcms/2.9",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
         # asio: header-only for now https://github.com/conan-io/conan-center-index/pull/136
