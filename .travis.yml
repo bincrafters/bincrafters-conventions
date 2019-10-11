@@ -17,3 +17,5 @@ script:
   - git fetch upstream
   - git reset --hard upstream/master
   - git push -f
+  # Delete all merged branches in our fork 
+  - git branch -r --merged master | grep -v master | sed 's/origin\///'
