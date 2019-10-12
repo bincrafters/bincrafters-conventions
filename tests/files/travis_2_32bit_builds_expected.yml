@@ -47,10 +47,10 @@ matrix:
         osx_image: xcode10.3
         env: CONAN_APPLE_CLANG_VERSIONS=10.0 CONAN_BUILD_TYPES=Debug
       - <<: *osx
-        osx_image: xcode11
+        osx_image: xcode11.2
         env: CONAN_APPLE_CLANG_VERSIONS=11.0 CONAN_BUILD_TYPES=Release
       - <<: *osx
-        osx_image: xcode11
+        osx_image: xcode11.2
         env: CONAN_APPLE_CLANG_VERSIONS=11.0 CONAN_BUILD_TYPES=Debug
 
 install:
