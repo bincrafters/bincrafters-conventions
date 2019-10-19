@@ -147,3 +147,13 @@ jobs:
         CONAN_DOCKER_IMAGE: conanio/clang8
         CONAN_ARCHS: "x86_64"
         CONAN_CURRENT_PAGE: 2
+      Clang 9 x86_64 Page 1:
+        CONAN_CLANG_VERSIONS: 9
+        CONAN_DOCKER_IMAGE: conanio/clang9
+        CONAN_ARCHS: "x86_64"
+        CONAN_CURRENT_PAGE: 1
+      Clang 9 x86_64 Page 2:
+        CONAN_CLANG_VERSIONS: 9
+        CONAN_DOCKER_IMAGE: conanio/clang9
+        CONAN_ARCHS: "x86_64"
+        CONAN_CURRENT_PAGE: 2
