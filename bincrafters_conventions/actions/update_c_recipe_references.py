@@ -51,6 +51,7 @@ def update_c_recipe_references(main, file):
         "libjpeg/9c@bincrafters/stable": "libjpeg/9c",
 
         "fmt/5.3.0@bincrafters/stable": "fmt/5.3.0",
+        "fmt/6.0.0@bincrafters/stable": "fmt/6.0.0",
 
         "Expat/2.2.1@pix4d/stable": "expat/2.2.7",
         "Expat/2.2.2@pix4d/stable": "expat/2.2.7",
