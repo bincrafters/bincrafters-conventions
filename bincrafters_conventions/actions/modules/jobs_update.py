@@ -1,4 +1,3 @@
-import os
 import re
 
 
@@ -11,8 +10,6 @@ def _get_docker_image_name(compiler: str, version):
 
     version = str(version)
     image_version = version.replace(".", "")
-    if compiler == "clang" and version == "7.0":
-        image_version = '7'
 
     return "{}/{}{}".format(OWNER, compiler, image_version)
 

@@ -129,12 +129,12 @@ jobs:
         CONAN_CURRENT_PAGE: 2
       Clang 7.0 x86_64 Page 1:
         CONAN_CLANG_VERSIONS: 7.0
-        CONAN_DOCKER_IMAGE: conanio/clang7
+        CONAN_DOCKER_IMAGE: conanio/clang70
         CONAN_ARCHS: "x86_64"
         CONAN_CURRENT_PAGE: 1
       Clang 7.0 x86_64 Page 2:
         CONAN_CLANG_VERSIONS: 7.0
-        CONAN_DOCKER_IMAGE: conanio/clang7
+        CONAN_DOCKER_IMAGE: conanio/clang70
         CONAN_ARCHS: "x86_64"
         CONAN_CURRENT_PAGE: 2
       Clang 8 x86_64 Page 1:
