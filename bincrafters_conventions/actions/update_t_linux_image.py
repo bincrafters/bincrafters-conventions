@@ -3,7 +3,8 @@ def update_t_linux_image(main, file):
     """
 
     image_update_mapping = {
-        "sudo: required": "dist: xenial"
+        "sudo: required": "dist: bionic",
+        "dist: xenial": "dist: bionic",
     }
 
     for old_image_version, new_image_version in image_update_mapping.items():
