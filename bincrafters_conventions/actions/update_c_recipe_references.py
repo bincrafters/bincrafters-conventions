@@ -185,6 +185,10 @@ def update_c_recipe_references(main, file):
 
         "libmount/2.33.1@bincrafters/stable": "libmount/2.33.1",
 
+        "libxml2/2.9.3@bincrafters/stable": "libxml2/2.9.9",
+        "libxml2/2.9.8@bincrafters/stable": "libxml2/2.9.9",
+        "libxml2/2.9.9@bincrafters/stable": "libxml2/2.9.9",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
         # asio: header-only for now https://github.com/conan-io/conan-center-index/pull/136
