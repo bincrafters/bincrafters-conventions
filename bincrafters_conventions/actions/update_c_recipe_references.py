@@ -176,10 +176,10 @@ def update_c_recipe_references(main, file):
         "glog/0.3.5@bincrafters/stable": "glog/0.4.0",
         "glog/0.4.0@bincrafters/stable": "glog/0.4.0",
 
-        "meson_installer/0.49.0@bincrafters/stable": "meson/0.51.2",
-        "meson_installer/0.49.2@bincrafters/stable": "meson/0.51.2",
-        "meson_installer/0.50.0@bincrafters/stable": "meson/0.51.2",
-        "meson_installer/0.51.0@bincrafters/stable": "meson/0.51.2",
+        "meson_installer/0.49.0@bincrafters/stable": "meson/0.52.0",
+        "meson_installer/0.49.2@bincrafters/stable": "meson/0.52.0",
+        "meson_installer/0.50.0@bincrafters/stable": "meson/0.52.0",
+        "meson_installer/0.51.0@bincrafters/stable": "meson/0.52.0",
 
         "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -188,6 +188,11 @@ def update_c_recipe_references(main, file):
         "libxml2/2.9.3@bincrafters/stable": "libxml2/2.9.9",
         "libxml2/2.9.8@bincrafters/stable": "libxml2/2.9.9",
         "libxml2/2.9.9@bincrafters/stable": "libxml2/2.9.9",
+
+        "nghttp2/1.38.0@bincrafters/stable": "libnghttp2/1.39.2",
+
+        "spdlog/1.4.1@bincrafters/stable": "spdlog/1.4.2",
+        "spdlog/1.4.2@bincrafters/stable": "spdlog/1.4.2",
 
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
@@ -204,6 +209,8 @@ def update_c_recipe_references(main, file):
         "nasm_installer": "nasm",
         "msys2_installer": "msys2",
         "lzma": "xz_utils",
+        "meson_installer": "meson",
+        "nghttp2": "libnghttp2",
     }
 
     for old_name, new_name in reference_names.items():
