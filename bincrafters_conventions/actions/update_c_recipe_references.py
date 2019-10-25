@@ -194,9 +194,12 @@ def update_c_recipe_references(main, file):
         "spdlog/1.4.1@bincrafters/stable": "spdlog/1.4.2",
         "spdlog/1.4.2@bincrafters/stable": "spdlog/1.4.2",
 
+        "jasper/2.0.14@conan/stable": "jasper/2.0.14",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
         # asio: header-only for now https://github.com/conan-io/conan-center-index/pull/136
+        # 7z-installer -> ?
     }
 
     reference_names = {
