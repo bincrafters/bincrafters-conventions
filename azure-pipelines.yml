@@ -7,10 +7,12 @@ schedules:
     displayName: "Hourly build Monday-Thursday"
     branches:
       include: ['cron']
+    always: true
   - cron: '0 * * * 0,5,6'
     displayName: "Hourly build Friday-Sunday"
     branches:
       include: ['cron']
+    always: true
 
 jobs:
   - job: Linux
