@@ -197,6 +197,9 @@ def update_c_recipe_references(main, file):
 
         "jasper/2.0.14@conan/stable": "jasper/2.0.14",
 
+        "libalsa/1.1.5@conan/stable": "libalsa/1.1.9",
+        "libalsa/1.1.9@conan/stable": "libalsa/1.1.9",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
         # asio: header-only for now https://github.com/conan-io/conan-center-index/pull/136
