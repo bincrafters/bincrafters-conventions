@@ -200,6 +200,19 @@ def update_c_recipe_references(main, file):
         "libalsa/1.1.5@conan/stable": "libalsa/1.1.9",
         "libalsa/1.1.9@conan/stable": "libalsa/1.1.9",
 
+        "jsonformoderncpp/3.0.0@vthiery/stable": "jsonformoderncpp/3.7.0",
+        "jsonformoderncpp/3.0.1@vthiery/stable": "jsonformoderncpp/3.7.0",
+        "jsonformoderncpp/3.1.0@vthiery/stable": "jsonformoderncpp/3.7.0",
+        "jsonformoderncpp/3.1.1@vthiery/stable": "jsonformoderncpp/3.7.0",
+        "jsonformoderncpp/3.1.2@vthiery/stable": "jsonformoderncpp/3.7.0",
+        "jsonformoderncpp/3.2.0@vthiery/stable": "jsonformoderncpp/3.7.0",
+        "jsonformoderncpp/3.3.0@vthiery/stable": "jsonformoderncpp/3.7.0",
+        "jsonformoderncpp/3.4.0@vthiery/stable": "jsonformoderncpp/3.7.0",
+        "jsonformoderncpp/3.5.0@vthiery/stable": "jsonformoderncpp/3.7.0",
+        "jsonformoderncpp/3.6.0@vthiery/stable": "jsonformoderncpp/3.7.0",
+        "jsonformoderncpp/3.6.1@vthiery/stable": "jsonformoderncpp/3.7.0",
+        "jsonformoderncpp/3.7.0@vthiery/stable": "jsonformoderncpp/3.7.0",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
         # asio: header-only for now https://github.com/conan-io/conan-center-index/pull/136
