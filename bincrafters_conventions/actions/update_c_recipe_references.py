@@ -79,12 +79,12 @@ def update_c_recipe_references(main, file):
 
         "libiconv/1.15@bincrafters/stable": "libiconv/1.15",
 
-        "glm/0.9.8.5@bincrafters/stable": "glm/0.9.9.5",
-        "glm/0.9.8.5@g-truc/stable": "glm/0.9.9.5",
-        "glm/0.9.9.0@g-truc/stable": "glm/0.9.9.5",
-        "glm/0.9.9.1@g-truc/stable": "glm/0.9.9.5",
-        "glm/0.9.9.4@g-truc/stable": "glm/0.9.9.5",
-        "glm/0.9.9.5@g-truc/stable": "glm/0.9.9.5",
+        "glm/0.9.8.5@bincrafters/stable": "glm/0.9.9.6",
+        "glm/0.9.8.5@g-truc/stable": "glm/0.9.9.6",
+        "glm/0.9.9.0@g-truc/stable": "glm/0.9.9.6",
+        "glm/0.9.9.1@g-truc/stable": "glm/0.9.9.6",
+        "glm/0.9.9.4@g-truc/stable": "glm/0.9.9.6",
+        "glm/0.9.9.5@g-truc/stable": "glm/0.9.9.6",
 
         "gsl_microsoft/2.0.0@bincrafters/stable": "ms-gsl/2.0.0",
 
@@ -133,7 +133,7 @@ def update_c_recipe_references(main, file):
         "yas/7.0.2@bincrafters/stable": "yas/7.0.4",
         "yas/7.0.3@bincrafters/stable": "yas/7.0.4",
 
-        "freetype/2.10.0@bincrafters/stable": "freetype/2.10.0",
+        "freetype/2.10.0@bincrafters/stable": "freetype/2.10.1",
 
         "libtiff/4.0.8@bincrafters/stable": "libtiff/4.0.9",
         "libtiff/4.0.9@bincrafters/stable": "libtiff/4.0.9",
@@ -213,6 +213,10 @@ def update_c_recipe_references(main, file):
         "jsonformoderncpp/3.6.1@vthiery/stable": "jsonformoderncpp/3.7.0",
         "jsonformoderncpp/3.7.0@vthiery/stable": "jsonformoderncpp/3.7.0",
 
+        "xerces-c/3.2.2@bincrafters/stable": "xerces-c/3.2.2",
+
+        "cccl_installer/1.0@bincrafters/stable": "cccl/1.1",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
         # asio: header-only for now https://github.com/conan-io/conan-center-index/pull/136
@@ -231,6 +235,7 @@ def update_c_recipe_references(main, file):
         "lzma": "xz_utils",
         "meson_installer": "meson",
         "nghttp2": "libnghttp2",
+        "cccl_installer": "cccl",
     }
 
     for old_name, new_name in reference_names.items():
