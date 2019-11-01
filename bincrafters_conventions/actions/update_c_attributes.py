@@ -22,20 +22,29 @@ def update_c_topics(main, file):
     return False
 
 
-def update_c_author(main, file):
-    """ Update author tuple
+def update_c_delete_author(main, file):
+    """ Remove author attribute if equals to Bincrafters or conan-community
     """
 
-    conanfile = open(file).read()
-    match = re.search("""author\\s*=\\s*(['"])(?P<author>.*)\\1""", conanfile)
-    if match:
-        original = match[0]
-        name_mail = re.match('(?P<name>.*)\\s<(?P<mail>.*)>', match['author'])
-        if name_mail:
-            if name_mail['name'].lower() == 'bincrafters' and name_mail['name'] != 'Bincrafters':
-                change = 'author = {m}{n} <{e}>{m}'.format(
-                    m=match[1], n=name_mail['name'].capitalize(), e=name_mail['mail'].lower())
-                main.output_result_update("Capitalize 'bincrafters' author")
-                main.replace_in_file(file, original, change)
-                return True
-    return False
+    updated = False
+    content = ""
+
+    with open(file) as ifd:
+        for line in ifd:
+            match = re.search("""author\\s*=\\s*(['"])(?P<author>.*)\\1""", line)
+            if match:
+                author = re.match('(?P<name>.*)\\s<(?P<mail>.*)>', match['author'])
+                if (author and author['name'].lower() == 'bincrafters')\
+                        or match['author'].lower() == "conan community":
+                    main.output_result_update("Delete author attribute: {}".format(line.strip()))
+                    updated = True
+                else:
+                    content += line
+            else:
+                content += line
+
+    if updated:
+        with open(file, 'w') as fd:
+            fd.write(content)
+
+    return updated

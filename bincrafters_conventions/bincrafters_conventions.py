@@ -23,7 +23,7 @@ from .actions.update_a_path_manipulation import update_a_path_manipulation
 from .actions.update_a_python_environment_variable import update_a_python_environment_variable
 from .actions.update_a_jobs import update_a_jobs
 from .actions.update_azp_jobs import update_azp_jobs
-from .actions.update_c_attributes import update_c_author, update_c_topics
+from .actions.update_c_attributes import update_c_delete_author, update_c_topics
 from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
 from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic_exception_to_invalid_conf
@@ -404,7 +404,7 @@ class Command(object):
                 update_c_generic_exception_to_invalid_conf(self, conanfile),
                 update_c_openssl_version_patch(self, conanfile, openssl_version_matrix),
                 update_c_tools_version(self, conanfile),
-                update_c_author(self, conanfile),
+                update_c_delete_author(self, conanfile),
                 update_c_topics(self, conanfile),
                 update_c_recipe_references(self, conanfile),
                 update_c_remove_compiler_cppstd(self, conanfile)

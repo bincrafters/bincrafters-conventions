@@ -10,7 +10,7 @@ class GrpcConan(ConanFile):
     topics = ("conan", "grpc", "rpc")
     url = "https://github.com/bincrafters/conan-grpc"
     homepage = "https://github.com/grpc/grpc"
-    author = "Bincrafters <bincrafters@gmail.com>"
+    author = "bincrafters <bincrafters@gmail.com>"
     license = "Apache-2.0"
     exports = ["LICENSE.md"]
     exports_sources = ["CMakeLists.txt"]

@@ -11,7 +11,7 @@ class DoubleConversionConan(ConanFile):
     version = "3.0.0"
     url = "https://github.com/bincrafters/conan-double-conversion"
     homepage = "https://github.com/google/double-conversion"
-    author = "Bincrafters <bincraters@gmail.com>"
+    author = "Conan Community"
     description = "Efficient binary-decimal and decimal-binary conversion routines for IEEE doubles."
     license = "MIT"
     exports = ["LICENSE.md"]
