@@ -362,7 +362,8 @@ class Command(object):
                 self.output_remote_update("On branch {} committing files: {}".format(git_repo.active_branch,
                                                                         " ".join(map(str, changedFiles))))
 
-                commitMsg = "Update Conan conventions [build=outdated]"
+                commitMsg = "Update Conan conventions [build=outdated]\n\n"
+                commitMsg += "Automatically created by bincrafters-conventions {}\n\n".format(__version__)
                 if True not in result_travis and True not in result_conanfile and True not in result_appveyor:
                     commitMsg += "[skip ci]"
                 else:
@@ -375,7 +376,6 @@ class Command(object):
 
                 self.output_remote_update("Commit message: {}".format(commitMsg))
 
-                commitMsg += "\n\nAutomatically created by bincrafters-conventions {}".format(__version__)
                 git_repo.index.commit(commitMsg)
                 if not skip_push:
                     self.output_remote_update("Pushing branch {} to origin".format(git_repo.active_branch))
