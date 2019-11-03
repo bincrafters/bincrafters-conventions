@@ -206,19 +206,6 @@ def test_update_travis_2_32bit_file():
     assert _compare_file(path_old, path_expected)
 
 
-def test_travis_update_url():
-    """ Create a README.md file and update it.
-    """
-
-    path_old, path_expected = _prepare_old_file("readme_1", ".md")
-
-    args = ['--readme', path_old]
-    command = Command()
-    command.run(args)
-
-    assert _compare_file(path_old, path_expected)
-
-
 def test_azp_update_new_compiler_jobs():
     """ Try to update an Azure Pipelines file,
     new compiler jobs should be added
