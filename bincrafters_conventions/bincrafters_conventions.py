@@ -323,12 +323,11 @@ class Command(object):
         filtered_branches = list(set(filtered_branches))
         return filtered_branches
 
-    def _update_branch(self, git_repo, branch, file, conanfile, skip_push):
+    def _update_branch(self, git_repo, branch, conanfile, skip_push):
         """ Update local branch and push to origin
 
         :param git_repo: Git repository
         :param branch: Branch name to be updated
-        :param file: File name to be updated
         :param conanfile: Conan recipe path
         :param skip_push: Do not push
         """
@@ -511,7 +510,6 @@ class Command(object):
         :param branch_pattern: Filter to be applied over project branch names
         """
         result = []
-        travis_file = '.travis.yml'
         github_url = "git@github.com:{}.git".format(remote)
 
         if skip_push:
@@ -533,7 +531,7 @@ class Command(object):
                 branches = self._filter_list(branches, branch_pattern)
             for branch in branches:
                 self._logger.debug("Current branch to be updated: {}".format(branch))
-                result.append(self._update_branch(git_repo, branch, travis_file, conanfile, skip_push))
+                result.append(self._update_branch(git_repo, branch, conanfile, skip_push))
 
         return True if True in result else False
 
