@@ -139,8 +139,6 @@ class Command(object):
                             help='Remote only, user:token pair for auth')
         parser.add_argument('--remote-max-repos', '-rmr', type=int, default=3,
                             help='Remote only, max amount of repositories which should get updated. Default: 3')
-        parser.add_argument('--readme', '-r', type=str, nargs='?', const='README.md',
-                            help='README file path to be updated')
         group.add_argument('--version', '-v', action='version', version='%(prog)s {}'.format(__version__))
         args = parser.parse_args(*args)
         return args
@@ -169,8 +167,6 @@ class Command(object):
                 else:
                     if arguments.conanfile:
                         self._update_conanfile(arguments.conanfile)
-                    if arguments.readme:
-                        self._update_readme(arguments.readme)
                     if arguments.travisfile:
                         self._update_compiler_jobs(arguments.travisfile)
                     if arguments.appveyorfile:
