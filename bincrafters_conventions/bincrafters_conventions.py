@@ -56,7 +56,7 @@ python_version_current_pyenv = "3.7.1"
 python_version_current_appveyor = "37"
 python_version_current_travis_linux = "3.7"
 # for AppVeyor dot zero releases need to be added without dot zero, for pyenv a second time with a dot zero
-python_check_for_old_versions = ["2.7.8", "2.7.10", "2.7.14", "2.7", "3.6", "3.7.0"]
+python_check_for_old_versions = ["2.7.8", "2.7.10", "2.7.14", "2.7", "3.6", "3.7.0"]  # TODO: Remove this
 
 # Sometimes Travis is publishing new CI images with new XCode versions
 # but they still have the same Clang version
@@ -422,6 +422,10 @@ class Command(object):
         """ Checks for conventions which we can't automatically update
         when they should fail
         """
+
+        if not os.path.isfile(conanfile):
+            return [False, ]
+
         return (check_for_license(self),
                 check_for_required_attributes(self, conanfile),
                 check_for_spdx_license(self, conanfile),

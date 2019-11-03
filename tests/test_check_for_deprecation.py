@@ -9,7 +9,7 @@ from conans.util.files import mkdir_tmp
 from bincrafters_conventions.actions.check_for_deprecated_generators import check_for_deprecated_generators
 from bincrafters_conventions.actions.check_for_deprecated_methods import check_for_deprecated_methods
 from bincrafters_conventions.actions.check_for_deprecated_settings import check_for_deprecated_settings
-
+from bincrafters_conventions.bincrafters_conventions import Command
 
 CONANFILE_GENERATOR = """
 from conans import ConanFile
@@ -45,6 +45,10 @@ class MockOutputResultCheck(object):
         self.title = title
         self.reason = reason
         self.skipped = skipped
+
+    def file_contains(self, file, word):
+        command = Command()
+        return command.file_contains(file, word)
 
 
 def _create_recipe(content):
