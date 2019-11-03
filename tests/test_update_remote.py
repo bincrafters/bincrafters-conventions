@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 from bincrafters_conventions.bincrafters_conventions import Command
 
 

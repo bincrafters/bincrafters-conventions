@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from conans import tools
 
 from .test_check_for_deprecation import _create_recipe, MockOutputResultCheck

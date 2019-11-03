@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-
 def check_for_deprecated_methods(main, file):
     conanfile = open(file, 'r')
     recipe = conanfile.read()

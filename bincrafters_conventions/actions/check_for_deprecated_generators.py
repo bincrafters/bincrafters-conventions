@@ -1,7 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 from conans.client import conan_api
-from conans.errors import ConanException
 
 
 def check_for_deprecated_generators(main, file):
