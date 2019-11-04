@@ -37,10 +37,13 @@ def update_c_recipe_references(main, file):
         # For newer OpenSSL versions the dedicated update OpenSSL version update script is enough
         "OpenSSL/1.0.2s@conan/stable": "openssl/1.0.2t",
         "OpenSSL/1.0.2t@conan/stable": "openssl/1.0.2t",
+        "OpenSSL/latest_1.0.2x@conan/stable": "openssl/1.0.2t",
         "OpenSSL/1.1.0k@conan/stable": "openssl/1.1.0l",
         "OpenSSL/1.1.0l@conan/stable": "openssl/1.1.0l",
+        "OpenSSL/latest_1.1.0x@conan/stable": "openssl/1.1.0l",
         "OpenSSL/1.1.1c@conan/stable": "openssl/1.1.1d",
         "OpenSSL/1.1.1d@conan/stable": "openssl/1.1.1d",
+        "OpenSSL/latest_1.1.1x@conan/stable": "openssl/1.1.1d",
 
         "nasm/2.13.01@conan/stable": "nasm/2.13.02",
         "nasm_installer/2.13.02@bincrafters/stable": "nasm/2.13.02",
@@ -217,9 +220,14 @@ def update_c_recipe_references(main, file):
 
         "cccl_installer/1.0@bincrafters/stable": "cccl/1.1",
 
+        "asio/1.10.8@bincrafters/stable": "asio/1.13.0",
+        "asio/1.11.0@bincrafters/stable": "asio/1.13.0",
+        "asio/1.12.0@bincrafters/stable": "asio/1.13.0",
+        "asio/1.12.2@bincrafters/stable": "asio/1.13.0",
+        "asio/1.13.0@bincrafters/stable": "asio/1.13.0",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
-        # asio: header-only for now https://github.com/conan-io/conan-center-index/pull/136
         # 7z-installer -> ?
     }
 
