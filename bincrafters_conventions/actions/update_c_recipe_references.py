@@ -226,6 +226,12 @@ def update_c_recipe_references(main, file):
         "asio/1.12.2@bincrafters/stable": "asio/1.13.0",
         "asio/1.13.0@bincrafters/stable": "asio/1.13.0",
 
+        "ENet/1.3.13@inexorgame/stable": "enet/1.3.14",
+        "enet/1.3.13@bincrafters/stable": "enet/1.3.14",
+        "enet/1.3.14@bincrafters/stable": "enet/1.3.14",
+
+        "http-parser/2.8.1@bincrafters/stable": "http_parser/2.9.2",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
         # 7z-installer -> ?
@@ -244,6 +250,8 @@ def update_c_recipe_references(main, file):
         "meson_installer": "meson",
         "nghttp2": "libnghttp2",
         "cccl_installer": "cccl",
+        "ENet": "enet",
+        "http-parser": "http_parser",
     }
 
     for old_name, new_name in reference_names.items():
