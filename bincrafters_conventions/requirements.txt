@@ -1,4 +1,4 @@
-requests>=2.21.0
-GitPython>=2.1.11
+requests>=2.22.0
+GitPython>=3.0.4
 conan>=1.18.0
 spdx-lookup>=0.3.2
