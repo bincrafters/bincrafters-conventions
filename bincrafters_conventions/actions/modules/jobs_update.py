@@ -279,3 +279,5 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
     if manipulated_jobs:
         with open(file, 'w') as fd:
             fd.write(new_content_beginning + compiler_jobs + new_content_end)
+
+    return manipulated_jobs
