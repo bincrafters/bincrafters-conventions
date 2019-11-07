@@ -151,8 +151,8 @@ def update_c_recipe_references(main, file):
         "c-ares/1.14.0@conan/stable": "c-ares/1.15.0",
         "c-ares/1.15.0@conan/stable": "c-ares/1.15.0",
 
-        "libssh2/1.8.0@bincrafters/stable": "libssh2/1.8.2",
-        "libssh2/1.8.2@bincrafters/stable": "libssh2/1.8.2",
+        "libssh2/1.8.0@bincrafters/stable": "libssh2/1.9.0",
+        "libssh2/1.8.2@bincrafters/stable": "libssh2/1.9.0",
 
         "jansson/2.10@bincrafters/stable": "jansson/2.12",
         "jansson/2.11@bincrafters/stable": "jansson/2.12",
@@ -231,6 +231,17 @@ def update_c_recipe_references(main, file):
         "enet/1.3.14@bincrafters/stable": "enet/1.3.14",
 
         "http-parser/2.8.1@bincrafters/stable": "http_parser/2.9.2",
+
+        "ogg/1.3.3@bincrafters/stable": "ogg/1.3.4",
+
+        "openjpeg/2.3.0@bincrafters/stable": "openjpeg/2.3.1",
+        "openjpeg/2.3.1@bincrafters/stable": "openjpeg/2.3.1",
+
+        "jsoncpp/1.0.0@theirix/stable": "jsoncpp/1.9.1",
+        "jsoncpp/1.8.4@theirix/stable": "jsoncpp/1.9.1",
+        "jsoncpp/1.9.0@theirix/stable": "jsoncpp/1.9.1",
+
+        "gmp/6.1.2@bincrafters/stable": "gmp/6.1.2",
 
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
