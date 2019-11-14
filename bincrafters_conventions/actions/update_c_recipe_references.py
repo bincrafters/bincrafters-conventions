@@ -243,6 +243,12 @@ def update_c_recipe_references(main, file):
 
         "gmp/6.1.2@bincrafters/stable": "gmp/6.1.2",
 
+        "mbedtls/2.6.1@bincrafters/stable": "mbedtls-apache/2.16.3",
+        "mbedtls/2.11.0@bincrafters/stable": "mbedtls-apache/2.16.3",
+        "mbedtls/2.13.0@bincrafters/stable": "mbedtls-apache/2.16.3",
+
+        "json-c/0.13.1@bincrafters/stable": "json-c/0.13.1",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
         # 7z-installer -> ?
@@ -263,6 +269,7 @@ def update_c_recipe_references(main, file):
         "cccl_installer": "cccl",
         "ENet": "enet",
         "http-parser": "http_parser",
+        "mbedtls": "mbedtls-apache",
     }
 
     for old_name, new_name in reference_names.items():
