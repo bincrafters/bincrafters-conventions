@@ -13,5 +13,5 @@ def check_for_download_hash(main, file):
         return True
 
     main.output_result_check(passed=False, title="Conandata.yml + tools.get()",
-                             reason="Either Conandata.yml doesn't exit or not used in tools.get()")
+                             reason="Either Conandata.yml doesn't exist or not used in tools.get()")
     return False
