@@ -82,15 +82,15 @@ To install extra packages required to test
 #### TESTING
 To run all unit test + code coverage, just execute:
 
-    pip install -r bincrafters_conventions/requirements_test.txt
+    pip install .[test]
     cd tests
     pytest -v --cov=bincrafters_conventions
 
 
 #### REQUIREMENTS and DEVELOPMENT
-To develop or run conan clang update
+To develop or run bincrafters-conventions:
 
-    pip install -r bincrafters_conventions/requirements.txt
+    pip install --user -U .
 
 
 #### UPLOAD
