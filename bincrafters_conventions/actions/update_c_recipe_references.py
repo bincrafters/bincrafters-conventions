@@ -259,6 +259,8 @@ def update_c_recipe_references(main, file):
         "log4cplus/2.0.2@bincrafters/stable": "log4cplus/2.0.4",
         "log4cplus/2.0.4@bincrafters/stable": "log4cplus/2.0.4",
 
+        "openexr/2.3.0@conan/stable": "openexr/2.3.0",
+
 
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
