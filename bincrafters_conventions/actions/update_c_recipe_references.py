@@ -237,9 +237,9 @@ def update_c_recipe_references(main, file):
         "openjpeg/2.3.0@bincrafters/stable": "openjpeg/2.3.1",
         "openjpeg/2.3.1@bincrafters/stable": "openjpeg/2.3.1",
 
-        "jsoncpp/1.0.0@theirix/stable": "jsoncpp/1.9.1",
-        "jsoncpp/1.8.4@theirix/stable": "jsoncpp/1.9.1",
-        "jsoncpp/1.9.0@theirix/stable": "jsoncpp/1.9.1",
+        "jsoncpp/1.0.0@theirix/stable": "jsoncpp/1.9.2",
+        "jsoncpp/1.8.4@theirix/stable": "jsoncpp/1.9.2",
+        "jsoncpp/1.9.0@theirix/stable": "jsoncpp/1.9.2",
 
         "gmp/6.1.2@bincrafters/stable": "gmp/6.1.2",
 
@@ -248,6 +248,17 @@ def update_c_recipe_references(main, file):
         "mbedtls/2.13.0@bincrafters/stable": "mbedtls-apache/2.16.3",
 
         "json-c/0.13.1@bincrafters/stable": "json-c/0.13.1",
+
+        "fftw/3.3.8@bincrafters/stable": "fftw/3.3.8",
+
+        "leptonica/1.75.1@bincrafters/stable": "leptonica/1.78.0",
+        "leptonica/1.76.0@bincrafters/stable": "leptonica/1.78.0",
+
+        "log4cplus/2.0.0-rc2@bincrafters/stable": "log4cplus/2.0.4",
+        "log4cplus/2.0.1@bincrafters/stable": "log4cplus/2.0.4",
+        "log4cplus/2.0.2@bincrafters/stable": "log4cplus/2.0.4",
+        "log4cplus/2.0.4@bincrafters/stable": "log4cplus/2.0.4",
+
 
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
