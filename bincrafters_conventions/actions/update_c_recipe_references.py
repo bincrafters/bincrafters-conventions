@@ -267,6 +267,13 @@ def update_c_recipe_references(main, file):
 
         "mozjpeg/3.3.1@bincrafters/stable": "mozjpeg/3.3.1",
 
+        "date/2.4@bincrafters/stable": "date/2.4.1",
+        "date/2.4.1@bincrafters/stable": "date/2.4.1",
+
+        "snappy/1.1.7@bincrafters/stable": "snappy/1.1.7",
+
+        "docopt/0.6.2@conan/stable": "docopt.cpp/0.6.2",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
         # 7z-installer -> ?
@@ -288,6 +295,7 @@ def update_c_recipe_references(main, file):
         "ENet": "enet",
         "http-parser": "http_parser",
         "mbedtls": "mbedtls-apache",
+        "docopt": "docopt.cpp",
     }
 
     for old_name, new_name in reference_names.items():
