@@ -57,13 +57,13 @@ def update_c_recipe_references(main, file):
         "fmt/5.3.0@bincrafters/stable": "fmt/5.3.0",
         "fmt/6.0.0@bincrafters/stable": "fmt/6.0.0",
 
-        "Expat/2.2.1@pix4d/stable": "expat/2.2.7",
-        "Expat/2.2.2@pix4d/stable": "expat/2.2.7",
-        "Expat/2.2.3@pix4d/stable": "expat/2.2.7",
-        "Expat/2.2.4@pix4d/stable": "expat/2.2.7",
-        "Expat/2.2.5@pix4d/stable": "expat/2.2.7",
-        "Expat/2.2.6@pix4d/stable": "expat/2.2.7",
-        "Expat/2.2.7@pix4d/stable": "expat/2.2.7",
+        "Expat/2.2.1@pix4d/stable": "expat/2.2.9",
+        "Expat/2.2.2@pix4d/stable": "expat/2.2.9",
+        "Expat/2.2.3@pix4d/stable": "expat/2.2.9",
+        "Expat/2.2.4@pix4d/stable": "expat/2.2.9",
+        "Expat/2.2.5@pix4d/stable": "expat/2.2.9",
+        "Expat/2.2.6@pix4d/stable": "expat/2.2.9",
+        "Expat/2.2.7@pix4d/stable": "expat/2.2.9",
 
         "bzip2/1.0.6@conan/stable": "bzip2/1.0.6",
         "bzip2/1.0.8@conan/stable": "bzip2/1.0.8",
@@ -261,6 +261,11 @@ def update_c_recipe_references(main, file):
 
         "openexr/2.3.0@conan/stable": "openexr/2.3.0",
 
+        "openal/1.18.2@bincrafters/stable": "openal/1.19.1",
+        "openal/1.19.0@bincrafters/stable": "openal/1.19.1",
+        "openal/1.19.1@bincrafters/stable": "openal/1.19.1",
+
+        "mozjpeg/3.3.1@bincrafters/stable": "mozjpeg/3.3.1",
 
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
