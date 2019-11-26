@@ -203,18 +203,19 @@ def update_c_recipe_references(main, file):
         "libalsa/1.1.5@conan/stable": "libalsa/1.1.9",
         "libalsa/1.1.9@conan/stable": "libalsa/1.1.9",
 
-        "jsonformoderncpp/3.0.0@vthiery/stable": "jsonformoderncpp/3.7.0",
-        "jsonformoderncpp/3.0.1@vthiery/stable": "jsonformoderncpp/3.7.0",
-        "jsonformoderncpp/3.1.0@vthiery/stable": "jsonformoderncpp/3.7.0",
-        "jsonformoderncpp/3.1.1@vthiery/stable": "jsonformoderncpp/3.7.0",
-        "jsonformoderncpp/3.1.2@vthiery/stable": "jsonformoderncpp/3.7.0",
-        "jsonformoderncpp/3.2.0@vthiery/stable": "jsonformoderncpp/3.7.0",
-        "jsonformoderncpp/3.3.0@vthiery/stable": "jsonformoderncpp/3.7.0",
-        "jsonformoderncpp/3.4.0@vthiery/stable": "jsonformoderncpp/3.7.0",
-        "jsonformoderncpp/3.5.0@vthiery/stable": "jsonformoderncpp/3.7.0",
-        "jsonformoderncpp/3.6.0@vthiery/stable": "jsonformoderncpp/3.7.0",
-        "jsonformoderncpp/3.6.1@vthiery/stable": "jsonformoderncpp/3.7.0",
-        "jsonformoderncpp/3.7.0@vthiery/stable": "jsonformoderncpp/3.7.0",
+        "jsonformoderncpp/3.0.0@vthiery/stable": "nlohmann_json/3.7.0",
+        "jsonformoderncpp/3.0.1@vthiery/stable": "nlohmann_json/3.7.0",
+        "jsonformoderncpp/3.1.0@vthiery/stable": "nlohmann_json/3.7.0",
+        "jsonformoderncpp/3.1.1@vthiery/stable": "nlohmann_json/3.7.0",
+        "jsonformoderncpp/3.1.2@vthiery/stable": "nlohmann_json/3.7.0",
+        "jsonformoderncpp/3.2.0@vthiery/stable": "nlohmann_json/3.7.0",
+        "jsonformoderncpp/3.3.0@vthiery/stable": "nlohmann_json/3.7.0",
+        "jsonformoderncpp/3.4.0@vthiery/stable": "nlohmann_json/3.7.0",
+        "jsonformoderncpp/3.5.0@vthiery/stable": "nlohmann_json/3.7.0",
+        "jsonformoderncpp/3.6.0@vthiery/stable": "nlohmann_json/3.7.0",
+        "jsonformoderncpp/3.6.1@vthiery/stable": "nlohmann_json/3.7.0",
+        "jsonformoderncpp/3.7.0@vthiery/stable": "nlohmann_json/3.7.0",
+        "jsonformoderncpp/3.7.0": "nlohmann_json/3.7.0",
 
         "xerces-c/3.2.2@bincrafters/stable": "xerces-c/3.2.2",
 
@@ -274,6 +275,10 @@ def update_c_recipe_references(main, file):
 
         "docopt/0.6.2@conan/stable": "docopt.cpp/0.6.2",
 
+        "libsodium/1.0.15@bincrafters/stable": "libsodium/1.0.18",
+        "libsodium/1.0.16@bincrafters/stable": "libsodium/1.0.18",
+        "libsodium/1.0.18@bincrafters/stable": "libsodium/1.0.18",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
         # 7z-installer -> ?
@@ -296,6 +301,7 @@ def update_c_recipe_references(main, file):
         "http-parser": "http_parser",
         "mbedtls": "mbedtls-apache",
         "docopt": "docopt.cpp",
+        "jsonformoderncpp": "nlohmann_json",
     }
 
     for old_name, new_name in reference_names.items():
