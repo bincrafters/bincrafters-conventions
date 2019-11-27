@@ -279,6 +279,14 @@ def update_c_recipe_references(main, file):
         "libsodium/1.0.16@bincrafters/stable": "libsodium/1.0.18",
         "libsodium/1.0.18@bincrafters/stable": "libsodium/1.0.18",
 
+        "libcurl/7.50.3@bincrafters/stable": "libcurl/7.67.0",
+        "libcurl/7.52.1@bincrafters/stable": "libcurl/7.67.0",
+        "libcurl/7.56.1@bincrafters/stable": "libcurl/7.67.0",
+        "libcurl/7.60.0@bincrafters/stable": "libcurl/7.67.0",
+        "libcurl/7.61.1@bincrafters/stable": "libcurl/7.67.0",
+        "libcurl/7.64.1@bincrafters/stable": "libcurl/7.67.0",
+        "libcurl/7.66.0@bincrafters/stable": "libcurl/7.67.0",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
         # 7z-installer -> ?
