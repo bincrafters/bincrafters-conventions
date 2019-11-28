@@ -203,19 +203,19 @@ def update_c_recipe_references(main, file):
         "libalsa/1.1.5@conan/stable": "libalsa/1.1.9",
         "libalsa/1.1.9@conan/stable": "libalsa/1.1.9",
 
-        "jsonformoderncpp/3.0.0@vthiery/stable": "nlohmann_json/3.7.0",
-        "jsonformoderncpp/3.0.1@vthiery/stable": "nlohmann_json/3.7.0",
-        "jsonformoderncpp/3.1.0@vthiery/stable": "nlohmann_json/3.7.0",
-        "jsonformoderncpp/3.1.1@vthiery/stable": "nlohmann_json/3.7.0",
-        "jsonformoderncpp/3.1.2@vthiery/stable": "nlohmann_json/3.7.0",
-        "jsonformoderncpp/3.2.0@vthiery/stable": "nlohmann_json/3.7.0",
-        "jsonformoderncpp/3.3.0@vthiery/stable": "nlohmann_json/3.7.0",
-        "jsonformoderncpp/3.4.0@vthiery/stable": "nlohmann_json/3.7.0",
-        "jsonformoderncpp/3.5.0@vthiery/stable": "nlohmann_json/3.7.0",
-        "jsonformoderncpp/3.6.0@vthiery/stable": "nlohmann_json/3.7.0",
-        "jsonformoderncpp/3.6.1@vthiery/stable": "nlohmann_json/3.7.0",
-        "jsonformoderncpp/3.7.0@vthiery/stable": "nlohmann_json/3.7.0",
-        "jsonformoderncpp/3.7.0": "nlohmann_json/3.7.0",
+        "jsonformoderncpp/3.0.0@vthiery/stable": "nlohmann_json/3.7.3",
+        "jsonformoderncpp/3.0.1@vthiery/stable": "nlohmann_json/3.7.3",
+        "jsonformoderncpp/3.1.0@vthiery/stable": "nlohmann_json/3.7.3",
+        "jsonformoderncpp/3.1.1@vthiery/stable": "nlohmann_json/3.7.3",
+        "jsonformoderncpp/3.1.2@vthiery/stable": "nlohmann_json/3.7.3",
+        "jsonformoderncpp/3.2.0@vthiery/stable": "nlohmann_json/3.7.3",
+        "jsonformoderncpp/3.3.0@vthiery/stable": "nlohmann_json/3.7.3",
+        "jsonformoderncpp/3.4.0@vthiery/stable": "nlohmann_json/3.7.3",
+        "jsonformoderncpp/3.5.0@vthiery/stable": "nlohmann_json/3.7.3",
+        "jsonformoderncpp/3.6.0@vthiery/stable": "nlohmann_json/3.7.3",
+        "jsonformoderncpp/3.6.1@vthiery/stable": "nlohmann_json/3.7.3",
+        "jsonformoderncpp/3.7.0@vthiery/stable": "nlohmann_json/3.7.3",
+        "jsonformoderncpp/3.7.0": "nlohmann_json/3.7.3",
 
         "xerces-c/3.2.2@bincrafters/stable": "xerces-c/3.2.2",
 
@@ -286,6 +286,12 @@ def update_c_recipe_references(main, file):
         "libcurl/7.61.1@bincrafters/stable": "libcurl/7.67.0",
         "libcurl/7.64.1@bincrafters/stable": "libcurl/7.67.0",
         "libcurl/7.66.0@bincrafters/stable": "libcurl/7.67.0",
+
+        "doctest/2.0.0@bincrafters/stable": "doctest/2.3.5",
+        "doctest/2.0.1@bincrafters/stable": "doctest/2.3.5",
+        "doctest/2.2.0@bincrafters/stable": "doctest/2.3.5",
+        "doctest/2.3.1@bincrafters/stable": "doctest/2.3.5",
+        "doctest/2.3.4@bincrafters/stable": "doctest/2.3.5",
 
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
