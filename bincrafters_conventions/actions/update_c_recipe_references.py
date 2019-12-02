@@ -293,9 +293,10 @@ def update_c_recipe_references(main, file):
         "doctest/2.3.1@bincrafters/stable": "doctest/2.3.5",
         "doctest/2.3.4@bincrafters/stable": "doctest/2.3.5",
 
+        "7z_installer/1.0@conan/stable": "7zip/19.00",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
-        # 7z-installer -> ?
     }
 
     reference_names = {
@@ -316,6 +317,7 @@ def update_c_recipe_references(main, file):
         "mbedtls": "mbedtls-apache",
         "docopt": "docopt.cpp",
         "jsonformoderncpp": "nlohmann_json",
+        "7z_installer": "7zip",
     }
 
     for old_name, new_name in reference_names.items():
