@@ -13,7 +13,6 @@ def update_c_openssl_version_patch(main, file, openssl_version_matrix: dict):
         return False
 
     openssl_updated = False
-    openssl_eol = False
 
     ccontent = []
     with open(file) as ifd:
@@ -51,9 +50,8 @@ def update_c_openssl_version_patch(main, file, openssl_version_matrix: dict):
                                                  reason="{} isn't supported anymore. Please upgrade!".format(key),
                                                  skipped=False
                                                  )
-                        openssl_eol = True
 
-    if openssl_updated or openssl_eol:
+    if openssl_updated:
         return True
 
     return False
