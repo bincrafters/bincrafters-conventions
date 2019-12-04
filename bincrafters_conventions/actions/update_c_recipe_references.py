@@ -48,8 +48,9 @@ def update_c_recipe_references(main, file):
         "nasm/2.13.01@conan/stable": "nasm/2.13.02",
         "nasm_installer/2.13.02@bincrafters/stable": "nasm/2.13.02",
 
-        "msys2_installer/latest@bincrafters/stable": "msys2/20161025",
-        "msys2_installer/20161025@bincrafters/stable": "msys2/20161025",
+        "msys2_installer/latest@bincrafters/stable": "msys2/20190524",
+        "msys2_installer/20161025@bincrafters/stable": "msys2/20190524",
+        "msys2/20161025": "msys2/20190524",
 
         "libjpeg/9b@bincrafters/stable": "libjpeg/9c",
         "libjpeg/9c@bincrafters/stable": "libjpeg/9c",
