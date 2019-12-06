@@ -181,10 +181,11 @@ def update_c_recipe_references(main, file):
         "glog/0.3.5@bincrafters/stable": "glog/0.4.0",
         "glog/0.4.0@bincrafters/stable": "glog/0.4.0",
 
-        "meson_installer/0.49.0@bincrafters/stable": "meson/0.52.0",
-        "meson_installer/0.49.2@bincrafters/stable": "meson/0.52.0",
-        "meson_installer/0.50.0@bincrafters/stable": "meson/0.52.0",
-        "meson_installer/0.51.0@bincrafters/stable": "meson/0.52.0",
+        "meson_installer/0.49.0@bincrafters/stable": "meson/0.52.1",
+        "meson_installer/0.49.2@bincrafters/stable": "meson/0.52.1",
+        "meson_installer/0.50.0@bincrafters/stable": "meson/0.52.1",
+        "meson_installer/0.51.0@bincrafters/stable": "meson/0.52.1",
+        "meson/0.50.0": "meson/0.52.1",
 
         "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -296,6 +297,18 @@ def update_c_recipe_references(main, file):
 
         "7z_installer/1.0@conan/stable": "7zip/19.00",
 
+        "IrrXML/1.2@conan/stable": "irrxml/1.2",
+
+        "TBB/4.4.4@conan/stable": "tbb/2019_u9",
+        "TBB/2018_U5@conan/stable": "tbb/2019_u9",
+        "TBB/2018_U6@conan/stable": "tbb/2019_u9",
+        "TBB/2019_U1@conan/stable": "tbb/2019_u9",
+        "TBB/2019_U2@conan/stable": "tbb/2019_u9",
+        "TBB/2019_U3@conan/stable": "tbb/2019_u9",
+        "TBB/2019_U4@conan/stable": "tbb/2019_u9",
+
+        "eastl/3.07.00@bincrafters/stable": "eastl/3.15.00",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
     }
@@ -319,6 +332,8 @@ def update_c_recipe_references(main, file):
         "docopt": "docopt.cpp",
         "jsonformoderncpp": "nlohmann_json",
         "7z_installer": "7zip",
+        "IrrXML": "irrxml",
+        "TBB": "tbb",
     }
 
     for old_name, new_name in reference_names.items():
