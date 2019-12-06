@@ -309,6 +309,8 @@ def update_c_recipe_references(main, file):
 
         "eastl/3.07.00@bincrafters/stable": "eastl/3.15.00",
 
+        "sqlpp11/0.57@bincrafters/stable": "sqlpp11/0.58",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
     }
