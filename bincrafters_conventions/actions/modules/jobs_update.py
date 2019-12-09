@@ -133,6 +133,8 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                 else:
                     main.output_result_update(title="{}: Removed obsolete 32-bit build job for {} {}"
                                           .format(platform_name, current_compiler, current_compiler_version))
+                nonlocal manipulated_jobs
+                manipulated_jobs = True
 
     with open(file) as ifd:
         for line in ifd:
@@ -209,7 +211,6 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                         or (arch_marker64_alt6 not in line and arch_marker32_alt6 in line) \
                         or mingw_marker in line:
                     remove_current_job = True
-                    manipulated_jobs = True
 
                 if "{}{}".format(convention_tag, convention_tag_preserve_job) in line:
                     preserve_current_job = True
