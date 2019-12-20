@@ -311,6 +311,12 @@ def update_c_recipe_references(main, file):
 
         "sqlpp11/0.57@bincrafters/stable": "sqlpp11/0.58",
 
+        "libdwarf/20190505@bincrafters/stable": "libdwarf/20191104",
+
+        "eigen/3.3.4@conan/stable": "eigen/3.3.7",
+        "eigen/3.3.5@conan/stable": "eigen/3.3.7",
+        "eigen/3.3.7@conan/stable": "eigen/3.3.7",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
     }
