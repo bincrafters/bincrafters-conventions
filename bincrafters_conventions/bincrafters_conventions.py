@@ -62,10 +62,11 @@ python_check_for_old_versions = ["2.7.8", "2.7.10", "2.7.14", "2.7", "3.6", "3.7
 # but they still have the same Clang version
 # in this case we do NOT need to add new compiler versions and therefore jobs
 # but we need to update the existing jobs
-travis_macos_images_updates = [["9.3", "9.4"], ["10", "10.3"], ["10.1", "10.3"], ["10.2", "10.3"], ["11", "11.2"]]
+travis_macos_images_updates = [["9.3", "9.4"], ["10", "10.3"], ["10.1", "10.3"], ["10.2", "10.3"], ["11", "11.3"],
+                               ["11.2", "11.3"]]
 
 # What apple_clang version is available on which Travis image? What MSVC versions are available on which AppVeyor image?
-travis_macos_images_compiler_mapping = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10.3', '11.0': '11.2'}
+travis_macos_images_compiler_mapping = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10.3', '11.0': '11.3'}
 appveyor_win_msvc_images_compiler_mapping = {'12': '2015', '14': '2015', '15': '2017', '16': '2019'}
 
 # This compiler versions are getting added if they are newer than the existing jobs
