@@ -317,6 +317,16 @@ def update_c_recipe_references(main, file):
         "eigen/3.3.5@conan/stable": "eigen/3.3.7",
         "eigen/3.3.7@conan/stable": "eigen/3.3.7",
 
+        "range-v3/0.2.6@ericniebler/stable": "range-v3/0.9.1",
+        "range-v3/0.3.0@ericniebler/stable": "range-v3/0.9.1",
+        "range-v3/0.3.5@ericniebler/stable": "range-v3/0.9.1",
+        "range-v3/0.3.6@ericniebler/stable": "range-v3/0.9.1",
+        "range-v3/0.3.7@ericniebler/stable": "range-v3/0.9.1",
+        "range-v3/0.4.0@ericniebler/stable": "range-v3/0.9.1",
+        "range-v3/0.5.0@ericniebler/stable": "range-v3/0.9.1",
+        "range-v3/0.9.0@ericniebler/stable": "range-v3/0.9.1",
+        "range-v3/0.9.1@ericniebler/stable": "range-v3/0.9.1",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
     }
