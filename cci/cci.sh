@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
 git remote rm origin
 git remote add origin https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/bincrafters/conan-center-index.git
@@ -31,7 +31,6 @@ cd ${path}
 
 
 # Install & configuration
-set +x
 unset PYENV_ROOT;
 curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash;
 export PATH="$HOME/.pyenv/bin:$PATH";
@@ -42,7 +41,6 @@ pyenv install 3.7.5;
 pyenv virtualenv 3.7.5 conan;
 pyenv rehash;
 pyenv activate conan;
-set -x 
 
 python --version
 pip --version
