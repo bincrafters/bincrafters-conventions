@@ -13,7 +13,7 @@ git push --set-upstream origin ${APPVEYOR_REPO_BRANCH}
 # Is this build triggered by a convention update?
 if [[ "$(git log -1 --pretty=%an)" == bincrafters* ]]; then
   echo "This CI run was triggered by a convention update, we don't need to run bincrafters-conventions again";
-  exit 0;
+  exit 0 ;
 fi
 
 path="none"
@@ -29,7 +29,7 @@ done
 
 if [[ "${path}" == "none" ]]; then
   echo "This branch didn't change any recipe. Exiting.";
-  exit 0;
+  exit 0 ;
 fi
 
 echo ${path}
