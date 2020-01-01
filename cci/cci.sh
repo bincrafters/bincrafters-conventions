@@ -56,6 +56,4 @@ bincrafters-conventions
 
 git add -A
 
-git commit -a -m "Update Conan conventions" -m "Automatically created by $(bincrafters-conventions --version)"
-
-git push
+git diff-index --quiet HEAD || git commit -a -m "Update Conan conventions" -m "Automatically created by $(bincrafters-conventions --version)" && git push
