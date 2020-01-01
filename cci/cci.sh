@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -ex
 
 git remote rm origin
 git remote add origin https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/bincrafters/conan-center-index.git
