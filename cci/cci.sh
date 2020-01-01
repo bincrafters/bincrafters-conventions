@@ -54,6 +54,7 @@ conan user  # initialize Conan registry file
 bincrafters-conventions
 
 
-git add --all -- ':!cci.sh'
+git add -u 
+git reset -- cci.sh
 
 git diff-index --quiet HEAD || git commit -a -m "Update Conan conventions" -m "Automatically created by $(bincrafters-conventions --version)" && git push
