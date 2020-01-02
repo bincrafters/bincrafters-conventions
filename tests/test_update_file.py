@@ -218,3 +218,16 @@ def test_azp_update_new_compiler_jobs():
     command.run(args)
 
     assert _compare_file(path_old, path_expected)
+
+
+def test_gha():
+    """ Try to update an GitHub actions file
+    """
+
+    path_old, path_expected = _prepare_old_file("gha_1", ".yml")
+
+    args = ['--ghafile', path_old]
+    command = Command()
+    command.run(args)
+
+    assert _compare_file(path_old, path_expected)

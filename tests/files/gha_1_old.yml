@@ -1,0 +1,8 @@
+env:
+  SPLIT_BY_BUILD_TYPES: "true"
+
+
+# bincrafters-conventions:gha-workflow-version:0
+
+# This is a fake old version of a GHA script
+# It should get updated to the current version via the script

@@ -23,6 +23,7 @@ from .actions.update_a_path_manipulation import update_a_path_manipulation
 from .actions.update_a_python_environment_variable import update_a_python_environment_variable
 from .actions.update_a_jobs import update_a_jobs
 from .actions.update_azp_jobs import update_azp_jobs
+from .actions.update_gha import update_gha
 from .actions.update_c_attributes import update_c_delete_author, update_c_topics
 from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
@@ -57,6 +58,10 @@ python_version_current_appveyor = "37"
 python_version_current_travis_linux = "3.7"
 # for AppVeyor dot zero releases need to be added without dot zero, for pyenv a second time with a dot zero
 python_check_for_old_versions = ["2.7.8", "2.7.10", "2.7.14", "2.7", "3.6", "3.7.0"]  # TODO: Remove this
+
+
+# Current GitHub Actions Bincrafters workflow versions
+gha_workflow_version = "1"
 
 # Sometimes Travis is publishing new CI images with new XCode versions
 # but they still have the same Clang version
@@ -125,6 +130,8 @@ class Command(object):
                            help='Appveyor file to be updated e.g. appveyor.yml')
         group.add_argument('-azp', '--azpfile', type=str, nargs='?', const='azure-pipelines.yml',
                            help='Azure Pipelines file to be updated e.g. azure-pipelines.yml')
+        group.add_argument('-gha', '--ghafile', type=str, nargs='?', const=os.path.join(".github", "workflows", "conan.yml"),
+                           help='GitHub Actions file to be updated e.g. .github/workflows/conan.yml')
         group.add_argument('--conanfile', '-c', type=str, nargs='?', const='conanfile.py',
                            help='Conan recipe path e.g conanfile.py')
         group.add_argument('--check', action='store_true', help='Checks for additional conventions')
@@ -154,6 +161,7 @@ class Command(object):
             self._update_compiler_jobs(".travis.yml")
             self._update_appveyor_file("appveyor.yml")
             self._update_azp_file("azure-pipelines.yml")
+            self._update_gha_file(os.path.join(".github", "workflows", "conan.yml"))
             self._update_conanfile("conanfile.py")
             self._update_readme("README.md")
             self._run_conventions_checks()
@@ -174,6 +182,8 @@ class Command(object):
                         self._update_appveyor_file(arguments.appveyorfile)
                     if arguments.azpfile:
                         self._update_azp_file(arguments.azpfile)
+                    if arguments.ghafile:
+                        self._update_gha_file(arguments.ghafile)
 
     def _update_compiler_jobs(self, file):
         """ Read Travis file and compiler jobs
@@ -238,6 +248,18 @@ class Command(object):
             result.extend([
                 update_azp_jobs(self, file, compiler_versions, appveyor_win_msvc_images_compiler_mapping, compiler_versions_deletion)
             ])
+
+        return result
+
+    def _update_gha_file(self, gha_file):
+        if not os.path.isfile(gha_file):
+            return [False, ]
+
+        result = []
+
+        result.extend([
+            update_gha(self, gha_file, gha_workflow_version)
+        ])
 
         return result
 
@@ -343,6 +365,7 @@ class Command(object):
             result_travis = self._update_compiler_jobs(".travis.yml")
             result_appveyor = self._update_appveyor_file("appveyor.yml")
             result_azp = self._update_azp_file("azure-pipelines.yml")
+            result_gha = self._update_gha_file(os.path.join(".github", "workflows", "conan.yml"))
 
             result = []
             result.extend(result_conanfile)
@@ -350,6 +373,7 @@ class Command(object):
             result.extend(result_travis)
             result.extend(result_appveyor)
             result.extend(result_azp)
+            result.extend(result_gha)
 
             if True in result:
                 changedFiles = [item.a_path for item in git_repo.index.diff(None)]
@@ -369,6 +393,8 @@ class Command(object):
                         commitMsg += "[skip appveyor]"
                     if True not in result_azp and True not in result_conanfile:
                         commitMsg += "[skip azp]"
+                    if True not in result_gha and True not in result_conanfile:
+                        commitMsg += "[skip gha]"
 
                 self.output_remote_update("Commit message: {}".format(commitMsg))
 
