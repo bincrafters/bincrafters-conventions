@@ -23,7 +23,6 @@ def update_gha(main, file, gha_workflow_version):
                         script_start_found = True
                 else:
                     file_content += line
-                    print(line)
 
     basepath = os.path.dirname(__file__)
     with open(os.path.join(basepath, "update_gha.yml")) as fp:
@@ -31,6 +30,9 @@ def update_gha(main, file, gha_workflow_version):
 
     with open(file, 'w') as fd:
         fd.write(file_content)
+
+    update_message = "GitHub Actions: Update CI script"
+    main.output_result_update(title=update_message)
 
     return True
 

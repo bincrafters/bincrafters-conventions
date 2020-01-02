@@ -106,7 +106,7 @@ setup(
     # installed, specify them here.
     package_data={
         '': ['*.md'],
-        'bincrafters_conventions': ['*.txt'],
+        'bincrafters_conventions': ['*.txt', os.path.join('actions', '*.yml')],
     },
 
     # Although 'package_data' is the preferred approach, in some case you may
