@@ -344,6 +344,10 @@ def update_c_recipe_references(main, file):
         "range-v3/0.9.0@ericniebler/stable": "range-v3/0.9.1",
         "range-v3/0.9.1@ericniebler/stable": "range-v3/0.9.1",
 
+        "libusb/1.0.21@bincrafters/stable": "libusb/1.0.23",
+        "libusb/1.0.22@bincrafters/stable": "libusb/1.0.23",
+        "libusb/1.0.23@bincrafters/stable": "libusb/1.0.23",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
     }
