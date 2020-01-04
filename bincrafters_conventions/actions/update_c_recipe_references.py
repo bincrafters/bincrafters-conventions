@@ -348,6 +348,25 @@ def update_c_recipe_references(main, file):
         "libusb/1.0.22@bincrafters/stable": "libusb/1.0.23",
         "libusb/1.0.23@bincrafters/stable": "libusb/1.0.23",
 
+        "botan/2.1.0@bincrafters/stable": "botan/2.12.1",
+        "botan/2.3.0@bincrafters/stable": "botan/2.12.1",
+        "botan/2.7.0@bincrafters/stable": "botan/2.12.1",
+        "botan/2.8.0@bincrafters/stable": "botan/2.12.1",
+        "botan/2.9.0@bincrafters/stable": "botan/2.12.1",
+        "botan/2.10.0@bincrafters/stable": "botan/2.12.1",
+        "botan/2.11.0@bincrafters/stable": "botan/2.12.1",
+        "botan/2.12.1@bincrafters/stable": "botan/2.12.1",
+
+        "libx264/20171211@bincrafters/stable": "libx264/20190605",
+        "libx264/20190605@bincrafters/stable": "libx264/20190605",
+
+        "dirent-win32/1.23.2@bincrafters/stable": "dirent/1.23.2",
+
+        "clara/1.1.0@bincrafters/stable": "clara/1.1.5",
+        "clara/1.1.1@bincrafters/stable": "clara/1.1.5",
+        "clara/1.1.4@bincrafters/stable": "clara/1.1.5",
+        "clara/1.1.5@bincrafters/stable": "clara/1.1.5",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
     }
