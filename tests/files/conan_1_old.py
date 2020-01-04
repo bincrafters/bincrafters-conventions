@@ -3,6 +3,7 @@
 
 from conans import ConanFile, CMake, tools
 from conans.model.version import Version
+from conans.errors import ConanInvalidConfiguration
 import os
 
 
@@ -31,7 +32,7 @@ class DoubleConversionConan(ConanFile):
         if self.settings.os == "Windows" and \
            self.settings.compiler == "Visual Studio" and \
            float(self.settings.compiler.version.value) < 14:
-           raise Exception("Double Convertion could not be built by MSVC <14")
+           raise ConanInvalidConfiguration("Double Convertion could not be built by MSVC <14")
 
     def source(self):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version))

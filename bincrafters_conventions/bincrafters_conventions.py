@@ -27,7 +27,6 @@ from .actions.update_gha import update_gha
 from .actions.update_c_attributes import update_c_delete_author, update_c_topics
 from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
-from .actions.update_c_generic_exception_to_invalid_conf import update_c_generic_exception_to_invalid_conf
 from .actions.update_c_default_options_to_dict import update_c_default_options_to_dict
 from .actions.update_c_delete_meta_lines import update_c_delete_meta_lines
 from .actions.update_c_tools_version import update_c_tools_version
@@ -423,7 +422,6 @@ class Command(object):
         return [update_c_delete_meta_lines(self, conanfile),
                 update_c_deprecated_attributes(self, conanfile),
                 update_c_default_options_to_dict(self, conanfile),
-                update_c_generic_exception_to_invalid_conf(self, conanfile),
                 update_c_openssl_version_patch(self, conanfile, openssl_version_matrix),
                 update_c_tools_version(self, conanfile),
                 update_c_delete_author(self, conanfile),
