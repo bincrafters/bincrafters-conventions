@@ -123,8 +123,9 @@ def update_c_recipe_references(main, file):
 
         "flatbuffers/1.11.0@google/stable": "flatbuffers/1.11.0",
 
-        "boost_build/4.0.0@bincrafters/testing": "b2/4.0.0",
-        "boost_build/4.0.0@bincrafters/stable": "b2/4.0.0",
+        "boost_build/4.0.0@bincrafters/testing": "b2/4.1.0",
+        "boost_build/4.0.0@bincrafters/stable": "b2/4.1.0",
+        "b2/4.0.0": "b2/4.1.0",
 
         "lz4/1.8.0@bincrafters/stable": "lz4/1.9.2",
         "lz4/1.8.2@bincrafters/stable": "lz4/1.9.2",
@@ -198,11 +199,12 @@ def update_c_recipe_references(main, file):
         "glog/0.3.5@bincrafters/stable": "glog/0.4.0",
         "glog/0.4.0@bincrafters/stable": "glog/0.4.0",
 
-        "meson_installer/0.49.0@bincrafters/stable": "meson/0.52.1",
-        "meson_installer/0.49.2@bincrafters/stable": "meson/0.52.1",
-        "meson_installer/0.50.0@bincrafters/stable": "meson/0.52.1",
-        "meson_installer/0.51.0@bincrafters/stable": "meson/0.52.1",
-        "meson/0.50.0": "meson/0.52.1",
+        "meson_installer/0.49.0@bincrafters/stable": "meson/0.53.0",
+        "meson_installer/0.49.2@bincrafters/stable": "meson/0.53.0",
+        "meson_installer/0.50.0@bincrafters/stable": "meson/0.53.0",
+        "meson_installer/0.51.0@bincrafters/stable": "meson/0.53.0",
+        "meson/0.50.0": "meson/0.53.0",
+        "meson/0.52.1": "meson/0.53.0",
 
         "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -367,6 +369,30 @@ def update_c_recipe_references(main, file):
         "clara/1.1.4@bincrafters/stable": "clara/1.1.5",
         "clara/1.1.5@bincrafters/stable": "clara/1.1.5",
 
+        "cctz/2.2@bincrafters/stable": "cctz/2.3",
+        "cctz/2.3@bincrafters/stable": "cctz/2.3",
+
+        "jom_installer/1.1.2@bincrafters/stable": "jom/1.1.3",
+
+        "mpfr/4.0.2@bincrafters/stable": "mpft/4.0.2",
+
+        "entt/3.x.y-WIP@skypjack/stable": "entt/3.2.2",
+        "entt/3.0.0@skypjack/stable": "entt/3.2.2",
+        "entt/3.1.0@skypjack/stable": "entt/3.2.2",
+        "entt/3.1.1@skypjack/stable": "entt/3.2.2",
+        "entt/3.2.0-RC@skypjack/stable": "entt/3.2.2",
+        "entt/v3.2.0-RC@skypjack/stable": "entt/3.2.2",
+        "entt/3.2.0-RC1@skypjack/stable": "entt/3.2.2",
+        "entt/3.2.0@skypjack/stable": "entt/3.2.2",
+        "entt/3.2.1@skypjack/stable": "entt/3.2.2",
+        "entt/3.2.2@skypjack/stable": "entt/3.2.2",
+
+        "sqlitecpp/2.2.0@bincrafters/stable": "sqlitecpp/2.9.0",
+        "sqlitecpp/2.3.0@bincrafters/stable": "sqlitecpp/2.9.0",
+        "sqlitecpp/2.4.0@bincrafters/stable": "sqlitecpp/2.9.0",
+
+        "libfdk_aac/2.0.0@bincrafters/stable": "libfdk_aac/2.0.0",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
     }
@@ -392,6 +418,8 @@ def update_c_recipe_references(main, file):
         "7z_installer": "7zip",
         "IrrXML": "irrxml",
         "TBB": "tbb",
+        "dirent-win32": "dirent",
+        "jom_installer": "jom",
     }
 
     for old_name, new_name in reference_names.items():
