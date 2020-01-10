@@ -16,6 +16,10 @@ def update_c_recipe_references(main, conanfile):
     if os.path.isfile(test_package):
         files.append(test_package)
 
+    buildpy = os.path.join(os.path.dirname(conanfile), "build.py")
+    if os.path.isfile(buildpy):
+        files.append(buildpy)
+
     references_updated = False
 
     # noinspection SpellCheckingInspection
