@@ -1,14 +1,20 @@
 import os
 
 
-def update_c_recipe_references(main, file):
+def update_c_recipe_references(main, conanfile):
     """ This update script updates Conan references, mostly
 
     :param file: Conan file path
     """
 
-    if not os.path.isfile(file):
+    if not os.path.isfile(conanfile):
         return False
+
+    files = [conanfile,]
+
+    test_package = os.path.join(os.path.dirname(conanfile), "test_package", "conanfile.py")
+    if os.path.isfile(test_package):
+        files.append(test_package)
 
     references_updated = False
 
@@ -430,16 +436,18 @@ def update_c_recipe_references(main, file):
             'self.options["{}"]'.format(old_name): 'self.options["{}"]'.format(new_name),
         }
         for old_ref, new_ref in update_cases.items():
-            if main.replace_in_file(file, old_ref, new_ref):
-                msg = "Update reference from {} to {}".format(old_ref, new_ref)
-                main.output_result_update(title=msg)
-                references_updated = True
+            for file in files:
+                if main.replace_in_file(file, old_ref, new_ref):
+                    msg = "Update reference from {} to {}".format(old_ref, new_ref)
+                    main.output_result_update(title=msg)
+                    references_updated = True
 
     for old_ref, new_ref in references.items():
-        if main.replace_in_file(file, old_ref, new_ref):
-            msg = "Update Conan recipe reference from {} to {}".format(old_ref, new_ref)
-            main.output_result_update(title=msg)
-            references_updated = True
+        for file in files:
+            if main.replace_in_file(file, old_ref, new_ref):
+                msg = "Update Conan recipe reference from {} to {}".format(old_ref, new_ref)
+                main.output_result_update(title=msg)
+                references_updated = True
 
     if references_updated:
         return True
