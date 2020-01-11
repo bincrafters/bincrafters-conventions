@@ -407,6 +407,10 @@ def update_c_recipe_references(main, conanfile):
 
         "libunwind/1.3.1@bincrafters/stable": "libunwind/1.3.1",
 
+        "premake_installer/5.0.0-alpha12@bincrafters/stable": "premake/5.0.0-alpha14",
+        "premake_installer/5.0.0-alpha13@bincrafters/stable": "premake/5.0.0-alpha14",
+        "premake_installer/5.0.0-alpha14@bincrafters/stable": "premake/5.0.0-alpha14",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
     }
@@ -434,6 +438,7 @@ def update_c_recipe_references(main, conanfile):
         "TBB": "tbb",
         "dirent-win32": "dirent",
         "jom_installer": "jom",
+        "premake_installer": "premake",
     }
 
     for old_name, new_name in reference_names.items():
