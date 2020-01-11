@@ -405,6 +405,8 @@ def update_c_recipe_references(main, conanfile):
 
         "libiberty/9.1.0@bincrafters/stable": "libiberty/9.1.0",
 
+        "libunwind/1.3.1@bincrafters/stable": "libunwind/1.3.1",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
     }
