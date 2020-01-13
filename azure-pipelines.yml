@@ -16,6 +16,7 @@ schedules:
 
 jobs:
   - job: Linux
+    displayName: "Updates from upstream"
     pool:
       vmImage: "ubuntu-18.04"
     steps:

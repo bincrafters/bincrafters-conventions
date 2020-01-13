@@ -5,7 +5,6 @@ set -e
 # Installs & configurations
 git config --global user.email "bincrafters@gmail.com"
 git config --global user.name "bincrafters-user"
-conan user  # initialize Conan registry file
 
 
 # Update Bincrafters' fork of Conan Center Index
