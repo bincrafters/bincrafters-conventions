@@ -20,7 +20,9 @@ jobs:
       vmImage: "ubuntu-18.04"
     steps:
     - script: |
-        chmod +x ./trigger-travis.sh
-        source ./trigger-travis.sh
+        chmod +x ./cci/update_from_upstream.sh
+        source ./cci/update_from_upstream.sh
       env:
         TRAVIS_TOKEN: $(TRAVIS_TOKEN)
+        GITHUB_TOKEN: $(GITHUB_TOKEN)
+        GITHUB_USERNAME: $(GITHUB_USERNAME)

@@ -14,14 +14,3 @@ script:
   - if [ ! "${TRAVIS_EVENT_TYPE}" == "api" ]; then
       bincrafters-conventions --remote bincrafters --remote-max-repos ${CRON_REMOTE_MAX_REPOS} --remote-token="${GITHUB_USERNAME}:${GITHUB_TOKEN}";
     fi
-
-  # Update Bincrafters' fork of Conan Center Index
-  - git clone "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/bincrafters/conan-center-index"
-  - cd conan-center-index
-  - git remote add upstream https://github.com/conan-io/conan-center-index
-  - git fetch upstream
-  - git reset --hard upstream/master
-  - git push -f
-
-  # Delete all merged branches in our fork 
-  - git branch -r --merged master | grep -v master | sed 's/origin\///' | xargs -r -n 1 git push --delete origin
