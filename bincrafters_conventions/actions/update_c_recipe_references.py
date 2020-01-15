@@ -397,9 +397,9 @@ def update_c_recipe_references(main, conanfile):
         "entt/3.2.1@skypjack/stable": "entt/3.2.2",
         "entt/3.2.2@skypjack/stable": "entt/3.2.2",
 
-        "sqlitecpp/2.2.0@bincrafters/stable": "sqlitecpp/2.9.0",
-        "sqlitecpp/2.3.0@bincrafters/stable": "sqlitecpp/2.9.0",
-        "sqlitecpp/2.4.0@bincrafters/stable": "sqlitecpp/2.9.0",
+        "sqlitecpp/2.2.0@bincrafters/stable": "sqlitecpp/2.5.0",
+        "sqlitecpp/2.3.0@bincrafters/stable": "sqlitecpp/2.5.0",
+        "sqlitecpp/2.4.0@bincrafters/stable": "sqlitecpp/2.5.0",
 
         "libfdk_aac/2.0.0@bincrafters/stable": "libfdk_aac/2.0.0",
 
