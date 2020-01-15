@@ -486,6 +486,11 @@ def update_c_recipe_references(main, conanfile):
         "cmake_installer/3.16.1@conan/stable": "cmake/3.16.2",
         "cmake_installer/3.16.2@conan/stable": "cmake/3.16.2",
 
+        "opus/1.2.1@bincrafters/stable": "opus/1.3.1",
+        "opus/1.3.1@bincrafters/stable": "opus/1.3.1",
+
+        "libmp3lame/3.100@bincrafters/stable": "libmp3lame/3.100",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
     }
