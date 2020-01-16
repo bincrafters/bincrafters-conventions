@@ -494,6 +494,14 @@ def update_c_recipe_references(main, conanfile):
         "tcl/8.6.8@bincrafters/stable": "tcl/8.6.10",
         "tcl/8.6.9@bincrafters/stable": "tcl/8.6.10",
 
+        "termcap/1.3.1@bincrafters/stable": "termcap/1.3.1",
+
+        "pixman/0.34.0@bincrafters/stable": "pixman/0.38.4",
+        "pixman/0.38.0@bincrafters/stable": "pixman/0.38.4",
+
+        "vorbis/1.3.5@bincrafters/stable": "vorbis/1.3.6",
+        "vorbis/1.3.6@bincrafters/stable": "vorbis/1.3.6",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
     }
