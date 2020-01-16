@@ -491,6 +491,9 @@ def update_c_recipe_references(main, conanfile):
 
         "libmp3lame/3.100@bincrafters/stable": "libmp3lame/3.100",
 
+        "tcl/8.6.8@bincrafters/stable": "tcl/8.6.10",
+        "tcl/8.6.9@bincrafters/stable": "tcl/8.6.10",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
     }
