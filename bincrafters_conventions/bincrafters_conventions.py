@@ -85,7 +85,7 @@ compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': ('7.3', '8.
 
 # What are the latest AVAILABLE patches for OpenSSL, which versions are End-Of-Life?
 openssl_version_matrix = {'1.0.1': {'latest_patch': 'h', 'eol': True},
-                          '1.0.2': {'latest_patch': 't', 'eol': True},
+                          '1.0.2': {'latest_patch': 'u', 'eol': True},
                           '1.1.0': {'latest_patch': 'l', 'eol': True},
                           '1.1.1': {'latest_patch': 'd', 'eol': False},
                           }
