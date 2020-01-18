@@ -502,6 +502,19 @@ def update_c_recipe_references(main, conanfile):
         "vorbis/1.3.5@bincrafters/stable": "vorbis/1.3.6",
         "vorbis/1.3.6@bincrafters/stable": "vorbis/1.3.6",
 
+        "nettle/3.4@bincrafters/stable": "nettle/3.5",
+        "nettle/3.4.1@bincrafters/stable": "nettle/3.5",
+
+        "imgui/1.53@bincrafters/stable": "imgui/1.74",
+        "imgui/1.61@bincrafters/stable": "imgui/1.74",
+        "imgui/1.62@bincrafters/stable": "imgui/1.74",
+        "imgui/1.63@bincrafters/stable": "imgui/1.74",
+        "imgui/1.64@bincrafters/stable": "imgui/1.74",
+        "imgui/1.65@bincrafters/stable": "imgui/1.74",
+        "imgui/1.66@bincrafters/stable": "imgui/1.74",
+        "imgui/1.69@bincrafters/stable": "imgui/1.74",
+        "imgui/1.73@bincrafters/stable": "imgui/1.74",
+
         # TODO:
         # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
     }
