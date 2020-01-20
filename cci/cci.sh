@@ -16,33 +16,33 @@ if [[ "$(git log -1 --pretty=%an)" == bincrafters* ]]; then
   exit 0 ;
 fi
 
-path="none"
+dirpath="none"
 for directory in $(git diff --dirstat=files,0 `git merge-base origin/master ${APPVEYOR_REPO_BRANCH}`..${APPVEYOR_REPO_BRANCH} | sed 's/^[ 0-9.]\+% //g'); do
   if [[ "${directory}" == recipes/* ]]; then
     count=$(echo "${directory}" | awk -F"/" '{print NF-1}');
     if [[ "${count}" -ge "3" ]]; then
-      path="${directory}"
+      dirpath="${directory}"
     fi;
   fi;
 done
 
 
-if [[ "${path}" == "none" ]]; then
+if [[ "${dirpath}" == "none" ]]; then
   echo "This branch didn't change any recipe. Exiting.";
   exit 0 ;
 fi
 
-recipename=${path#*recipes/}
+recipename=${dirpath#*recipes/}
 recipename=${recipename%%/*}
-path="recipes/${recipename}/"
-version=${oringalpath#"$path"}
+recipepath="recipes/${recipename}/"
+version=${dirpath#"$recipepath"}
 version=${version%%/*}
-path="recipes/${recipename}/${version}"
+recipepath="recipes/${recipename}/${version}"
 
 echo ${recipename}
 
-echo ${path}
-cd ${path}
+echo ${recipepath}
+cd ${recipepath}
 
 # Install & configuration
 unset PYENV_ROOT;
