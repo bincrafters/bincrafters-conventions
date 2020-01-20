@@ -35,6 +35,9 @@ fi
 echo ${path}
 cd ${path}
 
+recipename=${path#*recipes/}
+recipename=${recipename%%/*}
+echo ${recipename}
 
 # Install & configuration
 unset PYENV_ROOT;
@@ -63,4 +66,4 @@ bincrafters-conventions
 git add -u 
 git reset -- cci.sh
 
-git diff-index --quiet HEAD || git commit -a -m "Update Conan conventions" -m "Automatically created by $(bincrafters-conventions --version)" && git push
+git diff-index --quiet HEAD || git commit -a -m "${recipename}: Update Conan conventions" -m "Automatically created by $(bincrafters-conventions --version)" && git push
