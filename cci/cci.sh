@@ -20,7 +20,7 @@ path="none"
 for directory in $(git diff --dirstat=files,0 `git merge-base origin/master ${APPVEYOR_REPO_BRANCH}`..${APPVEYOR_REPO_BRANCH} | sed 's/^[ 0-9.]\+% //g'); do
   if [[ "${directory}" == recipes/* ]]; then
     count=$(echo "${directory}" | awk -F"/" '{print NF-1}');
-    if [[ "${count}" == "3" ]]; then
+    if [[ "${count}" -ge "3" ]]; then
       path="${directory}"
     fi;
   fi;
