@@ -32,12 +32,17 @@ if [[ "${path}" == "none" ]]; then
   exit 0 ;
 fi
 
-echo ${path}
-cd ${path}
-
 recipename=${path#*recipes/}
 recipename=${recipename%%/*}
+path="recipes/${recipename}/"
+version=${oringalpath#"$path"}
+version=${version%%/*}
+path="recipes/${recipename}/${version}"
+
 echo ${recipename}
+
+echo ${path}
+cd ${path}
 
 # Install & configuration
 unset PYENV_ROOT;
