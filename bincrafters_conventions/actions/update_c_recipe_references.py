@@ -145,6 +145,7 @@ REFERENCES = {
     "yas/7.0.3@bincrafters/stable": "yas/7.0.4",
 
     "freetype/2.10.0@bincrafters/stable": "freetype/2.10.1",
+    "freetype/2.10.0": "freetype/2.10.1",
 
     "libtiff/4.0.8@bincrafters/stable": "libtiff/4.0.9",
     "libtiff/4.0.9@bincrafters/stable": "libtiff/4.0.9",
