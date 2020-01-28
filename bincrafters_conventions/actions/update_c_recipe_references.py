@@ -41,8 +41,9 @@ REFERENCES = {
     "msys2_installer/20161025@bincrafters/stable": "msys2/20190524",
     "msys2/20161025": "msys2/20190524",
 
-    "libjpeg/9b@bincrafters/stable": "libjpeg/9c",
-    "libjpeg/9c@bincrafters/stable": "libjpeg/9c",
+    "libjpeg/9b@bincrafters/stable": "libjpeg/9d",
+    "libjpeg/9c@bincrafters/stable": "libjpeg/9d",
+    "libjpeg/9c": "libjpeg/9d",
 
     "fmt/5.3.0@bincrafters/stable": "fmt/5.3.0",
     "fmt/6.0.0@bincrafters/stable": "fmt/6.0.0",
