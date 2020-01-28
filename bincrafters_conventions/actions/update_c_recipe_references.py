@@ -495,6 +495,10 @@ REFERENCES = {
     "imgui/1.69@bincrafters/stable": "imgui/1.74",
     "imgui/1.73@bincrafters/stable": "imgui/1.74",
 
+    "openh264/1.7.0@bincrafters/stable": "openh264/1.7.0",
+
+    "tweetnacl/20140427@conan/stable": "tweetnacl/20140427",
+
     # TODO:
     # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
 }
