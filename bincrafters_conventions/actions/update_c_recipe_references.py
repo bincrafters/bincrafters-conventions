@@ -500,6 +500,11 @@ REFERENCES = {
 
     "tweetnacl/20140427@conan/stable": "tweetnacl/20140427",
 
+    "zmq/4.2.2@bincrafters/stable": "zeromq/4.3.2",
+    "zmq/4.2.5@bincrafters/stable": "zeromq/4.3.2",
+    "zmq/4.3.1@bincrafters/stable": "zeromq/4.3.2",
+    "zmq/4.3.2@bincrafters/stable": "zeromq/4.3.2",
+
     # TODO:
     # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
 }
@@ -551,6 +556,7 @@ def update_c_recipe_references(main, conanfile):
         "jom_installer": "jom",
         "premake_installer": "premake",
         "cmake_installer": "cmake",
+        "zmq": "zeromq",
     }
 
     for old_name, new_name in reference_names.items():
