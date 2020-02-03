@@ -515,12 +515,15 @@ REFERENCES = {
     "cppzmq/4.3.0@bincrafters/stable": "cppzmq/4.6.0",
     "cppzmq/4.4.1@bincrafters/stable": "cppzmq/4.6.0",
     "cppzmq/4.6.0@bincrafters/stable": "cppzmq/4.6.0",
+    "cppzmq/4.5.0": "cppzmq/4.6.0",
 
     "pthread-win32/2.9.1@bincrafters/stable": "pthreads4w/3.0.0",
     "pthreads4w/2.9.1@bincrafters/stable": "pthreads4w/3.0.0",
 
     "bullet3/2.87@bincrafters/stable": "bullet3/2.89",
     "bullet3/2.88@bincrafters/stable": "bullet3/2.89",
+
+    "sqlpp11-connector-sqlite3/0.29@bincrafters/stable": "sqlpp11-connector-sqlite3/0.29",
 
     # TODO:
     # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
