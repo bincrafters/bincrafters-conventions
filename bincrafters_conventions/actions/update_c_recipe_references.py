@@ -525,6 +525,16 @@ REFERENCES = {
 
     "sqlpp11-connector-sqlite3/0.29@bincrafters/stable": "sqlpp11-connector-sqlite3/0.29",
 
+    "cpp-sort/1.0.0@morwenn/stable": "cpp-sort/1.6.0",
+    "cpp-sort/1.1.0@morwenn/stable": "cpp-sort/1.6.0",
+    "cpp-sort/1.1.1@morwenn/stable": "cpp-sort/1.6.0",
+    "cpp-sort/1.2.0@morwenn/stable": "cpp-sort/1.6.0",
+    "cpp-sort/1.3.0@morwenn/stable": "cpp-sort/1.6.0",
+    "cpp-sort/1.4.0@morwenn/stable": "cpp-sort/1.6.0",
+    "cpp-sort/1.5.0@morwenn/stable": "cpp-sort/1.6.0",
+    "cpp-sort/1.5.1@morwenn/stable": "cpp-sort/1.6.0",
+    "cpp-sort/1.6.0@morwenn/stable": "cpp-sort/1.6.0",
+
     # TODO:
     # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
 }
