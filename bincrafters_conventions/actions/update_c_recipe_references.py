@@ -535,6 +535,9 @@ REFERENCES = {
     "cpp-sort/1.5.1@morwenn/stable": "cpp-sort/1.6.0",
     "cpp-sort/1.6.0@morwenn/stable": "cpp-sort/1.6.0",
 
+    "glad/0.1.24@bincrafters/stable": "glad/0.1.33",
+    "glad/0.1.29@bincrafters/stable": "glad/0.1.33",
+
     # TODO:
     # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
 }
