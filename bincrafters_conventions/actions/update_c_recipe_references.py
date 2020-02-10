@@ -538,6 +538,9 @@ REFERENCES = {
     "glad/0.1.24@bincrafters/stable": "glad/0.1.33",
     "glad/0.1.29@bincrafters/stable": "glad/0.1.33",
 
+    "openblas/0.2.20@conan/stable": "openblas/0.3.7",
+    "openblas/0.3.5@conan/stable": "openblas/0.3.7",
+
     # TODO:
     # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
 }
