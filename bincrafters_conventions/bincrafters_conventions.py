@@ -43,7 +43,7 @@ from .actions.update_other_pyenv_python_version import update_other_pyenv_python
 from .actions.update_readme_travis_url import update_readme_travis_url
 
 
-__version__ = '0.18.2'
+__version__ = '0.18.3'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
