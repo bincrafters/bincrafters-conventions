@@ -59,6 +59,7 @@ REFERENCES = {
     "bzip2/1.0.6@conan/stable": "bzip2/1.0.6",
     "bzip2/1.0.8@conan/stable": "bzip2/1.0.8",
 
+    "boost/1.69.0@conan/stable": "boost/1.69.0",
     "boost/1.70.0@conan/stable": "boost/1.70.0",
     "boost/1.71.0@conan/stable": "boost/1.71.0",
 
