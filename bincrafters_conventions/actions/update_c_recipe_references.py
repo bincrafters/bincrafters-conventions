@@ -68,6 +68,7 @@ REFERENCES = {
     "gtest/1.8.1@bincrafters/stable": "gtest/1.8.1",
 
     "libjpeg-turbo/2.0.2@bincrafters/stable": "libjpeg-turbo/2.0.2",
+    "libjpeg-turbo/2.0.2": "libjpeg-turbo/2.0.4",
 
     "libpng/1.6.32@bincrafters/stable": "libpng/1.6.37",
     "libpng/1.6.34@bincrafters/stable": "libpng/1.6.37",
