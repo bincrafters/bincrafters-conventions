@@ -11,6 +11,7 @@ REFERENCES = {
     "zlib/1.2.9@conan/stable": "zlib/1.2.11",
     "zlib/1.2.11@conan/stable": "zlib/1.2.11",
 
+    "zstd/1.3.5@bincrafters/stable": "zstd/1.3.5",
     "zstd/1.3.8@bincrafters/stable": "zstd/1.3.8",
     "zstd/1.4.0@bincrafters/stable": "zstd/1.4.3",
 
