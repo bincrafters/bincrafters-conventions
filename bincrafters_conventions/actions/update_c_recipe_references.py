@@ -40,7 +40,8 @@ REFERENCES = {
 
     "msys2_installer/latest@bincrafters/stable": "msys2/20190524",
     "msys2_installer/20161025@bincrafters/stable": "msys2/20190524",
-    "msys2/20161025": "msys2/20190524",
+    # This seems to be deconstructive in some cases, see https://github.com/conan-io/conan-center-index/pull/838
+    # "msys2/20161025": "msys2/20190524",
 
     "libjpeg/9b@bincrafters/stable": "libjpeg/9d",
     "libjpeg/9c@bincrafters/stable": "libjpeg/9d",
