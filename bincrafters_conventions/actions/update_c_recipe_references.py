@@ -547,7 +547,7 @@ REFERENCES = {
 
     "libmad/0.15.1b@bincrafters/stable": "libmad/0.15.1b",
 
-    "libx265/3.0@bincrafters/stable": "libx265/3.0",
+    "libx265/3.0@bincrafters/stable": "libx265/3.2.1",
 
     # TODO:
     # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
