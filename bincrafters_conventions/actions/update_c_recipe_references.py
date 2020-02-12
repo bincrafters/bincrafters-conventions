@@ -471,6 +471,7 @@ REFERENCES = {
     "cmake_installer/3.16.2@conan/stable": "cmake/3.16.3",
     "cmake_installer/3.16.3@conan/stable": "cmake/3.16.3",
     "cmake/3.16.2": "cmake/3.16.3",
+    "cmake/3.16.3": "cmake/3.16.4",
 
     "opus/1.2.1@bincrafters/stable": "opus/1.3.1",
     "opus/1.3.1@bincrafters/stable": "opus/1.3.1",
@@ -543,6 +544,10 @@ REFERENCES = {
 
     "openblas/0.2.20@conan/stable": "openblas/0.3.7",
     "openblas/0.3.5@conan/stable": "openblas/0.3.7",
+
+    "libmad/0.15.1b@bincrafters/stable": "libmad/0.15.1b",
+
+    "libx265/3.0@bincrafters/stable": "libx265/3.0",
 
     # TODO:
     # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
