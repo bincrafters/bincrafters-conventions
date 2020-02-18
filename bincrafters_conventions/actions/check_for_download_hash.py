@@ -8,7 +8,7 @@ def check_for_download_hash(main, file):
         return True
 
     if os.path.exists("conandata.yml")\
-            and main.file_contains(file, 'tools.get(**self.conan_data["sources"][self.version])'):
+            and main.file_contains(file, 'tools.get(**self.conan_data["sources"][self.version]'):
         main.output_result_check(passed=True, title="Conandata.yml + tools.get()")
         return True
 
