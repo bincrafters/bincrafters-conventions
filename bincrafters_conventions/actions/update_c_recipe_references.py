@@ -550,8 +550,12 @@ REFERENCES = {
 
     "libx265/3.0@bincrafters/stable": "libx265/3.2.1",
 
-    # TODO:
-    # icu: no installer, no cross-building support for now https://github.com/conan-io/conan-center-index/pull/151
+    # TODO: icu: no installer for now https://github.com/conan-io/conan-center-index/pull/151
+    "icu/59.1@bincrafters/stable": "icu/64.2",
+    "icu/60.2@bincrafters/stable": "icu/64.2",
+    "icu/62.1@bincrafters/stable": "icu/64.2",
+    "icu/63.1@bincrafters/stable": "icu/64.2",
+    "icu/64.2@bincrafters/stable": "icu/64.2",
 }
 
 
