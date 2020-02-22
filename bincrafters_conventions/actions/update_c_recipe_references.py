@@ -23,6 +23,7 @@ REFERENCES = {
     "Poco/1.8.1@pocoproject/stable": "poco/1.8.1",
     "Poco/1.9.3@pocoproject/stable": "poco/1.9.4",
     "Poco/1.9.4@pocoproject/stable": "poco/1.9.4",
+    "Poco/1.10.0@pocoproject/stable": "poco/1.10.1",
 
     # For newer OpenSSL versions the dedicated update OpenSSL version update script is enough
     "OpenSSL/1.0.2s@conan/stable": "openssl/1.0.2t",
@@ -560,6 +561,9 @@ REFERENCES = {
     "cereal/1.2.2@conan/stable": "cereal/1.3.0",
 
     "rapidxml/1.13@bincrafter/stable": "rapidxml/1.13",
+
+    "wtl/10.0.7336@bincrafters/stable": "wtl/10.0.9163",
+    "wtl/10.0.9163@bincrafters/stable": "wtl/10.0.9163",
 }
 
 
