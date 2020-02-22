@@ -558,6 +558,8 @@ REFERENCES = {
     "icu/64.2@bincrafters/stable": "icu/64.2",
 
     "cereal/1.2.2@conan/stable": "cereal/1.3.0",
+
+    "rapidxml/1.13@bincrafter/stable": "rapidxml/1.13",
 }
 
 
