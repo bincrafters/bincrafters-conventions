@@ -568,6 +568,10 @@ REFERENCES = {
     # TODO: Migrate paho-c/1.3.1@conan/stable as soon as it is in CCI
     "paho-c/1.2.0@conan/stable": "paho-c/1.3.0",
     "paho-c/1.3.0@conan/stable": "paho-c/1.3.0",
+
+    "tinyxml2/7.0.0@nicolastagliani/stable": "tinyxml2/7.1.0",
+    "tinyxml2/7.0.1@nicolastagliani/stable": "tinyxml2/7.1.0",
+    "tinyxml2/7.1.0@nicolastagliani/stable": "tinyxml2/7.1.0",
 }
 
 
