@@ -564,6 +564,10 @@ REFERENCES = {
 
     "wtl/10.0.7336@bincrafters/stable": "wtl/10.0.9163",
     "wtl/10.0.9163@bincrafters/stable": "wtl/10.0.9163",
+
+    # TODO: Migrate paho-c/1.3.1@conan/stable as soon as it is in CCI
+    "paho-c/1.2.0@conan/stable": "paho-c/1.3.0",
+    "paho-c/1.3.0@conan/stable": "paho-c/1.3.0",
 }
 
 
