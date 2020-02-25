@@ -572,6 +572,17 @@ REFERENCES = {
     "tinyxml2/7.0.0@nicolastagliani/stable": "tinyxml2/7.1.0",
     "tinyxml2/7.0.1@nicolastagliani/stable": "tinyxml2/7.1.0",
     "tinyxml2/7.1.0@nicolastagliani/stable": "tinyxml2/7.1.0",
+
+    "tuple/1.0.0@taocpp/stable": "taocpp-tuple/1.0.0",
+
+    "pegtl/2.5.1@bincrafters/stable": "taocpp-pegtl/2.8.1",
+    "pegtl/2.5.2@taocpp/stable": "taocpp-pegtl/2.8.1",
+    "pegtl/2.6.0@taocpp/stable": "taocpp-pegtl/2.8.1",
+    "pegtl/2.6.1@taocpp/stable": "taocpp-pegtl/2.8.1",
+    "pegtl/2.7.0@taocpp/stable": "taocpp-pegtl/2.8.1",
+    "pegtl/2.7.1@taocpp/stable": "taocpp-pegtl/2.8.1",
+    "pegtl/2.8.0@taocpp/stable": "taocpp-pegtl/2.8.1",
+    "pegtl/2.8.1@taocpp/stable": "taocpp-pegtl/2.8.1",
 }
 
 
@@ -623,6 +634,8 @@ def update_c_recipe_references(main, conanfile):
         "cmake_installer": "cmake",
         "zmq": "zeromq",
         "paho-c": "paho-mqtt-c",
+        "tuple": "taocpp-tuple",
+        "pegtl": "taocpp-pegtl",
     }
 
     for old_name, new_name in reference_names.items():
