@@ -6,6 +6,12 @@ REFERENCES = {
     # Let's eliminate master/latest versions...
     "depot_tools_installer/master@bincrafters/stable": "depot_tools_installer/20190909@bincrafters/stable",
 
+    # Updates for other reasons
+    "glib/2.56.1@bincrafters/stable": "glib/2.63.6@bincrafters/stable",
+    "glib/2.57.1@bincrafters/stable": "glib/2.63.6@bincrafters/stable",
+    "glib/2.58.3@bincrafters/stable": "glib/2.63.6@bincrafters/stable",
+    "glib/2.63.3@bincrafters/stable": "glib/2.63.6@bincrafters/stable",
+
     # CCI adoptions...
     "zlib/1.2.8@conan/stable": "zlib/1.2.11",
     "zlib/1.2.9@conan/stable": "zlib/1.2.11",
