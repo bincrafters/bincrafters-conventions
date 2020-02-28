@@ -202,12 +202,14 @@ REFERENCES = {
     "glog/0.3.5@bincrafters/stable": "glog/0.4.0",
     "glog/0.4.0@bincrafters/stable": "glog/0.4.0",
 
-    "meson_installer/0.49.0@bincrafters/stable": "meson/0.53.0",
-    "meson_installer/0.49.2@bincrafters/stable": "meson/0.53.0",
-    "meson_installer/0.50.0@bincrafters/stable": "meson/0.53.0",
-    "meson_installer/0.51.0@bincrafters/stable": "meson/0.53.0",
-    "meson/0.50.0": "meson/0.53.0",
-    "meson/0.52.1": "meson/0.53.0",
+    "meson_installer/0.49.0@bincrafters/stable": "meson/0.53.2",
+    "meson_installer/0.49.2@bincrafters/stable": "meson/0.53.2",
+    "meson_installer/0.50.0@bincrafters/stable": "meson/0.53.2",
+    "meson_installer/0.51.0@bincrafters/stable": "meson/0.53.2",
+    "meson/0.50.0": "meson/0.53.2",
+    "meson/0.52.1": "meson/0.53.2",
+    "meson/0.53.0": "meson/0.53.2",
+    "meson/0.53.1": "meson/0.53.2",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -572,9 +574,10 @@ REFERENCES = {
     "wtl/10.0.7336@bincrafters/stable": "wtl/10.0.9163",
     "wtl/10.0.9163@bincrafters/stable": "wtl/10.0.9163",
 
-    # TODO: Migrate paho-c/1.3.1@conan/stable as soon as it is in CCI
-    "paho-c/1.2.0@conan/stable": "paho-mqtt-c/1.3.0",
-    "paho-c/1.3.0@conan/stable": "paho-mqtt-c/1.3.0",
+    "paho-c/1.2.0@conan/stable": "paho-mqtt-c/1.3.1",
+    "paho-c/1.3.0@conan/stable": "paho-mqtt-c/1.3.1",
+    "paho-c/1.3.1@conan/stable": "paho-mqtt-c/1.3.1",
+    "paho-mqtt-c/1.3.0": "paho-mqtt-c/1.3.1",
 
     "tinyxml2/7.0.0@nicolastagliani/stable": "tinyxml2/7.1.0",
     "tinyxml2/7.0.1@nicolastagliani/stable": "tinyxml2/7.1.0",
@@ -590,6 +593,13 @@ REFERENCES = {
     "pegtl/2.7.1@taocpp/stable": "taocpp-pegtl/2.8.1",
     "pegtl/2.8.0@taocpp/stable": "taocpp-pegtl/2.8.1",
     "pegtl/2.8.1@taocpp/stable": "taocpp-pegtl/2.8.1",
+
+    "operators/1.0.2@taocpp/stable": "taocpp-operators/1.2.2",
+    "operators/1.1.1@taocpp/stable": "taocpp-operators/1.2.2",
+    "operators/1.2.0@taocpp/stable": "taocpp-operators/1.2.2",
+    "operators/1.2.2@taocpp/stable": "taocpp-operators/1.2.2",
+
+    "sequences/2.0.1@taocpp/stable": "taocpp-sequences/2.0.1",
 }
 
 
@@ -643,6 +653,8 @@ def update_c_recipe_references(main, conanfile):
         "paho-c": "paho-mqtt-c",
         "tuple": "taocpp-tuple",
         "pegtl": "taocpp-pegtl",
+        "operators": "taocpp-operators",
+        "sequences": "taocpp-sequences",
     }
 
     for old_name, new_name in reference_names.items():
