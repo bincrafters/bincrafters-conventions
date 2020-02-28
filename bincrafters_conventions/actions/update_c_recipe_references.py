@@ -600,6 +600,9 @@ REFERENCES = {
     "operators/1.2.2@taocpp/stable": "taocpp-operators/1.2.2",
 
     "sequences/2.0.1@taocpp/stable": "taocpp-sequences/2.0.1",
+
+    "stb/20180214@conan/stable": "stb/20200203",
+    "stb/20190512@conan/stable": "stb/20200203",
 }
 
 
