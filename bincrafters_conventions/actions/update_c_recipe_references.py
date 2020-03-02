@@ -83,7 +83,8 @@ REFERENCES = {
     "libpng/1.6.36@bincrafters/stable": "libpng/1.6.37",
     "libpng/1.6.37@bincrafters/stable": "libpng/1.6.37",
 
-    "libiconv/1.15@bincrafters/stable": "libiconv/1.15",
+    "libiconv/1.15@bincrafters/stable": "libiconv/1.16",
+    "libiconv/1.15": "libiconv/1.16",
 
     "glm/0.9.8.5@bincrafters/stable": "glm/0.9.9.6",
     "glm/0.9.8.5@g-truc/stable": "glm/0.9.9.6",
@@ -579,6 +580,9 @@ REFERENCES = {
     "paho-c/1.3.1@conan/stable": "paho-mqtt-c/1.3.1",
     "paho-mqtt-c/1.3.0": "paho-mqtt-c/1.3.1",
 
+    "paho-cpp/1.0.0@conan/stable": "paho-mqtt-cpp/1.0.1",
+    "paho-cpp/1.0.1@conan/stable": "paho-mqtt-cpp/1.0.1",
+
     "tinyxml2/7.0.0@nicolastagliani/stable": "tinyxml2/7.1.0",
     "tinyxml2/7.0.1@nicolastagliani/stable": "tinyxml2/7.1.0",
     "tinyxml2/7.1.0@nicolastagliani/stable": "tinyxml2/7.1.0",
@@ -603,6 +607,8 @@ REFERENCES = {
 
     "stb/20180214@conan/stable": "stb/20200203",
     "stb/20190512@conan/stable": "stb/20200203",
+
+    "abseil/20181200@bincrafters/stable": "abseil/20200205",
 }
 
 
@@ -654,6 +660,7 @@ def update_c_recipe_references(main, conanfile):
         "cmake_installer": "cmake",
         "zmq": "zeromq",
         "paho-c": "paho-mqtt-c",
+        "paho-cpp": "paho-mqtt-cpp",
         "tuple": "taocpp-tuple",
         "pegtl": "taocpp-pegtl",
         "operators": "taocpp-operators",
