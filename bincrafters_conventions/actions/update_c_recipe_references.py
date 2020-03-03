@@ -104,6 +104,7 @@ REFERENCES = {
     "Catch2/2.10.1@catchorg/stable": "catch2/2.11.0",
     "Catch2/2.10.2@catchorg/stable": "catch2/2.11.0",
     "Catch2/2.11.0@catchorg/stable": "catch2/2.11.0",
+    "Catch2/2.11.1@catchorg/stable": "catch2/2.11.1",
     "catch2/2.0.1@bincrafters/stable": "catch2/2.11.0",
     "catch2/2.1.0@bincrafters/stable": "catch2/2.11.0",
     "catch2/2.1.1@bincrafters/stable": "catch2/2.11.0",
@@ -117,6 +118,7 @@ REFERENCES = {
     "catch2/2.4.2@bincrafters/stable": "catch2/2.11.0",
     "catch2/2.5.0@bincrafters/stable": "catch2/2.11.0",
     "catch2/2.9.2": "catch2/2.11.0",
+    "catch2/2.11.0": "catch2/2.11.1",
 
     "libwebp/1.0.0@bincrafters/stable": "libwebp/1.0.3",
     "libwebp/1.0.3@bincrafters/stable": "libwebp/1.0.3",
@@ -609,6 +611,31 @@ REFERENCES = {
     "stb/20190512@conan/stable": "stb/20200203",
 
     "abseil/20181200@bincrafters/stable": "abseil/20200205",
+
+    "c-blosc/v1.12.4b8@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.13.5@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.13.6@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.13.7@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.14.0@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.14.1@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.14.2@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.14.3@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.14.4@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.15.0@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/1.15.1@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.16.0@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.16.1@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.16.2@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.16.3@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.17.0@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.17.1@francescalted/stable": "c-blosc/1.17.1",
+
+    "libqrencode/4.0.0@bincrafters/stable": "libqrencode/4.0.0",
+
+    "geographiclib/1.49.0@bincrafters/stable": "geographiclib/1.50.1",
+
+    # TODO: move installer https://github.com/conan-io/conan-center-index/pull/835
+    "gettext/0.20.1@bincrafters/stable": "libgettext/0.20.1",
 }
 
 
@@ -665,6 +692,7 @@ def update_c_recipe_references(main, conanfile):
         "pegtl": "taocpp-pegtl",
         "operators": "taocpp-operators",
         "sequences": "taocpp-sequences",
+        "gettext": "libgettext",
     }
 
     for old_name, new_name in reference_names.items():
