@@ -636,6 +636,11 @@ REFERENCES = {
 
     # TODO: move installer https://github.com/conan-io/conan-center-index/pull/835
     "gettext/0.20.1@bincrafters/stable": "libgettext/0.20.1",
+
+    "msgpack/3.0.1@bincrafters/stable": "msgpack/3.2.1",
+    "msgpack/3.1.1@bincrafters/stable": "msgpack/3.2.1",
+    "msgpack/3.2.0@bincrafters/stable": "msgpack/3.2.1",
+    "msgpack/3.2.1@bincrafters/stable": "msgpack/3.2.1",
 }
 
 
