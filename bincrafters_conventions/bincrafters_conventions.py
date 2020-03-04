@@ -22,7 +22,6 @@ from .actions.update_a_python_version import update_a_python_version
 from .actions.update_a_path_manipulation import update_a_path_manipulation
 from .actions.update_a_python_environment_variable import update_a_python_environment_variable
 from .actions.update_a_jobs import update_a_jobs
-from .actions.update_azp_jobs import update_azp_jobs
 from .actions.update_gha import update_gha
 from .actions.update_c_attributes import update_c_delete_author, update_c_topics
 from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
@@ -32,14 +31,6 @@ from .actions.update_c_delete_meta_lines import update_c_delete_meta_lines
 from .actions.update_c_tools_version import update_c_tools_version
 from .actions.update_c_recipe_references import update_c_recipe_references
 from .actions.update_c_remove_compiler_cppstd import update_c_remove_compiler_cppstd
-from .actions.update_t_ci_dir_path import update_t_ci_dir_path
-from .actions.update_t_macos_images import update_t_macos_images
-from .actions.update_t_new_docker_image_names import update_t_new_docker_image_names
-from .actions.update_t_jobs import update_t_jobs
-from .actions.update_t_linux_image import update_t_linux_image
-from .actions.update_t_linux_python_version import update_t_linux_python_version
-from .actions.update_other_travis_to_ci_dir_name import update_other_travis_to_ci_dir_name
-from .actions.update_other_pyenv_python_version import update_other_pyenv_python_version
 from .actions.update_readme_travis_url import update_readme_travis_url
 
 
@@ -52,35 +43,22 @@ LOGGING_LEVEL = os.getenv("BINCRAFTERS_LOGGING_LEVEL", logging.INFO)
 logging.basicConfig(level=int(LOGGING_LEVEL), format=LOGGING_FORMAT, datefmt='%Y-%m-%d %H:%M:%S')
 
 # Python version for updating files
-python_version_current_pyenv = "3.7.1"
 python_version_current_appveyor = "37"
-python_version_current_travis_linux = "3.7"
-# for AppVeyor dot zero releases need to be added without dot zero, for pyenv a second time with a dot zero
+# for AppVeyor dot zero releases need to be added without dot zero
 python_check_for_old_versions = ["2.7.8", "2.7.10", "2.7.14", "2.7", "3.6", "3.7.0"]  # TODO: Remove this
 
 
 # Current GitHub Actions Bincrafters workflow versions
 gha_workflow_version = "1"
 
-# Sometimes Travis is publishing new CI images with new XCode versions
-# but they still have the same Clang version
-# in this case we do NOT need to add new compiler versions and therefore jobs
-# but we need to update the existing jobs
-travis_macos_images_updates = [["9.3", "9.4"], ["10", "10.3"], ["10.1", "10.3"], ["10.2", "10.3"], ["11", "11.3"],
-                               ["11.2", "11.3"]]
-
-# What apple_clang version is available on which Travis image? What MSVC versions are available on which AppVeyor image?
-travis_macos_images_compiler_mapping = {'7.3': '7.3', '8.1': '8.3', '9.0': '9', '9.1': '9.4', '10.0': '10.3', '11.0': '11.3'}
+# What MSVC versions are available on which AppVeyor image?
 appveyor_win_msvc_images_compiler_mapping = {'12': '2015', '14': '2015', '15': '2017', '16': '2019'}
 
 # This compiler versions are getting added if they are newer than the existing jobs
 # and if they don't already exist
-compiler_versions = {'gcc': ('6', '7', '8', '9'),
-                     'clang': ('5.0', '6.0', '7.0', '8', '9'),
-                     'apple_clang': ('9.1', '10.0', '11.0'),
-                     'visual': ('15', '16')}
+compiler_versions = {'visual': ('15', '16')}
 # This compiler versions are getting actively removed from existing jobs
-compiler_versions_deletion = {'gcc': (), 'clang': (), 'apple_clang': ('7.3', '8.1', '9.0'), 'visual': ('12',)}
+compiler_versions_deletion = {'visual': ('12',)}
 
 
 # What are the latest AVAILABLE patches for OpenSSL, which versions are End-Of-Life?
@@ -200,26 +178,9 @@ class Command(object):
 
         result = []
 
-        result.extend([
-            # Rename .travis -> .ci
-            update_other_travis_to_ci_dir_name(self),
-            update_t_ci_dir_path(self, file),
-            # Update which Python version macOS is using via pyenv
-            update_other_pyenv_python_version(self, '.ci/install.sh', python_version_current_pyenv,
-                                              python_check_for_old_versions),
-            # Update Travis Linux Python version
-            update_t_linux_python_version(self, file, python_version_current_travis_linux, python_check_for_old_versions),
-            # Update which macOS image existing jobs are using
-            update_t_macos_images(self, file, travis_macos_images_updates),
-            # Update docker image names lasote -> conanio
-            update_t_new_docker_image_names(self, file),
-            # Update Travis Linux CI base image
-            update_t_linux_image(self, file),
-        ])
-
-        if self._is_getting_new_compiler_versions("conanfile.py"):
-            result.extend([update_t_jobs(self, file, compiler_versions, travis_macos_images_compiler_mapping,
-                          compiler_versions_deletion)])
+        """" result.extend([
+            # TODO: Add Travis Linux -> GHA migration for libraries
+        ]) """
 
         return result
 
@@ -245,13 +206,7 @@ class Command(object):
         if not os.path.isfile(file):
             return [False, ]
 
-        result = []
-
-        if self._is_getting_new_compiler_versions("conanfile.py"):
-            # Add new compiler versions to CI jobs
-            result.extend([
-                update_azp_jobs(self, file, compiler_versions, appveyor_win_msvc_images_compiler_mapping, compiler_versions_deletion)
-            ])
+        result = [True,]
 
         return result
 
