@@ -206,7 +206,7 @@ class Command(object):
         if not os.path.isfile(file):
             return [False, ]
 
-        result = [True,]
+        result = [ ]
 
         return result
 
