@@ -7,23 +7,19 @@
 
 ## A Script to update Conan projects following Conan conventions
 
-This project contains scripts to add new compiler versions in Travis and AppVeyor files,
-update Conan conventions in general and performing some linting.
-
-#### Motivation
-
-- https://github.com/bincrafters/community/issues/482
+This project contains scripts to update CI files, to
+update Conan conventions in general and to perform some linting.
 
 #### INSTALL
 To install by pip is just one step
 
 ##### Local
-If you want to install by local copy
+If you want to install via a local git clone
 
     pip install .
 
 ##### Remote
-Or if you want to download our pip package
+Or if you want to install a release version
 
     pip install bincrafters_conventions
 
