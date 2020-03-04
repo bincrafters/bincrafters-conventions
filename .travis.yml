@@ -12,5 +12,6 @@ script:
 
   # Run bincrafters-conventions to update repositories on pushes & cron
   - if [ ! "${TRAVIS_EVENT_TYPE}" == "api" ]; then
+      bincrafters-conventions --remote-add-gha-secrets bincrafters --remote-token="${GITHUB_USERNAME}:${GITHUB_TOKEN}";
       bincrafters-conventions --remote bincrafters --remote-max-repos ${CRON_REMOTE_MAX_REPOS} --remote-token="${GITHUB_USERNAME}:${GITHUB_TOKEN}";
     fi
