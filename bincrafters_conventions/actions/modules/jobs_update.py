@@ -5,46 +5,17 @@ def _leading_line_spaces(line):
     return len(line) - len(line.lstrip())
 
 
-def _get_docker_image_name(compiler: str, version):
-    OWNER = 'conanio'
-
-    version = str(version)
-    image_version = version.replace(".", "")
-
-    return "{}/{}{}".format(OWNER, compiler, image_version)
-
-
 def _create_new_job(platform: dict, compiler: str, version, job: str, old_version, images_mapping: dict):
     old_version_str = "CONAN_{}_VERSIONS{}{}".format(compiler.upper(), platform["delimiter"], old_version)
     new_version_str = "CONAN_{}_VERSIONS{}{}".format(compiler.upper(), platform["delimiter"], version)
     job = job.replace(old_version_str, new_version_str)
 
-    if compiler == "gcc" or compiler == "clang":
-        old_docker_image_str = "CONAN_DOCKER_IMAGE{}{}".format(platform["delimiter"],
-                                                               _get_docker_image_name(compiler, old_version))
-        new_docker_image_str = "CONAN_DOCKER_IMAGE{}{}".format(platform["delimiter"],
-                                                               _get_docker_image_name(compiler, version))
-        job = job.replace(old_docker_image_str, new_docker_image_str)
-
-    elif compiler == "apple_clang":
-        old_image = images_mapping[old_version]
-        new_image = images_mapping[version]
-        old_image_str = "osx_image: xcode{}".format(old_image)
-        new_image_str = "osx_image: xcode{}".format(new_image)
-        job = job.replace(old_image_str, new_image_str)
-
-    elif compiler == "visual":
+    if compiler == "visual":
         old_image = images_mapping[old_version]
         new_image = images_mapping[version]
         old_image_str = "APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio {}".format(old_image)
         new_image_str = "APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio {}".format(new_image)
         job = job.replace(old_image_str, new_image_str)
-
-    # For AZP we also want to update the version in the title line, which is the first line of each job
-    if platform["name"] == "Azure Pipelines":
-        old_title_str = "{} {}".format(compiler.title(), old_version)
-        new_title_str = "{} {}".format(compiler.title(), version)
-        job = job.replace(old_title_str, new_title_str)
 
     return job
 
@@ -73,13 +44,13 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
     beginning_found_threshold = beginning_found_end - 1
     beginning_found = -1
 
-    latest_versions = {'a_unidentified': 0, 'gcc': 0, 'clang': 0, 'apple_clang': 0, 'visual': 0}
-    versions_jobs = {'a_unidentified': {}, 'gcc': {}, 'clang': {}, 'apple_clang': {}, 'visual': {}}
+    latest_versions = {'a_unidentified': 0, 'visual': 0}
+    versions_jobs = {'a_unidentified': {}, 'visual': {}}
 
     # Strings for file content
     new_content_beginning = ""
     compiler_jobs = ""
-    new_content_end = "\n" if platform_name != "Azure Pipelines" else ""
+    new_content_end = "\n"
 
     manipulated_jobs = False
     current_compiler = ""
