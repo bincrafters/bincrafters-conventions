@@ -504,6 +504,7 @@ class Command(object):
         return b64encode(encrypted).decode("utf-8")
 
     def _add_gha_secrets_to_github_repos(self, user, token):
+        self.output_remote_update("")
         self.output_remote_update("Adding/Updating GitHub Actions secret to all Conan repositories for {}".format(user))
         self.output_remote_update("")
 
@@ -658,6 +659,10 @@ class Command(object):
         :param project_pattern: Filter to be applied over user project names
         :param branch_pattern: Filter to be applied over project branch names
         """
+        self.output_remote_update("")
+        self.output_remote_update("Updating conventions")
+        self.output_remote_update("")
+
         if "/" not in remote:
             self._update_remote_user(remote, conanfile, skip_push, project_pattern, branch_pattern,
                                      all_branches, token, max_repos)
