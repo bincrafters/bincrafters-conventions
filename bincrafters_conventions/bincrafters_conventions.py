@@ -122,6 +122,9 @@ class Command(object):
         parser = argparse.ArgumentParser(description="Bincrafters Conventions")
         group = parser.add_mutually_exclusive_group()
         group.add_argument('--remote', type=str, help='Github repo to be updated e.g. bincrafters/conan-foobar')
+        group.add_argument('--remote-add-gha-secrets', type=str,
+                           help='Add secrets to all Conan GitHub repositories of an organisation.'
+                                'Set env vars CONAN_LOGIN_USERNAME and CONAN_PASSSWORD and argument --remote-token')
         group.add_argument('--local', action='store_true', help='Update current local repository')
         group.add_argument('-t', '--travisfile', type=str, nargs='?', const='.travis.yml',
                            help='Travis file to be updated e.g. .travis.yml')
@@ -169,6 +172,8 @@ class Command(object):
                 self._update_remote(arguments.remote, arguments.conanfile, arguments.dry_run, arguments.project_pattern,
                                     arguments.branch_pattern, arguments.all_branches, arguments.remote_token,
                                     arguments.remote_max_repos)
+            elif arguments.remote_add_gha_secrets:
+                self._add_gha_secrets_to_github_repos(user=arguments.remote_add_gha_secrets, token=arguments.remote_token)
             else:
                 if arguments.check:
                     self._run_conventions_checks()
@@ -487,6 +492,57 @@ class Command(object):
         repo = git.Repo.clone_from(github_url, project_path)
         self.output_remote_update("Clone project {} to {}".format(github_url, project_path))
         return repo, project_path
+
+    # Method is from https://developer.github.com/v3/actions/secrets/#example-encrypting-a-secret-using-python
+    def _encrypt_for_github_actions(self, public_key: str, secret_value: str) -> str:
+        from base64 import b64encode
+        from nacl import encoding, public
+        """Encrypt a Unicode string using the public key."""
+        public_key = public.PublicKey(public_key.encode("utf-8"), encoding.Base64Encoder())
+        sealed_box = public.SealedBox(public_key)
+        encrypted = sealed_box.encrypt(secret_value.encode("utf-8"))
+        return b64encode(encrypted).decode("utf-8")
+
+    def _add_gha_secrets_to_github_repos(self, user, token):
+        self.output_remote_update("Adding/Updating GitHub Actions secret to all Conan repositories for {}".format(user))
+        self.output_remote_update("")
+
+        conan_login_username = os.getenv("CONAN_LOGIN_USERNAME", "bincrafters-user")
+        conan_password = os.getenv("CONAN_PASSWORD", None)
+
+        projects = self._list_user_projects(user, token)
+        credentials = token.split(":", 1)
+        auth = (credentials[0], credentials[1])
+
+        for project in projects:
+            key_request = requests.get("https://api.github.com/repos/{}/actions/secrets/public-key".format(project),
+                                      auth=auth)
+            public_key = key_request.json()
+
+            login_user = self._encrypt_for_github_actions(public_key["key"], conan_login_username)
+            login_password = self._encrypt_for_github_actions(public_key["key"], conan_password)
+
+            url_user = "https://api.github.com/repos/{}/actions/secrets/{}".format(project, "CONAN_LOGIN_USERNAME")
+            url_password = "https://api.github.com/repos/{}/actions/secrets/{}".format(project, "CONAN_PASSWORD")
+
+            data_user = {"key_id": public_key["key_id"], "encrypted_value": login_user}
+            data_pw = {"key_id": public_key["key_id"], "encrypted_value": login_password}
+
+            ru = requests.put(url_user, auth=auth, json=data_user)
+            rp = requests.put(url_password, auth=auth, json=data_pw)
+
+            if ru.status_code == 201 and rp.status_code == 201:
+                self.output_result_check(passed=True,
+                                         title="Adding GitHub Actions Secret for {}".format(project),
+                                         reason="Success")
+            elif ru.status_code == 204 and rp.status_code == 204:
+                self.output_result_check(passed=True,
+                                         title="Updating GitHub Actions Secret for {}".format(project),
+                                         reason="Success")
+            else:
+                self.output_result_check(passed=False,
+                                         title="Adding/Updating GitHub Actions Secret for {}".format(project),
+                                         reason="Failed with {}/{}".format(ru.status_code, rp.status_code))
 
     def _list_user_projects(self, user, token):
         """ List all projects from GitHub public account
