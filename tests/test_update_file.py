@@ -153,6 +153,26 @@ def test_update_travis_file():
     assert _compare_file(path_old, path_expected)
 
 
+def test_update_travis_2_pages():
+    path_old, path_expected = _prepare_old_file("travis_2", ".yml")
+
+    args = ['--travisfile', path_old]
+    command = Command()
+    command.run(args)
+
+    assert _compare_file(path_old, path_expected)
+
+
+def test_update_travis_4_pages():
+    path_old, path_expected = _prepare_old_file("travis_3", ".yml")
+
+    args = ['--travisfile', path_old]
+    command = Command()
+    command.run(args)
+
+    assert _compare_file(path_old, path_expected)
+
+
 def test_gha():
     """ Try to update an GitHub actions file
     """
