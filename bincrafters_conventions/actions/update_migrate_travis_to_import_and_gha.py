@@ -37,7 +37,7 @@ def update_migrate_travis_to_import_and_gha(main, travis_file, gha_workflow_vers
     if not _contains("CONAN_CURRENT_PAGE"):
         _create_gha("travis_1_expected_gha.yml")
         _update_travis("travis_1_expected.yml")
-    elif (_contains("CONAN_CURRENT_PAGE=2") or _contains("CONAN_CURRENT_PAGE=3"))\
+    elif (_contains("CONAN_CURRENT_PAGE=2") or _contains("CONAN_CURRENT_PAGE=3") or _contains("CONAN_BUILD_TYPES"))\
             and not _contains("CONAN_CURRENT_PAGE=4"):
         _create_gha("travis_2_expected_gha.yml")
         _update_travis("travis_2_expected.yml")
