@@ -32,7 +32,7 @@ from .actions.update_c_tools_version import update_c_tools_version
 from .actions.update_c_recipe_references import update_c_recipe_references
 from .actions.update_c_remove_compiler_cppstd import update_c_remove_compiler_cppstd
 from .actions.update_readme_travis_url import update_readme_travis_url
-
+from .actions.update_migrate_travis_to_import_and_gha import update_migrate_travis_to_import_and_gha
 
 __version__ = '0.19.0'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
@@ -83,12 +83,7 @@ def chdir(newdir):
 
 
 class Command(object):
-    """ Execute Travis file update
-    """
-
     def __init__(self):
-        """ Fill regex compiler
-        """
         self._logger = logging.getLogger(__file__)
         self._logger.setLevel(logging.INFO)
 
@@ -178,9 +173,9 @@ class Command(object):
 
         result = []
 
-        """" result.extend([
-            # TODO: Add Travis Linux -> GHA migration for libraries
-        ]) """
+        result.extend([
+            update_migrate_travis_to_import_and_gha(self, file, gha_workflow_version)
+        ])
 
         return result
 
