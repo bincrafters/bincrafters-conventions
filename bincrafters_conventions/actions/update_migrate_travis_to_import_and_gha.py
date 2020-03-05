@@ -30,7 +30,8 @@ def update_migrate_travis_to_import_and_gha(main, travis_file, gha_workflow_vers
                     workflow_file)
         main.output_result_update(title="CI: Migrate Linux jobs from Travis to GitHub actions")
 
-    if _contains("import") and _contains("install"):
+    # Check if Travis config is already up to date; if so do nothing
+    if _contains("import") and not _contains("install"):
         return False
 
     if not _contains("CONAN_CURRENT_PAGE"):
