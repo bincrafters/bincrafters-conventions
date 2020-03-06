@@ -641,6 +641,9 @@ REFERENCES = {
     "msgpack/3.1.1@bincrafters/stable": "msgpack/3.2.1",
     "msgpack/3.2.0@bincrafters/stable": "msgpack/3.2.1",
     "msgpack/3.2.1@bincrafters/stable": "msgpack/3.2.1",
+
+    "getopt/1.0@bincrafters/stable": "getopt-for-visual-studio/20200201",
+    "getopt/2.0@bincrafters/stable": "getopt-for-visual-studio/20200201",
 }
 
 
@@ -698,6 +701,7 @@ def update_c_recipe_references(main, conanfile):
         "operators": "taocpp-operators",
         "sequences": "taocpp-sequences",
         "gettext": "libgettext",
+        "getopt": "getopt-for-visual-studio",
     }
 
     for old_name, new_name in reference_names.items():
