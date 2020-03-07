@@ -21,6 +21,7 @@ from .actions.check_for_required_attributes import check_for_required_attributes
 from .actions.update_a_python_version import update_a_python_version
 from .actions.update_a_path_manipulation import update_a_path_manipulation
 from .actions.update_a_python_environment_variable import update_a_python_environment_variable
+from .actions.update_a_use_package_tools_auto import update_a_use_package_tools_auto
 from .actions.update_a_jobs import update_a_jobs
 from .actions.update_gha import update_gha
 from .actions.update_c_attributes import update_c_delete_author, update_c_topics
@@ -187,6 +188,7 @@ class Command(object):
             update_a_python_environment_variable(self, file),
             update_a_python_version(self, file, python_version_current_appveyor, python_check_for_old_versions),
             update_a_path_manipulation(self, file),
+            update_a_use_package_tools_auto(self, file),
         ]
 
         if self._is_getting_new_compiler_versions("conanfile.py"):
