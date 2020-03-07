@@ -1,5 +1,5 @@
 env:
-  SPLIT_BY_BUILD_TYPES: "true"
+  splitByBuildTypes: "true"
 
 
 # bincrafters-conventions:gha-workflow-version:0

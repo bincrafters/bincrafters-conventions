@@ -49,7 +49,7 @@ python_check_for_old_versions = ["2.7.8", "2.7.10", "2.7.14", "2.7", "3.6", "3.7
 
 
 # Current GitHub Actions Bincrafters workflow versions
-gha_workflow_version = "1"
+gha_workflow_version = "2"
 
 # What MSVC versions are available on which AppVeyor image?
 appveyor_win_msvc_images_compiler_mapping = {'12': '2015', '14': '2015', '15': '2017', '16': '2019'}
