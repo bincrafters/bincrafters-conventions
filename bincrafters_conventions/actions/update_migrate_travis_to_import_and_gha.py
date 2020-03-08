@@ -28,7 +28,7 @@ def update_migrate_travis_to_import_and_gha(main, travis_file, gha_workflow_vers
         os.makedirs(os.path.dirname(workflow_file), exist_ok=True)
         shutil.copy(os.path.join(os.path.dirname(__file__), file_name),
                     workflow_file)
-        main.output_result_update(title="CI: Migrate Linux jobs from Travis to GitHub actions")
+        main.output_result_update(title="CI: Migrate Linux jobs from Travis to GitHub Actions")
 
     # Check if Travis config is already up to date; if so do nothing
     if _contains("import") and not _contains("install"):
