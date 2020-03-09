@@ -171,7 +171,7 @@ class Command(object):
         result = []
 
         result.extend([
-            update_migrate_travis_to_import_and_gha(self, file, gha_workflow_version)
+            update_migrate_travis_to_import_and_gha(self, file)
         ])
 
         return result

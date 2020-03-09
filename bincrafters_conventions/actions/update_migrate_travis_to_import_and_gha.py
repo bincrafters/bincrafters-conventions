@@ -3,7 +3,7 @@ import shutil
 from bincrafters_conventions.actions.update_gha import update_gha
 
 
-def update_migrate_travis_to_import_and_gha(main, travis_file, gha_workflow_version) -> bool:
+def update_migrate_travis_to_import_and_gha(main, travis_file) -> bool:
     def _contains(search_pattern: str) -> bool:
         return main.file_contains(travis_file, search_pattern)
 
@@ -45,6 +45,6 @@ def update_migrate_travis_to_import_and_gha(main, travis_file, gha_workflow_vers
         _create_gha("travis_2_expected_gha.yml")
         _update_travis("travis_3_expected.yml")
 
-    update_gha(main, workflow_file, gha_workflow_version)
+    update_gha(main, workflow_file)
 
     return True
