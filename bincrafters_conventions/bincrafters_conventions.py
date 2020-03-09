@@ -48,10 +48,6 @@ python_version_current_appveyor = "37"
 # for AppVeyor dot zero releases need to be added without dot zero
 python_check_for_old_versions = ["2.7.8", "2.7.10", "2.7.14", "2.7", "3.6", "3.7.0"]  # TODO: Remove this
 
-
-# Current GitHub Actions Bincrafters workflow versions
-gha_workflow_version = "4"
-
 # What MSVC versions are available on which AppVeyor image?
 appveyor_win_msvc_images_compiler_mapping = {'12': '2015', '14': '2015', '15': '2017', '16': '2019'}
 
@@ -214,7 +210,7 @@ class Command(object):
         result = []
 
         result.extend([
-            update_gha(self, gha_file, gha_workflow_version)
+            update_gha(self, gha_file)
         ])
 
         return result

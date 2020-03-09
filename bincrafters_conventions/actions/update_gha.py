@@ -1,28 +1,32 @@
 import os
 
 
-def update_gha(main, file, gha_workflow_version):
+def update_gha(main, file):
     """ This update script updates the GHA script
 
     :param file: CI file path
-    :param gha_workflow_version: Current version (int) of workflow file
     """
 
+    gha_workflow_version = None
     file_content = ""
     tag = "# bincrafters-conventions:gha-workflow-version:"
-    script_start_found = False
+
+    with open(os.path.join(os.path.dirname(__file__), "update_gha.yml")) as ifd:
+        for line in ifd:
+            if line.strip().startswith(tag):
+                gha_workflow_version = line.strip().replace(tag, "")
+                break
 
     with open(file) as ifd:
         for line in ifd:
-            if script_start_found is False:
-                if line.strip().startswith(tag):
-                    workflowVersion = line.strip().replace(tag, "")
-                    if workflowVersion >= gha_workflow_version:
-                        return False
-                    else:
-                        script_start_found = True
+            if line.strip().startswith(tag):
+                workflow_version = line.strip().replace(tag, "")
+                if workflow_version >= gha_workflow_version:
+                    return False
                 else:
-                    file_content += line
+                    break
+            else:
+                file_content += line
 
     basepath = os.path.dirname(__file__)
     with open(os.path.join(basepath, "update_gha.yml")) as fp:
