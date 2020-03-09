@@ -43,10 +43,8 @@ LOGGING_FORMAT = '[%(levelname)s]\t%(asctime)s %(message)s'
 LOGGING_LEVEL = os.getenv("BINCRAFTERS_LOGGING_LEVEL", logging.INFO)
 logging.basicConfig(level=int(LOGGING_LEVEL), format=LOGGING_FORMAT, datefmt='%Y-%m-%d %H:%M:%S')
 
-# Python version for updating files
+# Current Python version for AppVeyor
 python_version_current_appveyor = "37"
-# for AppVeyor dot zero releases need to be added without dot zero
-python_check_for_old_versions = ["2.7.8", "2.7.10", "2.7.14", "2.7", "3.6", "3.7.0"]  # TODO: Remove this
 
 # What MSVC versions are available on which AppVeyor image?
 appveyor_win_msvc_images_compiler_mapping = {'12': '2015', '14': '2015', '15': '2017', '16': '2019'}
@@ -182,7 +180,7 @@ class Command(object):
 
         result = [
             update_a_python_environment_variable(self, file),
-            update_a_python_version(self, file, python_version_current_appveyor, python_check_for_old_versions),
+            update_a_python_version(self, file, python_version_current_appveyor),
             update_a_path_manipulation(self, file),
             update_a_use_package_tools_auto(self, file),
         ]
