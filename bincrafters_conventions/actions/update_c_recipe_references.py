@@ -644,6 +644,8 @@ REFERENCES = {
 
     "getopt/1.0@bincrafters/stable": "getopt-for-visual-studio/20200201",
     "getopt/2.0@bincrafters/stable": "getopt-for-visual-studio/20200201",
+
+    "blaze/3.3@conan/release": "blaze/3.7",
 }
 
 
