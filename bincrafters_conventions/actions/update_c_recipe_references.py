@@ -131,6 +131,7 @@ REFERENCES = {
     "boost_build/4.0.0@bincrafters/testing": "b2/4.1.0",
     "boost_build/4.0.0@bincrafters/stable": "b2/4.1.0",
     "b2/4.0.0": "b2/4.1.0",
+    "b2/4.1.0": "b2/4.2.0",
 
     "lz4/1.8.0@bincrafters/stable": "lz4/1.9.2",
     "lz4/1.8.2@bincrafters/stable": "lz4/1.9.2",
@@ -648,6 +649,8 @@ REFERENCES = {
     "blaze/3.3@conan/release": "blaze/3.7",
 
     "libmodplug/0.8.9.0@bincrafters/stable": "libmodplug/0.8.9.0",
+
+    "flac/1.3.2@bincrafters/stable": "flac/1.3.3",
 }
 
 
