@@ -48,3 +48,43 @@ def update_c_delete_author(main, file):
             fd.write(content)
 
     return updated
+
+
+def update_c_delete_licensemd_export(main, file):
+    """ Remove export of LICENSE.md
+    """
+
+    updated = False
+    content = ""
+
+    complete = ['exports = ["LICENSE.md"]', "exports = ['LICENSE.md']"]
+    incomplete = ['exports = ["LICENSE.md", ', "exports = ['LICENSE.md', ", 'exports = ["LICENSE.md",',
+                  "exports = ['LICENSE.md',"]
+
+    with open(file) as ifd:
+        for line in ifd:
+            updated_line = False
+            if not updated:
+                for pattern in complete:
+                    if line.strip() == pattern:
+                        updated = True
+                        updated_line = True
+                        break
+
+            if not updated:
+                for pattern in incomplete:
+                    if line.strip().startswith(pattern):
+                        content += line.replace(pattern, "exports = [")
+                        updated = True
+                        updated_line = True
+                        break
+
+            if not updated_line:
+                content += line
+
+    if updated:
+        main.output_result_update("Delete export of LICENSE.md file")
+        with open(file, 'w') as fd:
+            fd.write(content)
+
+    return updated

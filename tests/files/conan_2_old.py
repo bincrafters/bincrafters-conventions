@@ -12,7 +12,7 @@ class GrpcConan(ConanFile):
     homepage = "https://github.com/grpc/grpc"
     author = "bincrafters <bincrafters@gmail.com>"
     license = "Apache-2.0"
-    exports = ["LICENSE.md"]
+    exports = ['LICENSE.md', "something.cmake"]
     exports_sources = ["CMakeLists.txt"]
     generators = "cmake"
     short_paths = True  # Otherwise some folders go out of the 260 chars path length scope rapidly (on windows)
