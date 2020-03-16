@@ -651,6 +651,8 @@ REFERENCES = {
     "libmodplug/0.8.9.0@bincrafters/stable": "libmodplug/0.8.9.0",
 
     "flac/1.3.2@bincrafters/stable": "flac/1.3.3",
+
+    "gperf_installer/3.1@conan/stable": "gperf/3.1",
 }
 
 
@@ -709,6 +711,7 @@ def update_c_recipe_references(main, conanfile):
         "sequences": "taocpp-sequences",
         "gettext": "libgettext",
         "getopt": "getopt-for-visual-studio",
+        "gperf_installer": "gperf",
     }
 
     for old_name, new_name in reference_names.items():
