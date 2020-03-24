@@ -60,7 +60,7 @@ compiler_versions_deletion = {'visual': ('12',)}
 openssl_version_matrix = {'1.0.1': {'latest_patch': 'h', 'eol': True},
                           '1.0.2': {'latest_patch': 'u', 'eol': True},
                           '1.1.0': {'latest_patch': 'l', 'eol': True},
-                          '1.1.1': {'latest_patch': 'd', 'eol': False},
+                          '1.1.1': {'latest_patch': 'e', 'eol': False},
                           }
 
 @contextlib.contextmanager
