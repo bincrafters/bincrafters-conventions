@@ -161,6 +161,9 @@ REFERENCES = {
     "yas/7.0.2@bincrafters/stable": "yas/7.0.4",
     "yas/7.0.3@bincrafters/stable": "yas/7.0.4",
 
+    "freetype/2.8.1@bincrafters/stable": "freetype/2.10.1",
+    "freetype/2.9.0@bincrafters/stable": "freetype/2.10.1",
+    "freetype/2.9.1@bincrafters/stable": "freetype/2.10.1",
     "freetype/2.10.0@bincrafters/stable": "freetype/2.10.1",
     "freetype/2.10.0": "freetype/2.10.1",
 
@@ -653,6 +656,16 @@ REFERENCES = {
     "flac/1.3.2@bincrafters/stable": "flac/1.3.3",
 
     "gperf_installer/3.1@conan/stable": "gperf/3.1",
+
+    "libuv/1.15.0@bincrafters/stable": "libuv/1.34.2",
+    "libuv/1.23.2@bincrafters/stable": "libuv/1.34.2",
+    "libuv/1.24.0@bincrafters/stable": "libuv/1.34.2",
+    "libuv/1.25.0@bincrafters/stable": "libuv/1.34.2",
+    "libuv/1.27.0@bincrafters/stable": "libuv/1.34.2",
+    "libuv/1.31.0@bincrafters/stable": "libuv/1.34.2",
+
+    "libpqxx/7.0.0@bincrafters/stable": "libpqxx/7.0.1",
+    "libpqxx/7.0.1@bincrafters/stable": "libpqxx/7.0.1",
 }
 
 
@@ -712,6 +725,7 @@ def update_c_recipe_references(main, conanfile):
         "gettext": "libgettext",
         "getopt": "getopt-for-visual-studio",
         "gperf_installer": "gperf",
+        "pthread-win32": "pthreads4w",
     }
 
     for old_name, new_name in reference_names.items():
