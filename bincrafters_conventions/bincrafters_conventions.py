@@ -9,8 +9,6 @@ import tempfile
 import requests
 import contextlib
 import re
-from conans.client import conan_api
-from conans.errors import ConanException
 from .actions.check_for_spdx_license import check_for_spdx_license
 from .actions.check_for_download_hash import check_for_download_hash
 from .actions.check_for_license import check_for_license
@@ -185,11 +183,10 @@ class Command(object):
             update_a_use_package_tools_auto(self, file),
         ]
 
-        if self._is_getting_new_compiler_versions("conanfile.py"):
-            # Add new compiler versions to CI jobs
-            result.extend([
-                update_a_jobs(self, file, compiler_versions, appveyor_win_msvc_images_compiler_mapping, compiler_versions_deletion)
-            ])
+        # Add new compiler versions to CI jobs
+        result.extend([
+            update_a_jobs(self, file, compiler_versions, appveyor_win_msvc_images_compiler_mapping, compiler_versions_deletion)
+        ])
 
         return result
 
@@ -257,27 +254,6 @@ class Command(object):
            self.file_contains(conanfile, "self.info.header_only()"):
             return True
         return False
-
-    def _is_installer_recipe(self, conanfile):
-        if conanfile and os.path.isfile(conanfile):
-            conan_instance, _, _ = conan_api.Conan.factory()
-            settings = None
-            try:
-                settings = conan_instance.inspect(path=conanfile, attributes=["name"])["name"]
-            except ConanException:
-                pass
-
-            if settings.endswith("_installer"):
-                return True
-
-        return False
-
-    def _is_getting_new_compiler_versions(self, conanfile):
-        if self._is_header_only(conanfile)\
-                or self._is_installer_recipe(conanfile):
-            return False
-
-        return True
 
     def _get_branch_names(self, git_repo):
         """ Retrieve branch names from current git repo
