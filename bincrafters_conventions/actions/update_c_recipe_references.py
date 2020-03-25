@@ -490,6 +490,7 @@ REFERENCES = {
     "cmake_installer/3.16.3@conan/stable": "cmake/3.16.3",
     "cmake/3.16.2": "cmake/3.16.3",
     "cmake/3.16.3": "cmake/3.16.4",
+    "cmake/3.16.4": "cmake/3.16.5",
 
     "opus/1.2.1@bincrafters/stable": "opus/1.3.1",
     "opus/1.3.1@bincrafters/stable": "opus/1.3.1",
@@ -664,8 +665,14 @@ REFERENCES = {
     "libuv/1.27.0@bincrafters/stable": "libuv/1.34.2",
     "libuv/1.31.0@bincrafters/stable": "libuv/1.34.2",
 
-    "libpqxx/7.0.0@bincrafters/stable": "libpqxx/7.0.1",
-    "libpqxx/7.0.1@bincrafters/stable": "libpqxx/7.0.1",
+    "libpqxx/7.0.0@bincrafters/stable": "libpqxx/7.0.5",
+    "libpqxx/7.0.1@bincrafters/stable": "libpqxx/7.0.5",
+    "libpqxx/7.0.1": "libpqxx/7.0.5",
+    "libpqxx/7.0.2": "libpqxx/7.0.5",
+    "libpqxx/7.0.3": "libpqxx/7.0.5",
+    "libpqxx/7.0.4": "libpqxx/7.0.5",
+
+    "m4_installer/1.4.18@bincrafters/stable": "m4/1.4.18",
 }
 
 
@@ -726,6 +733,7 @@ def update_c_recipe_references(main, conanfile):
         "getopt": "getopt-for-visual-studio",
         "gperf_installer": "gperf",
         "pthread-win32": "pthreads4w",
+        "m4_installer": "m4",
     }
 
     for old_name, new_name in reference_names.items():
