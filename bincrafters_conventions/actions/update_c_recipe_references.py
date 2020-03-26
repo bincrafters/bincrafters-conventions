@@ -673,6 +673,10 @@ REFERENCES = {
     "libpqxx/7.0.4": "libpqxx/7.0.5",
 
     "m4_installer/1.4.18@bincrafters/stable": "m4/1.4.18",
+
+    "websocketpp/0.7.0@bincrafters/stable": "websocketpp/0.8.1",
+    "websocketpp/0.8.0@bincrafters/stable": "websocketpp/0.8.1",
+    "websocketpp/0.8.1@bincrafters/stable": "websocketpp/0.8.1",
 }
 
 
