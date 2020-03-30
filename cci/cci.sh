@@ -51,8 +51,8 @@ export PATH="$HOME/.pyenv/bin:$PATH";
 eval "$(pyenv init -)";
 eval "$(pyenv virtualenv-init -)";
 pyenv --version;
-pyenv install 3.7.5;
-pyenv virtualenv 3.7.5 conan;
+pyenv install 3.7.7;
+pyenv virtualenv 3.7.7 conan;
 pyenv rehash;
 pyenv activate conan;
 
