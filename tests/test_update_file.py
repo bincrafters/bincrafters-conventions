@@ -32,6 +32,9 @@ def _compare_file(path_old: str, expected_path: str):
             l1 = f1.readline()
             l2 = f2.readline()
             if l1 != l2:
+                print("Does not match:")
+                print(l1)
+                print(l2)
                 return False
     return True
 
