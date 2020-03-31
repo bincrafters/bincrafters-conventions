@@ -3,6 +3,9 @@ from conans.tools import Version
 from conans.errors import ConanInvalidConfiguration
 import os
 
+# Conanfiles aren't executables, don't add a hashbang
+#!/usr/bin/env python
+
 
 class DoubleConversionConan(ConanFile):
     name = "double-conversion"

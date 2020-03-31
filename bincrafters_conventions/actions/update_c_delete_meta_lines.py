@@ -18,23 +18,27 @@ def update_c_delete_meta_lines(main, file):
 
     for file in [file, test_package]:
         updated = False
-        first_lines_deleted = True
+        first_lines_deleted = False
         content = ""
 
         with open(file) as ifd:
             for line in ifd:
                 delete_line = False
-                for line_pattern in line_deleting:
-                    if line.strip() == line_pattern.strip():
-                        main.output_result_update("Delete meta line: {}".format(line.strip()))
-                        delete_line = True
-                        updated = True
+                if not first_lines_deleted:
+                    for line_pattern in line_deleting:
+                        if line.strip() == line_pattern.strip():
+                            main.output_result_update("Delete meta line: {}".format(line.strip()))
+                            delete_line = True
+                            updated = True
 
-                if first_lines_deleted is True and line.strip() == "":
+                if delete_line:
                     continue
-                elif delete_line is False:
+                elif first_lines_deleted is False and line.strip() == "":
+                    first_lines_deleted = True
+                    continue
+                else:
                     content += line
-                    first_lines_deleted = False
+
 
         if updated:
             with open(file, 'w') as fd:
