@@ -310,17 +310,6 @@ class Command(object):
 
                 commitMsg = "Update Conan conventions\n\n"
                 commitMsg += "Automatically created by bincrafters-conventions {}\n\n".format(__version__)
-                if True not in result_travis and True not in result_conanfile and True not in result_appveyor:
-                    commitMsg += "[skip ci]"
-                else:
-                    if True not in result_travis and True not in result_conanfile:
-                        commitMsg += "[skip travis]"
-                    if True not in result_appveyor and True not in result_conanfile:
-                        commitMsg += "[skip appveyor]"
-                    if True not in result_azp and True not in result_conanfile:
-                        commitMsg += "[skip azp]"
-                    if True not in result_gha and True not in result_conanfile:
-                        commitMsg += "[skip gha]"
 
                 self.output_remote_update("Commit message: {}".format(commitMsg))
 
