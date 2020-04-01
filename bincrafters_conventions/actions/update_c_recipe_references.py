@@ -209,14 +209,15 @@ REFERENCES = {
     "glog/0.3.5@bincrafters/stable": "glog/0.4.0",
     "glog/0.4.0@bincrafters/stable": "glog/0.4.0",
 
-    "meson_installer/0.49.0@bincrafters/stable": "meson/0.53.2",
-    "meson_installer/0.49.2@bincrafters/stable": "meson/0.53.2",
-    "meson_installer/0.50.0@bincrafters/stable": "meson/0.53.2",
-    "meson_installer/0.51.0@bincrafters/stable": "meson/0.53.2",
-    "meson/0.50.0": "meson/0.53.2",
-    "meson/0.52.1": "meson/0.53.2",
-    "meson/0.53.0": "meson/0.53.2",
-    "meson/0.53.1": "meson/0.53.2",
+    "meson_installer/0.49.0@bincrafters/stable": "meson/0.54.0",
+    "meson_installer/0.49.2@bincrafters/stable": "meson/0.54.0",
+    "meson_installer/0.50.0@bincrafters/stable": "meson/0.54.0",
+    "meson_installer/0.51.0@bincrafters/stable": "meson/0.54.0",
+    "meson/0.50.0": "meson/0.54.0",
+    "meson/0.52.1": "meson/0.54.0",
+    "meson/0.53.0": "meson/0.54.0",
+    "meson/0.53.1": "meson/0.54.0",
+    "meson/0.53.2": "meson/0.54.0",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
