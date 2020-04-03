@@ -640,8 +640,8 @@ REFERENCES = {
 
     "geographiclib/1.49.0@bincrafters/stable": "geographiclib/1.50.1",
 
-    # TODO: move installer https://github.com/conan-io/conan-center-index/pull/835
     "gettext/0.20.1@bincrafters/stable": "libgettext/0.20.1",
+    "gettext_installer/0.20.1@bincrafters/stable": "gettext/0.20.1",
 
     "msgpack/3.0.1@bincrafters/stable": "msgpack/3.2.1",
     "msgpack/3.1.1@bincrafters/stable": "msgpack/3.2.1",
@@ -678,6 +678,8 @@ REFERENCES = {
     "websocketpp/0.7.0@bincrafters/stable": "websocketpp/0.8.1",
     "websocketpp/0.8.0@bincrafters/stable": "websocketpp/0.8.1",
     "websocketpp/0.8.1@bincrafters/stable": "websocketpp/0.8.1",
+
+    "folly/2018.11.12.00@bincrafters/stable": "folly/2019.10.21.00",
 }
 
 
@@ -735,6 +737,7 @@ def update_c_recipe_references(main, conanfile):
         "operators": "taocpp-operators",
         "sequences": "taocpp-sequences",
         "gettext": "libgettext",
+        "gettext_installer": "gettext",
         "getopt": "getopt-for-visual-studio",
         "gperf_installer": "gperf",
         "pthread-win32": "pthreads4w",
