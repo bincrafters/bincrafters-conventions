@@ -92,6 +92,8 @@ REFERENCES = {
     "glm/0.9.9.1@g-truc/stable": "glm/0.9.9.6",
     "glm/0.9.9.4@g-truc/stable": "glm/0.9.9.6",
     "glm/0.9.9.5@g-truc/stable": "glm/0.9.9.6",
+    "glm/0.9.9.6": "glm/0.9.9.8",
+    "glm/0.9.9.7": "glm/0.9.9.8",
 
     "gsl_microsoft/2.0.0@bincrafters/stable": "ms-gsl/2.0.0",
 
@@ -680,6 +682,12 @@ REFERENCES = {
     "websocketpp/0.8.1@bincrafters/stable": "websocketpp/0.8.1",
 
     "folly/2018.11.12.00@bincrafters/stable": "folly/2019.10.21.00",
+
+    "rxcpp/4.0.0@bincrafters/stable": "rxcpp/4.1.0",
+    "rxcpp/4.1.0@bincrafters/stable": "rxcpp/4.1.0",
+
+    "spirv-headers/1.3.7@bincrafters/stable": "spirv-headers/1.5.1",
+    "spirv-headers/1.4.1@bincrafters/stable": "spirv-headers/1.5.1",
 }
 
 
