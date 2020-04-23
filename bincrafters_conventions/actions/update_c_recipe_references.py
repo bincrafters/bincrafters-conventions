@@ -680,6 +680,7 @@ REFERENCES = {
     "websocketpp/0.7.0@bincrafters/stable": "websocketpp/0.8.1",
     "websocketpp/0.8.0@bincrafters/stable": "websocketpp/0.8.1",
     "websocketpp/0.8.1@bincrafters/stable": "websocketpp/0.8.1",
+    "websocketpp/0.8.1": "websocketpp/0.8.2",
 
     "folly/2018.11.12.00@bincrafters/stable": "folly/2019.10.21.00",
 
@@ -688,6 +689,8 @@ REFERENCES = {
 
     "spirv-headers/1.3.7@bincrafters/stable": "spirv-headers/1.5.1",
     "spirv-headers/1.4.1@bincrafters/stable": "spirv-headers/1.5.1",
+
+    "tesseract/4.0.0@bincrafters/stable": "tesseract/4.1.1",
 }
 
 
