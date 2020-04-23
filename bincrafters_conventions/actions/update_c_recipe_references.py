@@ -691,6 +691,15 @@ REFERENCES = {
     "spirv-headers/1.4.1@bincrafters/stable": "spirv-headers/1.5.1",
 
     "tesseract/4.0.0@bincrafters/stable": "tesseract/4.1.1",
+
+    "cpprestsdk/2.9.1@bincrafters/stable": "cpprestsdk/2.10.15",
+    "cpprestsdk/2.10.1@bincrafters/stable": "cpprestsdk/2.10.15",
+    "cpprestsdk/2.10.2@bincrafters/stable": "cpprestsdk/2.10.15",
+    "cpprestsdk/2.10.10@bincrafters/stable": "cpprestsdk/2.10.15",
+    "cpprestsdk/2.10.12@bincrafters/stable": "cpprestsdk/2.10.15",
+    "cpprestsdk/2.10.13@bincrafters/stable": "cpprestsdk/2.10.15",
+    "cpprestsdk/2.10.14@bincrafters/stable": "cpprestsdk/2.10.15",
+    "cpprestsdk/2.10.15@bincrafters/stable": "cpprestsdk/2.10.15",
 }
 
 
