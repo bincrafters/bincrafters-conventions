@@ -3,15 +3,15 @@
 # We need 7*24=168 runs per week
 
 schedules:
-  - cron: '0 * * * 1-4'
+  - cron: "0 * * * 1-4"
     displayName: "Hourly build Monday-Thursday"
     branches:
-      include: ['cron']
+      include: ["cron"]
     always: true
-  - cron: '0 * * * 0,5,6'
+  - cron: "0 * * * 0,5,6"
     displayName: "Hourly build Friday-Sunday"
     branches:
-      include: ['cron']
+      include: ["cron"]
     always: true
 
 jobs:
