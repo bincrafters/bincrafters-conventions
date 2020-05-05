@@ -220,6 +220,7 @@ REFERENCES = {
     "meson/0.53.0": "meson/0.54.0",
     "meson/0.53.1": "meson/0.54.0",
     "meson/0.53.2": "meson/0.54.0",
+    "meson/0.54.0": "meson/0.54.1",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -228,6 +229,7 @@ REFERENCES = {
     "libxml2/2.9.3@bincrafters/stable": "libxml2/2.9.9",
     "libxml2/2.9.8@bincrafters/stable": "libxml2/2.9.9",
     "libxml2/2.9.9@bincrafters/stable": "libxml2/2.9.9",
+    "libxml2/2.9.9": "libxml2/2.9.10",
 
     "nghttp2/1.38.0@bincrafters/stable": "libnghttp2/1.39.2",
 
@@ -674,6 +676,7 @@ REFERENCES = {
     "libpqxx/7.0.2": "libpqxx/7.0.5",
     "libpqxx/7.0.3": "libpqxx/7.0.5",
     "libpqxx/7.0.4": "libpqxx/7.0.5",
+    "libpqxx/7.0.5": "libpqxx/7.0.6",
 
     "m4_installer/1.4.18@bincrafters/stable": "m4/1.4.18",
 
@@ -700,6 +703,17 @@ REFERENCES = {
     "cpprestsdk/2.10.13@bincrafters/stable": "cpprestsdk/2.10.15",
     "cpprestsdk/2.10.14@bincrafters/stable": "cpprestsdk/2.10.15",
     "cpprestsdk/2.10.15@bincrafters/stable": "cpprestsdk/2.10.15",
+
+    "bison/3.0.4@bincrafters/stable": "bison/3.5.3",
+    "bison/3.0.5@bincrafters/stable": "bison/3.5.3",
+    "bison/3.3.2@bincrafters/stable": "bison/3.5.3",
+
+    "frozen/20181020@bincrafters/stable": "frozen/1.0.0",
+
+    "libsndfile/1.0.28@bincrafters/stable": "libsndfile/1.0.28",
+
+    "rang/3.0.0@rang/stable": "rang/3.1.0",
+    "rang/3.1.0@rang/stable": "rang/3.1.0",
 }
 
 
@@ -762,6 +776,7 @@ def update_c_recipe_references(main, conanfile):
         "gperf_installer": "gperf",
         "pthread-win32": "pthreads4w",
         "m4_installer": "m4",
+        "bison_installer": "bison",
     }
 
     for old_name, new_name in reference_names.items():
