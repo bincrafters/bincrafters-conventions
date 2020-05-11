@@ -703,6 +703,7 @@ REFERENCES = {
     "cpprestsdk/2.10.13@bincrafters/stable": "cpprestsdk/2.10.15",
     "cpprestsdk/2.10.14@bincrafters/stable": "cpprestsdk/2.10.15",
     "cpprestsdk/2.10.15@bincrafters/stable": "cpprestsdk/2.10.15",
+    "cpprestsdk/2.10.15": "cpprestsdk/2.10.16",
 
     "bison/3.0.4@bincrafters/stable": "bison/3.5.3",
     "bison/3.0.5@bincrafters/stable": "bison/3.5.3",
@@ -714,6 +715,32 @@ REFERENCES = {
 
     "rang/3.0.0@rang/stable": "rang/3.1.0",
     "rang/3.1.0@rang/stable": "rang/3.1.0",
+
+    "CTRE/2.0@ctre@stable": "ctre/2.8.2",
+    "CTRE/2.1@ctre@stable": "ctre/2.8.2",
+    "CTRE/v2.2@ctre@stable": "ctre/2.8.2",
+    "CTRE/v2.3@ctre@stable": "ctre/2.8.2",
+    "CTRE/v2.4@ctre@stable": "ctre/2.8.2",
+    "CTRE/v2.5@ctre@stable": "ctre/2.8.2",
+    "CTRE/v2.5.1@ctre@stable": "ctre/2.8.2",
+    "CTRE/v2.6@ctre@stable": "ctre/2.8.2",
+    "CTRE/v2.6.1@ctre@stable": "ctre/2.8.2",
+    "CTRE/v2.6.2@ctre@stable": "ctre/2.8.2",
+    "CTRE/v2.6.3@ctre@stable": "ctre/2.8.2",
+    "CTRE/v2.6.4@ctre@stable": "ctre/2.8.2",
+    "CTRE/v2.7@ctre@stable": "ctre/2.8.2",
+    "CTRE/v2.8@ctre@stable": "ctre/2.8.2",
+    "CTRE/v2.8.1@ctre@stable": "ctre/2.8.2",
+    "CTRE/v2.8.2@ctre@stable": "ctre/2.8.2",
+
+    "mpc/1.1.0@bincrafters/stable": "mpc/1.1.0",
+
+    "apache-apr/1.5.2@jgsogo/stable": "apr/1.7.0",
+    "apache-apr/1.6.3@jgsogo/stable": "apr/1.7.0",
+
+    "variant/1.3.0@bincrafters/stable": "mpark-variant/1.4.0",
+
+    "libxslt/1.1.33@bincrafters/stable": "libxslt/1.3.34",
 }
 
 
@@ -777,6 +804,9 @@ def update_c_recipe_references(main, conanfile):
         "pthread-win32": "pthreads4w",
         "m4_installer": "m4",
         "bison_installer": "bison",
+        "CTRE": "ctre",
+        "apache-apr": "apr",
+        "variant": "mpark-variant",
     }
 
     for old_name, new_name in reference_names.items():
