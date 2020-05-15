@@ -568,6 +568,7 @@ REFERENCES = {
 
     "openblas/0.2.20@conan/stable": "openblas/0.3.7",
     "openblas/0.3.5@conan/stable": "openblas/0.3.7",
+    "openblas/0.3.7": "openblas/0.3.9",
 
     "libmad/0.15.1b@bincrafters/stable": "libmad/0.15.1b",
 
@@ -677,6 +678,7 @@ REFERENCES = {
     "libpqxx/7.0.3": "libpqxx/7.0.5",
     "libpqxx/7.0.4": "libpqxx/7.0.5",
     "libpqxx/7.0.5": "libpqxx/7.0.6",
+    "libpqxx/7.0.6": "libpqxx/7.0.7",
 
     "m4_installer/1.4.18@bincrafters/stable": "m4/1.4.18",
 
