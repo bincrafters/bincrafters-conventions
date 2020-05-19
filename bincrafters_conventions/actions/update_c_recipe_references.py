@@ -221,6 +221,7 @@ REFERENCES = {
     "meson/0.53.1": "meson/0.54.0",
     "meson/0.53.2": "meson/0.54.0",
     "meson/0.54.0": "meson/0.54.1",
+    "meson/0.54.1": "meson/0.54.2",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -621,7 +622,8 @@ REFERENCES = {
     "stb/20180214@conan/stable": "stb/20200203",
     "stb/20190512@conan/stable": "stb/20200203",
 
-    "abseil/20181200@bincrafters/stable": "abseil/20200205",
+    "abseil/20181200@bincrafters/stable": "abseil/20200225.2",
+    "abseil/20200205": "abseil/20200225.2",
 
     "c-blosc/v1.12.4b8@francescalted/stable": "c-blosc/1.17.1",
     "c-blosc/v1.13.5@francescalted/stable": "c-blosc/1.17.1",
@@ -743,6 +745,13 @@ REFERENCES = {
     "variant/1.3.0@bincrafters/stable": "mpark-variant/1.4.0",
 
     "libxslt/1.1.33@bincrafters/stable": "libxslt/1.3.34",
+
+    "automake/1.16.1": "automake/1.16.2",
+
+    "wt/4.0.3@bincrafters/stable": "wt/4.3.1",
+    "wt/4.0.4@bincrafters/stable": "wt/4.3.1",
+
+    "mpdecimal/2.4.2@bincrafters/stable": "mpdecimal/2.4.2",
 }
 
 
