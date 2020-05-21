@@ -709,9 +709,12 @@ REFERENCES = {
     "cpprestsdk/2.10.15@bincrafters/stable": "cpprestsdk/2.10.15",
     "cpprestsdk/2.10.15": "cpprestsdk/2.10.16",
 
+    # Note that this might produce that bison is added two times (which should be harmless)
     "bison/3.0.4@bincrafters/stable": "bison/3.5.3",
     "bison/3.0.5@bincrafters/stable": "bison/3.5.3",
     "bison/3.3.2@bincrafters/stable": "bison/3.5.3",
+    "bison_installer/3.2.4@bincrafters/stable": "bison/3.5.3",
+    "bison_installer/3.3.2@bincrafters/stable": "bison/3.5.3",
 
     "frozen/20181020@bincrafters/stable": "frozen/1.0.0",
 
@@ -752,6 +755,41 @@ REFERENCES = {
     "wt/4.0.4@bincrafters/stable": "wt/4.3.1",
 
     "mpdecimal/2.4.2@bincrafters/stable": "mpdecimal/2.4.2",
+
+    "winflexbison/2.5.15@bincrafters/stable": "winflexbison/2.5.22",
+    "winflexbison/2.5.16@bincrafters/stable": "winflexbison/2.5.22",
+    "winflexbison/2.5.17@bincrafters/stable": "winflexbison/2.5.22",
+    "winflexbison/2.5.18@bincrafters/stable": "winflexbison/2.5.22",
+    "winflexbison/2.5.20@bincrafters/stable": "winflexbison/2.5.22",
+    "winflexbison/2.5.21@bincrafters/stable": "winflexbison/2.5.22",
+
+    "restinio/0.4.8@bincrafters/stable": "restinio/0.6.8",
+    "restinio/0.4.8.5@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.4.8.6@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.4.9@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.4.9.1@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.5.0@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.5.1@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.5.1.1@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.6.0@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.6.0.1@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.6.1@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.6.1.1@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.6.2@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.6.3@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.6.3.1@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.6.4@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.6.5@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.6.6@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.6.7@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.6.7.1@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.6.8@stiffstream/stable": "restinio/0.6.8",
+
+    "ncurses/6.1@conan/stable": "ncurses/6.2",
+
+    # Note that this might produce that flex is added two times (which should be harmless)
+    "flex/2.6.4@bincrafters/stable": "flex/2.6.4",
+    "flex_installer/2.6.4@bincrafters/stable": "flex/2.6.4",
 }
 
 
