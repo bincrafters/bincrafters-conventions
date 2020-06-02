@@ -45,6 +45,7 @@ REFERENCES = {
 
     "nasm/2.13.01@conan/stable": "nasm/2.13.02",
     "nasm_installer/2.13.02@bincrafters/stable": "nasm/2.13.02",
+    "nasm/2.13.02": "nasm/2.14",
 
     "msys2_installer/latest@bincrafters/stable": "msys2/20190524",
     "msys2_installer/20161025@bincrafters/stable": "msys2/20190524",
@@ -206,6 +207,8 @@ REFERENCES = {
     "libevent/2.1.11@bincrafters/stable": "libevent/2.1.11",
 
     "rapidjson/1.1.0@bincrafters/stable": "rapidjson/1.1.0",
+    "RapidJSON/1.0.2@inexorgame/stable": "rapidjson/1.1.0",
+    "RapidJSON/1.1.0@inexorgame/stable": "rapidjson/1.1.0",
 
     "glog/20181109@bincrafters/stable": "glog/0.4.0",
     "glog/0.3.5@bincrafters/stable": "glog/0.4.0",
@@ -790,6 +793,21 @@ REFERENCES = {
     # Note that this might produce that flex is added two times (which should be harmless)
     "flex/2.6.4@bincrafters/stable": "flex/2.6.4",
     "flex_installer/2.6.4@bincrafters/stable": "flex/2.6.4",
+
+    "kainjow-mustache/3.2.1@bincrafters/stable": "kainjow-mustache/4.1",
+
+    "gdbm/1.18.1@bincrafters/stable": "gdbm/1.18.1",
+
+    "libselinux/2.8@bincrafters/stable": "libselinux/2.9",
+    "libselinux/2.9@bincrafters/stable": "libselinux/2.9",
+
+    "fontconfig/2.13.91@bincrafters/stable": "fontconfig/2.13.91",
+    "fontconfig/2.13.1@bincrafters/stable": "fontconfig/2.13.91",
+
+    "gsoap/2.8.91@bincrafters/stable": "gsoap/2.8.103",
+    "gsoap/2.8.94@bincrafters/stable": "gsoap/2.8.103",
+    "gsoap/2.8.100@bincrafters/stable": "gsoap/2.8.103",
+    "gsoap/2.8.101@bincrafters/stable": "gsoap/2.8.103",
 }
 
 
@@ -856,6 +874,7 @@ def update_c_recipe_references(main, conanfile):
         "CTRE": "ctre",
         "apache-apr": "apr",
         "variant": "mpark-variant",
+        "RapidJSON": "rapidjson",
     }
 
     for old_name, new_name in reference_names.items():
