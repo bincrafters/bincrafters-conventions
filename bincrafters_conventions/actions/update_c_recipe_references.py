@@ -808,6 +808,12 @@ REFERENCES = {
     "gsoap/2.8.94@bincrafters/stable": "gsoap/2.8.103",
     "gsoap/2.8.100@bincrafters/stable": "gsoap/2.8.103",
     "gsoap/2.8.101@bincrafters/stable": "gsoap/2.8.103",
+
+    # Note that this might produce that thrift is added two times (which should be harmless)
+    "thrift/0.12.0@bincrafters/stable": "thrift/0.13.0",
+    "thrift/0.13.0@bincrafters/stable": "thrift/0.13.0",
+    "thrift_installer/0.12.0@bincrafters/stable": "thrift/0.13.0",
+    "thrift_installer/0.13.0@bincrafters/stable": "thrift/0.13.0",
 }
 
 
@@ -875,6 +881,7 @@ def update_c_recipe_references(main, conanfile):
         "apache-apr": "apr",
         "variant": "mpark-variant",
         "RapidJSON": "rapidjson",
+        "thrift_installer": "thrift",
     }
 
     for old_name, new_name in reference_names.items():
