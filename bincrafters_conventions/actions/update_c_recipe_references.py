@@ -197,6 +197,7 @@ REFERENCES = {
 
     "ninja_installer/1.8.2@bincrafters/stable": "ninja/1.9.0",
     "ninja_installer/1.9.0@bincrafters/stable": "ninja/1.9.0",
+    "ninja/1.9.0": "ninja/1.10.0",
 
     "libelf/0.8.13@bincrafters/stable": "libelf/0.8.13",
 
