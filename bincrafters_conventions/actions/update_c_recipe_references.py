@@ -815,6 +815,13 @@ REFERENCES = {
     "thrift/0.13.0@bincrafters/stable": "thrift/0.13.0",
     "thrift_installer/0.12.0@bincrafters/stable": "thrift/0.13.0",
     "thrift_installer/0.13.0@bincrafters/stable": "thrift/0.13.0",
+
+    "doxygen_installer/1.8.13@bincrafters/stable": "doxygen/1.8.17",
+    "doxygen_installer/1.8.15@bincrafters/stable": "doxygen/1.8.17",
+    "doxygen_installer/1.8.16@bincrafters/stable": "doxygen/1.8.17",
+    "doxygen_installer/1.8.17@bincrafters/stable": "doxygen/1.8.17",
+    "doxygen/1.8.13@inexorgame/stable": "doxygen/1.8.17",
+    "doxygen/1.8.14@inexorgame/stable": "doxygen/1.8.17",
 }
 
 
