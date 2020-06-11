@@ -292,6 +292,7 @@ REFERENCES = {
     "mbedtls/2.13.0@bincrafters/stable": "mbedtls-apache/2.16.3",
 
     "json-c/0.13.1@bincrafters/stable": "json-c/0.13.1",
+    "json-c/0.13.1": "json-c/0.13.1",
 
     "fftw/3.3.8@bincrafters/stable": "fftw/3.3.8",
 
@@ -516,6 +517,7 @@ REFERENCES = {
 
     "pixman/0.34.0@bincrafters/stable": "pixman/0.38.4",
     "pixman/0.38.0@bincrafters/stable": "pixman/0.38.4",
+    "pixman/0.38.4": "pixman/0.40.0",
 
     "vorbis/1.3.5@bincrafters/stable": "vorbis/1.3.6",
     "vorbis/1.3.6@bincrafters/stable": "vorbis/1.3.6",
@@ -822,6 +824,12 @@ REFERENCES = {
     "doxygen_installer/1.8.17@bincrafters/stable": "doxygen/1.8.17",
     "doxygen/1.8.13@inexorgame/stable": "doxygen/1.8.17",
     "doxygen/1.8.14@inexorgame/stable": "doxygen/1.8.17",
+
+    "pugixml/1.8.1@bincrafters/stable": "pugixml/1.10",
+    "pugixml/1.9@bincrafters/stable": "pugixml/1.10",
+    "pugixml/1.10@bincrafters/stable": "pugixml/1.10",
+
+    "opengl/virtual@bincrafters/stable": "opengl/system",
 }
 
 
