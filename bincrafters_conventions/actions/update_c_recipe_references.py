@@ -261,6 +261,7 @@ REFERENCES = {
     "jsonformoderncpp/3.7.0": "nlohmann_json/3.7.3",
 
     "xerces-c/3.2.2@bincrafters/stable": "xerces-c/3.2.2",
+    "xerces-c/3.2.2": "xerces-c/3.2.3",
 
     "cccl_installer/1.0@bincrafters/stable": "cccl/1.1",
 
@@ -839,6 +840,15 @@ REFERENCES = {
 
     "swig_installer/4.0.0@bincrafters/stable": "swig/4.0.1",
     "swig_installer/4.0.1@bincrafters/stable": "swig/4.0.1",
+
+    "tsl-robin-map/0.6.1@tessil/stable": "tsl-robin-map/0.6.3",
+    "tsl-robin-map/0.6.2@tessil/stable": "tsl-robin-map/0.6.3",
+    "tsl-robin-map/0.6.3@tessil/stable": "tsl-robin-map/0.6.3",
+
+    "boost-di/1.1.0@inexorgame/stable": "di/1.1.0",
+
+    "magic_enum/0.6.3@neargye/stable": "magic_enum/0.6.6",
+    "magic_enum/0.6.5": "magic_enum/0.6.6",
 }
 
 
@@ -909,6 +919,7 @@ def update_c_recipe_references(main, conanfile):
         "thrift_installer": "thrift",
         "khronos-opencl-headers": "opencl-headers",
         "swig_installer": "swig",
+        "boost-di": "di",
     }
 
     for old_name, new_name in reference_names.items():
