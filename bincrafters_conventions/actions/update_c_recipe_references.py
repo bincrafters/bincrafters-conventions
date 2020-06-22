@@ -830,6 +830,12 @@ REFERENCES = {
     "pugixml/1.10@bincrafters/stable": "pugixml/1.10",
 
     "opengl/virtual@bincrafters/stable": "opengl/system",
+
+    "box2d/2.3.1@conan/stable": "box2d/2.3.1",
+
+    "khronos-opencl-headers/20190412": "opencl-headers/2020.03.13",
+    "khronos-opencl-headers/20190502": "opencl-headers/2020.03.13",
+    "khronos-opencl-headers/20190806": "opencl-headers/2020.03.13",
 }
 
 
@@ -898,6 +904,7 @@ def update_c_recipe_references(main, conanfile):
         "variant": "mpark-variant",
         "RapidJSON": "rapidjson",
         "thrift_installer": "thrift",
+        "khronos-opencl-headers": "opencl-headers",
     }
 
     for old_name, new_name in reference_names.items():
