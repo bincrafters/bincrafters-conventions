@@ -833,9 +833,12 @@ REFERENCES = {
 
     "box2d/2.3.1@conan/stable": "box2d/2.3.1",
 
-    "khronos-opencl-headers/20190412": "opencl-headers/2020.03.13",
-    "khronos-opencl-headers/20190502": "opencl-headers/2020.03.13",
-    "khronos-opencl-headers/20190806": "opencl-headers/2020.03.13",
+    "khronos-opencl-headers/20190412@bincrafters/stable": "opencl-headers/2020.03.13",
+    "khronos-opencl-headers/20190502@bincrafters/stable": "opencl-headers/2020.03.13",
+    "khronos-opencl-headers/20190806@bincrafters/stable": "opencl-headers/2020.03.13",
+
+    "swig_installer/4.0.0@bincrafters/stable": "swig/4.0.1",
+    "swig_installer/4.0.1@bincrafters/stable": "swig/4.0.1",
 }
 
 
@@ -905,6 +908,7 @@ def update_c_recipe_references(main, conanfile):
         "RapidJSON": "rapidjson",
         "thrift_installer": "thrift",
         "khronos-opencl-headers": "opencl-headers",
+        "swig_installer": "swig",
     }
 
     for old_name, new_name in reference_names.items():
