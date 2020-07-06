@@ -126,8 +126,9 @@ REFERENCES = {
     "libwebp/1.0.0@bincrafters/stable": "libwebp/1.0.3",
     "libwebp/1.0.3@bincrafters/stable": "libwebp/1.0.3",
 
-    # TODO: protoc
+    # Note that this might produce that protobuf is added two times (which should be harmless)
     "protobuf/3.9.1@bincrafters/stable": "protobuf/3.9.1",
+    "protoc_installer/3.9.1@bincrafters/stable": "protobuf/3.9.1",
 
     "flatbuffers/1.11.0@google/stable": "flatbuffers/1.11.0",
 
@@ -169,6 +170,7 @@ REFERENCES = {
     "freetype/2.9.1@bincrafters/stable": "freetype/2.10.1",
     "freetype/2.10.0@bincrafters/stable": "freetype/2.10.1",
     "freetype/2.10.0": "freetype/2.10.1",
+    "freetype/2.10.1": "freetype/2.10.2",
 
     "libtiff/4.0.8@bincrafters/stable": "libtiff/4.0.9",
     "libtiff/4.0.9@bincrafters/stable": "libtiff/4.0.9",
@@ -226,6 +228,7 @@ REFERENCES = {
     "meson/0.53.2": "meson/0.54.0",
     "meson/0.54.0": "meson/0.54.1",
     "meson/0.54.1": "meson/0.54.2",
+    "meson/0.54.3": "meson/0.54.3",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -791,6 +794,8 @@ REFERENCES = {
     "restinio/0.6.7@stiffstream/stable": "restinio/0.6.8",
     "restinio/0.6.7.1@stiffstream/stable": "restinio/0.6.8",
     "restinio/0.6.8@stiffstream/stable": "restinio/0.6.8",
+    "restinio/0.6.8.1@stiffstream/stable": "restinio/0.6.8.1",
+    "restinio/0.6.8": "restinio/0.6.8.1",
 
     "ncurses/6.1@conan/stable": "ncurses/6.2",
 
@@ -825,6 +830,7 @@ REFERENCES = {
     "doxygen_installer/1.8.17@bincrafters/stable": "doxygen/1.8.17",
     "doxygen/1.8.13@inexorgame/stable": "doxygen/1.8.17",
     "doxygen/1.8.14@inexorgame/stable": "doxygen/1.8.17",
+    "doxygen/1.8.17@inexorgame/stable": "doxygen/1.8.18",
 
     "pugixml/1.8.1@bincrafters/stable": "pugixml/1.10",
     "pugixml/1.9@bincrafters/stable": "pugixml/1.10",
@@ -849,6 +855,26 @@ REFERENCES = {
 
     "magic_enum/0.6.3@neargye/stable": "magic_enum/0.6.6",
     "magic_enum/0.6.5": "magic_enum/0.6.6",
+
+    "ragel_installer/6.10@bincrafters/stable": "ragel/6.10",
+
+    "glfw/3.2.1@bincrafters/stable": "glfw/3.3.2",
+    "glfw/3.2.1.20180327@bincrafters/stable": "glfw/3.3.2",
+    "glfw/3.3@bincrafters/stable": "glfw/3.3.2",
+    "glfw/3.3.1@bincrafters/stable": "glfw/3.3.2",
+    "glfw/3.3.2@bincrafters/stable": "glfw/3.3.2",
+
+    "glib/2.56.1@bincrafters/stable": "glib/2.65.0",
+    "glib/2.57.1@bincrafters/stable": "glib/2.65.0",
+    "glib/2.58.3@bincrafters/stable": "glib/2.65.0",
+    "glib/2.63.3@bincrafters/stable": "glib/2.65.0",
+    "glib/2.63.6@bincrafters/stable": "glib/2.65.0",
+    "glib/2.64.0@bincrafters/stable": "glib/2.65.0",
+
+    "cpp-taskflow/2.2.0": "taskflow/2.2.0",
+    "cpp-taskflow/2.4.0": "taskflow/2.4.0",
+
+    "parallelstl/20181004@conan/stable": "onedpl/20200330",
 }
 
 
@@ -920,6 +946,10 @@ def update_c_recipe_references(main, conanfile):
         "khronos-opencl-headers": "opencl-headers",
         "swig_installer": "swig",
         "boost-di": "di",
+        "ragel_installer": "ragel",
+        "protoc_installer": "protobuf",
+        "cpp-taskflow": "taskflow",
+        "parallelstl": "onedpl",
     }
 
     for old_name, new_name in reference_names.items():
