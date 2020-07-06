@@ -1,15 +1,10 @@
-# We need to split the cron jobs, 
-# as a single cron job is only allowed to cause 100 runs per week
+# We should not need to split the cron jobs, 
+# as a single cron job is allowed to cause 1000 runs per week
 # We need 7*24=168 runs per week
 
 schedules:
-  - cron: "0 * * * 1-4"
+  - cron: "0 * * * *"
     displayName: "Hourly build Monday-Thursday"
-    branches:
-      include: ["cron"]
-    always: true
-  - cron: "0 * * * 0,5,6"
-    displayName: "Hourly build Friday-Sunday"
     branches:
       include: ["cron"]
     always: true
