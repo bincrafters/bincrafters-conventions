@@ -115,6 +115,7 @@ REFERENCES = {
     "catch2/2.5.0@bincrafters/stable": "catch2/2.11.0",
     "catch2/2.9.2": "catch2/2.11.0",
     "catch2/2.11.0": "catch2/2.11.1",
+    "catch2/2.11.1": "catch2/2.11.3",
 
     "libwebp/1.0.0@bincrafters/stable": "libwebp/1.0.3",
     "libwebp/1.0.3@bincrafters/stable": "libwebp/1.0.3",
@@ -573,6 +574,7 @@ REFERENCES = {
     "openblas/0.2.20@conan/stable": "openblas/0.3.7",
     "openblas/0.3.5@conan/stable": "openblas/0.3.7",
     "openblas/0.3.7": "openblas/0.3.9",
+    "openblas/0.3.9": "openblas/0.3.10",
 
     "libmad/0.15.1b@bincrafters/stable": "libmad/0.15.1b",
 
@@ -823,7 +825,7 @@ REFERENCES = {
     "doxygen_installer/1.8.17@bincrafters/stable": "doxygen/1.8.17",
     "doxygen/1.8.13@inexorgame/stable": "doxygen/1.8.17",
     "doxygen/1.8.14@inexorgame/stable": "doxygen/1.8.17",
-    "doxygen/1.8.17@inexorgame/stable": "doxygen/1.8.18",
+    "doxygen/1.8.17": "doxygen/1.8.18",
 
     "pugixml/1.8.1@bincrafters/stable": "pugixml/1.10",
     "pugixml/1.9@bincrafters/stable": "pugixml/1.10",
