@@ -877,6 +877,9 @@ REFERENCES = {
     "cpp-taskflow/2.4.0": "taskflow/2.4.0",
 
     "parallelstl/20181004@conan/stable": "onedpl/20200330",
+
+    "greatest/1.3.1@bincrafters/stable": "greatest/1.4.2",
+    "greatest/1.4.0@bincrafters/stable": "greatest/1.4.2",
 }
 
 
