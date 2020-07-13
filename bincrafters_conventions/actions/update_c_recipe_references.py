@@ -3,10 +3,8 @@ import os
 
 # noinspection SpellCheckingInspection
 REFERENCES = {
-    # Let's eliminate master/latest versions...
     "depot_tools_installer/master@bincrafters/stable": "depot_tools_installer/20190909@bincrafters/stable",
 
-    # CCI adoptions...
     "zlib/1.2.8@conan/stable": "zlib/1.2.11",
     "zlib/1.2.9@conan/stable": "zlib/1.2.11",
     "zlib/1.2.11@conan/stable": "zlib/1.2.11",
@@ -880,6 +878,15 @@ REFERENCES = {
 
     "greatest/1.3.1@bincrafters/stable": "greatest/1.4.2",
     "greatest/1.4.0@bincrafters/stable": "greatest/1.4.2",
+
+    "fribidi/1.0.5@bincrafters/stable": "fribidi/1.0.9",
+
+    "harfbuzz/2.3.0@bincrafters/stable": "harfbuzz/2.6.8",
+    "harfbuzz/2.4.0@bincrafters/stable": "harfbuzz/2.6.8",
+    "harfbuzz/2.6.1@bincrafters/stable": "harfbuzz/2.6.8",
+    "harfbuzz/2.6.2@bincrafters/stable": "harfbuzz/2.6.8",
+    "harfbuzz/2.6.4@bincrafters/stable": "harfbuzz/2.6.8",
+    "harfbuzz/2.6.7@bincrafters/stable": "harfbuzz/2.6.8",
 }
 
 
