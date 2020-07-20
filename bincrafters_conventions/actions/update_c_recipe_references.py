@@ -200,6 +200,7 @@ REFERENCES = {
     "libevent/2.1.8@bincrafters/stable": "libevent/2.1.11",
     "libevent/2.1.10@bincrafters/stable": "libevent/2.1.11",
     "libevent/2.1.11@bincrafters/stable": "libevent/2.1.11",
+    "libevent/2.1.11": "libevent/2.1.12",
 
     "rapidjson/1.1.0@bincrafters/stable": "rapidjson/1.1.0",
     "RapidJSON/1.0.2@inexorgame/stable": "rapidjson/1.1.0",
@@ -221,6 +222,7 @@ REFERENCES = {
     "meson/0.54.0": "meson/0.54.1",
     "meson/0.54.1": "meson/0.54.2",
     "meson/0.54.3": "meson/0.54.3",
+    "meson/0.54.3": "meson/0.55.0",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -887,6 +889,8 @@ REFERENCES = {
     "harfbuzz/2.6.2@bincrafters/stable": "harfbuzz/2.6.8",
     "harfbuzz/2.6.4@bincrafters/stable": "harfbuzz/2.6.8",
     "harfbuzz/2.6.7@bincrafters/stable": "harfbuzz/2.6.8",
+
+    "libepoxy/1.5.4@bincrafters/stable": "libepoxy/1.5.4",
 }
 
 
