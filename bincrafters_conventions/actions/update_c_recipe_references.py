@@ -768,6 +768,7 @@ REFERENCES = {
     "winflexbison/2.5.20@bincrafters/stable": "winflexbison/2.5.22",
     "winflexbison/2.5.21@bincrafters/stable": "winflexbison/2.5.22",
 
+    "restinio/0.6.0.1@inexorgame/testing": "restinio/0.6.8",
     "restinio/0.4.8@bincrafters/stable": "restinio/0.6.8",
     "restinio/0.4.8.5@stiffstream/stable": "restinio/0.6.8",
     "restinio/0.4.8.6@stiffstream/stable": "restinio/0.6.8",
@@ -891,6 +892,8 @@ REFERENCES = {
     "harfbuzz/2.6.7@bincrafters/stable": "harfbuzz/2.6.8",
 
     "libepoxy/1.5.4@bincrafters/stable": "libepoxy/1.5.4",
+
+    "cxxopts/v2.1.2@inexorgame/stable": "cxxopts/2.2.0",
 }
 
 
