@@ -1,0 +1,15 @@
+on:
+  schedule:
+    - cron:  '*/15 * * * *'
+  push:
+    branches:
+      - cron
+jobs:
+  update_from_upstream:
+    runs-on:  ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: run
+        run: |
+          chmod +x ./cci/update_from_upstream.sh
+          source ./cci/update_from_upstream.sh

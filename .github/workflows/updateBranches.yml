@@ -1,0 +1,19 @@
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+  push:
+    branches:
+      - cron
+jobs:
+  update_from_upstream:
+    runs-on:  ubuntu-latest
+    steps:
+      - name: install
+        run: |
+          git config --global user.email "bincrafters@gmail.com"
+          git config --global user.name "bincrafters-user"
+          pip install --quiet bincrafters-conventions
+          conan user  # initialize Conan registry file
+      - name: run
+        run: |
+          incrafters-conventions --remote bincrafters --remote-max-repos ${CRON_REMOTE_MAX_REPOS} --remote-token="${GITHUB_USERNAME}:${GITHUB_TOKEN}";
