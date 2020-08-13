@@ -865,14 +865,13 @@ REFERENCES = {
     "glib/2.58.3@bincrafters/stable": "glib/2.64.0@bincrafters/stable",
     "glib/2.63.3@bincrafters/stable": "glib/2.64.0@bincrafters/stable",
     "glib/2.63.6@bincrafters/stable": "glib/2.64.0@bincrafters/stable",
-    # FIXME: Wait until https://github.com/conan-io/conan-center-index/pull/1013 is merged
-    # FIXME: and glib supports Windows
-    # "glib/2.56.1@bincrafters/stable": "glib/2.65.0",
-    # "glib/2.57.1@bincrafters/stable": "glib/2.65.0",
-    # "glib/2.58.3@bincrafters/stable": "glib/2.65.0",
-    # "glib/2.63.3@bincrafters/stable": "glib/2.65.0",
-    # "glib/2.63.6@bincrafters/stable": "glib/2.65.0",
-    # "glib/2.64.0@bincrafters/stable": "glib/2.65.0",
+    "glib/2.56.1@bincrafters/stable": "glib/2.65.0",
+    "glib/2.57.1@bincrafters/stable": "glib/2.65.0",
+    "glib/2.58.3@bincrafters/stable": "glib/2.65.0",
+    "glib/2.63.3@bincrafters/stable": "glib/2.65.0",
+    "glib/2.63.6@bincrafters/stable": "glib/2.65.0",
+    "glib/2.64.0@bincrafters/stable": "glib/2.65.0",
+    "glib/2.65.0": "glib/2.65.1",
 
     "cpp-taskflow/2.2.0": "taskflow/2.2.0",
     "cpp-taskflow/2.4.0": "taskflow/2.4.0",
