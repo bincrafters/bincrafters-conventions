@@ -4,6 +4,10 @@ import os
 # noinspection SpellCheckingInspection
 REFERENCES = {
     "depot_tools_installer/master@bincrafters/stable": "depot_tools_installer/20190909@bincrafters/stable",
+    "depot_tools_installer/20190909@bincrafters/stable": "depot_tools/20200407",
+    "depot_tools_installer/20200207@bincrafters/stable": "depot_tools/20200407",
+    # TODO: Enable this, when we have a newer version in CCI, so we don't downgrade
+    # "depot_tools_installer/20200515@bincrafters/stable": "depot_tools/20200407",
 
     "zlib/1.2.8@conan/stable": "zlib/1.2.11",
     "zlib/1.2.9@conan/stable": "zlib/1.2.11",
@@ -893,6 +897,15 @@ REFERENCES = {
     "libepoxy/1.5.4@bincrafters/stable": "libepoxy/1.5.4",
 
     "cxxopts/v2.1.2@inexorgame/stable": "cxxopts/2.2.0",
+
+    # TODO: https://github.com/conan-io/conan-center-index/pull/2498#pullrequestreview-468672977
+    # "cunit/2.1-3@bincrafters/stable": "cunit/2.1.3",
+
+    "xkbcommon/0.8.2@bincrafters/stable": "xkbcommon/0.10.0",
+    "xkbcommon/0.8.3@bincrafters/stable": "xkbcommon/0.10.0",
+    "xkbcommon/0.8.4@bincrafters/stable": "xkbcommon/0.10.0",
+    "xkbcommon/0.9.1@bincrafters/stable": "xkbcommon/0.10.0",
+    "xkbcommon/0.10.0@bincrafters/stable": "xkbcommon/0.10.0",
 }
 
 
@@ -968,6 +981,7 @@ def update_c_recipe_references(main, conanfile):
         "protoc_installer": "protobuf",
         "cpp-taskflow": "taskflow",
         "parallelstl": "onedpl",
+        "depot_tools_installer": "depot_tools",
     }
 
     for old_name, new_name in reference_names.items():
