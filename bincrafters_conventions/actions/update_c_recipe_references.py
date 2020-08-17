@@ -44,8 +44,9 @@ REFERENCES = {
 
     "msys2_installer/latest@bincrafters/stable": "msys2/20190524",
     "msys2_installer/20161025@bincrafters/stable": "msys2/20190524",
-    # This seems to be deconstructive in some cases, see https://github.com/conan-io/conan-center-index/pull/838
-    # "msys2/20161025": "msys2/20190524",
+    "msys2/20161025": "msys2/20190524",
+    # TODO: Good idea?
+    # "msys2/20190524": "msys2/20200517",
 
     "libjpeg/9b@bincrafters/stable": "libjpeg/9d",
     "libjpeg/9c@bincrafters/stable": "libjpeg/9d",
@@ -906,6 +907,30 @@ REFERENCES = {
     "xkbcommon/0.8.4@bincrafters/stable": "xkbcommon/0.10.0",
     "xkbcommon/0.9.1@bincrafters/stable": "xkbcommon/0.10.0",
     "xkbcommon/0.10.0@bincrafters/stable": "xkbcommon/0.10.0",
+
+    "libyaml/0.2.2@bincrafters/stable": "libyaml/0.2.5",
+
+    "cli11/1.3.0@bincrafters/stable": "cli11/1.9.1",
+    "cli11/1.4.0@bincrafters/stable": "cli11/1.9.1",
+    "cli11/1.5.3@bincrafters/stable": "cli11/1.9.1",
+    "cli11/1.6.0@bincrafters/stable": "cli11/1.9.1",
+    "cli11/1.6.1@bincrafters/stable": "cli11/1.9.1",
+    "CLI11/1.4.0@cliutils/stable": "cli11/1.9.1",
+    "CLI11/1.5.0@cliutils/stable": "cli11/1.9.1",
+    "CLI11/1.5.1@cliutils/stable": "cli11/1.9.1",
+    "CLI11/1.5.2@cliutils/stable": "cli11/1.9.1",
+    "CLI11/1.5.3@cliutils/stable": "cli11/1.9.1",
+    "CLI11/1.5.4@cliutils/stable": "cli11/1.9.1",
+    "CLI11/1.6.0@cliutils/stable": "cli11/1.9.1",
+    "CLI11/1.6.1@cliutils/stable": "cli11/1.9.1",
+    "CLI11/1.6.2@cliutils/stable": "cli11/1.9.1",
+    "CLI11/1.7.0@cliutils/stable": "cli11/1.9.1",
+    "CLI11/1.7.1@cliutils/stable": "cli11/1.9.1",
+    "CLI11/1.8.0@cliutils/stable": "cli11/1.9.1",
+    "CLI11/1.9.0@cliutils/stable": "cli11/1.9.1",
+    "CLI11/1.9.1@cliutils/stable": "cli11/1.9.1",
+
+    "glew/2.1.0@bincrafters/stable": "glew/2.1.0",
 }
 
 
@@ -982,6 +1007,7 @@ def update_c_recipe_references(main, conanfile):
         "cpp-taskflow": "taskflow",
         "parallelstl": "onedpl",
         "depot_tools_installer": "depot_tools",
+        "CLI11": "cli11",
     }
 
     for old_name, new_name in reference_names.items():
