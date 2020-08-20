@@ -321,6 +321,7 @@ REFERENCES = {
     "snappy/1.1.7@bincrafters/stable": "snappy/1.1.7",
 
     "docopt/0.6.2@conan/stable": "docopt.cpp/0.6.2",
+    "docopt.cpp/0.6.2": "docopt.cpp/0.6.3",
 
     "libsodium/1.0.15@bincrafters/stable": "libsodium/1.0.18",
     "libsodium/1.0.16@bincrafters/stable": "libsodium/1.0.18",
@@ -796,7 +797,9 @@ REFERENCES = {
     "restinio/0.6.7.1@stiffstream/stable": "restinio/0.6.8",
     "restinio/0.6.8@stiffstream/stable": "restinio/0.6.8",
     "restinio/0.6.8.1@stiffstream/stable": "restinio/0.6.8.1",
+    "restinio/0.6.9@stiffstream/stable": "restinio/0.6.9",
     "restinio/0.6.8": "restinio/0.6.8.1",
+    "restinio/0.6.8.1": "restinio/0.6.9",
 
     "ncurses/6.1@conan/stable": "ncurses/6.2",
 
