@@ -74,6 +74,7 @@ REFERENCES = {
 
     "libjpeg-turbo/2.0.2@bincrafters/stable": "libjpeg-turbo/2.0.2",
     "libjpeg-turbo/2.0.2": "libjpeg-turbo/2.0.4",
+    "libjpeg-turbo/2.0.4": "libjpeg-turbo/2.0.5",
 
     "libpng/1.6.32@bincrafters/stable": "libpng/1.6.37",
     "libpng/1.6.34@bincrafters/stable": "libpng/1.6.37",
@@ -525,6 +526,7 @@ REFERENCES = {
 
     "vorbis/1.3.5@bincrafters/stable": "vorbis/1.3.6",
     "vorbis/1.3.6@bincrafters/stable": "vorbis/1.3.6",
+    "vorbis/1.3.6": "vorbis/1.3.7",
 
     "nettle/3.4@bincrafters/stable": "nettle/3.5",
     "nettle/3.4.1@bincrafters/stable": "nettle/3.5",
@@ -798,8 +800,10 @@ REFERENCES = {
     "restinio/0.6.8@stiffstream/stable": "restinio/0.6.8",
     "restinio/0.6.8.1@stiffstream/stable": "restinio/0.6.8.1",
     "restinio/0.6.9@stiffstream/stable": "restinio/0.6.9",
+    "restinio/0.6.10@stiffstream/stable": "restinio/0.6.10",
     "restinio/0.6.8": "restinio/0.6.8.1",
     "restinio/0.6.8.1": "restinio/0.6.9",
+    "restinio/0.6.9": "restinio/0.6.10",
 
     "ncurses/6.1@conan/stable": "ncurses/6.2",
 
@@ -934,6 +938,10 @@ REFERENCES = {
     "CLI11/1.9.1@cliutils/stable": "cli11/1.9.1",
 
     "glew/2.1.0@bincrafters/stable": "glew/2.1.0",
+
+    "libuvc/0.0.6@bincrafters/stable": "libuvc/0.0.6",
+
+    "benchmark/1.5.0": "benchmark/1.5.1",
 }
 
 
