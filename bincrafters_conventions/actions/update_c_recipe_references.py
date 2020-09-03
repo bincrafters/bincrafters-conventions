@@ -307,6 +307,7 @@ REFERENCES = {
     "log4cplus/2.0.1@bincrafters/stable": "log4cplus/2.0.4",
     "log4cplus/2.0.2@bincrafters/stable": "log4cplus/2.0.4",
     "log4cplus/2.0.4@bincrafters/stable": "log4cplus/2.0.4",
+    "log4cplus/2.0.4": "log4cplus/2.0.5",
 
     "openexr/2.3.0@conan/stable": "openexr/2.3.0",
 
@@ -942,6 +943,9 @@ REFERENCES = {
     "libuvc/0.0.6@bincrafters/stable": "libuvc/0.0.6",
 
     "benchmark/1.5.0": "benchmark/1.5.1",
+
+    "libpcap/1.8.1@bincrafters/stable": "libpcap/1.9.1",
+    "libpcap/1.9.1@bincrafters/stable": "libpcap/1.9.1",
 }
 
 
