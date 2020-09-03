@@ -3,7 +3,7 @@
 set -e
 
 git remote rm origin
-git remote add origin https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/bincrafters/conan-center-index.git
+git remote add origin https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/${APPVEYOR_REPO_NAME}.git
 
 git fetch origin master
 git fetch origin ${APPVEYOR_REPO_BRANCH}
