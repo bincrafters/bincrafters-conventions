@@ -14,7 +14,7 @@ def update_c_H048_minimum_cmake_version_required(main, file):
 
     for version in old_versions:
         if main.replace_in_file(cmake_file, version, new_version):
-            main.output_result_update(title="H048: Update CMake required version in test_pacakge to 3.1")
+            main.output_result_update(title="H048: Update CMake required version in test_package to 3.1")
             return True
 
     return False
