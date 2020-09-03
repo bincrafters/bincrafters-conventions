@@ -29,6 +29,9 @@ def update_c_deprecated_attributes(main, file):
 
                     "def configure_cmake": "def _configure_cmake",
                     "self.configure_cmake": "self._configure_cmake",
+
+                    "self.requires.add": "self.requires",
+                    "self.build_requires.add": "self.build_requires",
                     }
 
     updated = False
