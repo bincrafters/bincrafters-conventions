@@ -23,6 +23,7 @@ from .actions.update_a_use_package_tools_auto import update_a_use_package_tools_
 from .actions.update_a_jobs import update_a_jobs
 from .actions.update_gha import update_gha
 from .actions.update_c_attributes import update_c_delete_author, update_c_topics, update_c_delete_licensemd_export
+from .actions.update_c_H048_minimum_cmake_version_required import update_c_H048_minimum_cmake_version_required
 from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
 from .actions.update_c_default_options_to_dict import update_c_default_options_to_dict
@@ -344,7 +345,8 @@ class Command(object):
                 update_c_topics(self, conanfile),
                 update_c_recipe_references(self, conanfile),
                 update_c_remove_compiler_cppstd(self, conanfile),
-                update_c_delete_licensemd_export(self, conanfile)
+                update_c_delete_licensemd_export(self, conanfile),
+                update_c_H048_minimum_cmake_version_required(self, conanfile)
                 ]
 
     def _update_readme(self, readme):
