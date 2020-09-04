@@ -44,17 +44,7 @@ echo ${recipename}
 echo ${recipepath}
 cd ${recipepath}
 
-# Install & configuration
-unset PYENV_ROOT;
-curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash;
-export PATH="$HOME/.pyenv/bin:$PATH";
-eval "$(pyenv init -)";
-eval "$(pyenv virtualenv-init -)";
-pyenv --version;
-pyenv install 3.7.7;
-pyenv virtualenv 3.7.7 conan;
-pyenv rehash;
-pyenv activate conan;
+source $HOME/venv3.7/bin/activate
 
 python --version
 pip --version
