@@ -6,6 +6,13 @@ git remote rm origin
 git remote add origin https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/${APPVEYOR_REPO_NAME}.git
 
 git fetch origin master
+git checkout --track origin/master
+git pull https://github.com/conan-io/conan-center-index master
+git push -f origin master:master
+
+# Delete all merged branches in our fork 
+git branch -r --merged master | grep -v master | sed 's/origin\///' | xargs -r -n 1 git push --delete origin
+
 git fetch origin ${APPVEYOR_REPO_BRANCH}
 git checkout ${APPVEYOR_REPO_BRANCH}
 git push --set-upstream origin ${APPVEYOR_REPO_BRANCH}
