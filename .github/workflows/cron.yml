@@ -1,0 +1,43 @@
+# We want to run this at least every full hour
+# but also on every push on master
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "0 * * * *"
+
+
+jobs:
+  update-cci-fork:
+    name: "Update CCI fork"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v1
+      with:
+        python-version: "3.8"
+    - name: "Update CCI fork with upstream changes"
+      env:
+        GIT_GITHUB_USERNAME: ${{ secrets.GIT_GITHUB_USERNAME }}
+        GIT_GITHUB_TOKEN: ${{ secrets.GIT_GITHUB_TOKEN }}
+      run: |
+        chmod +x ./cci/update_from_upstream.sh
+        source ./cci/update_from_upstream.sh
+  run-conventions-for-bincrafters:
+    name: "Run Conventions for Bincrafters"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/setup-python@v1
+      with:
+        python-version: "3.8"
+    - name: "Run Conventions"
+      env:
+        GIT_GITHUB_USERNAME: ${{ secrets.GIT_GITHUB_USERNAME }}
+        GIT_GITHUB_TOKEN: ${{ secrets.GIT_GITHUB_TOKEN }}
+      run: |
+        git config --global user.email "bincrafters@gmail.com"
+        git config --global user.name "bincrafters-user"
+        pip install --quiet bincrafters-conventions
+        conan user
+        bincrafters-conventions --remote bincrafters --remote-max-repos 1 --remote-token="${GIT_GITHUB_USERNAME}:${GIT_GITHUB_TOKEN}";
