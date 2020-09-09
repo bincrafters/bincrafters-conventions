@@ -24,7 +24,7 @@ from .actions.update_a_jobs import update_a_jobs
 from .actions.update_gha import update_gha
 from .actions.update_c_attributes import update_c_delete_author, update_c_topics, update_c_delete_licensemd_export
 from .actions.update_c_H046_no_verbose_cmake_file import update_c_H046_no_verbose_cmake_file
-from .actions.update_c_H048_minimum_cmake_version_required import update_c_H048_minimum_cmake_version_required
+from .actions.update_c_minimum_cmake_version_required import *
 from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
 from .actions.update_c_default_options_to_dict import update_c_default_options_to_dict
@@ -349,6 +349,7 @@ class Command(object):
                 update_c_delete_licensemd_export(self, conanfile),
                 update_c_H046_no_verbose_cmake_file(self, conanfile),
                 update_c_H048_minimum_cmake_version_required(self, conanfile),
+                update_c_H049_minimum_cmake_version_required(self, conanfile),
                 ]
 
     def _update_readme(self, readme):
