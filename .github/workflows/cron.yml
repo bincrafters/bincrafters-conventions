@@ -10,8 +10,22 @@ on:
 
 
 jobs:
+  update-cci-fork:
+    name: "Update CCI fork"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/setup-python@v1
+      with:
+        python-version: "3.8"
+    - name: "Update CCI fork with upstream changes"
+      env:
+        GIT_GITHUB_USERNAME: ${{ secrets.GIT_GITHUB_USERNAME }}
+        GIT_GITHUB_TOKEN: ${{ secrets.GIT_GITHUB_TOKEN }}
+      run: |
+        chmod +x ./cci/update_from_upstream.sh
+        source ./cci/update_from_upstream.sh
   run-conventions-for-bincrafters:
-    name: "Run Conventions for Bincrafters' recipes"
+    name: "Run Conventions for Bincrafters"
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/setup-python@v1
