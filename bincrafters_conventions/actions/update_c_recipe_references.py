@@ -952,6 +952,8 @@ REFERENCES = {
 
     "nng/1.3.0": "ngg/1.3.2",
     "nng/1.3.1": "ngg/1.3.2",
+
+    "lief/0.9.0@bincrafters/stable": "lief/0.10.1",
 }
 
 

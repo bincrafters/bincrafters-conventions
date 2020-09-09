@@ -7,6 +7,7 @@ def update_c_H048_minimum_cmake_version_required(main, file):
     cmake_file = os.path.join(os.path.dirname(file), "test_package", "CMakeLists.txt")
     old_versions = (
         "cmake_minimum_required(VERSION 2.8)",
+        "cmake_minimum_required(VERSION 2.8.0)",
         "cmake_minimum_required(VERSION 2.8.1)",
         "cmake_minimum_required(VERSION 2.8.11)",
         "cmake_minimum_required(VERSION 2.8.12)",
@@ -38,6 +39,7 @@ def update_c_H049_minimum_cmake_version_required(main, file):
 
     old_versions = (
         "cmake_minimum_required(VERSION 2.8)",
+        "cmake_minimum_required(VERSION 2.8.0)",
         "cmake_minimum_required(VERSION 2.8.1)",
         "cmake_minimum_required(VERSION 2.8.11)",
         "cmake_minimum_required(VERSION 2.8.12)",
