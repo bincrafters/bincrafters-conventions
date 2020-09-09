@@ -229,6 +229,7 @@ REFERENCES = {
     "meson/0.54.1": "meson/0.54.2",
     "meson/0.54.3": "meson/0.54.3",
     "meson/0.54.3": "meson/0.55.0",
+    "meson/0.55.0": "meson/0.55.1",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -245,6 +246,8 @@ REFERENCES = {
     "spdlog/1.4.2@bincrafters/stable": "spdlog/1.4.2",
 
     "jasper/2.0.14@conan/stable": "jasper/2.0.14",
+    "jasper/2.0.14": "jasper/2.0.19",
+    "jasper/2.0.16": "jasper/2.0.19",
 
     "libalsa/1.1.5@conan/stable": "libalsa/1.1.9",
     "libalsa/1.1.9@conan/stable": "libalsa/1.1.9",
@@ -946,6 +949,9 @@ REFERENCES = {
 
     "libpcap/1.8.1@bincrafters/stable": "libpcap/1.9.1",
     "libpcap/1.9.1@bincrafters/stable": "libpcap/1.9.1",
+
+    "nng/1.3.0": "ngg/1.3.2",
+    "nng/1.3.1": "ngg/1.3.2",
 }
 
 
