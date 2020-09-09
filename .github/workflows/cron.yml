@@ -19,6 +19,7 @@ jobs:
       env:
         GIT_GITHUB_USERNAME: ${{ secrets.GIT_GITHUB_USERNAME }}
         GIT_GITHUB_TOKEN: ${{ secrets.GIT_GITHUB_TOKEN }}
+        GIT_GITHUB_FORK_ACCOUNT: "bincrafters"
       run: |
         chmod +x ./cci/update_from_upstream.sh
         source ./cci/update_from_upstream.sh
