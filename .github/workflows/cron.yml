@@ -26,7 +26,7 @@ jobs:
   run-conventions-for-bincrafters:
     name: "Run Conventions for Bincrafters"
     runs-on: ubuntu-20.04
-    if: github.event_name != 'push'
+    if: github.event_name != 'push' && github.repository_owner == 'bincrafters'
     steps:
     - uses: actions/setup-python@v1
       with:
