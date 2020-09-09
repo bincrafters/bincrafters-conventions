@@ -1,5 +1,3 @@
-# We want to run this at least every full hour
-# but also on every push on the main branch
 on:
   push:
     branches:
@@ -27,6 +25,7 @@ jobs:
   run-conventions-for-bincrafters:
     name: "Run Conventions for Bincrafters"
     runs-on: ubuntu-20.04
+    if: github.event_name != push
     steps:
     - uses: actions/setup-python@v1
       with:
