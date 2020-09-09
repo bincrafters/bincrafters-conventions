@@ -34,7 +34,7 @@ deploy:
     server: https://test.pypi.org/legacy/
     password: ${TEST_PYPI_PASSWORD}
     on:
-      branch: master
+      branch: main
       condition: "$TRAVIS_OS_NAME = 'linux'"
     skip_cleanup: true
     skip_existing: true

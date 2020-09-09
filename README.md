@@ -1,6 +1,6 @@
-[![Build Status: Linux and macOS](https://travis-ci.com/bincrafters/bincrafters-conventions.svg?branch=master)](https://travis-ci.com/bincrafters/bincrafters-conventions)
+[![Build Status: Linux and macOS](https://travis-ci.com/bincrafters/bincrafters-conventions.svg?branch=main)](https://travis-ci.com/bincrafters/bincrafters-conventions)
 [![Build status: Windows](https://ci.appveyor.com/api/projects/status/github/bincrafters/bincrafters-conventions?svg=true)](https://ci.appveyor.com/project/bincrafters/bincrafters-conventions)
-[![codecov](https://codecov.io/gh/bincrafters/bincrafters-conventions/branch/master/graph/badge.svg)](https://codecov.io/gh/bincrafters/bincrafters-conventions)
+[![codecov](https://codecov.io/gh/bincrafters/bincrafters-conventions/branch/main/graph/badge.svg)](https://codecov.io/gh/bincrafters/bincrafters-conventions)
 [![Pypi Download](https://img.shields.io/badge/download-pypi-blue.svg)](https://pypi.python.org/pypi/bincrafters-conventions)
 
 # Bincrafters Conventions

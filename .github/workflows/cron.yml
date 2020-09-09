@@ -1,9 +1,9 @@
 # We want to run this at least every full hour
-# but also on every push on master
+# but also on every push on the main branch
 on:
   push:
     branches:
-      - master
+      - main
   schedule:
     - cron: "0 * * * *"
 
