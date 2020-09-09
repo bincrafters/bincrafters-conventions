@@ -8,7 +8,7 @@ git config --global user.name "bincrafters-user"
 
 
 # Update Bincrafters' fork of Conan Center Index
-git clone "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/bincrafters/conan-center-index"
+git clone "https://${GIT_GITHUB_USERNAME}:${GIT_GITHUB_TOKEN}@github.com/bincrafters/conan-center-index"
 cd conan-center-index
 git remote add upstream https://github.com/conan-io/conan-center-index
 git fetch upstream

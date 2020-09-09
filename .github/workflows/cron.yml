@@ -1,0 +1,29 @@
+# We want to run this at least every full hour
+# but also on every push on master
+on:
+  push:
+    branches:
+      - master
+      - cron
+  schedule:
+    - cron: "0 * * * *"
+
+
+jobs:
+  run-conventions-for-bincrafters:
+    name: "Run Conventions for Bincrafters' recipes"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/setup-python@v1
+      with:
+        python-version: "3.8"
+    - name: "Run Conventions"
+      env:
+        GIT_GITHUB_USERNAME: ${{ secrets.GIT_GITHUB_USERNAME }}
+        GIT_GITHUB_TOKEN: ${{ secrets.GIT_GITHUB_TOKEN }}
+      run: |
+        git config --global user.email "bincrafters@gmail.com"
+        git config --global user.name "bincrafters-user"
+        pip install --quiet bincrafters-conventions
+        conan user
+        bincrafters-conventions --remote bincrafters --remote-max-repos 1 --remote-token="${GIT_GITHUB_USERNAME}:${GIT_GITHUB_TOKEN}";
