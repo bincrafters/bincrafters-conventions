@@ -553,6 +553,7 @@ REFERENCES = {
     "zmq/4.2.5@bincrafters/stable": "zeromq/4.3.2",
     "zmq/4.3.1@bincrafters/stable": "zeromq/4.3.2",
     "zmq/4.3.2@bincrafters/stable": "zeromq/4.3.2",
+    "zeromq/4.3.2": "zeromq/4.3.3",
 
     "czmq/4.1.0@bincrafters/stable": "czmq/4.2.0",
 
