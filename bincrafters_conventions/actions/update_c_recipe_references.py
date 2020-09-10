@@ -954,6 +954,8 @@ REFERENCES = {
     "nng/1.3.1": "ngg/1.3.2",
 
     "lief/0.9.0@bincrafters/stable": "lief/0.10.1",
+
+    "pkg-config_installer/0.29.2@bincrafters/stable": "pkgconf/1.7.3",
 }
 
 
@@ -1031,6 +1033,7 @@ def update_c_recipe_references(main, conanfile):
         "parallelstl": "onedpl",
         "depot_tools_installer": "depot_tools",
         "CLI11": "cli11",
+        "pkg-config_installer": "pkgconf",
     }
 
     for old_name, new_name in reference_names.items():
