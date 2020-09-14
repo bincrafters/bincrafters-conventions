@@ -230,6 +230,8 @@ REFERENCES = {
     "meson/0.54.3": "meson/0.54.3",
     "meson/0.54.3": "meson/0.55.0",
     "meson/0.55.0": "meson/0.55.1",
+    "meson/0.55.1": "meson/0.55.3",
+    "meson/0.55.2": "meson/0.55.3",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -859,6 +861,7 @@ REFERENCES = {
 
     "swig_installer/4.0.0@bincrafters/stable": "swig/4.0.1",
     "swig_installer/4.0.1@bincrafters/stable": "swig/4.0.1",
+    "swig/4.0.1": "swig/4.0.2",
 
     "tsl-robin-map/0.6.1@tessil/stable": "tsl-robin-map/0.6.3",
     "tsl-robin-map/0.6.2@tessil/stable": "tsl-robin-map/0.6.3",
