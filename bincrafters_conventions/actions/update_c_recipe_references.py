@@ -613,6 +613,8 @@ REFERENCES = {
     "paho-c/1.3.0@conan/stable": "paho-mqtt-c/1.3.1",
     "paho-c/1.3.1@conan/stable": "paho-mqtt-c/1.3.1",
     "paho-mqtt-c/1.3.0": "paho-mqtt-c/1.3.1",
+    "paho-mqtt-c/1.3.1": "paho-mqtt-c/1.3.5",
+    "paho-mqtt-c/1.3.4": "paho-mqtt-c/1.3.5",
 
     "paho-cpp/1.0.0@conan/stable": "paho-mqtt-cpp/1.0.1",
     "paho-cpp/1.0.1@conan/stable": "paho-mqtt-cpp/1.0.1",
@@ -892,6 +894,8 @@ REFERENCES = {
     "glib/2.63.6@bincrafters/stable": "glib/2.65.0",
     "glib/2.64.0@bincrafters/stable": "glib/2.65.0",
     "glib/2.65.0": "glib/2.65.1",
+    "glib/2.65.1": "glib/2.66.0",
+    "glib/2.65.2": "glib/2.66.0",
 
     "cpp-taskflow/2.2.0": "taskflow/2.2.0",
     "cpp-taskflow/2.4.0": "taskflow/2.4.0",
