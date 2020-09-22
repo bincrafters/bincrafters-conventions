@@ -572,6 +572,7 @@ REFERENCES = {
     "bullet3/2.88@bincrafters/stable": "bullet3/2.89",
 
     "sqlpp11-connector-sqlite3/0.29@bincrafters/stable": "sqlpp11-connector-sqlite3/0.29",
+    "sqlpp11-connector-sqlite3/0.29": "sqlpp11-connector-sqlite3/0.30",
 
     "cpp-sort/1.0.0@morwenn/stable": "cpp-sort/1.6.0",
     "cpp-sort/1.1.0@morwenn/stable": "cpp-sort/1.6.0",
@@ -964,6 +965,11 @@ REFERENCES = {
     "lief/0.9.0@bincrafters/stable": "lief/0.10.1",
 
     "pkg-config_installer/0.29.2@bincrafters/stable": "pkgconf/1.7.3",
+
+    "libzip/1.2.0@bincrafters/stable": "libzip/1.7.3",
+    "libzip/1.4.0@bincrafters/stable": "libzip/1.7.3",
+    "libzip/1.5.1@bincrafters/stable": "libzip/1.7.3",
+    "libzip/1.5.2@bincrafters/stable": "libzip/1.7.3",
 }
 
 
