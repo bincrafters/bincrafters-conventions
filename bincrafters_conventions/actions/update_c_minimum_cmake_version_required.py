@@ -5,6 +5,7 @@ def update_c_H048_minimum_cmake_version_required(main, file):
     """ Increases the minimum CMake version in test_packages to at least 3.1
     """
     cmake_file = os.path.join(os.path.dirname(file), "test_package", "CMakeLists.txt")
+    # TODO: Make this smarter, it should also detect versions in quotes
     old_versions = (
         "cmake_minimum_required(VERSION 2.8)",
         "cmake_minimum_required(VERSION 2.8.0)",
