@@ -198,6 +198,7 @@ REFERENCES = {
     "ninja_installer/1.8.2@bincrafters/stable": "ninja/1.9.0",
     "ninja_installer/1.9.0@bincrafters/stable": "ninja/1.9.0",
     "ninja/1.9.0": "ninja/1.10.0",
+    "ninja/1.10.0": "ninja/1.10.1",
 
     "libelf/0.8.13@bincrafters/stable": "libelf/0.8.13",
 
@@ -293,6 +294,8 @@ REFERENCES = {
     "jsoncpp/1.0.0@theirix/stable": "jsoncpp/1.9.2",
     "jsoncpp/1.8.4@theirix/stable": "jsoncpp/1.9.2",
     "jsoncpp/1.9.0@theirix/stable": "jsoncpp/1.9.2",
+    "jsoncpp/1.9.2": "jsoncpp/1.9.4",
+    "jsoncpp/1.9.3": "jsoncpp/1.9.4",
 
     "gmp/6.1.2@bincrafters/stable": "gmp/6.1.2",
 
@@ -970,6 +973,11 @@ REFERENCES = {
     "libzip/1.4.0@bincrafters/stable": "libzip/1.7.3",
     "libzip/1.5.1@bincrafters/stable": "libzip/1.7.3",
     "libzip/1.5.2@bincrafters/stable": "libzip/1.7.3",
+
+    "cryptopp/8.2.0@bincrafters/stable": "cryptopp/8.2.0",
+
+    "atk/2.35.1@bincrafters/stable": "atk/2.36.0",
+    "atk/2.36.0@bincrafters/stable": "atk/2.36.0",
 }
 
 
