@@ -44,7 +44,7 @@ if [[ "${OLD_COMMIT}" == "$(git rev-parse HEAD)" ]]; then
 fi
 
 ###
-### Delete all merged branches in our fork which got merged via a merge commit
+### Delete all merged branches in our fork which got merged via a squashed merge commit
 ###
 ### General notes:
 ### The first instinct might be that the list of "recently merged PR IDs from user X"
