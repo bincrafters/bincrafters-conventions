@@ -70,7 +70,7 @@ echo ""
 # PR_IDS have to be space separated
 # TODO
 PR_IDS=""
-echo ${COMMIT_MESSAGES} | while read COMMIT_MESSAGE
+echo "${COMMIT_MESSAGES}" | while read COMMIT_MESSAGE
 do
     NEW_ID=$(echo "$COMMIT_MESSAGE" | sed -nr 's/(.*)\(#([0-9]*)\).*/\2/p')
     if [[ ! "${NEW_ID}" == "" ]]; then
