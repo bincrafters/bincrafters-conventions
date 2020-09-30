@@ -55,7 +55,7 @@ echo ""
 # Get all commit messages between old master commit and newest one
 echo ""
 echo "All new commits:"
-COMMIT_MESSAGES=$(git log --pretty='format:%s' --abbrev-commit --ancestry-path ${OLD_COMMIT}..HEAD)
+COMMIT_MESSAGES=$(git log --pretty='format:%s%n' --abbrev-commit --ancestry-path ${OLD_COMMIT}..HEAD)
 echo ${COMMIT_MESSAGES}
 echo ""
 
