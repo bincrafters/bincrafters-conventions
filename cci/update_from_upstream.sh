@@ -9,7 +9,7 @@ git config --global user.name "bincrafters-user"
 
 # Install GitHub CLI tool
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 > /dev/null
-sudo apt-add-repository https://cli.github.com/packages
+sudo apt-add-repository https://cli.github.com/packages > /dev/null
 sudo apt-get -qq update
 sudo apt-get -qq install gh
 
@@ -62,8 +62,10 @@ do
     # TODO
     for segment in ${PR_INFORMATION}
     do
-        echo ${segment}
-        grep -v "bincrafters:" | sed 's/bincrafters://' | xargs -r -n 1 echo
+        if [[ "${segment}" == "${GIT_GITHUB_FORK_ACCOUNT}:"* ]]; then
+            echo ${segment}
+            grep -v "bincrafters:" | sed 's/bincrafters://' | xargs -r -n 1 echo
+        fi
     done
 done
 
