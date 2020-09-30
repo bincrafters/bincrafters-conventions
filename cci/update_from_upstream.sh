@@ -83,16 +83,17 @@ do
     fi
 done
 # PR_IDS="2984"
-echo "Detected IDs of the PR who got merged:"
+echo "Detected IDs of the PR who got merged, based on the new commits:"
 echo "${PR_IDS}"
 
 echo ""
 echo "Delete all merged branches, which got merged via a merge commit"
 RECENT_PRS=$(gh pr list --limit 200 --state merged | grep $'\t'"${GIT_GITHUB_FORK_ACCOUNT}:")
-echo "Recently merged PR IDs from ${GIT_GITHUB_FORK_ACCOUNT}:"
+echo "Recently merged PR IDs from ${GIT_GITHUB_FORK_ACCOUNT}, according to the API:"
 echo "${RECENT_PRS}"
 
-for PR_ID in "${PR_IDS}"
+echo "Matching commit and API based information"
+for PR_ID in ${PR_IDS}
 do
     # Check if this is a PR from $GIT_GITHUB_FORK_ACCOUNT and also if it is actually meged
     # ^ because the PR ID should match the beginning of the string
