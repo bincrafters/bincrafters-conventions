@@ -87,21 +87,22 @@ echo "Detected IDs of the PR who got merged, based on the new commits:"
 echo "${PR_IDS}"
 
 echo ""
-echo "Delete all merged branches, which got merged via a merge commit"
-RECENT_PRS=$(gh pr list --limit 200 --state merged | grep $'\t'"${GIT_GITHUB_FORK_ACCOUNT}:")
 echo "Recently merged PR IDs from ${GIT_GITHUB_FORK_ACCOUNT}, according to the API:"
+RECENT_PRS=$(gh pr list --limit 200 --state merged | grep $'\t'"${GIT_GITHUB_FORK_ACCOUNT}:")
 echo "${RECENT_PRS}"
+echo ""
 
+echo ""
 echo "Matching commit and API based information"
+echo "Delete all merged branches, which got merged via a merge commit"
 for PR_ID in ${PR_IDS}
 do
     # Check if this is a PR from $GIT_GITHUB_FORK_ACCOUNT and also if it is actually meged
     # ^ because the PR ID should match the beginning of the string
     # $'\t' stands for a tab character
     # || true because the CI should not "fail" when the last PR is not a PR from $GIT_GITHUB_FORK_ACCOUNT
-    echo "Parsing ${PR_ID}"
     PR_INFORMATION=$(echo "${RECENT_PRS}" | grep "^${PR_ID}"$'\t') || true
-    echo "${PR_INFORMATION}"
+    echo "Found match: ${PR_INFORMATION}"
 
     # Retrieve the branch name and delete it
     # TODO
@@ -110,8 +111,8 @@ do
     # -r to enable extend regex syntax
     # /p to print matches despite -n
     BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p')
-    echo "${BRANCH_NAME}"
-    echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p' | xargs -r -n 1 echo
+    echo "Delete branch: ${BRANCH_NAME}"
+    echo "${BRANCH_NAME}" | xargs -r -n 1 echo
 done
 
 ###
