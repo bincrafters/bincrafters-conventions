@@ -24,10 +24,7 @@ cd conan-center-index
 echo ""
 
 # Get current master commit
-# TODO:
-# > 17. Sep
 OLD_COMMIT=$(git rev-parse HEAD)
-OLD_COMMIT="808a5eec296dff148585c8e5f55428b52c50143b"
 
 ###
 ### Update CCI fork
