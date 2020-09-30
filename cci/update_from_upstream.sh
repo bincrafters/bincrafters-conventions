@@ -20,5 +20,7 @@ git reset --hard upstream/master
 git push -f
 
 
+git branch -r --merged master
+
 # Delete all merged branches in our fork 
 git branch -r --merged master | grep -v master | sed 's/origin\///' | xargs -r -n 1 git push --delete origin
