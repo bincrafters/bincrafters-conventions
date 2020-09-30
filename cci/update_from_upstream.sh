@@ -25,6 +25,8 @@ echo ""
 
 # Get current master commit
 # TODO
+# > 17. Sep
+OLD_COMMIT="808a5eec296dff148585c8e5f55428b52c50143b"
 
 ###
 ### Update CCI fork
@@ -41,7 +43,7 @@ echo ""
 ### Delete all merged branches in our fork which got merged via a merge commit
 ###
 ### General notes: 
-### Some checks in this section might be interpreted as duplicates on first sight
+### Some checks in this section might be interpreted as duplicates on first sight,
 ### but those are considered to be safe guards for edge cases.
 ### In fact, highly theoretically it is possible for outsiders
 ### to deleted branches in our fork, by writing specific targeted PR titles
@@ -50,13 +52,28 @@ echo ""
 ### makes it almost impossible and the worst case is that we have to restore a branch manually. 
 ### tl;dr: We should be fine.
 
-# Get all commit messages between old master commit and newest one 
+# Get all commit messages between old master commit and newest one
+COMMIT_MESSAGES=$(git log --pretty='format:%s' --abbrev-commit --ancestry-path c7f3917320cb9c189adbbb53831b805229395f8b..HEAD)
+echo ${COMMITS}
 # TODO
 
 # Isolate the ID of merged PRs from the commit messages
 # PR_IDS have to be space separated
 # TODO
-PR_IDS="2984"
+PR_IDS=""
+for COMMIT_MESSAGE in ${COMMIT_MESSAGES}
+do
+    if [[ "${COMMIT_MESSAGE}" == "(#"* ]]; then 
+        NEW_ID=(echo $COMMIT_MESSAGE | sed -r 's/\(#([0-9]*)\).*/\1/g')
+        if [[ "${PR_IDS}" == "" ]]; then
+            PR_IDS="${NEW_ID}"
+        else
+            PR_IDS="${PR_IDS} ${NEW_ID}"
+        fi
+    fi
+done
+# PR_IDS="2984"
+echo ${PR_IDS}
 
 echo ""
 echo "Delete all merged branches, which got merged via a merge commit"
@@ -72,7 +89,6 @@ do
     for segment in ${PR_INFORMATION}
     do
         if [[ "${segment}" == "${GIT_GITHUB_FORK_ACCOUNT}:"* ]]; then
-            echo ${segment}
             echo ${segment} | grep "bincrafters:" | sed 's/bincrafters://' | xargs -r -n 1 echo
         fi
     done
