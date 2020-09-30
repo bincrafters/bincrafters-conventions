@@ -64,7 +64,7 @@ do
     do
         if [[ "${segment}" == "${GIT_GITHUB_FORK_ACCOUNT}:"* ]]; then
             echo ${segment}
-            grep -v "bincrafters:" | sed 's/bincrafters://' | xargs -r -n 1 echo
+            echo ${segment} |grep -v "bincrafters:" | sed 's/bincrafters://' | xargs -r -n 1 echo
         fi
     done
 done
