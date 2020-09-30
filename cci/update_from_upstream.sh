@@ -80,13 +80,14 @@ echo "${PR_IDS}"
 echo ""
 echo "Delete all merged branches, which got merged via a merge commit"
 RECENT_PRS=$(gh pr list --limit 200 --state merged | grep $'\t'"${GIT_GITHUB_FORK_ACCOUNT}:")
-echo "Recent PR IDs:"
+echo "Recently merged PR IDs from ${GIT_GITHUB_FORK_ACCOUNT}:"
 PR_INFORMATION="$(echo "${RECENT_PRS}" | grep "${PR_ID}"$'\t')"
 echo "${PR_INFORMATION}"
 echo "${RECENT_PRS}"
 
 for PR_ID in "${PR_IDS}"
 do
+    echo "${PR_ID}"
     # Check if this is a PR from $GIT_GITHUB_FORK_ACCOUNT and also if it is actually meged
     # $'\t' stands for a tab character
     PR_INFORMATION="$(echo "${RECENT_PRS}" | grep "${PR_ID}"$'\t')"
