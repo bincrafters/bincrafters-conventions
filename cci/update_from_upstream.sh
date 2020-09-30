@@ -83,7 +83,7 @@ RECENT_PRS=$(gh pr list --limit 200 --state merged | grep $'\t'"${GIT_GITHUB_FOR
 echo "Recent PR IDs:"
 echo "${RECENT_PRS}"
 
-for PR_ID in ${PR_IDS}
+for PR_ID in "${PR_IDS}"
 do
     # Check if this is a PR from $GIT_GITHUB_FORK_ACCOUNT and also if it is actually meged
     # $'\t' stands for a tab character
