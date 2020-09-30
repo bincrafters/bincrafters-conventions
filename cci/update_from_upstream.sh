@@ -8,7 +8,7 @@ git config --global user.name "bincrafters-user"
 
 
 # Install GitHub CLI tool
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 > /dev/null
 sudo apt-add-repository https://cli.github.com/packages
 sudo apt-get -qq update
 sudo apt-get -qq install gh
@@ -18,8 +18,10 @@ echo ${GIT_GITHUB_TOKEN} | gh auth login --with-token
 
 
 # Clone the CCI fork
+echo ""
 git clone "https://${GIT_GITHUB_USERNAME}:${GIT_GITHUB_TOKEN}@github.com/${GIT_GITHUB_FORK_ACCOUNT}/conan-center-index"
 cd conan-center-index
+echo ""
 
 # Get current master commit
 # TODO
@@ -27,11 +29,12 @@ cd conan-center-index
 ###
 ### Update CCI fork
 ###
+echo ""
 git remote add upstream https://github.com/conan-io/conan-center-index
 git fetch upstream
 git reset --hard upstream/master
 git push -f
-
+echo ""
 
 ###
 ### Delete all merged branches in our fork which got merged via a merge commit
@@ -60,7 +63,7 @@ do
     for segment in ${PR_INFORMATION}
     do
         echo ${segment}
-        grep -v "bincrafers:" | sed 's/bincrafters://' | xargs -r -n 1 echo
+        grep -v "bincrafters:" | sed 's/bincrafters://' | xargs -r -n 1 echo
     done
 done
 
