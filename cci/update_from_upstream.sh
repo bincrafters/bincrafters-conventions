@@ -55,8 +55,8 @@ echo ""
 # Get all commit messages between old master commit and newest one
 echo ""
 echo "All new commits:"
-COMMIT_MESSAGES=$(git log --pretty='format:%s%n' --abbrev-commit --ancestry-path ${OLD_COMMIT}..HEAD)
-echo ${COMMIT_MESSAGES}
+COMMIT_MESSAGES=$(git log --pretty='format:%s' --abbrev-commit --ancestry-path ${OLD_COMMIT}..HEAD)
+echo "${COMMIT_MESSAGES}"
 echo ""
 
 # Isolate the ID of merged PRs from the commit messages
@@ -75,7 +75,7 @@ do
     fi
 done
 # PR_IDS="2984"
-echo ${PR_IDS}
+echo "${PR_IDS}"
 
 echo ""
 echo "Delete all merged branches, which got merged via a merge commit"
