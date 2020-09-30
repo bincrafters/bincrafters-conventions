@@ -55,7 +55,7 @@ echo ""
 # Get all commit messages between old master commit and newest one
 echo ""
 echo "All new commits:"
-COMMIT_MESSAGES=$(git log --pretty='format:%s' --abbrev-commit --ancestry-path c7f3917320cb9c189adbbb53831b805229395f8b..HEAD)
+COMMIT_MESSAGES=$(git log --pretty='format:%s' --abbrev-commit --ancestry-path ${OLD_COMMIT}..HEAD)
 echo ${COMMITS}
 echo ""
 
@@ -63,7 +63,7 @@ echo ""
 # PR_IDS have to be space separated
 # TODO
 PR_IDS=""
-for COMMIT_MESSAGE in ${COMMIT_MESSAGES}
+echo ${COMMIT_MESSAGES} | while read ${COMMIT_MESSAGE}
 do
     if [[ "${COMMIT_MESSAGE}" == "(#"* ]]; then 
         NEW_ID=$(echo $COMMIT_MESSAGE | sed -r 's/\(#([0-9]*)\).*/\1/g')
