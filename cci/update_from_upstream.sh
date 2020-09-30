@@ -13,6 +13,7 @@ sudo apt-add-repository https://cli.github.com/packages
 sudo apt-get -qq update
 sudo apt-get -qq install gh
 
+# Authenticate on GitHub with the CLI tool
 echo ${GIT_GITHUB_TOKEN} | gh auth login --with-token
 
 
@@ -53,8 +54,14 @@ do
     # $'\t' stands for a tab character
     PR_INFORMATION=$(gh pr list --limit 200 --state merged | grep $'\t'"${GIT_GITHUB_FORK_ACCOUNT}:" | grep "${PR_ID}"$'\t')
     echo ${PR_INFORMATION}
+
     # Retrieve the branch name and delete it
     # TODO
+    for segment in ${PR_INFORMATION}
+    do
+        echo ${segment}
+        grep -v "bincrafers:" | sed 's/bincrafters://' | xargs -r -n 1 echo
+    done
 done
 
 ###
