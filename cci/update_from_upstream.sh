@@ -85,8 +85,8 @@ echo "${RECENT_PRS}"
 
 for PR_ID in "${PR_IDS}"
 do
-    echo "${PR_ID}"
     # Check if this is a PR from $GIT_GITHUB_FORK_ACCOUNT and also if it is actually meged
+    # ^ because the PR ID should match the beginning of the string
     # $'\t' stands for a tab character
     # || true because the CI should not "fail" when the last PR is not a PR from $GIT_GITHUB_FORK_ACCOUNT
     PR_INFORMATION=$(echo "${RECENT_PRS}" | grep "^${PR_ID}"$'\t') || true
@@ -99,6 +99,7 @@ do
     # -r to enable extend regex syntax
     # /p to print matches despite -n
     BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p')
+    echo ${BRANCH_NAME}
     echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p' | xargs -r -n 1 echo
 done
 
