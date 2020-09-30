@@ -10,8 +10,8 @@ git config --global user.name "bincrafters-user"
 # Install GitHub CLI tool
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
 sudo apt-add-repository https://cli.github.com/packages
-sudo apt update
-sudo apt install gh
+sudo apt-get -qq update
+sudo apt-get -qq install gh
 
 echo ${GIT_GITHUB_TOKEN} | gh auth login --with-token
 
