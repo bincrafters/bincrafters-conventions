@@ -53,9 +53,11 @@ echo ""
 ### tl;dr: We should be fine.
 
 # Get all commit messages between old master commit and newest one
+echo ""
+echo "All new commits:"
 COMMIT_MESSAGES=$(git log --pretty='format:%s' --abbrev-commit --ancestry-path c7f3917320cb9c189adbbb53831b805229395f8b..HEAD)
 echo ${COMMITS}
-# TODO
+echo ""
 
 # Isolate the ID of merged PRs from the commit messages
 # PR_IDS have to be space separated
@@ -77,11 +79,12 @@ echo ${PR_IDS}
 
 echo ""
 echo "Delete all merged branches, which got merged via a merge commit"
+RECENT_PRS=$(gh pr list --limit 200 --state merged | grep $'\t'"${GIT_GITHUB_FORK_ACCOUNT}:")
 for PR_ID in ${PR_IDS}
 do
     # Check if this is a PR from $GIT_GITHUB_FORK_ACCOUNT and also if it is actually meged
     # $'\t' stands for a tab character
-    PR_INFORMATION=$(gh pr list --limit 200 --state merged | grep $'\t'"${GIT_GITHUB_FORK_ACCOUNT}:" | grep "${PR_ID}"$'\t')
+    PR_INFORMATION=$(echo ${RECENT_PRS} | grep "${PR_ID}"$'\t')
     echo ${PR_INFORMATION}
 
     # Retrieve the branch name and delete it
