@@ -85,10 +85,11 @@ echo "${RECENT_PRS}"
 
 for PR_ID in "${PR_IDS}"
 do
+    echo "${PR_ID}"
     # Check if this is a PR from $GIT_GITHUB_FORK_ACCOUNT and also if it is actually meged
     # $'\t' stands for a tab character
-    PR_INFORMATION=$(echo "${RECENT_PRS}" | grep "${PR_ID}"$'\t')
-    echo "${PR_INFORMATION}"
+    # PR_INFORMATION=$(echo "${RECENT_PRS}" | grep "${PR_ID}"$'\t')
+    # echo "${PR_INFORMATION}"
 
     # Retrieve the branch name and delete it
     # TODO
@@ -96,8 +97,8 @@ do
     # -n to not get any output if there is (no) match
     # -r to enable extend regex syntax
     # /p to print matches despite -n
-    BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p')
-    echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p' | xargs -r -n 1 echo
+    # BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p')
+    # echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p' | xargs -r -n 1 echo
 done
 
 ###
