@@ -748,6 +748,7 @@ REFERENCES = {
     "frozen/20181020@bincrafters/stable": "frozen/1.0.0",
 
     "libsndfile/1.0.28@bincrafters/stable": "libsndfile/1.0.28",
+    "libsndfile/1.0.28": "libsndfile/1.0.29",
 
     "rang/3.0.0@rang/stable": "rang/3.1.0",
     "rang/3.1.0@rang/stable": "rang/3.1.0",

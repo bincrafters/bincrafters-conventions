@@ -66,7 +66,7 @@ PR_IDS=""
 for COMMIT_MESSAGE in ${COMMIT_MESSAGES}
 do
     if [[ "${COMMIT_MESSAGE}" == "(#"* ]]; then 
-        NEW_ID=$(echo $COMMIT_MESSAGE | sed -r 's/\(#([0-9]*)\).*/\1/g')
+        NEW_ID=$(echo "$COMMIT_MESSAGE" | sed -r 's/\(#([0-9]*)\).*/\1/g')
         if [[ "${PR_IDS}" == "" ]]; then
             PR_IDS="${NEW_ID}"
         else
@@ -80,26 +80,24 @@ echo "${PR_IDS}"
 echo ""
 echo "Delete all merged branches, which got merged via a merge commit"
 RECENT_PRS=$(gh pr list --limit 200 --state merged | grep $'\t'"${GIT_GITHUB_FORK_ACCOUNT}:")
+echo "Recent PR IDs:"
 echo "${RECENT_PRS}"
-for PR_ID in ${PR_IDS}
-do
-    echo "${PR_ID}"
-done
+
 for PR_ID in ${PR_IDS}
 do
     # Check if this is a PR from $GIT_GITHUB_FORK_ACCOUNT and also if it is actually meged
     # $'\t' stands for a tab character
-    PR_INFORMATION=$(echo "${RECENT_PRS}" | grep "${PR_ID}"$'\t')
+    PR_INFORMATION="$(echo "${RECENT_PRS}" | grep "${PR_ID}"$'\t')"
     echo "${PR_INFORMATION}"
 
     # Retrieve the branch name and delete it
     # TODO
-    for segment in ${PR_INFORMATION}
-    do
-        if [[ "${segment}" == "${GIT_GITHUB_FORK_ACCOUNT}:"* ]]; then
-            echo ${segment} | grep "${GIT_GITHUB_FORK_ACCOUNT}:" | sed 's/bincrafters://' | xargs -r -n 1 echo
-        fi
-    done
+    # BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -r $'s/([0-9]*\t.*\t.*'"${GIT_GITHUB_FORK_ACCOUNT}:"$'(.*)\t.*/\1/g')
+    # -n to not get any output if there is (no) match
+    # -r to enable extend regex syntax
+    # /p to print matches despite -n
+    BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p')
+    echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p' | xargs -r -n 1 echo
 done
 
 ###
