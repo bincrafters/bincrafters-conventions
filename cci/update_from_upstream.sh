@@ -67,7 +67,6 @@ echo ""
 
 # Isolate the ID of merged PRs from the commit messages
 # PR_IDS have to be space separated
-# TODO
 PR_IDS=""
 while read COMMIT_MESSAGE
 do
@@ -80,7 +79,7 @@ do
         fi;
     fi;
 done  < <(echo "${COMMIT_MESSAGES}")
-# PR_IDS="2984"
+
 echo "Detected IDs of the PR who got merged, based on the new commits:"
 echo "${PR_IDS}"
 
@@ -104,15 +103,13 @@ do
         echo "Found match: ${PR_INFORMATION}"
 
         # Retrieve the branch name and delete it
-        # TODO
-        # BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -r $'s/([0-9]*\t.*\t.*'"${GIT_GITHUB_FORK_ACCOUNT}:"$'(.*)\t.*/\1/g')
         # -n to not get any output if there is (no) match
         # -r to enable extend regex syntax
         # /p to print matches despite -n
         BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p')
         if [[ ! "${BRANCH_NAME}" == "" ]]; then 
             echo "Delete branch: ${BRANCH_NAME}"
-            echo "${BRANCH_NAME}" | xargs -r -n 1 echo
+            echo "${BRANCH_NAME}" | xargs -r -n 1 git push --delete origin
             echo ""
         fi
     fi
