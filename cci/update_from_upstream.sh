@@ -64,7 +64,7 @@ PR_IDS=""
 for COMMIT_MESSAGE in ${COMMIT_MESSAGES}
 do
     if [[ "${COMMIT_MESSAGE}" == "(#"* ]]; then 
-        NEW_ID=(echo $COMMIT_MESSAGE | sed -r 's/\(#([0-9]*)\).*/\1/g')
+        NEW_ID=$(echo $COMMIT_MESSAGE | sed -r 's/\(#([0-9]*)\).*/\1/g')
         if [[ "${PR_IDS}" == "" ]]; then
             PR_IDS="${NEW_ID}"
         else
