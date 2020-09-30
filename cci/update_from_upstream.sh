@@ -27,6 +27,7 @@ echo ""
 # TODO:
 # OLD_COMMIT=$(git rev-parse HEAD)
 # > 17. Sep
+echo $(git rev-parse HEAD)
 OLD_COMMIT="808a5eec296dff148585c8e5f55428b52c50143b"
 
 ###
@@ -94,7 +95,7 @@ echo ""
 
 echo ""
 echo "Matching commit and API based information"
-echo "Delete all merged branches, which got merged via a merge commit"
+echo "Delete all merged branches, which got merged via a merge commit:"
 for PR_ID in ${PR_IDS}
 do
     # Check if this is a PR from $GIT_GITHUB_FORK_ACCOUNT and also if it is actually meged
