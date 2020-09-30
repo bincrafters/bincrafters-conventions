@@ -99,7 +99,7 @@ do
     # -r to enable extend regex syntax
     # /p to print matches despite -n
     BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p')
-    echo ${BRANCH_NAME}
+    echo "${BRANCH_NAME}"
     echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p' | xargs -r -n 1 echo
 done
 
