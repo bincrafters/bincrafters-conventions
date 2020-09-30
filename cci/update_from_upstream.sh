@@ -63,7 +63,7 @@ echo ""
 # PR_IDS have to be space separated
 # TODO
 PR_IDS=""
-echo ${COMMIT_MESSAGES} | while read ${COMMIT_MESSAGE}
+for COMMIT_MESSAGES in ${COMMIT_MESSAGE}
 do
     if [[ "${COMMIT_MESSAGE}" == "(#"* ]]; then 
         NEW_ID=$(echo $COMMIT_MESSAGE | sed -r 's/\(#([0-9]*)\).*/\1/g')
@@ -97,7 +97,7 @@ do
     for segment in ${PR_INFORMATION}
     do
         if [[ "${segment}" == "${GIT_GITHUB_FORK_ACCOUNT}:"* ]]; then
-            echo ${segment} | grep "bincrafters:" | sed 's/bincrafters://' | xargs -r -n 1 echo
+            echo ${segment} | grep "${GIT_GITHUB_FORK_ACCOUNT}:" | sed 's/bincrafters://' | xargs -r -n 1 echo
         fi
     done
 done
