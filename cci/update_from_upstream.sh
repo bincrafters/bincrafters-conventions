@@ -30,6 +30,7 @@ echo ""
 ### Update CCI fork
 ###
 echo ""
+echo "Updating the CCI fork"
 git remote add upstream https://github.com/conan-io/conan-center-index
 git fetch upstream
 git reset --hard upstream/master
@@ -39,9 +40,15 @@ echo ""
 ###
 ### Delete all merged branches in our fork which got merged via a merge commit
 ###
-
-# TOOD: Debug
-git branch -r --merged master
+### General notes: 
+### Some checks in this section might be interpreted as duplicates on first sight
+### but those are considered to be safe guards for edge cases.
+### In fact, highly theoretically it is possible for outsiders
+### to deleted branches in our fork, by writing specific targeted PR titles
+### and then getting this PR merged within a short, specific time period.
+### However, this would still need to pass the reviews, the very short time window
+### makes it almost impossible and the worst case is that we have to restore a branch manually. 
+### tl;dr: We should be fine.
 
 # Get all commit messages between old master commit and newest one 
 # TODO
@@ -51,6 +58,8 @@ git branch -r --merged master
 # TODO
 PR_IDS="2984"
 
+echo ""
+echo "Delete all merged branches, which got merged via a merge commit"
 for PR_ID in ${PR_IDS}
 do
     # Check if this is a PR from $GIT_GITHUB_FORK_ACCOUNT and also if it is actually meged
@@ -64,7 +73,7 @@ do
     do
         if [[ "${segment}" == "${GIT_GITHUB_FORK_ACCOUNT}:"* ]]; then
             echo ${segment}
-            echo ${segment} |grep -v "bincrafters:" | sed 's/bincrafters://' | xargs -r -n 1 echo
+            echo ${segment} | grep -v "bincrafters:" | sed 's/bincrafters://' | xargs -r -n 1 echo
         fi
     done
 done
@@ -72,4 +81,6 @@ done
 ###
 ### Delete all merged branches in our fork which got NOT merged via a merge commit
 ###
+echo ""
+echo "Delete all merged branches, which got merged, but NOT via a merge commit"
 git branch -r --merged master | grep -v master | sed 's/origin\///' | xargs -r -n 1 git push --delete origin
