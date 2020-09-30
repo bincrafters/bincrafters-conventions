@@ -81,6 +81,8 @@ echo ""
 echo "Delete all merged branches, which got merged via a merge commit"
 RECENT_PRS=$(gh pr list --limit 200 --state merged | grep $'\t'"${GIT_GITHUB_FORK_ACCOUNT}:")
 echo "Recent PR IDs:"
+PR_INFORMATION="$(echo "${RECENT_PRS}" | grep "${PR_ID}"$'\t')"
+echo "${PR_INFORMATION}"
 echo "${RECENT_PRS}"
 
 for PR_ID in "${PR_IDS}"
