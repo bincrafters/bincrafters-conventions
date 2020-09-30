@@ -102,22 +102,28 @@ do
     # $'\t' stands for a tab character
     # || true because the CI should not "fail" when the last PR is not a PR from $GIT_GITHUB_FORK_ACCOUNT
     PR_INFORMATION=$(echo "${RECENT_PRS}" | grep "^${PR_ID}"$'\t') || true
-    echo "Found match: ${PR_INFORMATION}"
+    if [[ ! "${PR_INFORMATION}" == "" ]]; then 
+        echo "Found match: ${PR_INFORMATION}"
 
-    # Retrieve the branch name and delete it
-    # TODO
-    # BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -r $'s/([0-9]*\t.*\t.*'"${GIT_GITHUB_FORK_ACCOUNT}:"$'(.*)\t.*/\1/g')
-    # -n to not get any output if there is (no) match
-    # -r to enable extend regex syntax
-    # /p to print matches despite -n
-    BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p')
-    echo "Delete branch: ${BRANCH_NAME}"
-    echo "${BRANCH_NAME}" | xargs -r -n 1 echo
+        # Retrieve the branch name and delete it
+        # TODO
+        # BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -r $'s/([0-9]*\t.*\t.*'"${GIT_GITHUB_FORK_ACCOUNT}:"$'(.*)\t.*/\1/g')
+        # -n to not get any output if there is (no) match
+        # -r to enable extend regex syntax
+        # /p to print matches despite -n
+        BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p')
+        if [[ ! "${BRANCH_NAME}" == "" ]]; then 
+            echo "Delete branch: ${BRANCH_NAME}"
+            echo "${BRANCH_NAME}" | xargs -r -n 1 echo
+            echo ""
+        fi
+    fi
 done
 
 ###
 ### Delete all merged branches in our fork which got NOT merged via a merge commit
 ###
+echo ""
 echo ""
 echo "Delete all merged branches, which got merged, but NOT via a merge commit:"
 git branch -r --merged master | grep -v master | sed 's/origin\///' | xargs -r -n 1 git push --delete origin
