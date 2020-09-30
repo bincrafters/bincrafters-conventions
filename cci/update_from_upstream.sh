@@ -70,12 +70,10 @@ echo ""
 # PR_IDS have to be space separated
 # TODO
 PR_IDS=""
-for COMMIT_MESSAGE in ${COMMIT_MESSAGES}
+echo ${COMMIT_MESSAGES} | while read COMMIT_MESSAGE
 do
-    # This will only handle the commit message style of the conan-center-bot
-    # Manual merges will not be convered by this
-    if [[ "${COMMIT_MESSAGE}" == "(#"* ]]; then 
-        NEW_ID=$(echo "$COMMIT_MESSAGE" | sed -r 's/\(#([0-9]*)\).*/\1/g')
+    NEW_ID=$(echo "$COMMIT_MESSAGE" | sed -nr 's/\(#([0-9]*)\).*/\1/p')
+    if [[ ! "${NEW_ID}" == "" ]]; then
         if [[ "${PR_IDS}" == "" ]]; then
             PR_IDS="${NEW_ID}"
         else
