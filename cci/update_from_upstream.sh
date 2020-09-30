@@ -56,7 +56,7 @@ echo ""
 echo ""
 echo "All new commits:"
 COMMIT_MESSAGES=$(git log --pretty='format:%s' --abbrev-commit --ancestry-path ${OLD_COMMIT}..HEAD)
-echo ${COMMITS}
+echo ${COMMIT_MESSAGES}
 echo ""
 
 # Isolate the ID of merged PRs from the commit messages
