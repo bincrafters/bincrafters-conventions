@@ -24,7 +24,8 @@ cd conan-center-index
 echo ""
 
 # Get current master commit
-# TODO
+# TODO:
+# OLD_COMMIT=$(git rev-parse HEAD)
 # > 17. Sep
 OLD_COMMIT="808a5eec296dff148585c8e5f55428b52c50143b"
 
@@ -65,6 +66,8 @@ echo ""
 PR_IDS=""
 for COMMIT_MESSAGE in ${COMMIT_MESSAGES}
 do
+    # This will only handle the commit message style of the conan-center-bot
+    # Manual merges will not be convered by this
     if [[ "${COMMIT_MESSAGE}" == "(#"* ]]; then 
         NEW_ID=$(echo "$COMMIT_MESSAGE" | sed -r 's/\(#([0-9]*)\).*/\1/g')
         if [[ "${PR_IDS}" == "" ]]; then
@@ -75,6 +78,7 @@ do
     fi
 done
 # PR_IDS="2984"
+echo "Detected IDs of the PR who got merged:"
 echo "${PR_IDS}"
 
 echo ""
@@ -107,5 +111,6 @@ done
 ### Delete all merged branches in our fork which got NOT merged via a merge commit
 ###
 echo ""
-echo "Delete all merged branches, which got merged, but NOT via a merge commit"
+echo "Delete all merged branches, which got merged, but NOT via a merge commit:"
 git branch -r --merged master | grep -v master | sed 's/origin\///' | xargs -r -n 1 git push --delete origin
+echo ""
