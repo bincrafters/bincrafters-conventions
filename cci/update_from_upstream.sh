@@ -87,7 +87,6 @@ echo "${RECENT_PRS}"
 
 for PR_ID in "${PR_IDS}"
 do
-    echo "${PR_ID}"
     # Check if this is a PR from $GIT_GITHUB_FORK_ACCOUNT and also if it is actually meged
     # $'\t' stands for a tab character
     PR_INFORMATION="$(echo "${RECENT_PRS}" | grep "${PR_ID}"$'\t')"
@@ -99,13 +98,13 @@ do
     # -n to not get any output if there is (no) match
     # -r to enable extend regex syntax
     # /p to print matches despite -n
-    BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p')
-    echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p' | xargs -r -n 1 echo
+    # BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p')
+    # echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p' | xargs -r -n 1 echo
 done
 
 ###
 ### Delete all merged branches in our fork which got NOT merged via a merge commit
 ###
-echo ""
-echo "Delete all merged branches, which got merged, but NOT via a merge commit"
-git branch -r --merged master | grep -v master | sed 's/origin\///' | xargs -r -n 1 git push --delete origin
+# echo ""
+# echo "Delete all merged branches, which got merged, but NOT via a merge commit"
+# git branch -r --merged master | grep -v master | sed 's/origin\///' | xargs -r -n 1 git push --delete origin
