@@ -38,7 +38,7 @@ git push -f
 echo ""
 
 # If everything is up to date, there is nothing to do anymore
-if [[ "${OLD_COMMIT}" == "$(git rev-parse HEAD)" ]];
+if [[ "${OLD_COMMIT}" == "$(git rev-parse HEAD)" ]]; then
   echo "Since everything is up to date, there is nothing else to do. Exiting."
   exit 0;
 fi
