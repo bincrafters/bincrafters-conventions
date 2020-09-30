@@ -586,6 +586,9 @@ REFERENCES = {
     "cpp-sort/1.5.0@morwenn/stable": "cpp-sort/1.6.0",
     "cpp-sort/1.5.1@morwenn/stable": "cpp-sort/1.6.0",
     "cpp-sort/1.6.0@morwenn/stable": "cpp-sort/1.6.0",
+    "cpp-sort/1.7.0@morwenn/stable": "cpp-sort/1.8.0",
+    "cpp-sort/1.6.0": "cpp-sort/1.8.0",
+    "cpp-sort/1.7.0": "cpp-sort/1.8.0",
 
     "glad/0.1.24@bincrafters/stable": "glad/0.1.33",
     "glad/0.1.29@bincrafters/stable": "glad/0.1.33",
@@ -921,9 +924,9 @@ REFERENCES = {
     "libepoxy/1.5.4@bincrafters/stable": "libepoxy/1.5.4",
 
     "cxxopts/v2.1.2@inexorgame/stable": "cxxopts/2.2.0",
+    "cxxopts/2.2.0": "cxxopts/2.2.1",
 
-    # TODO: https://github.com/conan-io/conan-center-index/pull/2498#pullrequestreview-468672977
-    # "cunit/2.1-3@bincrafters/stable": "cunit/2.1.3",
+    "cunit/2.1-3@bincrafters/stable": "cunit/2.1-3",
 
     "xkbcommon/0.8.2@bincrafters/stable": "xkbcommon/0.10.0",
     "xkbcommon/0.8.3@bincrafters/stable": "xkbcommon/0.10.0",
