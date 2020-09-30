@@ -63,7 +63,7 @@ echo ""
 # PR_IDS have to be space separated
 # TODO
 PR_IDS=""
-for COMMIT_MESSAGES in ${COMMIT_MESSAGE}
+for COMMIT_MESSAGE in ${COMMIT_MESSAGES}
 do
     if [[ "${COMMIT_MESSAGE}" == "(#"* ]]; then 
         NEW_ID=$(echo $COMMIT_MESSAGE | sed -r 's/\(#([0-9]*)\).*/\1/g')
