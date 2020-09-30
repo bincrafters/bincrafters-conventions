@@ -43,7 +43,12 @@ echo ""
 ###
 ### Delete all merged branches in our fork which got merged via a merge commit
 ###
-### General notes: 
+### General notes:
+### The first instinct might be that the list of "recently merged PR IDs from user X"
+### might already be enough and the parsing of other information is unnecessary.
+### However, it is not. Branch names can and will get recyceled. 
+### Only using this single list would cause deletion of still unmerged branches.
+###
 ### Some checks in this section might be interpreted as duplicates on first sight,
 ### but those are considered to be safe guards for edge cases.
 ### In fact, highly theoretically it is possible for outsiders
@@ -93,6 +98,7 @@ do
     # ^ because the PR ID should match the beginning of the string
     # $'\t' stands for a tab character
     # || true because the CI should not "fail" when the last PR is not a PR from $GIT_GITHUB_FORK_ACCOUNT
+    echo "Parsing ${PR_ID}"
     PR_INFORMATION=$(echo "${RECENT_PRS}" | grep "^${PR_ID}"$'\t') || true
     echo "${PR_INFORMATION}"
 
