@@ -25,9 +25,8 @@ echo ""
 
 # Get current master commit
 # TODO:
-# OLD_COMMIT=$(git rev-parse HEAD)
 # > 17. Sep
-echo $(git rev-parse HEAD)
+OLD_COMMIT=$(git rev-parse HEAD)
 OLD_COMMIT="808a5eec296dff148585c8e5f55428b52c50143b"
 
 ###
@@ -72,14 +71,14 @@ echo ""
 PR_IDS=""
 echo "${COMMIT_MESSAGES}" | while read COMMIT_MESSAGE
 do
-    NEW_ID=$(echo "$COMMIT_MESSAGE" | sed -nr 's/(.*)\(#([0-9]*)\)(.*)/\2/p')
+    NEW_ID=$(echo "$COMMIT_MESSAGE" | sed -nr 's/(.*)\(#([0-9]*)\)(.*)/\2/p');
     if [[ ! "${NEW_ID}" == "" ]]; then
         if [[ "${PR_IDS}" == "" ]]; then
-            PR_IDS="${NEW_ID}"
+            PR_IDS="${NEW_ID}";
         else
-            PR_IDS="${PR_IDS} ${NEW_ID}"
-        fi
-    fi
+            PR_IDS="${PR_IDS} ${NEW_ID}";
+        fi;
+    fi;
 done
 # PR_IDS="2984"
 echo "Detected IDs of the PR who got merged, based on the new commits:"
