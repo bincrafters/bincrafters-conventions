@@ -69,7 +69,7 @@ echo ""
 # PR_IDS have to be space separated
 # TODO
 PR_IDS=""
-echo "${COMMIT_MESSAGES}" | while read COMMIT_MESSAGE
+while read COMMIT_MESSAGE
 do
     NEW_ID=$(echo "$COMMIT_MESSAGE" | sed -nr 's/(.*)\(#([0-9]*)\)(.*)/\2/p');
     if [[ ! "${NEW_ID}" == "" ]]; then
@@ -79,7 +79,7 @@ do
             PR_IDS="${PR_IDS} ${NEW_ID}";
         fi;
     fi;
-done
+done  < <(echo "${COMMIT_MESSAGES}")
 # PR_IDS="2984"
 echo "Detected IDs of the PR who got merged, based on the new commits:"
 echo "${PR_IDS}"
