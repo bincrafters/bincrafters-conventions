@@ -248,11 +248,8 @@ REFERENCES = {
     "spdlog/1.4.1@bincrafters/stable": "spdlog/1.4.2",
     "spdlog/1.4.2@bincrafters/stable": "spdlog/1.4.2",
 
+    # Jasper break things in patch versions, don't update
     "jasper/2.0.14@conan/stable": "jasper/2.0.14",
-    "jasper/2.0.14": "jasper/2.0.19",
-    # TODO: https://github.com/conan-io/conan-center-index/pull/2743#issuecomment-702066344
-    # "jasper/2.0.16": "jasper/2.0.19",
-    # "jasper/2.0.19": "jasper/2.0.21",
 
     "libalsa/1.1.5@conan/stable": "libalsa/1.1.9",
     "libalsa/1.1.9@conan/stable": "libalsa/1.1.9",
