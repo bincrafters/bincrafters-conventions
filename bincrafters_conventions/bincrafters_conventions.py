@@ -35,7 +35,7 @@ from .actions.update_c_remove_compiler_cppstd import update_c_remove_compiler_cp
 from .actions.update_readme_travis_url import update_readme_travis_url
 from .actions.update_migrate_travis_to_import_and_gha import update_migrate_travis_to_import_and_gha
 
-__version__ = '0.26.2'
+__version__ = '0.27.0'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
