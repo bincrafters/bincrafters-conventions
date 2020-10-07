@@ -76,7 +76,7 @@ To install extra packages required to test
 
 
 #### TESTING
-To run all unit test + code coverage, just execute:
+To run all unit test + code coverage, execute:
 
     pip install .[test]
     cd tests
@@ -87,23 +87,7 @@ To run all unit test + code coverage, just execute:
 To develop or run bincrafters-conventions:
 
     pip install --user -U .
-
-
-#### UPLOAD
-There are two ways to upload this project.
-
-##### Travis CI
-After to create a new tag, the package will be uploaded automatically to PyPi.  
-Both username and password (encrypted) are in Travis file.  
-
-
-##### Command line
-To upload this package on PyPi (legacy mode):
-
-    pip install twine
-    python setup.py sdist
-    twine upload dist/*
-
+    bincrafters-conventions
 
 #### LICENSE
 [MIT](LICENSE.md)
