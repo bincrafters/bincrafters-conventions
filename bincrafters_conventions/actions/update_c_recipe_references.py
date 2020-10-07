@@ -62,6 +62,9 @@ REFERENCES = {
     "Expat/2.2.5@pix4d/stable": "expat/2.2.9",
     "Expat/2.2.6@pix4d/stable": "expat/2.2.9",
     "Expat/2.2.7@pix4d/stable": "expat/2.2.9",
+    "Expat/2.2.8@pix4d/stable": "expat/2.2.10",
+    "Expat/2.2.9@pix4d/stable": "expat/2.2.10",
+    "expat/2.2.9": "expat/2.2.10",
 
     "bzip2/1.0.6@conan/stable": "bzip2/1.0.6",
     "bzip2/1.0.8@conan/stable": "bzip2/1.0.8",
@@ -141,6 +144,7 @@ REFERENCES = {
 
     "lzma/5.2.3@bincrafters/stable": "xz_utils/5.2.4",
     "lzma/5.2.4@bincrafters/stable": "xz_utils/5.2.4",
+    "xz_utils/5.2.4": "xz_utils/5.2.5",
 
     "pcre/8.41@bincrafters/stable": "pcre/8.41",
 
@@ -961,6 +965,7 @@ REFERENCES = {
     "libuvc/0.0.6@bincrafters/stable": "libuvc/0.0.6",
 
     "benchmark/1.5.0": "benchmark/1.5.1",
+    "benchmark/1.5.1": "benchmark/1.5.2",
 
     "libpcap/1.8.1@bincrafters/stable": "libpcap/1.9.1",
     "libpcap/1.9.1@bincrafters/stable": "libpcap/1.9.1",
