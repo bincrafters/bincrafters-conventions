@@ -907,6 +907,7 @@ REFERENCES = {
     "glib/2.65.0": "glib/2.65.1",
     "glib/2.65.1": "glib/2.66.0",
     "glib/2.65.2": "glib/2.66.0",
+    "glib/2.66.0": "glib/2.66.1",
 
     "cpp-taskflow/2.2.0": "taskflow/2.2.0",
     "cpp-taskflow/2.4.0": "taskflow/2.4.0",
