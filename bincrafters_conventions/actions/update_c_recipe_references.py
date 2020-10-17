@@ -27,7 +27,7 @@ REFERENCES = {
     "Poco/1.9.4@pocoproject/stable": "poco/1.9.4",
     "Poco/1.10.0@pocoproject/stable": "poco/1.10.1",
 
-    # For newer OpenSSL versions the dedicated update OpenSSL version update script is enough
+    # For newer OpenSSL versions the dedicated OpenSSL version update script is enough
     "OpenSSL/1.0.2s@conan/stable": "openssl/1.0.2t",
     "OpenSSL/1.0.2t@conan/stable": "openssl/1.0.2t",
     "OpenSSL/latest_1.0.2x@conan/stable": "openssl/1.0.2t",
@@ -656,6 +656,8 @@ REFERENCES = {
 
     "abseil/20181200@bincrafters/stable": "abseil/20200225.2",
     "abseil/20200205": "abseil/20200225.2",
+    "abseil/20200205.2": "abseil/20200225.3",
+    "abseil/20200923": "abseil/20200923.1",
 
     "c-blosc/v1.12.4b8@francescalted/stable": "c-blosc/1.17.1",
     "c-blosc/v1.13.5@francescalted/stable": "c-blosc/1.17.1",
