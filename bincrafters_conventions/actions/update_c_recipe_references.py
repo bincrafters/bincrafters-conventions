@@ -173,6 +173,7 @@ REFERENCES = {
     "freetype/2.10.0@bincrafters/stable": "freetype/2.10.1",
     "freetype/2.10.0": "freetype/2.10.1",
     "freetype/2.10.1": "freetype/2.10.2",
+    "freetype/2.10.2": "freetype/2.10.4",
 
     "libtiff/4.0.8@bincrafters/stable": "libtiff/4.0.9",
     "libtiff/4.0.9@bincrafters/stable": "libtiff/4.0.9",
@@ -754,6 +755,7 @@ REFERENCES = {
 
     "libsndfile/1.0.28@bincrafters/stable": "libsndfile/1.0.28",
     "libsndfile/1.0.28": "libsndfile/1.0.29",
+    "libsndfile/1.0.29": "libsndfile/1.0.30",
 
     "rang/3.0.0@rang/stable": "rang/3.1.0",
     "rang/3.1.0@rang/stable": "rang/3.1.0",
