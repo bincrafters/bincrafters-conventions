@@ -659,6 +659,7 @@ REFERENCES = {
     "abseil/20200205": "abseil/20200225.2",
     "abseil/20200205.2": "abseil/20200225.3",
     "abseil/20200923": "abseil/20200923.1",
+    "abseil/20200923.1": "abseil/20200923.2",
 
     "c-blosc/v1.12.4b8@francescalted/stable": "c-blosc/1.17.1",
     "c-blosc/v1.13.5@francescalted/stable": "c-blosc/1.17.1",
@@ -912,6 +913,7 @@ REFERENCES = {
     "glib/2.65.1": "glib/2.66.0",
     "glib/2.65.2": "glib/2.66.0",
     "glib/2.66.0": "glib/2.66.1",
+    "glib/2.66.1": "glib/2.66.2",
 
     "cpp-taskflow/2.2.0": "taskflow/2.2.0",
     "cpp-taskflow/2.4.0": "taskflow/2.4.0",
