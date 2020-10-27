@@ -520,6 +520,9 @@ REFERENCES = {
     "cmake/3.16.2": "cmake/3.16.3",
     "cmake/3.16.3": "cmake/3.16.4",
     "cmake/3.16.4": "cmake/3.16.5",
+    "cmake/3.16.5": "cmake/3.16.6",
+    "cmake/3.16.6": "cmake/3.16.7",
+    "cmake/3.16.7": "cmake/3.16.8",
 
     "opus/1.2.1@bincrafters/stable": "opus/1.3.1",
     "opus/1.3.1@bincrafters/stable": "opus/1.3.1",
