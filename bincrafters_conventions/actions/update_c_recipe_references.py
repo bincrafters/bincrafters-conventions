@@ -615,6 +615,10 @@ REFERENCES = {
     "icu/62.1@bincrafters/stable": "icu/64.2",
     "icu/63.1@bincrafters/stable": "icu/64.2",
     "icu/64.2@bincrafters/stable": "icu/64.2",
+    "icu/64.2": "icu/68.1",
+    "icu/65.1": "icu/68.1",
+    "icu/66.1": "icu/68.1",
+    "icu/67.1": "icu/68.1",
 
     "cereal/1.2.2@conan/stable": "cereal/1.3.0",
 
