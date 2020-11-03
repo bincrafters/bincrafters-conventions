@@ -923,6 +923,7 @@ REFERENCES = {
     "glib/2.65.2": "glib/2.66.0",
     "glib/2.66.0": "glib/2.66.1",
     "glib/2.66.1": "glib/2.66.2",
+    "glib/2.66.2": "glib/2.67.0",
 
     "cpp-taskflow/2.2.0": "taskflow/2.2.0",
     "cpp-taskflow/2.4.0": "taskflow/2.4.0",
@@ -940,6 +941,9 @@ REFERENCES = {
     "harfbuzz/2.6.2@bincrafters/stable": "harfbuzz/2.6.8",
     "harfbuzz/2.6.4@bincrafters/stable": "harfbuzz/2.6.8",
     "harfbuzz/2.6.7@bincrafters/stable": "harfbuzz/2.6.8",
+    "harfbuzz/2.6.8": "harfbuzz/2.7.2",
+    "harfbuzz/2.7.0": "harfbuzz/2.7.2",
+    "harfbuzz/2.7.1": "harfbuzz/2.7.2",
 
     "libepoxy/1.5.4@bincrafters/stable": "libepoxy/1.5.4",
 
