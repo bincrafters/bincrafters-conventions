@@ -53,7 +53,7 @@ appveyor_win_msvc_images_compiler_mapping = {'12': '2015', '14': '2015', '15': '
 # and if they don't already exist
 compiler_versions = {'visual': ('15', '16')}
 # This compiler versions are getting actively removed from existing jobs
-compiler_versions_deletion = {'visual': ('12',)}
+compiler_versions_deletion = {'visual': ('12', '14')}
 
 
 # What are the latest AVAILABLE patches for OpenSSL, which versions are End-Of-Life?
