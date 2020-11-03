@@ -243,6 +243,7 @@ REFERENCES = {
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
     "libmount/2.33.1@bincrafters/stable": "libmount/2.33.1",
+    "libmount/2.33.1": "libmount/2.36",
 
     "libxml2/2.9.3@bincrafters/stable": "libxml2/2.9.9",
     "libxml2/2.9.8@bincrafters/stable": "libxml2/2.9.9",
@@ -788,6 +789,7 @@ REFERENCES = {
     "CTRE/v2.8.2@ctre/stable": "ctre/2.8.2",
 
     "mpc/1.1.0@bincrafters/stable": "mpc/1.1.0",
+    "mpc/1.1.0": "mpc/1.2.0",
 
     "apache-apr/1.5.2@jgsogo/stable": "apr/1.7.0",
     "apache-apr/1.6.3@jgsogo/stable": "apr/1.7.0",
@@ -1009,6 +1011,8 @@ REFERENCES = {
 
     "atk/2.35.1@bincrafters/stable": "atk/2.36.0",
     "atk/2.36.0@bincrafters/stable": "atk/2.36.0",
+
+    "opencv/2.4.13.5@conan/stable": "opencv/2.4.13.7",
 }
 
 
