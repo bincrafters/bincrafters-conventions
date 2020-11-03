@@ -238,6 +238,7 @@ REFERENCES = {
     "meson/0.55.0": "meson/0.55.1",
     "meson/0.55.1": "meson/0.55.3",
     "meson/0.55.2": "meson/0.55.3",
+    "meson/0.55.3": "meson/0.56.0",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -258,6 +259,7 @@ REFERENCES = {
 
     "libalsa/1.1.5@conan/stable": "libalsa/1.1.9",
     "libalsa/1.1.9@conan/stable": "libalsa/1.1.9",
+    "libalsa/1.2.2": "libalsa/1.2.4",
 
     "jsonformoderncpp/3.0.0@vthiery/stable": "nlohmann_json/3.7.3",
     "jsonformoderncpp/3.0.1@vthiery/stable": "nlohmann_json/3.7.3",
@@ -854,6 +856,7 @@ REFERENCES = {
 
     "fontconfig/2.13.91@bincrafters/stable": "fontconfig/2.13.91",
     "fontconfig/2.13.1@bincrafters/stable": "fontconfig/2.13.91",
+    "fontconfig/2.13.91": "fontconfig/2.13.92",
 
     "gsoap/2.8.91@bincrafters/stable": "gsoap/2.8.103",
     "gsoap/2.8.94@bincrafters/stable": "gsoap/2.8.103",
