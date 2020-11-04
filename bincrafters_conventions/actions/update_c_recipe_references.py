@@ -379,6 +379,7 @@ REFERENCES = {
     "eigen/3.3.4@conan/stable": "eigen/3.3.7",
     "eigen/3.3.5@conan/stable": "eigen/3.3.7",
     "eigen/3.3.7@conan/stable": "eigen/3.3.7",
+    "eigen/3.3.7": "eigen/3.3.8",
 
     "range-v3/0.2.6@ericniebler/stable": "range-v3/0.9.1",
     "range-v3/0.3.0@ericniebler/stable": "range-v3/0.9.1",
@@ -1013,6 +1014,10 @@ REFERENCES = {
     "atk/2.36.0@bincrafters/stable": "atk/2.36.0",
 
     "opencv/2.4.13.5@conan/stable": "opencv/2.4.13.7",
+
+    "gstreamer/1.14.4@bincrafters/stable": "gstreamer/1.18.0",
+    "gstreamer/1.16.0@bincrafters/stable": "gstreamer/1.18.0",
+    "gstreamer/1.16.2": "gstreamer/1.18.0",
 }
 
 
