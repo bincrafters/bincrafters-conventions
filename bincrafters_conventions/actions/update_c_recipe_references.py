@@ -521,6 +521,7 @@ REFERENCES = {
     "cmake_installer/3.16.1@conan/stable": "cmake/3.16.3",
     "cmake_installer/3.16.2@conan/stable": "cmake/3.16.3",
     "cmake_installer/3.16.3@conan/stable": "cmake/3.16.3",
+    "cmake/3.15.7": "cmake/3.16.3",
     "cmake/3.16.2": "cmake/3.16.3",
     "cmake/3.16.3": "cmake/3.16.4",
     "cmake/3.16.4": "cmake/3.16.5",
@@ -603,6 +604,7 @@ REFERENCES = {
 
     "glad/0.1.24@bincrafters/stable": "glad/0.1.33",
     "glad/0.1.29@bincrafters/stable": "glad/0.1.33",
+    "glad/0.1.33": "glad/0.1.34",
 
     "openblas/0.2.20@conan/stable": "openblas/0.3.7",
     "openblas/0.3.5@conan/stable": "openblas/0.3.7",
@@ -612,6 +614,7 @@ REFERENCES = {
     "libmad/0.15.1b@bincrafters/stable": "libmad/0.15.1b",
 
     "libx265/3.0@bincrafters/stable": "libx265/3.2.1",
+    "libx265/3.2.1": "libx265/3.4",
 
     # TODO: icu: no installer for now https://github.com/conan-io/conan-center-index/pull/151
     "icu/59.1@bincrafters/stable": "icu/64.2",
@@ -788,6 +791,23 @@ REFERENCES = {
     "CTRE/v2.8@ctre/stable": "ctre/2.8.2",
     "CTRE/v2.8.1@ctre/stable": "ctre/2.8.2",
     "CTRE/v2.8.2@ctre/stable": "ctre/2.8.2",
+    "CTRE/v2.8.3@ctre/stable": "ctre/2.10",
+    "CTRE/v2.8.4@ctre/stable": "ctre/2.10",
+    "CTRE/v2.9.0@ctre/stable": "ctre/2.10",
+    "CTRE/v2.9.1@ctre/stable": "ctre/2.10",
+    "CTRE/v2.9.2@ctre/stable": "ctre/2.10",
+    "CTRE/v2.10@ctre/stable": "ctre/2.10",
+    "ctre/2.8.2": "ctre/2.10",
+    "CTRE/v3.0@ctre/stable": "ctre/3.3.2",
+    "CTRE/v3.0.1@ctre/stable": "ctre/3.3.2",
+    "CTRE/v3.1@ctre/stable": "ctre/3.3.2",
+    "CTRE/v3.2@ctre/stable": "ctre/3.3.2",
+    "CTRE/v3.3@ctre/stable": "ctre/3.3.2",
+    "CTRE/v3.3.1@ctre/stable": "ctre/3.3.2",
+    "CTRE/v3.3.2@ctre/stable": "ctre/3.3.2",
+    "ctre/3.0.1": "ctre/3.3.2",
+    "ctre/3.1": "ctre/3.3.2",
+    "ctre/3.2": "ctre/3.3.2",
 
     "mpc/1.1.0@bincrafters/stable": "mpc/1.1.0",
     "mpc/1.1.0": "mpc/1.2.0",
