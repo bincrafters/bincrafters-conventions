@@ -862,10 +862,12 @@ REFERENCES = {
     "restinio/0.6.9@stiffstream/stable": "restinio/0.6.9",
     "restinio/0.6.10@stiffstream/stable": "restinio/0.6.10",
     "restinio/0.6.11@stiffstream/stable": "restinio/0.6.11",
+    "restinio/0.6.12@stiffstream/stable": "restinio/0.6.12",
     "restinio/0.6.8": "restinio/0.6.8.1",
     "restinio/0.6.8.1": "restinio/0.6.9",
     "restinio/0.6.9": "restinio/0.6.10",
     "restinio/0.6.10": "restinio/0.6.11",
+    "restinio/0.6.11": "restinio/0.6.12",
 
     "ncurses/6.1@conan/stable": "ncurses/6.2",
 
