@@ -99,6 +99,7 @@ REFERENCES = {
     "gsl_microsoft/2.0.0@bincrafters/stable": "ms-gsl/2.0.0",
 
     "optional-lite/3.2.0@bincrafters/stable": "optional-lite/3.2.0",
+    "optional-lite/3.2.0": "optional-lite/3.3.0",
 
     "Catch2/2.9.0@catchorg/stable": "catch2/2.11.0",
     "Catch2/2.9.1@catchorg/stable": "catch2/2.11.0",
@@ -160,6 +161,8 @@ REFERENCES = {
     "odbc/2.3.7@bincrafters/stable": "odbc/2.3.7",
 
     "libffi/3.2.1@bincrafters/stable": "libffi/3.2.1",
+    # Enable only when all CCI recipes work with this version or newer
+    # "libffi/3.2.1": "libffi/3.3",
 
     "gflags/2.2.1@bincrafters/stable": "gflags/2.2.2",
     "gflags/2.2.2@bincrafters/stable": "gflags/2.2.2",
