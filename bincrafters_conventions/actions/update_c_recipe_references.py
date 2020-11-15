@@ -1047,6 +1047,9 @@ REFERENCES = {
     "mongo-c-driver/1.9.4@bincrafters/stable": "mongo-c-driver/1.17.2",
     "mongo-c-driver/1.11.0@bincrafters/stable": "mongo-c-driver/1.17.2",
     "mongo-c-driver/1.16.1@bincrafters/stable": "mongo-c-driver/1.17.2",
+
+    "cairo/1.15.14@bincrafters/stable": "cairo/1.17.2",
+    "cairo/1.17.2@bincrafters/stable": "cairo/1.17.2",
 }
 
 
