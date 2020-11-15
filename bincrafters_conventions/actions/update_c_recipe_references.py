@@ -1043,6 +1043,10 @@ REFERENCES = {
     "gstreamer/1.14.4@bincrafters/stable": "gstreamer/1.18.0",
     "gstreamer/1.16.0@bincrafters/stable": "gstreamer/1.18.0",
     "gstreamer/1.16.2": "gstreamer/1.18.0",
+
+    "mongo-c-driver/1.9.4@bincrafters/stable": "mongo-c-driver/1.17.2",
+    "mongo-c-driver/1.11.0@bincrafters/stable": "mongo-c-driver/1.17.2",
+    "mongo-c-driver/1.16.1@bincrafters/stable": "mongo-c-driver/1.17.2",
 }
 
 
