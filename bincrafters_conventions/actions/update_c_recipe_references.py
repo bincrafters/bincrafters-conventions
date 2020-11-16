@@ -1050,6 +1050,11 @@ REFERENCES = {
 
     "cairo/1.15.14@bincrafters/stable": "cairo/1.17.2",
     "cairo/1.17.2@bincrafters/stable": "cairo/1.17.2",
+
+    "pybind11/2.2.2@conan/stable": "pybind11/2.6.0",
+    "pybind11/2.2.3@conan/stable": "pybind11/2.6.0",
+    "pybind11/2.2.4@conan/stable": "pybind11/2.6.0",
+    "pybind11/2.3.0@conan/stable": "pybind11/2.6.0",
 }
 
 
