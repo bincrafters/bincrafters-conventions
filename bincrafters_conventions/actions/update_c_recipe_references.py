@@ -1055,6 +1055,12 @@ REFERENCES = {
     "pybind11/2.2.3@conan/stable": "pybind11/2.6.0",
     "pybind11/2.2.4@conan/stable": "pybind11/2.6.0",
     "pybind11/2.3.0@conan/stable": "pybind11/2.6.0",
+
+    "cppcheck_installer/1.88@bincrafters/stable": "cppcheck/2.2",
+    "cppcheck_installer/1.89@bincrafters/stable": "cppcheck/2.2",
+    "cppcheck_installer/1.90@bincrafters/stable": "cppcheck/2.2",
+    "cppcheck_installer/2.0@bincrafters/stable": "cppcheck/2.2",
+    "cppcheck_installer/2.1@bincrafters/stable": "cppcheck/2.2",
 }
 
 
@@ -1133,6 +1139,7 @@ def update_c_recipe_references(main, conanfile):
         "depot_tools_installer": "depot_tools",
         "CLI11": "cli11",
         "pkg-config_installer": "pkgconf",
+        "cppcheck_installer": "cppcheck",
     }
 
     for old_name, new_name in reference_names.items():
