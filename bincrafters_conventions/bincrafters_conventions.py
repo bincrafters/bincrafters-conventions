@@ -33,6 +33,7 @@ from .actions.update_c_recipe_references import update_c_recipe_references
 from .actions.update_c_remove_compiler_cppstd import update_c_remove_compiler_cppstd
 from .actions.update_readme_travis_url import update_readme_travis_url
 from .actions.update_migrate_travis_to_import_and_gha import update_migrate_travis_to_import_and_gha
+from .actions.update_travis_import_to_fixed_commit import update_travis_import_to_fixed_commit
 
 __version__ = '0.29.0'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
@@ -168,7 +169,8 @@ class Command(object):
         result = []
 
         result.extend([
-            update_migrate_travis_to_import_and_gha(self, file)
+            update_migrate_travis_to_import_and_gha(self, file),
+            update_travis_import_to_fixed_commit(self, file)
         ])
 
         return result

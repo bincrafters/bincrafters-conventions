@@ -176,6 +176,16 @@ def test_update_travis_4_pages():
     assert _compare_file(path_old, path_expected)
 
 
+def test_update_travis_import_to_fixed_hash():
+    path_old, path_expected = _prepare_old_file("travis_4", ".yml")
+
+    args = ['--travisfile', path_old]
+    command = Command()
+    command.run(args)
+
+    assert _compare_file(path_old, path_expected)
+
+
 def test_gha():
     """ Try to update an GitHub actions file
     """
