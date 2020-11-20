@@ -41,3 +41,22 @@ jobs:
         pip install --quiet bincrafters-conventions
         conan user
         bincrafters-conventions --remote bincrafters --remote-max-repos 1 --remote-token="${GIT_GITHUB_USERNAME}:${GIT_GITHUB_TOKEN}";
+  bincrafters-conventions:
+    name: Build & test Bincrafters Conventions on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    if: github.event_name == 'push'
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["windows-2019", "macos-11.0"]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v1
+      with:
+        python-version: "3.8"
+    - name: "Build & Test"
+      run: |
+        pip install -e .[test]
+        cd tests
+        pytest -v --cov=bincrafters_conventions
+
