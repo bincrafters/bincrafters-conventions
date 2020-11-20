@@ -8,7 +8,7 @@ jobs:
   update-cci-fork:
     name: "Update CCI fork"
     runs-on: ubuntu-20.04
-    if: github.event_name != 'push' or github.ref == 'refs/heads/main'
+    if: github.event_name != 'push' || github.ref == 'refs/heads/main'
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v1
