@@ -14,7 +14,15 @@ def update_travis_import_to_fixed_commit(main, travis_file) -> bool:
         or main.replace_in_file(
             travis_file,
             "bincrafters/templates:.ci/travis-macos.yml@main",
-            "bincrafters/templates:.ci/travis-macos.yml@12f4883f65fcbc521d7425636083ce9bba4be5cd"):
+            "bincrafters/templates:.ci/travis-macos.yml@12f4883f65fcbc521d7425636083ce9bba4be5cd")\
+        or main.replace_in_file(
+            travis_file,
+            "bincrafters/templates:.ci/travis-macos-installer.yml@main",
+            "bincrafters/templates:.ci/travis-macos-installer.yml@12f4883f65fcbc521d7425636083ce9bba4be5cd")\
+        or main.replace_in_file(
+            travis_file,
+            "bincrafters/templates:.ci/travis-macos-installer.yml@main",
+            "bincrafters/templates:.ci/travis-macos-installer.yml@12f4883f65fcbc521d7425636083ce9bba4be5cd"):
         main.output_result_update(title="CI: Update Travis config import to fixed hash.")
         return True
 
