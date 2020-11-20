@@ -749,6 +749,7 @@ REFERENCES = {
 
     "spirv-headers/1.3.7@bincrafters/stable": "spirv-headers/1.5.1",
     "spirv-headers/1.4.1@bincrafters/stable": "spirv-headers/1.5.1",
+    "spirv-headers/1.5.1": "spirv-headers/1.5.4",
 
     "tesseract/4.0.0@bincrafters/stable": "tesseract/4.1.1",
 
@@ -1055,6 +1056,7 @@ REFERENCES = {
     "pybind11/2.2.3@conan/stable": "pybind11/2.6.0",
     "pybind11/2.2.4@conan/stable": "pybind11/2.6.0",
     "pybind11/2.3.0@conan/stable": "pybind11/2.6.0",
+    "pybind11/2.6.0": "pybind11/2.6.1",
 
     "cppcheck_installer/1.88@bincrafters/stable": "cppcheck/2.2",
     "cppcheck_installer/1.89@bincrafters/stable": "cppcheck/2.2",
