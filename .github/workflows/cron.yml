@@ -41,7 +41,7 @@ jobs:
         conan user
         bincrafters-conventions --remote bincrafters --remote-max-repos 1 --remote-token="${GIT_GITHUB_USERNAME}:${GIT_GITHUB_TOKEN}";
   bincrafters-conventions:
-    name: Build & test Bincrafters Conventions on ${{ matrix.os }}
+    name: Test Conventions on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     if: github.event_name == 'push'
     strategy:
