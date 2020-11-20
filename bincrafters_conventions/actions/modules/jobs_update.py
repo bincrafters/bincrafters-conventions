@@ -149,7 +149,7 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                     continue
 
                 # Skip empty lines and comments
-                if line.strip() is "" or line.strip()[0] == "#":
+                if line.strip() == "" or line.strip()[0] == "#":
                     continue
 
                 if platform_job_beginning_indication_use_spaces \
