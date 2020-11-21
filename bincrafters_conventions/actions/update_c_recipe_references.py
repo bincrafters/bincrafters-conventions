@@ -1040,6 +1040,12 @@ REFERENCES = {
     "atk/2.36.0@bincrafters/stable": "atk/2.36.0",
 
     "opencv/2.4.13.5@conan/stable": "opencv/2.4.13.7",
+    "opencv/4.0.0@conan/stable": "opencv/4.5.0",
+    "opencv/4.0.1@conan/stable": "opencv/4.5.0",
+    "opencv/4.1.0@conan/stable": "opencv/4.5.0",
+    "opencv/4.1.1@conan/stable": "opencv/4.5.0",
+    "opencv/4.2.0@conan/stable": "opencv/4.5.0",
+    "opencv/4.3.0@conan/stable": "opencv/4.5.0",
 
     "gstreamer/1.14.4@bincrafters/stable": "gstreamer/1.18.0",
     "gstreamer/1.16.0@bincrafters/stable": "gstreamer/1.18.0",
