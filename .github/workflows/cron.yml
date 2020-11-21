@@ -57,12 +57,11 @@ jobs:
     - name: "Build & Test"
       run: |
         pip install -e .[test]
-        cd tests
         python setup.py sdist
-        pushd tests
+        cd tests
         pytest -v -s --cov=bincrafters_conventions
         mv .coverage ..
-        popd
+        cd ..
         codecov
   bincrafers-conventions-deploy:
     name: Deploy Conventions to PyPi
