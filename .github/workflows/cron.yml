@@ -41,14 +41,14 @@ jobs:
         pip install --quiet bincrafters-conventions
         conan user
         bincrafters-conventions --remote bincrafters --remote-max-repos 1 --remote-token="${GIT_GITHUB_USERNAME}:${GIT_GITHUB_TOKEN}";
-  bincrafters-conventions:
+  bincrafters-conventions-test:
     name: Test Conventions on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     if: github.event_name == 'push'
     strategy:
       fail-fast: false
       matrix:
-        os: ["windows-2019", "macos-11.0"]
+        os: ["ubuntu-20.04", "windows-2019", "macos-11.0"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v1
@@ -58,5 +58,27 @@ jobs:
       run: |
         pip install -e .[test]
         cd tests
-        pytest -v --cov=bincrafters_conventions
-
+        python setup.py sdist
+        pushd tests
+        pytest -v -s --cov=bincrafters_conventions
+        mv .coverage ..
+        popd
+        codecov
+  bincrafers-conventions-deploy:
+    name: Deploy Conventions to PyPi
+    runs-on: 20.04
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+    needs: bincrafters-conventions-test
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v1
+      with:
+        python-version: "3.8"
+    - name: Build
+      run: |
+        python setup.py sdist
+    - name: Publish package
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_TOKEN }}
