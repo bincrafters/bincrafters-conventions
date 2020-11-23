@@ -78,6 +78,7 @@ REFERENCES = {
     "libjpeg-turbo/2.0.2@bincrafters/stable": "libjpeg-turbo/2.0.2",
     "libjpeg-turbo/2.0.2": "libjpeg-turbo/2.0.4",
     "libjpeg-turbo/2.0.4": "libjpeg-turbo/2.0.5",
+    "libjpeg-turbo/2.0.5": "libjpeg-turbo/2.0.6",
 
     "libpng/1.6.32@bincrafters/stable": "libpng/1.6.37",
     "libpng/1.6.34@bincrafters/stable": "libpng/1.6.37",
@@ -100,6 +101,7 @@ REFERENCES = {
 
     "optional-lite/3.2.0@bincrafters/stable": "optional-lite/3.2.0",
     "optional-lite/3.2.0": "optional-lite/3.3.0",
+    "optional-lite/3.3.0": "optional-lite/3.4.0",
 
     "Catch2/2.9.0@catchorg/stable": "catch2/2.11.0",
     "Catch2/2.9.1@catchorg/stable": "catch2/2.11.0",
@@ -613,6 +615,7 @@ REFERENCES = {
     "openblas/0.3.5@conan/stable": "openblas/0.3.7",
     "openblas/0.3.7": "openblas/0.3.9",
     "openblas/0.3.9": "openblas/0.3.10",
+    "openblas/0.3.10": "openblas/0.3.12",
 
     "libmad/0.15.1b@bincrafters/stable": "libmad/0.15.1b",
 
