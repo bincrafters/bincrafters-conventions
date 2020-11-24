@@ -538,6 +538,7 @@ REFERENCES = {
     "opus/1.3.1@bincrafters/stable": "opus/1.3.1",
 
     "opusfile/0.10@bincrafters/stable": "opusfile/0.11",
+    "opusfile/0.11": "opusfile/0.12",
 
     "libmp3lame/3.100@bincrafters/stable": "libmp3lame/3.100",
 
@@ -992,6 +993,7 @@ REFERENCES = {
     "xkbcommon/0.8.4@bincrafters/stable": "xkbcommon/0.10.0",
     "xkbcommon/0.9.1@bincrafters/stable": "xkbcommon/0.10.0",
     "xkbcommon/0.10.0@bincrafters/stable": "xkbcommon/0.10.0",
+    "xkbcommon/1.0.1": "xkbcommon/1.0.3",
 
     "libyaml/0.2.2@bincrafters/stable": "libyaml/0.2.5",
 
