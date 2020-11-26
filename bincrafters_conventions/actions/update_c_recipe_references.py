@@ -334,6 +334,7 @@ REFERENCES = {
     "openal/1.18.2@bincrafters/stable": "openal/1.19.1",
     "openal/1.19.0@bincrafters/stable": "openal/1.19.1",
     "openal/1.19.1@bincrafters/stable": "openal/1.19.1",
+    "openal/1.19.1": "openal/1.21.0",
 
     "mozjpeg/3.3.1@bincrafters/stable": "mozjpeg/3.3.1",
 
@@ -1074,6 +1075,9 @@ REFERENCES = {
     "cppcheck_installer/1.90@bincrafters/stable": "cppcheck/2.2",
     "cppcheck_installer/2.0@bincrafters/stable": "cppcheck/2.2",
     "cppcheck_installer/2.1@bincrafters/stable": "cppcheck/2.2",
+
+    "gdk-pixbuf/2.40.0@bincrafters/stable": "gdk-pixbuf/2.42.0",
+    "gdk-pixbuf/2.42.0@bincrafters/stable": "gdk-pixbuf/2.42.0",
 }
 
 
