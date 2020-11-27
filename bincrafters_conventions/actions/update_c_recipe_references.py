@@ -1087,6 +1087,10 @@ REFERENCES = {
     "pango/1.46.2@bincrafters/stable": "pango/1.48.0",
     "pango/1.47.0@bincrafters/stable": "pango/1.48.0",
     "pango/1.48.0@bincrafters/stable": "pango/1.48.0",
+
+    "java_installer/8.0.144@bincrafters/stable": "zulu-openjdk/11.0.8",
+    "java_installer/8.0.153@bincrafters/stable": "zulu-openjdk/11.0.8",
+    "java_installer/9.0.0@bincrafters/stable": "zulu-openjdk/11.0.8",
 }
 
 
@@ -1166,6 +1170,7 @@ def update_c_recipe_references(main, conanfile):
         "CLI11": "cli11",
         "pkg-config_installer": "pkgconf",
         "cppcheck_installer": "cppcheck",
+        "java_installer": "zulu-openjdk",
     }
 
     for old_name, new_name in reference_names.items():
