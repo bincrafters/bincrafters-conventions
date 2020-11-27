@@ -1078,6 +1078,15 @@ REFERENCES = {
 
     "gdk-pixbuf/2.40.0@bincrafters/stable": "gdk-pixbuf/2.42.0",
     "gdk-pixbuf/2.42.0@bincrafters/stable": "gdk-pixbuf/2.42.0",
+
+    "pango/1.43.0@bincrafters/stable": "pango/1.48.0",
+    "pango/1.44.7@bincrafters/stable": "pango/1.48.0",
+    "pango/1.45.2@bincrafters/stable": "pango/1.48.0",
+    "pango/1.45.3@bincrafters/stable": "pango/1.48.0",
+    "pango/1.46.1@bincrafters/stable": "pango/1.48.0",
+    "pango/1.46.2@bincrafters/stable": "pango/1.48.0",
+    "pango/1.47.0@bincrafters/stable": "pango/1.48.0",
+    "pango/1.48.0@bincrafters/stable": "pango/1.48.0",
 }
 
 
