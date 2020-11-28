@@ -314,6 +314,10 @@ REFERENCES = {
     "mbedtls/2.6.1@bincrafters/stable": "mbedtls-apache/2.16.3",
     "mbedtls/2.11.0@bincrafters/stable": "mbedtls-apache/2.16.3",
     "mbedtls/2.13.0@bincrafters/stable": "mbedtls-apache/2.16.3",
+    "mbedtls-apache/2.16.3": "mbedtls-apache/2.24.0",
+    "mbedtls-apache/2.16.3-apache": "mbedtls-apache/2.24.0",
+    "mbedtls-apache/2.16.3-gpl": "mbedtls-apache/2.24.0",
+    "mbedtls-apache/2.23.0": "mbedtls-apache/2.24.0",
 
     "json-c/0.13.1@bincrafters/stable": "json-c/0.13.1",
     "json-c/0.13.1": "json-c/0.13.1",
