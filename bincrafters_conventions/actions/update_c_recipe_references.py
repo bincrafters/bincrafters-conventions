@@ -209,6 +209,7 @@ REFERENCES = {
     "ninja_installer/1.9.0@bincrafters/stable": "ninja/1.9.0",
     "ninja/1.9.0": "ninja/1.10.0",
     "ninja/1.10.0": "ninja/1.10.1",
+    "ninja/1.10.1": "ninja/1.10.2",
 
     "libelf/0.8.13@bincrafters/stable": "libelf/0.8.13",
 
@@ -833,6 +834,7 @@ REFERENCES = {
     "libxslt/1.1.33@bincrafters/stable": "libxslt/1.3.34",
 
     "automake/1.16.1": "automake/1.16.2",
+    "automake/1.16.2": "automake/1.16.3",
 
     "wt/4.0.3@bincrafters/stable": "wt/4.3.1",
     "wt/4.0.4@bincrafters/stable": "wt/4.3.1",
@@ -1095,6 +1097,8 @@ REFERENCES = {
     "java_installer/8.0.144@bincrafters/stable": "zulu-openjdk/11.0.8",
     "java_installer/8.0.153@bincrafters/stable": "zulu-openjdk/11.0.8",
     "java_installer/9.0.0@bincrafters/stable": "zulu-openjdk/11.0.8",
+
+    "pulseaudio/13.0@bincrafters/stable": "pulseaudio/13.0",
 }
 
 
