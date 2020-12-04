@@ -705,6 +705,13 @@ REFERENCES = {
     "c-blosc/v1.16.3@francescalted/stable": "c-blosc/1.17.1",
     "c-blosc/v1.17.0@francescalted/stable": "c-blosc/1.17.1",
     "c-blosc/v1.17.1@francescalted/stable": "c-blosc/1.17.1",
+    "c-blosc/v1.17.2@francescalted/stable": "c-blosc/1.20.1",
+    "c-blosc/v1.18.0@francescalted/stable": "c-blosc/1.20.1",
+    "c-blosc/v1.18.1@francescalted/stable": "c-blosc/1.20.1",
+    "c-blosc/1.17.1": "c-blosc/1.20.1",
+    "c-blosc/1.17.2": "c-blosc/1.20.1",
+    "c-blosc/1.18.0": "c-blosc/1.20.1",
+    "c-blosc/1.18.1": "c-blosc/1.20.1",
 
     "libqrencode/4.0.0@bincrafters/stable": "libqrencode/4.0.0",
 
