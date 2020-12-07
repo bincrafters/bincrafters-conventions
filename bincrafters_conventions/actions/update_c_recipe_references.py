@@ -927,6 +927,7 @@ REFERENCES = {
     "pugixml/1.8.1@bincrafters/stable": "pugixml/1.10",
     "pugixml/1.9@bincrafters/stable": "pugixml/1.10",
     "pugixml/1.10@bincrafters/stable": "pugixml/1.10",
+    "pugixml/1.10": "pugixml/1.11",
 
     "opengl/virtual@bincrafters/stable": "opengl/system",
 
@@ -1106,6 +1107,9 @@ REFERENCES = {
     "java_installer/9.0.0@bincrafters/stable": "zulu-openjdk/11.0.8",
 
     "pulseaudio/13.0@bincrafters/stable": "pulseaudio/13.0",
+
+    "mongo-cxx-driver/3.2.0@bincrafters/stable": "mongo-cxx-driver/3.6.1",
+    "mongo-cxx-driver/3.3.0@bincrafters/stable": "mongo-cxx-driver/3.6.1",
 }
 
 
