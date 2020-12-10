@@ -114,7 +114,7 @@ do
         # -r to enable extend regex syntax
         # /p to print matches despite -n
         BRANCH_NAME=$(echo "${PR_INFORMATION}" | sed -nr 's/([0-9]*)\t(.*)\t(.*)'"${GIT_GITHUB_FORK_ACCOUNT}:"'(.*)\t(.*)/\4/p')
-        if [[ ! "${BRANCH_NAME}" == "" ]]; then 
+        if [[ ! "${BRANCH_NAME}" == "" ]] && [[ ! "${BRANCH_NAME}" == "master" ]] && [[ ! "${BRANCH_NAME}" == "main" ]]; then 
             echo "Delete branch: ${BRANCH_NAME}"
             echo "${BRANCH_NAME}" | xargs -r -n 1 git push --delete origin
             echo ""
@@ -128,5 +128,5 @@ done
 echo ""
 echo ""
 echo "Delete all merged branches, which got merged, but NOT via a squashed merge commit:"
-git branch -r --merged master | grep -v master | sed 's/origin\///' | xargs -r -n 1 git push --delete origin
+git branch -r --merged main | grep -v origin/main | grep -v origin/master | sed 's/origin\///' | xargs -r -n 1 git push --delete origin
 echo ""
