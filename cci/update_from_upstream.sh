@@ -23,7 +23,7 @@ git clone "https://${GIT_GITHUB_USERNAME}:${GIT_GITHUB_TOKEN}@github.com/${GIT_G
 cd conan-center-index
 echo ""
 
-# Get current master commit
+# Get current default branch commit
 OLD_COMMIT=$(git rev-parse HEAD)
 
 ###
@@ -33,6 +33,10 @@ echo ""
 echo "Updating the CCI fork"
 git remote add upstream https://github.com/conan-io/conan-center-index
 git fetch upstream
+git checkout main
+git reset --hard upstream/master
+git push -f
+git checkout master
 git reset --hard upstream/master
 git push -f
 echo ""
@@ -61,7 +65,7 @@ fi
 ### makes it almost impossible and the worst case is that we have to restore a branch manually. 
 ### tl;dr: We should be fine.
 
-# Get all commit messages between old master commit and newest one
+# Get all commit messages between old default branch commit and newest one
 echo ""
 echo "All new commits:"
 COMMIT_MESSAGES=$(git log --pretty='format:%s' --abbrev-commit --ancestry-path ${OLD_COMMIT}..HEAD)
