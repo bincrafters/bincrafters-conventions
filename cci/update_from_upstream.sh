@@ -36,7 +36,7 @@ git fetch upstream
 git checkout main
 git reset --hard upstream/master
 git push -f
-git checkout master
+git checkout --track origin/master
 git reset --hard upstream/master
 git push -f
 echo ""
