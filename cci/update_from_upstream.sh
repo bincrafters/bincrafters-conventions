@@ -128,5 +128,5 @@ done
 echo ""
 echo ""
 echo "Delete all merged branches, which got merged, but NOT via a squashed merge commit:"
-git branch -r --merged main | grep -v origin/main | grep -v origin/master | sed 's/origin\///' | xargs -r -n 1 git push --delete origin
+git branch -r --merged main | grep -v main | grep -v master | sed 's/origin\///' | xargs -r -n 1 git push --delete origin
 echo ""
