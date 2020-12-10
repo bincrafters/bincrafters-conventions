@@ -1092,6 +1092,7 @@ REFERENCES = {
 
     "gdk-pixbuf/2.40.0@bincrafters/stable": "gdk-pixbuf/2.42.0",
     "gdk-pixbuf/2.42.0@bincrafters/stable": "gdk-pixbuf/2.42.0",
+    "gdk-pixbuf/2.42.0": "gdk-pixbuf/2.42.2",
 
     "pango/1.43.0@bincrafters/stable": "pango/1.48.0",
     "pango/1.44.7@bincrafters/stable": "pango/1.48.0",
