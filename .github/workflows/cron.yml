@@ -65,7 +65,7 @@ jobs:
         codecov
   bincrafers-conventions-deploy:
     name: Deploy Conventions to PyPi
-    runs-on: 20.04
+    runs-on: ubuntu-20.04
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     needs: bincrafters-conventions-test
     steps:
