@@ -448,6 +448,7 @@ REFERENCES = {
     "sqlitecpp/2.4.0@bincrafters/stable": "sqlitecpp/2.5.0",
 
     "libfdk_aac/2.0.0@bincrafters/stable": "libfdk_aac/2.0.0",
+    "libfdk_aac/2.0.0": "libfdk_aac/2.0.1",
 
     "libiberty/9.1.0@bincrafters/stable": "libiberty/9.1.0",
 
