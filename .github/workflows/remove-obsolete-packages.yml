@@ -1,0 +1,27 @@
+on:
+  push:
+  schedule:
+    - cron: "0 0 * * *"
+
+name: "remove-obsolete-packages"
+
+jobs:
+  remove-obsolete-packages:
+    name: "Remove Obsolete Packages"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/setup-python@v1
+      with:
+        python-version: "3.8"
+    - name: "Install Conan"
+      run: |
+        pip install --user conan
+    - name: "Remove Obsolete Packages"
+      env:
+        CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_LOGIN_USERNAME }}
+        CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD }}
+        CONAN_REQUEST_TIMEOUT: 3600
+      run: |
+        conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+        conan user ${CONAN_LOGIN_USERNAME} -r bincrafters -p ${CONAN_PASSWORD}
+        conan remove -r bincrafters --outdated --force "*/*"
