@@ -1112,6 +1112,9 @@ REFERENCES = {
 
     "mongo-cxx-driver/3.2.0@bincrafters/stable": "mongo-cxx-driver/3.6.1",
     "mongo-cxx-driver/3.3.0@bincrafters/stable": "mongo-cxx-driver/3.6.1",
+
+    "open62541/0.3.0@bincrafters/stable": "open62541/1.1.3",
+    "open62541/1.0.3": "open62541/1.1.3",
 }
 
 
