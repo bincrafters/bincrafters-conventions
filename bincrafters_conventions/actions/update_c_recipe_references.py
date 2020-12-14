@@ -1115,6 +1115,21 @@ REFERENCES = {
 
     "open62541/0.3.0@bincrafters/stable": "open62541/1.1.3",
     "open62541/1.0.3": "open62541/1.1.3",
+
+    "functionalplus/v0.2-p1@dobiasd/stable": "functionalplus/0.2.13-p0",
+    "functionalplus/v0.2.1-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
+    "functionalplus/v0.2.2-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
+    "functionalplus/v0.2.3-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
+    "functionalplus/v0.2.4-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
+    "functionalplus/v0.2.5-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
+    "functionalplus/v0.2.6-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
+    "functionalplus/v0.2.7-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
+    "functionalplus/v0.2.8-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
+    "functionalplus/v0.2.9-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
+    "functionalplus/v0.2.10-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
+    "functionalplus/v0.2.11-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
+    "functionalplus/v0.2.12-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
+    "functionalplus/v0.2.13-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
 }
 
 
