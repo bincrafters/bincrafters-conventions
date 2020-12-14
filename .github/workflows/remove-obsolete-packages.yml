@@ -15,7 +15,7 @@ jobs:
         python-version: "3.8"
     - name: "Install Conan"
       run: |
-        pip install --user conan
+        pip install conan
     - name: "Remove Obsolete Packages"
       env:
         CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_LOGIN_USERNAME }}
