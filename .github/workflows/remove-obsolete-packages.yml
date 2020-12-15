@@ -3,11 +3,11 @@ on:
   schedule:
     - cron: "0 0 * * *"
 
-name: "remove-obsolete-packages"
+name: "remove-outdated-packages"
 
 jobs:
-  remove-obsolete-packages:
-    name: "Remove Obsolete Packages"
+  remove-outdated-packages:
+    name: "Remove Outdated Packages For Bincrafters"
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/setup-python@v1
@@ -16,7 +16,7 @@ jobs:
     - name: "Install Conan"
       run: |
         pip install conan
-    - name: "Remove Obsolete Packages"
+    - name: "Remove Outdated Packages"
       env:
         CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_LOGIN_USERNAME }}
         CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD }}
