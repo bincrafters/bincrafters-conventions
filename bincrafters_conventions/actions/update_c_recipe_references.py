@@ -16,6 +16,10 @@ REFERENCES = {
     "zstd/1.3.5@bincrafters/stable": "zstd/1.3.5",
     "zstd/1.3.8@bincrafters/stable": "zstd/1.3.8",
     "zstd/1.4.0@bincrafters/stable": "zstd/1.4.3",
+    "zstd/1.4.3": "zstd/1.4.8",
+    "zstd/1.4.4": "zstd/1.4.8",
+    "zstd/1.4.5": "zstd/1.4.8",
+    "zstd/1.4.7": "zstd/1.4.8",
 
     "strawberryperl/5.28.1.1@conan/stable": "strawberryperl/5.28.1.1",
     "strawberryperl/5.30.0.1@conan/stable": "strawberryperl/5.30.0.1",
@@ -996,8 +1000,10 @@ REFERENCES = {
     "harfbuzz/2.6.8": "harfbuzz/2.7.2",
     "harfbuzz/2.7.0": "harfbuzz/2.7.2",
     "harfbuzz/2.7.1": "harfbuzz/2.7.2",
+    "harfbuzz/2.7.2": "harfbuzz/2.7.4",
 
     "libepoxy/1.5.4@bincrafters/stable": "libepoxy/1.5.4",
+    "libepoxy/1.5.4": "libepoxy/1.5.5",
 
     "cxxopts/v2.1.2@inexorgame/stable": "cxxopts/2.2.0",
     "cxxopts/2.2.0": "cxxopts/2.2.1",
@@ -1067,6 +1073,7 @@ REFERENCES = {
     "opencv/4.1.1@conan/stable": "opencv/4.5.0",
     "opencv/4.2.0@conan/stable": "opencv/4.5.0",
     "opencv/4.3.0@conan/stable": "opencv/4.5.0",
+    "opencv/4.5.0": "opencv/4.5.1",
 
     "gstreamer/1.14.4@bincrafters/stable": "gstreamer/1.18.0",
     "gstreamer/1.16.0@bincrafters/stable": "gstreamer/1.18.0",
