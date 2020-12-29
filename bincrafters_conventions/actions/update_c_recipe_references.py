@@ -644,6 +644,7 @@ REFERENCES = {
     "icu/65.1": "icu/68.1",
     "icu/66.1": "icu/68.1",
     "icu/67.1": "icu/68.1",
+    "icu/68.1": "icu/68.2",
 
     "cereal/1.2.2@conan/stable": "cereal/1.3.0",
 
@@ -887,11 +888,13 @@ REFERENCES = {
     "restinio/0.6.10@stiffstream/stable": "restinio/0.6.10",
     "restinio/0.6.11@stiffstream/stable": "restinio/0.6.11",
     "restinio/0.6.12@stiffstream/stable": "restinio/0.6.12",
+    "restinio/0.6.13@stiffstream/stable": "restinio/0.6.13",
     "restinio/0.6.8": "restinio/0.6.8.1",
     "restinio/0.6.8.1": "restinio/0.6.9",
     "restinio/0.6.9": "restinio/0.6.10",
     "restinio/0.6.10": "restinio/0.6.11",
     "restinio/0.6.11": "restinio/0.6.12",
+    "restinio/0.6.12": "restinio/0.6.13",
 
     "ncurses/6.1@conan/stable": "ncurses/6.2",
 
@@ -1137,6 +1140,8 @@ REFERENCES = {
     "functionalplus/v0.2.11-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
     "functionalplus/v0.2.12-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
     "functionalplus/v0.2.13-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
+
+    "pistache/d5608a1@conan/stable": "pistache/cci.20201127",
 }
 
 
