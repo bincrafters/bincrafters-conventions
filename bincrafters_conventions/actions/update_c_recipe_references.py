@@ -1142,6 +1142,9 @@ REFERENCES = {
     "functionalplus/v0.2.13-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
 
     "pistache/d5608a1@conan/stable": "pistache/cci.20201127",
+
+    "libmpg123/1.25.10@bincrafters/stable": "mpg123/1.26.4",
+    "libmpg123/1.25.13@bincrafters/stable": "mpg123/1.26.4",
 }
 
 
@@ -1222,6 +1225,7 @@ def update_c_recipe_references(main, conanfile):
         "pkg-config_installer": "pkgconf",
         "cppcheck_installer": "cppcheck",
         "java_installer": "zulu-openjdk",
+        "libmpg123": "mpg123",
     }
 
     for old_name, new_name in reference_names.items():
