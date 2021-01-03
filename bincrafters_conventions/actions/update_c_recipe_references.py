@@ -3,11 +3,11 @@ import os
 
 # noinspection SpellCheckingInspection
 REFERENCES = {
-    "depot_tools_installer/master@bincrafters/stable": "depot_tools_installer/20190909@bincrafters/stable",
+    "depot_tools_installer/master@bincrafters/stable": "depot_tools/20200407",
     "depot_tools_installer/20190909@bincrafters/stable": "depot_tools/20200407",
     "depot_tools_installer/20200207@bincrafters/stable": "depot_tools/20200407",
-    # TODO: Enable this, when we have a newer version in CCI, so we don't downgrade
-    # "depot_tools_installer/20200515@bincrafters/stable": "depot_tools/20200407",
+    "depot_tools_installer/20200515@bincrafters/stable": "depot_tools/cci.20201009",
+    "depot_tools/20200407": "depot_tools/cci.20201009",
 
     "zlib/1.2.8@conan/stable": "zlib/1.2.11",
     "zlib/1.2.9@conan/stable": "zlib/1.2.11",
@@ -307,6 +307,7 @@ REFERENCES = {
 
     "openjpeg/2.3.0@bincrafters/stable": "openjpeg/2.3.1",
     "openjpeg/2.3.1@bincrafters/stable": "openjpeg/2.3.1",
+    "openjpeg/2.3.1": "openjpeg/2.4.0",
 
     "jsoncpp/1.0.0@theirix/stable": "jsoncpp/1.9.2",
     "jsoncpp/1.8.4@theirix/stable": "jsoncpp/1.9.2",
@@ -785,6 +786,7 @@ REFERENCES = {
     "cpprestsdk/2.10.14@bincrafters/stable": "cpprestsdk/2.10.15",
     "cpprestsdk/2.10.15@bincrafters/stable": "cpprestsdk/2.10.15",
     "cpprestsdk/2.10.15": "cpprestsdk/2.10.16",
+    "cpprestsdk/2.10.16": "cpprestsdk/2.10.17",
 
     # Note that this might produce that bison is added two times (which should be harmless)
     "bison/3.0.4@bincrafters/stable": "bison/3.5.3",
@@ -1085,6 +1087,7 @@ REFERENCES = {
     "mongo-c-driver/1.9.4@bincrafters/stable": "mongo-c-driver/1.17.2",
     "mongo-c-driver/1.11.0@bincrafters/stable": "mongo-c-driver/1.17.2",
     "mongo-c-driver/1.16.1@bincrafters/stable": "mongo-c-driver/1.17.2",
+    "mongo-c-driver/1.17.2": "mongo-c-driver/1.17.3",
 
     "cairo/1.15.14@bincrafters/stable": "cairo/1.17.2",
     "cairo/1.17.2@bincrafters/stable": "cairo/1.17.2",
