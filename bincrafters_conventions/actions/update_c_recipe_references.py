@@ -1148,6 +1148,12 @@ REFERENCES = {
 
     "libmpg123/1.25.10@bincrafters/stable": "mpg123/1.26.4",
     "libmpg123/1.25.13@bincrafters/stable": "mpg123/1.26.4",
+
+    "sdl2/2.0.7@bincrafters/stable": "sdl2/2.0.14@bincrafters/stable",
+    "sdl2/2.0.8@bincrafters/stable": "sdl2/2.0.14@bincrafters/stable",
+    "sdl2/2.0.9@bincrafters/stable": "sdl2/2.0.14@bincrafters/stable",
+    "sdl2/2.0.10@bincrafters/stable": "sdl2/2.0.14@bincrafters/stable",
+    "sdl2/2.0.12@bincrafters/stable": "sdl2/2.0.14@bincrafters/stable",
 }
 
 
