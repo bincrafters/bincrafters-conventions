@@ -1154,6 +1154,16 @@ REFERENCES = {
     "sdl2/2.0.9@bincrafters/stable": "sdl2/2.0.14@bincrafters/stable",
     "sdl2/2.0.10@bincrafters/stable": "sdl2/2.0.14@bincrafters/stable",
     "sdl2/2.0.12@bincrafters/stable": "sdl2/2.0.14@bincrafters/stable",
+
+    "android_ndk_installer/r16b@bincrafters/stable": "android-ndk/r21d",
+    "android_ndk_installer/r19b@bincrafters/stable": "android-ndk/r21d",
+    "android_ndk_installer/r19c@bincrafters/stable": "android-ndk/r21d",
+    "android_ndk_installer/r20@bincrafters/stable": "android-ndk/r21d",
+    "android_ndk_installer/r20b@bincrafters/stable": "android-ndk/r21d",
+    "android_ndk_installer/r21@bincrafters/stable": "android-ndk/r21d",
+    "android_ndk_installer/r21d@bincrafters/stable": "android-ndk/r21d",
+
+
 }
 
 
@@ -1235,6 +1245,7 @@ def update_c_recipe_references(main, conanfile):
         "cppcheck_installer": "cppcheck",
         "java_installer": "zulu-openjdk",
         "libmpg123": "mpg123",
+        "android_ndk_installer": "android-ndk",
     }
 
     for old_name, new_name in reference_names.items():
