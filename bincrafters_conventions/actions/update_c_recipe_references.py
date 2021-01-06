@@ -410,6 +410,7 @@ REFERENCES = {
     "libusb/1.0.21@bincrafters/stable": "libusb/1.0.23",
     "libusb/1.0.22@bincrafters/stable": "libusb/1.0.23",
     "libusb/1.0.23@bincrafters/stable": "libusb/1.0.23",
+    "libusb/1.0.23": "libusb/1.0.24",
 
     "botan/2.1.0@bincrafters/stable": "botan/2.12.1",
     "botan/2.3.0@bincrafters/stable": "botan/2.12.1",
@@ -985,6 +986,7 @@ REFERENCES = {
     "glib/2.66.0": "glib/2.66.1",
     "glib/2.66.1": "glib/2.66.2",
     "glib/2.66.2": "glib/2.67.0",
+    "glib/2.67.0": "glib/2.67.1",
 
     "cpp-taskflow/2.2.0": "taskflow/2.2.0",
     "cpp-taskflow/2.4.0": "taskflow/2.4.0",
@@ -1122,6 +1124,7 @@ REFERENCES = {
     "java_installer/9.0.0@bincrafters/stable": "zulu-openjdk/11.0.8",
 
     "pulseaudio/13.0@bincrafters/stable": "pulseaudio/13.0",
+    "pulseaudio/13.0": "pulseaudio/14.0",
 
     "mongo-cxx-driver/3.2.0@bincrafters/stable": "mongo-cxx-driver/3.6.1",
     "mongo-cxx-driver/3.3.0@bincrafters/stable": "mongo-cxx-driver/3.6.1",
