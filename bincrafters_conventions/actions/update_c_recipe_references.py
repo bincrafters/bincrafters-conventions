@@ -249,6 +249,7 @@ REFERENCES = {
     "meson/0.55.1": "meson/0.55.3",
     "meson/0.55.2": "meson/0.55.3",
     "meson/0.55.3": "meson/0.56.0",
+    "meson/0.56.0": "meson/0.56.1",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -1074,6 +1075,9 @@ REFERENCES = {
     "atk/2.36.0@bincrafters/stable": "atk/2.36.0",
 
     "opencv/2.4.13.5@conan/stable": "opencv/2.4.13.7",
+    "opencv/3.4.2@bincrafters/stable": "opencv/3.4.12",
+    "opencv/3.4.3@conan/stable": "opencv/3.4.12",
+    "opencv/3.4.5@conan/stable": "opencv/3.4.12",
     "opencv/4.0.0@conan/stable": "opencv/4.5.0",
     "opencv/4.0.1@conan/stable": "opencv/4.5.0",
     "opencv/4.1.0@conan/stable": "opencv/4.5.0",
