@@ -45,6 +45,7 @@ REFERENCES = {
     "nasm/2.13.01@conan/stable": "nasm/2.13.02",
     "nasm_installer/2.13.02@bincrafters/stable": "nasm/2.13.02",
     "nasm/2.13.02": "nasm/2.14",
+    "nasm/2.14": "nasm/2.15.05",
 
     "msys2_installer/latest@bincrafters/stable": "msys2/20190524",
     "msys2_installer/20161025@bincrafters/stable": "msys2/20190524",
@@ -663,6 +664,8 @@ REFERENCES = {
     "paho-mqtt-c/1.3.0": "paho-mqtt-c/1.3.1",
     "paho-mqtt-c/1.3.1": "paho-mqtt-c/1.3.5",
     "paho-mqtt-c/1.3.4": "paho-mqtt-c/1.3.5",
+    "paho-mqtt-c/1.3.5": "paho-mqtt-c/1.3.8",
+    "paho-mqtt-c/1.3.6": "paho-mqtt-c/1.3.8",
 
     "paho-cpp/1.0.0@conan/stable": "paho-mqtt-cpp/1.0.1",
     "paho-cpp/1.0.1@conan/stable": "paho-mqtt-cpp/1.0.1",
@@ -1171,7 +1174,16 @@ REFERENCES = {
     "android_ndk_installer/r21@bincrafters/stable": "android-ndk/r21d",
     "android_ndk_installer/r21d@bincrafters/stable": "android-ndk/r21d",
 
+    "at-spi2-core/2.35.1@bincrafters/stable": "at-spi2-core/2.38.0",
+    "at-spi2-core/2.36.0@bincrafters/stable": "at-spi2-core/2.38.0",
+    "at-spi2-core/2.38.0@bincrafters/stable": "at-spi2-core/2.38.0",
 
+    "wiringpi/2.46@conan/stable": "wiringpi/2.50",
+    "wiringpi/2.50@conan/stable": "wiringpi/2.50",
+
+    "at-spi2-atk/2.34.1@bincrafters/stable": "at-spi2-atk/2.38.0",
+    "at-spi2-atk/2.34.2@bincrafters/stable": "at-spi2-atk/2.38.0",
+    "at-spi2-atk/2.38.0@bincrafters/stable": "at-spi2-atk/2.38.0",
 }
 
 
