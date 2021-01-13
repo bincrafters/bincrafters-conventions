@@ -318,13 +318,14 @@ REFERENCES = {
 
     "gmp/6.1.2@bincrafters/stable": "gmp/6.1.2",
 
-    "mbedtls/2.6.1@bincrafters/stable": "mbedtls-apache/2.16.3",
-    "mbedtls/2.11.0@bincrafters/stable": "mbedtls-apache/2.16.3",
-    "mbedtls/2.13.0@bincrafters/stable": "mbedtls-apache/2.16.3",
-    "mbedtls-apache/2.16.3": "mbedtls-apache/2.24.0",
-    "mbedtls-apache/2.16.3-apache": "mbedtls-apache/2.24.0",
-    "mbedtls-apache/2.16.3-gpl": "mbedtls-apache/2.24.0",
-    "mbedtls-apache/2.23.0": "mbedtls-apache/2.24.0",
+    "mbedtls/2.6.1@bincrafters/stable": "mbedtls/2.24.0",
+    "mbedtls/2.11.0@bincrafters/stable": "mbedtls/2.24.0",
+    "mbedtls/2.13.0@bincrafters/stable": "mbedtls/2.24.0",
+    "mbedtls/2.16.3-apache": "mbedtls/2.24.0",
+    "mbedtls/2.16.3-gpl": "mbedtls/2.24.0",
+    "mbedtls/2.23.0": "mbedtls/2.24.0",
+    "mbedtls-apache/2.16.3": "mbedtls/2.24.0",  # Correct typo
+    "mbedtls-apache/2.24.0": "mbedtls/2.24.0",  # Correct typo
 
     "json-c/0.13.1@bincrafters/stable": "json-c/0.13.1",
     "json-c/0.13.1": "json-c/0.13.1",
@@ -1210,7 +1211,7 @@ def update_c_recipe_references(main, conanfile):
         "cccl_installer": "cccl",
         "ENet": "enet",
         "http-parser": "http_parser",
-        "mbedtls": "mbedtls-apache",
+        "mbedtls-apache": "mbedtls",
         "docopt": "docopt.cpp",
         "jsonformoderncpp": "nlohmann_json",
         "7z_installer": "7zip",
