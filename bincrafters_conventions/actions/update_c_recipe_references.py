@@ -251,6 +251,7 @@ REFERENCES = {
     "meson/0.55.2": "meson/0.55.3",
     "meson/0.55.3": "meson/0.56.0",
     "meson/0.56.0": "meson/0.56.1",
+    "meson/0.56.1": "meson/0.56.2",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -1096,6 +1097,7 @@ REFERENCES = {
 
     "cairo/1.15.14@bincrafters/stable": "cairo/1.17.2",
     "cairo/1.17.2@bincrafters/stable": "cairo/1.17.2",
+    "cairo/1.17.2": "cairo/1.17.4",
 
     "pybind11/2.2.2@conan/stable": "pybind11/2.6.0",
     "pybind11/2.2.3@conan/stable": "pybind11/2.6.0",
@@ -1179,6 +1181,14 @@ REFERENCES = {
     "at-spi2-atk/2.34.1@bincrafters/stable": "at-spi2-atk/2.38.0",
     "at-spi2-atk/2.34.2@bincrafters/stable": "at-spi2-atk/2.38.0",
     "at-spi2-atk/2.38.0@bincrafters/stable": "at-spi2-atk/2.38.0",
+
+    "tiny-dnn/0.1.1@conan/stable": "tiny-dnn/cci.20201023",
+
+    # TODO: when binary packages are available
+    # TODO: https://conan.io/center/gtk?version=3.24.24&os=Linux&tab=configuration
+    # "gtk/3.24.18@bincrafters/stable": "gtk/3.24.24",
+    # "gtk/3.24.20@bincrafters/stable": "gtk/3.24.24",
+    # "gtk/3.24.22@bincrafters/stable": "gtk/3.24.24",
 }
 
 
