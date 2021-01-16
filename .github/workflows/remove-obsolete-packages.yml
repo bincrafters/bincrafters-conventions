@@ -25,4 +25,11 @@ jobs:
       run: |
         conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
         conan user ${CONAN_LOGIN_USERNAME} -r bincrafters -p ${CONAN_PASSWORD}
-        conan remove -r bincrafters --outdated --force "*/*"
+        for x in {0..9}
+        do
+            conan remove -r bincrafters --outdated --force "${x}*"
+        done
+        for x in {a..z}
+        do
+            conan remove -r bincrafters --outdated --force "${x}*"
+        done
