@@ -1174,6 +1174,7 @@ REFERENCES = {
     "at-spi2-core/2.35.1@bincrafters/stable": "at-spi2-core/2.38.0",
     "at-spi2-core/2.36.0@bincrafters/stable": "at-spi2-core/2.38.0",
     "at-spi2-core/2.38.0@bincrafters/stable": "at-spi2-core/2.38.0",
+    "at-spi2-core/2.38.0": "at-spi2-core/2.39.1",
 
     "wiringpi/2.46@conan/stable": "wiringpi/2.50",
     "wiringpi/2.50@conan/stable": "wiringpi/2.50",
