@@ -328,6 +328,7 @@ REFERENCES = {
     "mbedtls/2.23.0": "mbedtls/2.24.0",
     "mbedtls-apache/2.16.3": "mbedtls/2.24.0",  # Correct typo
     "mbedtls-apache/2.24.0": "mbedtls/2.24.0",  # Correct typo
+    "mbedtls/2.24.0": "mbedtls/2.25.0",
 
     "json-c/0.13.1@bincrafters/stable": "json-c/0.13.1",
     "json-c/0.13.1": "json-c/0.13.1",
@@ -701,6 +702,7 @@ REFERENCES = {
     "abseil/20200205.2": "abseil/20200225.3",
     "abseil/20200923": "abseil/20200923.1",
     "abseil/20200923.1": "abseil/20200923.2",
+    "abseil/20200923.2": "abseil/20200923.3",
 
     "c-blosc/v1.12.4b8@francescalted/stable": "c-blosc/1.17.1",
     "c-blosc/v1.13.5@francescalted/stable": "c-blosc/1.17.1",
@@ -1136,6 +1138,7 @@ REFERENCES = {
 
     "open62541/0.3.0@bincrafters/stable": "open62541/1.1.3",
     "open62541/1.0.3": "open62541/1.1.3",
+    "open62541/1.1.3": "open62541/1.1.6",
 
     "functionalplus/v0.2-p1@dobiasd/stable": "functionalplus/0.2.13-p0",
     "functionalplus/v0.2.1-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
@@ -1190,6 +1193,8 @@ REFERENCES = {
     # "gtk/3.24.18@bincrafters/stable": "gtk/3.24.24",
     # "gtk/3.24.20@bincrafters/stable": "gtk/3.24.24",
     # "gtk/3.24.22@bincrafters/stable": "gtk/3.24.24",
+
+    "mosquitto/1.4.15@bincrafters/stable": "mosquitto/1.6.12",
 }
 
 
