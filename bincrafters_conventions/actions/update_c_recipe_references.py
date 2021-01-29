@@ -1050,6 +1050,7 @@ REFERENCES = {
     "CLI11/1.9.1@cliutils/stable": "cli11/1.9.1",
 
     "glew/2.1.0@bincrafters/stable": "glew/2.1.0",
+    "glew/2.1.0": "glew/2.2.0",
 
     "libuvc/0.0.6@bincrafters/stable": "libuvc/0.0.6",
 
@@ -1135,6 +1136,7 @@ REFERENCES = {
 
     "mongo-cxx-driver/3.2.0@bincrafters/stable": "mongo-cxx-driver/3.6.1",
     "mongo-cxx-driver/3.3.0@bincrafters/stable": "mongo-cxx-driver/3.6.1",
+    "mongo-cxx-driver/3.6.1": "mongo-cxx-driver/3.6.2",
 
     "open62541/0.3.0@bincrafters/stable": "open62541/1.1.3",
     "open62541/1.0.3": "open62541/1.1.3",
@@ -1188,13 +1190,64 @@ REFERENCES = {
 
     "tiny-dnn/0.1.1@conan/stable": "tiny-dnn/cci.20201023",
 
-    # TODO: when binary packages are available
-    # TODO: https://conan.io/center/gtk?version=3.24.24&os=Linux&tab=configuration
-    # "gtk/3.24.18@bincrafters/stable": "gtk/3.24.24",
-    # "gtk/3.24.20@bincrafters/stable": "gtk/3.24.24",
-    # "gtk/3.24.22@bincrafters/stable": "gtk/3.24.24",
+    "gtk/3.24.18@bincrafters/stable": "gtk/3.24.24",
+    "gtk/3.24.20@bincrafters/stable": "gtk/3.24.24",
+    "gtk/3.24.22@bincrafters/stable": "gtk/3.24.24",
 
     "mosquitto/1.4.15@bincrafters/stable": "mosquitto/1.6.12",
+
+    "muparser/2.2.6@conan/stable": "muparser/2.3.2",
+
+    "frugally-deep/v0.2.3-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.3.0-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.3.1-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.3.2-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.3.3-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.5.2-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.5.3-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.5.4-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.6.0-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.7.0-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.7.2-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.7.3-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.7.4-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.7.5-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.7.6-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.7.7-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.7.8-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.7.9-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.7.10-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.7.11-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.8.0-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.8.1-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.8.2-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.8.3-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.8.4-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.8.5-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.8.6-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.9.0-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.9.1-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.9.3-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.9.4-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.9.5-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.9.6-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.9.8-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.9.9-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.10.0-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.10.1-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.11.0-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.11.1-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.12.0-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.12.1-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.13.0-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.13.1-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.14.0-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.14.1-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.14.2-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.14.3-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.14.4-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.15.0-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+    "frugally-deep/v0.15.1-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
 }
 
 
