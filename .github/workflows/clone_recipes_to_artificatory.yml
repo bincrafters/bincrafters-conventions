@@ -30,15 +30,15 @@ jobs:
         du -hs ~/.conan
         for x in {0..9}
         do
-          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -t -r -n 1 --max-procs 5 -I@ conan download -r bincrafters-bintray --recipe "@" && conan upload "@" -r bincrafters-artifactory -c --retry 3 --retry-wait 15 || true
+          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -t -r -n 1 --max-procs 5 -I@ -- sh -c 'conan download -r bincrafters-bintray --recipe "@" && conan upload "@" -r bincrafters-artifactory -c --retry 3 --retry-wait 15' || true
         done
         for x in {a..z}
         do
-          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -t -r -n 1 --max-procs 5 -I@ conan download -r bincrafters-bintray --recipe "@" && conan upload "@" -r bincrafters-artifactory -c --retry 3 --retry-wait 15 || true
+          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -t -r -n 1 --max-procs 5 -I@ -- sh -c 'conan download -r bincrafters-bintray --recipe "@" && conan upload "@" -r bincrafters-artifactory -c --retry 3 --retry-wait 15' || true
         done
         for x in {A..Z}
         do
-          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -t -r -n 1 --max-procs 5 -I@ conan download -r bincrafters-bintray --recipe "@" && conan upload "@" -r bincrafters-artifactory -c --retry 3 --retry-wait 15 || true
+          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -t -r -n 1 --max-procs 5 -I@ -- sh -c 'conan download -r bincrafters-bintray --recipe "@" && conan upload "@" -r bincrafters-artifactory -c --retry 3 --retry-wait 15' || true
         done
         echo "Current size of Conan directory:"
         du -hs ~/.conan
