@@ -23,7 +23,7 @@ jobs:
       run: |
         conan config set general.revisions_enabled=1
         conan remote add bincrafters-bintray https://api.bintray.com/conan/bincrafters/public-conan
-        conan remote add bincrafters-artifactory https://bincrafters.jfrog.io/artifactory/api/conan/public-conan
+        conan remote add bincrafters-artifactory https://bincrafters.jfrog.io/artifactory/api/conan/conan-legacy-bincrafters
         conan user ${ARTIFICATORY_USERNAME} -r bincrafters-artifactory -p ${ARTIFICATORY_ACCESS_TOKEN}
         conan user ${CONAN_LOGIN_USERNAME} -r bincrafters-bintray -p ${CONAN_PASSWORD}
         echo "Current size of Conan directory:"
