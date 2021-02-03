@@ -17,27 +17,31 @@ jobs:
       env:
         ARTIFICATORY_USERNAME : ${{ secrets.ARTIFICATORY_USERNAME }}
         ARTIFICATORY_ACCESS_TOKEN: ${{ secrets.ARTIFICATORY_ACCESS_TOKEN }}
+        CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_LOGIN_USERNAME }}
+        CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD }}
         CONAN_REQUEST_TIMEOUT: 3600
       run: |
         conan config set general.revisions_enabled=1
         conan remote add bincrafters-bintray https://api.bintray.com/conan/bincrafters/public-conan
         conan remote add bincrafters-artifactory https://bincrafters.jfrog.io/artifactory/api/conan/public-conan
         conan user ${ARTIFICATORY_USERNAME} -r bincrafters-artifactory -p ${ARTIFICATORY_ACCESS_TOKEN}
+        conan user ${CONAN_LOGIN_USERNAME} -r bincrafters-bintray -p ${CONAN_PASSWORD}
         echo "Current size of Conan directory:"
         du -hs ~/.conan
         for x in {0..9}
         do
-          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -r -n 1 conan download -r bincrafters-bintray --recipe
+          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -t -r -n 1 conan download -r bincrafters-bintray --recipe
         done
         for x in {a..z}
         do
-          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -r -n 1 conan download -r bincrafters-bintray --recipe
+          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -t -r -n 1 conan download -r bincrafters-bintray --recipe
         done
         for x in {A..Z}
         do
-          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -r -n 1 conan download -r bincrafters-bintray --recipe
+          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -t -r -n 1 conan download -r bincrafters-bintray --recipe
         done
         echo "Current size of Conan directory:"
         du -hs ~/.conan
         echo "Current size of Conan data directory:"
         du -hs ~/.conan/data
+        conan upload "*" -r bincrafters-artifactory -c --retry 10 --retry-wait 45
