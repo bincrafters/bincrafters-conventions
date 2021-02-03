@@ -625,6 +625,7 @@ REFERENCES = {
     "cpp-sort/1.7.0@morwenn/stable": "cpp-sort/1.8.0",
     "cpp-sort/1.6.0": "cpp-sort/1.8.0",
     "cpp-sort/1.7.0": "cpp-sort/1.8.0",
+    "cpp-sort/1.8.0": "cpp-sort/1.9.0",
 
     "glad/0.1.24@bincrafters/stable": "glad/0.1.33",
     "glad/0.1.29@bincrafters/stable": "glad/0.1.33",
@@ -796,6 +797,7 @@ REFERENCES = {
     "cpprestsdk/2.10.15@bincrafters/stable": "cpprestsdk/2.10.15",
     "cpprestsdk/2.10.15": "cpprestsdk/2.10.16",
     "cpprestsdk/2.10.16": "cpprestsdk/2.10.17",
+    "cpprestsdk/2.10.17": "cpprestsdk/2.10.18",
 
     # Note that this might produce that bison is added two times (which should be harmless)
     "bison/3.0.4@bincrafters/stable": "bison/3.5.3",
@@ -871,6 +873,7 @@ REFERENCES = {
     "winflexbison/2.5.18@bincrafters/stable": "winflexbison/2.5.22",
     "winflexbison/2.5.20@bincrafters/stable": "winflexbison/2.5.22",
     "winflexbison/2.5.21@bincrafters/stable": "winflexbison/2.5.22",
+    "winflexbison/2.5.22": "winflexbison/2.5.24",
 
     "restinio/0.6.0.1@inexorgame/testing": "restinio/0.6.8",
     "restinio/0.4.8@bincrafters/stable": "restinio/0.6.8",
@@ -1126,6 +1129,7 @@ REFERENCES = {
     "pango/1.46.2@bincrafters/stable": "pango/1.48.0",
     "pango/1.47.0@bincrafters/stable": "pango/1.48.0",
     "pango/1.48.0@bincrafters/stable": "pango/1.48.0",
+    "pango/1.48.0": "pango/1.48.1",
 
     "java_installer/8.0.144@bincrafters/stable": "zulu-openjdk/11.0.8",
     "java_installer/8.0.153@bincrafters/stable": "zulu-openjdk/11.0.8",
