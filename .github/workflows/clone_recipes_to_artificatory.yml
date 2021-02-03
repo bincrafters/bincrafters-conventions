@@ -27,15 +27,15 @@ jobs:
         du -hs ~/.conan
         for x in {0..9}
         do
-          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -r -n 1 conan download  --recipe
+          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -r -n 1 conan download -r bincrafters-bintray --recipe
         done
         for x in {a..z}
         do
-          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -r -n 1 conan download  --recipe
+          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -r -n 1 conan download -r bincrafters-bintray --recipe
         done
         for x in {A..Z}
         do
-          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -r -n 1 conan download  --recipe
+          conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -r -n 1 conan download -r bincrafters-bintray --recipe
         done
         echo "Current size of Conan directory:"
         du -hs ~/.conan
