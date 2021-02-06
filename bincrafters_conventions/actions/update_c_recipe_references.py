@@ -993,6 +993,8 @@ REFERENCES = {
     "glib/2.66.1": "glib/2.66.2",
     "glib/2.66.2": "glib/2.67.0",
     "glib/2.67.0": "glib/2.67.1",
+    "glib/2.67.1": "glib/2.67.2",
+    "glib/2.67.2": "glib/2.67.3",
 
     "cpp-taskflow/2.2.0": "taskflow/2.2.0",
     "cpp-taskflow/2.4.0": "taskflow/2.4.0",
@@ -1252,6 +1254,11 @@ REFERENCES = {
     "frugally-deep/v0.14.4-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
     "frugally-deep/v0.15.0-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
     "frugally-deep/v0.15.1-p0@dobiasd/stable": "frugally-deep/0.15.1-p0",
+
+    "khronos-opencl-icd-loader/20190412@bincrafters/stable": "opencl-icd-loader/2020.06.16",
+    "khronos-opencl-icd-loader/20190507@bincrafters/stable": "opencl-icd-loader/2020.06.16",
+    "khronos-opencl-icd-loader/20190827@bincrafters/stable": "opencl-icd-loader/2020.06.16",
+    "khronos-opencl-icd-loader/20191007@bincrafters/stable": "opencl-icd-loader/2020.06.16",
 }
 
 
@@ -1334,6 +1341,7 @@ def update_c_recipe_references(main, conanfile):
         "java_installer": "zulu-openjdk",
         "libmpg123": "mpg123",
         "android_ndk_installer": "android-ndk",
+        "khronos-opencl-icd-loader": "opencl-icd-loader",
     }
 
     for old_name, new_name in reference_names.items():
