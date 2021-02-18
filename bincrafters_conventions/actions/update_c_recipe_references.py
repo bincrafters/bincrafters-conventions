@@ -257,6 +257,7 @@ REFERENCES = {
 
     "libmount/2.33.1@bincrafters/stable": "libmount/2.33.1",
     "libmount/2.33.1": "libmount/2.36",
+    "libmount/2.36": "libmount/2.36.2",
 
     "libxml2/2.9.3@bincrafters/stable": "libxml2/2.9.9",
     "libxml2/2.9.8@bincrafters/stable": "libxml2/2.9.9",
@@ -334,6 +335,7 @@ REFERENCES = {
     "json-c/0.13.1": "json-c/0.13.1",
 
     "fftw/3.3.8@bincrafters/stable": "fftw/3.3.8",
+    "fftw/3.3.8": "fftw/3.3.9",
 
     "leptonica/1.75.1@bincrafters/stable": "leptonica/1.78.0",
     "leptonica/1.76.0@bincrafters/stable": "leptonica/1.78.0",
@@ -926,6 +928,7 @@ REFERENCES = {
     "fontconfig/2.13.91@bincrafters/stable": "fontconfig/2.13.91",
     "fontconfig/2.13.1@bincrafters/stable": "fontconfig/2.13.91",
     "fontconfig/2.13.91": "fontconfig/2.13.92",
+    "fontconfig/2.13.92": "fontconfig/2.13.93",
 
     "gsoap/2.8.91@bincrafters/stable": "gsoap/2.8.103",
     "gsoap/2.8.94@bincrafters/stable": "gsoap/2.8.103",
@@ -1097,6 +1100,7 @@ REFERENCES = {
     "gstreamer/1.14.4@bincrafters/stable": "gstreamer/1.18.0",
     "gstreamer/1.16.0@bincrafters/stable": "gstreamer/1.18.0",
     "gstreamer/1.16.2": "gstreamer/1.18.0",
+    "gstreamer/1.18.0": "gstreamer/1.18.3",
 
     "mongo-c-driver/1.9.4@bincrafters/stable": "mongo-c-driver/1.17.2",
     "mongo-c-driver/1.11.0@bincrafters/stable": "mongo-c-driver/1.17.2",
@@ -1132,6 +1136,7 @@ REFERENCES = {
     "pango/1.47.0@bincrafters/stable": "pango/1.48.0",
     "pango/1.48.0@bincrafters/stable": "pango/1.48.0",
     "pango/1.48.0": "pango/1.48.1",
+    "pango/1.48.1": "pango/1.48.2",
 
     "java_installer/8.0.144@bincrafters/stable": "zulu-openjdk/11.0.8",
     "java_installer/8.0.153@bincrafters/stable": "zulu-openjdk/11.0.8",
@@ -1139,6 +1144,7 @@ REFERENCES = {
 
     "pulseaudio/13.0@bincrafters/stable": "pulseaudio/13.0",
     "pulseaudio/13.0": "pulseaudio/14.0",
+    "pulseaudio/14.0": "pulseaudio/14.2",
 
     "mongo-cxx-driver/3.2.0@bincrafters/stable": "mongo-cxx-driver/3.6.1",
     "mongo-cxx-driver/3.3.0@bincrafters/stable": "mongo-cxx-driver/3.6.1",
@@ -1259,6 +1265,17 @@ REFERENCES = {
     "khronos-opencl-icd-loader/20190507@bincrafters/stable": "opencl-icd-loader/2020.06.16",
     "khronos-opencl-icd-loader/20190827@bincrafters/stable": "opencl-icd-loader/2020.06.16",
     "khronos-opencl-icd-loader/20191007@bincrafters/stable": "opencl-icd-loader/2020.06.16",
+    "libvpx/1.7.0@bincrafters/stable": "libvpx/1.9.0",
+    "libvpx/1.8.0@bincrafters/stable": "libvpx/1.9.0",
+
+    "sqlite_orm/1.0@bincrafters/stable": "sqlite_orm/1.6",
+    "sqlite_orm/1.1@bincrafters/stable": "sqlite_orm/1.6",
+    "sqlite_orm/1.2@bincrafters/stable": "sqlite_orm/1.6",
+    "sqlite_orm/1.3@bincrafters/stable": "sqlite_orm/1.6",
+    "sqlite_orm/1.4@bincrafters/stable": "sqlite_orm/1.6",
+    "sqlite_orm/1.5@bincrafters/stable": "sqlite_orm/1.6",
+
+    "directshowbaseclasses/7.1A@bincrafters/stable": "directshowbaseclasses/260557",
 }
 
 
