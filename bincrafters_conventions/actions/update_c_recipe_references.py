@@ -20,6 +20,7 @@ REFERENCES = {
     "zstd/1.4.4": "zstd/1.4.8",
     "zstd/1.4.5": "zstd/1.4.8",
     "zstd/1.4.7": "zstd/1.4.8",
+    "zstd/1.4.8": "zstd/1.4.9",
 
     "strawberryperl/5.28.1.1@conan/stable": "strawberryperl/5.28.1.1",
     "strawberryperl/5.30.0.1@conan/stable": "strawberryperl/5.30.0.1",
@@ -252,6 +253,8 @@ REFERENCES = {
     "meson/0.55.3": "meson/0.56.0",
     "meson/0.56.0": "meson/0.56.1",
     "meson/0.56.1": "meson/0.56.2",
+    "meson/0.56.2": "meson/0.57.0",
+    "meson/0.57.0": "meson/0.57.1",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -638,6 +641,7 @@ REFERENCES = {
     "openblas/0.3.7": "openblas/0.3.9",
     "openblas/0.3.9": "openblas/0.3.10",
     "openblas/0.3.10": "openblas/0.3.12",
+    "openblas/0.3.12": "openblas/0.3.13",
 
     "libmad/0.15.1b@bincrafters/stable": "libmad/0.15.1b",
 
@@ -996,8 +1000,10 @@ REFERENCES = {
     "glib/2.66.1": "glib/2.66.2",
     "glib/2.66.2": "glib/2.67.0",
     "glib/2.67.0": "glib/2.67.1",
-    "glib/2.67.1": "glib/2.67.2",
-    "glib/2.67.2": "glib/2.67.3",
+    "glib/2.67.1": "glib/2.67.4",
+    "glib/2.67.2": "glib/2.67.4",
+    "glib/2.67.3": "glib/2.67.4",
+    "glib/2.67.4": "glib/2.67.5",
 
     "cpp-taskflow/2.2.0": "taskflow/2.2.0",
     "cpp-taskflow/2.4.0": "taskflow/2.4.0",
@@ -1034,6 +1040,7 @@ REFERENCES = {
     "xkbcommon/0.9.1@bincrafters/stable": "xkbcommon/0.10.0",
     "xkbcommon/0.10.0@bincrafters/stable": "xkbcommon/0.10.0",
     "xkbcommon/1.0.1": "xkbcommon/1.0.3",
+    "xkbcommon/1.0.3": "xkbcommon/1.1.0",
 
     "libyaml/0.2.2@bincrafters/stable": "libyaml/0.2.5",
 
@@ -1265,6 +1272,7 @@ REFERENCES = {
     "khronos-opencl-icd-loader/20190507@bincrafters/stable": "opencl-icd-loader/2020.06.16",
     "khronos-opencl-icd-loader/20190827@bincrafters/stable": "opencl-icd-loader/2020.06.16",
     "khronos-opencl-icd-loader/20191007@bincrafters/stable": "opencl-icd-loader/2020.06.16",
+
     "libvpx/1.7.0@bincrafters/stable": "libvpx/1.9.0",
     "libvpx/1.8.0@bincrafters/stable": "libvpx/1.9.0",
 
@@ -1276,6 +1284,29 @@ REFERENCES = {
     "sqlite_orm/1.5@bincrafters/stable": "sqlite_orm/1.6",
 
     "directshowbaseclasses/7.1A@bincrafters/stable": "directshowbaseclasses/260557",
+
+    "libtins/4.1@bincrafters/stable": "libtins/4.2",
+    "libtins/4.2@bincrafters/stable": "libtins/4.2",
+
+    "libaom/1.0.0@bincrafters/stable": "libaom-av1/2.0.1@bincrafters/stable",
+
+    "sml/1.1.0@bincrafters/stable": "sml/1.1.4",
+
+    "wayland/1.18.0": "wayland/1.19.0",
+
+    "openmpi/2.0.4@bincrafters/stable": "openmpi/4.1.0",
+    "openmpi/2.1.1@bincrafters/stable": "openmpi/4.1.0",
+    "openmpi/3.0.0@bincrafters/stable": "openmpi/4.1.0",
+
+    "caf/0.15.5@bincrafters/stable": "caf/0.18.0",
+    "caf/0.15.6@bincrafters/stable": "caf/0.18.0",
+    "caf/0.15.7@bincrafters/stable": "caf/0.18.0",
+    "caf/0.16.0@bincrafters/stable": "caf/0.18.0",
+    "caf/0.16.1@bincrafters/stable": "caf/0.18.0",
+    "caf/0.16.3@bincrafters/stable": "caf/0.18.0",
+    "caf/0.17.0@bincrafters/stable": "caf/0.18.0",
+    "caf/0.17.3@bincrafters/stable": "caf/0.18.0",
+    "caf/0.17.6@bincrafters/stable": "caf/0.18.0",
 }
 
 
@@ -1359,6 +1390,7 @@ def update_c_recipe_references(main, conanfile):
         "libmpg123": "mpg123",
         "android_ndk_installer": "android-ndk",
         "khronos-opencl-icd-loader": "opencl-icd-loader",
+        "libaom": "libaom-av1",
     }
 
     for old_name, new_name in reference_names.items():
