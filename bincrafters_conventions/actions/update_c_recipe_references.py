@@ -1004,6 +1004,7 @@ REFERENCES = {
     "glib/2.67.2": "glib/2.67.4",
     "glib/2.67.3": "glib/2.67.4",
     "glib/2.67.4": "glib/2.67.5",
+    "glib/2.67.5": "glib/2.67.6",
 
     "cpp-taskflow/2.2.0": "taskflow/2.2.0",
     "cpp-taskflow/2.4.0": "taskflow/2.4.0",
@@ -1144,6 +1145,7 @@ REFERENCES = {
     "pango/1.48.0@bincrafters/stable": "pango/1.48.0",
     "pango/1.48.0": "pango/1.48.1",
     "pango/1.48.1": "pango/1.48.2",
+    "pango/1.48.2": "pango/1.48.3",
 
     "java_installer/8.0.144@bincrafters/stable": "zulu-openjdk/11.0.8",
     "java_installer/8.0.153@bincrafters/stable": "zulu-openjdk/11.0.8",
