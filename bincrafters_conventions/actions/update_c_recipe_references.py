@@ -648,7 +648,11 @@ REFERENCES = {
     "libx265/3.0@bincrafters/stable": "libx265/3.2.1",
     "libx265/3.2.1": "libx265/3.4",
 
-    # TODO: icu: no installer for now https://github.com/conan-io/conan-center-index/pull/151
+    "icu_installer/59.1@bincrafters/stable": "icu/64.2",
+    "icu_installer/60.2@bincrafters/stable": "icu/64.2",
+    "icu_installer/62.1@bincrafters/stable": "icu/64.2",
+    "icu_installer/63.1@bincrafters/stable": "icu/64.2",
+    "icu_installer/64.2@bincrafters/stable": "icu/64.2",
     "icu/59.1@bincrafters/stable": "icu/64.2",
     "icu/60.2@bincrafters/stable": "icu/64.2",
     "icu/62.1@bincrafters/stable": "icu/64.2",
@@ -1005,6 +1009,7 @@ REFERENCES = {
     "glib/2.67.3": "glib/2.67.4",
     "glib/2.67.4": "glib/2.67.5",
     "glib/2.67.5": "glib/2.67.6",
+    "glib/2.67.6": "glib/2.68.0",
 
     "cpp-taskflow/2.2.0": "taskflow/2.2.0",
     "cpp-taskflow/2.4.0": "taskflow/2.4.0",
@@ -1109,6 +1114,7 @@ REFERENCES = {
     "gstreamer/1.16.0@bincrafters/stable": "gstreamer/1.18.0",
     "gstreamer/1.16.2": "gstreamer/1.18.0",
     "gstreamer/1.18.0": "gstreamer/1.18.3",
+    "gstreamer/1.18.3": "gstreamer/1.18.4",
 
     "mongo-c-driver/1.9.4@bincrafters/stable": "mongo-c-driver/1.17.2",
     "mongo-c-driver/1.11.0@bincrafters/stable": "mongo-c-driver/1.17.2",
@@ -1134,6 +1140,7 @@ REFERENCES = {
     "gdk-pixbuf/2.40.0@bincrafters/stable": "gdk-pixbuf/2.42.0",
     "gdk-pixbuf/2.42.0@bincrafters/stable": "gdk-pixbuf/2.42.0",
     "gdk-pixbuf/2.42.0": "gdk-pixbuf/2.42.2",
+    "gdk-pixbuf/2.42.2": "gdk-pixbuf/2.42.4",
 
     "pango/1.43.0@bincrafters/stable": "pango/1.48.0",
     "pango/1.44.7@bincrafters/stable": "pango/1.48.0",
@@ -1201,6 +1208,7 @@ REFERENCES = {
     "at-spi2-core/2.36.0@bincrafters/stable": "at-spi2-core/2.38.0",
     "at-spi2-core/2.38.0@bincrafters/stable": "at-spi2-core/2.38.0",
     "at-spi2-core/2.38.0": "at-spi2-core/2.39.1",
+    "at-spi2-core/2.39.1": "at-spi2-core/2.40.0",
 
     "wiringpi/2.46@conan/stable": "wiringpi/2.50",
     "wiringpi/2.50@conan/stable": "wiringpi/2.50",
@@ -1214,6 +1222,7 @@ REFERENCES = {
     "gtk/3.24.18@bincrafters/stable": "gtk/3.24.24",
     "gtk/3.24.20@bincrafters/stable": "gtk/3.24.24",
     "gtk/3.24.22@bincrafters/stable": "gtk/3.24.24",
+    "gtk/4.0.2": "gtk/4.1.2",
 
     "mosquitto/1.4.15@bincrafters/stable": "mosquitto/1.6.12",
 
@@ -1309,6 +1318,8 @@ REFERENCES = {
     "caf/0.17.0@bincrafters/stable": "caf/0.18.0",
     "caf/0.17.3@bincrafters/stable": "caf/0.18.0",
     "caf/0.17.6@bincrafters/stable": "caf/0.18.0",
+
+    "zmqpp/4.2.0@bincrafters/stable": "zmqpp/4.2.0",
 }
 
 
@@ -1393,6 +1404,7 @@ def update_c_recipe_references(main, conanfile):
         "android_ndk_installer": "android-ndk",
         "khronos-opencl-icd-loader": "opencl-icd-loader",
         "libaom": "libaom-av1",
+        "icu_installer": "icu",
     }
 
     for old_name, new_name in reference_names.items():
