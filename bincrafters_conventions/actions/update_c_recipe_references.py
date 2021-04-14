@@ -6,7 +6,8 @@ REFERENCES = {
     "depot_tools_installer/master@bincrafters/stable": "depot_tools/20200407",
     "depot_tools_installer/20190909@bincrafters/stable": "depot_tools/20200407",
     "depot_tools_installer/20200207@bincrafters/stable": "depot_tools/20200407",
-    "depot_tools_installer/20200515@bincrafters/stable": "depot_tools/cci.20201009",
+    # TODO: enable again when https://bugs.chromium.org/p/chromium/issues/detail?id=1067590#c7 is fixed
+    # "depot_tools_installer/20200515@bincrafters/stable": "depot_tools/cci.20201009",
     "depot_tools/20200407": "depot_tools/cci.20201009",
 
     "zlib/1.2.8@conan/stable": "zlib/1.2.11",
