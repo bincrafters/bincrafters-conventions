@@ -86,6 +86,7 @@ REFERENCES = {
     "libjpeg-turbo/2.0.2": "libjpeg-turbo/2.0.4",
     "libjpeg-turbo/2.0.4": "libjpeg-turbo/2.0.5",
     "libjpeg-turbo/2.0.5": "libjpeg-turbo/2.0.6",
+    "libjpeg-turbo/2.0.6": "libjpeg-turbo/2.1.0",
 
     "libpng/1.6.32@bincrafters/stable": "libpng/1.6.37",
     "libpng/1.6.34@bincrafters/stable": "libpng/1.6.37",
@@ -256,6 +257,7 @@ REFERENCES = {
     "meson/0.56.1": "meson/0.56.2",
     "meson/0.56.2": "meson/0.57.0",
     "meson/0.57.0": "meson/0.57.1",
+    "meson/0.57.1": "meson/0.57.2",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -991,6 +993,7 @@ REFERENCES = {
     "glfw/3.3@bincrafters/stable": "glfw/3.3.2",
     "glfw/3.3.1@bincrafters/stable": "glfw/3.3.2",
     "glfw/3.3.2@bincrafters/stable": "glfw/3.3.2",
+    "glfw/3.3.2": "glfw/3.3.4",
 
     "glib/2.56.1@bincrafters/stable": "glib/2.65.0",
     "glib/2.57.1@bincrafters/stable": "glib/2.65.0",
@@ -1011,6 +1014,7 @@ REFERENCES = {
     "glib/2.67.4": "glib/2.67.5",
     "glib/2.67.5": "glib/2.67.6",
     "glib/2.67.6": "glib/2.68.0",
+    "glib/2.68.0": "glib/2.68.1",
 
     "cpp-taskflow/2.2.0": "taskflow/2.2.0",
     "cpp-taskflow/2.4.0": "taskflow/2.4.0",
@@ -1048,6 +1052,7 @@ REFERENCES = {
     "xkbcommon/0.10.0@bincrafters/stable": "xkbcommon/0.10.0",
     "xkbcommon/1.0.1": "xkbcommon/1.0.3",
     "xkbcommon/1.0.3": "xkbcommon/1.1.0",
+    "xkbcommon/1.1.0": "xkbcommon/1.2.1",
 
     "libyaml/0.2.2@bincrafters/stable": "libyaml/0.2.5",
 
@@ -1110,6 +1115,7 @@ REFERENCES = {
     "opencv/4.2.0@conan/stable": "opencv/4.5.0",
     "opencv/4.3.0@conan/stable": "opencv/4.5.0",
     "opencv/4.5.0": "opencv/4.5.1",
+    "opencv/4.5.1": "opencv/4.5.2",
 
     "gstreamer/1.14.4@bincrafters/stable": "gstreamer/1.18.0",
     "gstreamer/1.16.0@bincrafters/stable": "gstreamer/1.18.0",
@@ -1154,6 +1160,7 @@ REFERENCES = {
     "pango/1.48.0": "pango/1.48.1",
     "pango/1.48.1": "pango/1.48.2",
     "pango/1.48.2": "pango/1.48.3",
+    "pango/1.48.3": "pango/1.48.4",
 
     "java_installer/8.0.144@bincrafters/stable": "zulu-openjdk/11.0.8",
     "java_installer/8.0.153@bincrafters/stable": "zulu-openjdk/11.0.8",
@@ -1319,8 +1326,56 @@ REFERENCES = {
     "caf/0.17.0@bincrafters/stable": "caf/0.18.0",
     "caf/0.17.3@bincrafters/stable": "caf/0.18.0",
     "caf/0.17.6@bincrafters/stable": "caf/0.18.0",
+    "caf/0.18.0@bincrafters/stable": "caf/0.18.2",
 
     "zmqpp/4.2.0@bincrafters/stable": "zmqpp/4.2.0",
+
+    "mingw_installer/1.0@bincrafters/stable": "mingw-w64/8.1",
+
+    "Qt/5.6.3@bincrafters/stable": "qt/5.15.2",
+    "Qt/5.9@bincrafters/stable": "qt/5.15.2",
+    "Qt/5.9.6@bincrafters/stable": "qt/5.15.2",
+    "Qt/5.9.7@bincrafters/stable": "qt/5.15.2",
+    "Qt/5.11@bincrafters/stable": "qt/5.15.2",
+    "Qt/5.11.0@bincrafters/stable": "qt/5.15.2",
+    "Qt/5.11.1@bincrafters/stable": "qt/5.15.2",
+    "Qt/5.11.2@bincrafters/stable": "qt/5.15.2",
+
+    "qt/5.9.8@bincrafters/stable": "qt/5.15.2",
+    "qt/5.11.3@bincrafters/stable": "qt/5.15.2",
+    "qt/5.12.0@bincrafters/stable": "qt/5.15.2",
+    "qt/5.12.1@bincrafters/stable": "qt/5.15.2",
+    "qt/5.12.2@bincrafters/stable": "qt/5.15.2",
+    "qt/5.12.3@bincrafters/stable": "qt/5.15.2",
+    "qt/5.12.4@bincrafters/stable": "qt/5.15.2",
+    "qt/5.12.5@bincrafters/stable": "qt/5.15.2",
+    "qt/5.12.6@bincrafters/stable": "qt/5.15.2",
+    "qt/5.12.7@bincrafters/stable": "qt/5.15.2",
+    "qt/5.12.8@bincrafters/stable": "qt/5.15.2",
+    "qt/5.12.9@bincrafters/stable": "qt/5.15.2",
+    "qt/5.13.0@bincrafters/stable": "qt/5.15.2",
+    "qt/5.13.1@bincrafters/stable": "qt/5.15.2",
+    "qt/5.13.2@bincrafters/stable": "qt/5.15.2",
+    "qt/5.14.0@bincrafters/stable": "qt/5.15.2",
+    "qt/5.14.1@bincrafters/stable": "qt/5.15.2",
+    "qt/5.14.2@bincrafters/stable": "qt/5.15.2",
+    "qt/5.15.0@bincrafters/stable": "qt/5.15.2",
+    "qt/5.15.1@bincrafters/stable": "qt/5.15.2",
+    "qt/5.15.2@bincrafters/stable": "qt/5.15.2",
+
+    "qt/6.0.0@bincrafters/stable": "qt/6.0.3",
+    "qt/6.0.1@bincrafters/stable": "qt/6.0.3",
+
+    "qt/6.0.0": "qt/6.0.3",
+    "qt/6.0.1": "qt/6.0.3",
+    "qt/6.0.2": "qt/6.0.3",
+
+    "theora/1.1.1@bincrafters/stable": "theora/1.1.1",
+
+    "bazel_installer/0.6.0@bincrafters/stable": "bazel/4.0.0",
+    "bazel_installer/0.7.0@bincrafters/stable": "bazel/4.0.0",
+    "bazel_installer/0.15.0@bincrafters/stable": "bazel/4.0.0",
+    "bazel_installer/0.27.1@bincrafters/stable": "bazel/4.0.0",
 }
 
 
@@ -1406,6 +1461,9 @@ def update_c_recipe_references(main, conanfile):
         "khronos-opencl-icd-loader": "opencl-icd-loader",
         "libaom": "libaom-av1",
         "icu_installer": "icu",
+        "mingw_installer": "mingw-w64",
+        "Qt": "qt",
+        "bazel_installer": "bazel",
     }
 
     for old_name, new_name in reference_names.items():
