@@ -1177,6 +1177,7 @@ REFERENCES = {
     "open62541/0.3.0@bincrafters/stable": "open62541/1.1.3",
     "open62541/1.0.3": "open62541/1.1.3",
     "open62541/1.1.3": "open62541/1.1.6",
+    "open62541/1.1.5": "open62541/1.1.6",
 
     "functionalplus/v0.2-p1@dobiasd/stable": "functionalplus/0.2.13-p0",
     "functionalplus/v0.2.1-p0@dobiasd/stable": "functionalplus/0.2.13-p0",
@@ -1376,6 +1377,11 @@ REFERENCES = {
     "bazel_installer/0.7.0@bincrafters/stable": "bazel/4.0.0",
     "bazel_installer/0.15.0@bincrafters/stable": "bazel/4.0.0",
     "bazel_installer/0.27.1@bincrafters/stable": "bazel/4.0.0",
+
+    "ruby_installer/2.3.3@bincrafters/stable": "ruby_installer/2.7.3@bincrafters/stable",
+    "ruby_installer/2.5.1@bincrafters/stable": "ruby_installer/2.7.3@bincrafters/stable",
+    "ruby_installer/2.5.5@bincrafters/stable": "ruby_installer/2.7.3@bincrafters/stable",
+    "ruby_installer/2.6.3@bincrafters/stable": "ruby_installer/2.7.3@bincrafters/stable",
 }
 
 
