@@ -28,6 +28,8 @@ jobs:
         conan user ${ARTIFICATORY_USERNAME} -r bincrafters-artifactory -p ${ARTIFICATORY_ACCESS_TOKEN}
         echo "Current size of Conan directory:"
         du -hs ~/.conan
+        conan search "gRPC*" -r bincrafters-bintray --raw --case-sensitive | xargs -t -r -n 1 --max-procs 5 -I@ -- sh -c 'conan download -r bincrafters-bintray --recipe "@" && conan upload "@" -r bincrafters-artifactory -c --retry 3 --retry-wait 15' || true
+        conan search "grpc*" -r bincrafters-bintray --raw --case-sensitive | xargs -t -r -n 1 --max-procs 5 -I@ -- sh -c 'conan download -r bincrafters-bintray --recipe "@" && conan upload "@" -r bincrafters-artifactory -c --retry 3 --retry-wait 15' || true
         for x in {0..9}
         do
           conan search "${x}*" -r bincrafters-bintray --raw --case-sensitive | xargs -t -r -n 1 --max-procs 5 -I@ -- sh -c 'conan download -r bincrafters-bintray --recipe "@" && conan upload "@" -r bincrafters-artifactory -c --retry 3 --retry-wait 15' || true
