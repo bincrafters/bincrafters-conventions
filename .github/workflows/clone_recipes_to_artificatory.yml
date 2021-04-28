@@ -22,8 +22,8 @@ jobs:
         CONAN_REQUEST_TIMEOUT: 3600
       run: |
         conan config set general.revisions_enabled=1
-        conan remote add bincrafters-bintray https://api.bintray.com/conan/conan-community/conan
-        conan remote add bincrafters-artifactory https://bincrafters.jfrog.io/artifactory/api/conan/conan-legacy-conan-community
+        conan remote add bincrafters-bintray https://api.bintray.com/conan/inexorgame/inexor-conan
+        conan remote add bincrafters-artifactory https://bincrafters.jfrog.io/artifactory/api/conan/conan-legacy-inexorgame
         conan user ${ARTIFICATORY_USERNAME} -r bincrafters-artifactory -p ${ARTIFICATORY_ACCESS_TOKEN}
         echo "Current size of Conan directory:"
         du -hs ~/.conan
