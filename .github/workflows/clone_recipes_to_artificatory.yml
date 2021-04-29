@@ -2,7 +2,6 @@ on: [push,]
 
 name: "clone-recipes-to-artifactory"
 
-
 jobs:
   clone-recipes-to-artifactory:
     name: "Clone Recipes To Artifactory"
