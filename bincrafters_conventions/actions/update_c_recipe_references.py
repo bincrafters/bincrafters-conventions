@@ -1331,7 +1331,7 @@ REFERENCES = {
 
     "zmqpp/4.2.0@bincrafters/stable": "zmqpp/4.2.0",
 
-    "mingw_installer/1.0@bincrafters/stable": "mingw-w64/8.1",
+    "mingw_installer/1.0@conan/stable": "mingw-w64/8.1",
 
     "Qt/5.6.3@bincrafters/stable": "qt/5.15.2",
     "Qt/5.9@bincrafters/stable": "qt/5.15.2",
@@ -1382,6 +1382,10 @@ REFERENCES = {
     "ruby_installer/2.5.1@bincrafters/stable": "ruby_installer/2.7.3@bincrafters/stable",
     "ruby_installer/2.5.5@bincrafters/stable": "ruby_installer/2.7.3@bincrafters/stable",
     "ruby_installer/2.6.3@bincrafters/stable": "ruby_installer/2.7.3@bincrafters/stable",
+
+    "pcapplusplus/18.08@bincrafters/stable": "pcapplusplus/20.08",
+    "pcapplusplus/19.04@bincrafters/stable": "pcapplusplus/20.08",
+    "pcapplusplus/19.12@bincrafters/stable": "pcapplusplus/20.08",
 }
 
 
