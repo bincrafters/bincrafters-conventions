@@ -9,7 +9,7 @@ jobs:
     name: "Remove Outdated Packages For Bincrafters"
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/setup-python@v1
+    - uses: actions/setup-python@v2
       with:
         python-version: "3.8"
     - name: "Install Conan"
@@ -21,7 +21,7 @@ jobs:
         CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD }}
         CONAN_REQUEST_TIMEOUT: 3600
       run: |
-        conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+        conan remote add bincrafters https://bincrafters.jfrog.io/artifactory/api/conan/conan
         conan user ${CONAN_LOGIN_USERNAME} -r bincrafters -p ${CONAN_PASSWORD}
         for x in {0..9}
         do
