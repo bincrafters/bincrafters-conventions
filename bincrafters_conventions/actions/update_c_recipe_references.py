@@ -52,8 +52,9 @@ REFERENCES = {
     "msys2_installer/latest@bincrafters/stable": "msys2/20190524",
     "msys2_installer/20161025@bincrafters/stable": "msys2/20190524",
     "msys2/20161025": "msys2/20190524",
-    # TODO: Good idea?
-    # "msys2/20190524": "msys2/20200517",
+    "msys2/20190524": "msys2/20200517",
+    "msys2/20200517": "msys2/cci.latest",
+    "msys2/20210105": "msys2/cci.latest",
 
     "libjpeg/9b@bincrafters/stable": "libjpeg/9d",
     "libjpeg/9c@bincrafters/stable": "libjpeg/9d",
@@ -258,6 +259,8 @@ REFERENCES = {
     "meson/0.56.2": "meson/0.57.0",
     "meson/0.57.0": "meson/0.57.1",
     "meson/0.57.1": "meson/0.57.2",
+    "meson/0.57.2": "meson/0.58.0",
+    "meson/0.58.0": "meson/0.58.1",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -358,6 +361,7 @@ REFERENCES = {
     "openal/1.19.0@bincrafters/stable": "openal/1.19.1",
     "openal/1.19.1@bincrafters/stable": "openal/1.19.1",
     "openal/1.19.1": "openal/1.21.0",
+    "openal/1.21.0": "openal/1.21.1",
 
     "mozjpeg/3.3.1@bincrafters/stable": "mozjpeg/3.3.1",
 
@@ -560,6 +564,11 @@ REFERENCES = {
     "cmake/3.16.6": "cmake/3.16.7",
     "cmake/3.16.7": "cmake/3.16.8",
 
+    "cmake/3.20.0": "cmake/3.20.3",
+    "cmake/3.20.1": "cmake/3.20.3",
+    "cmake/3.20.2": "cmake/3.20.3",
+    "cmake/3.20.3": "cmake/3.20.4",
+
     "opus/1.2.1@bincrafters/stable": "opus/1.3.1",
     "opus/1.3.1@bincrafters/stable": "opus/1.3.1",
 
@@ -666,6 +675,7 @@ REFERENCES = {
     "icu/66.1": "icu/68.1",
     "icu/67.1": "icu/68.1",
     "icu/68.1": "icu/68.2",
+    "icu/68.2": "icu/69.1",
 
     "cereal/1.2.2@conan/stable": "cereal/1.3.0",
 
@@ -1015,6 +1025,8 @@ REFERENCES = {
     "glib/2.67.5": "glib/2.67.6",
     "glib/2.67.6": "glib/2.68.0",
     "glib/2.68.0": "glib/2.68.1",
+    "glib/2.68.1": "glib/2.68.3",
+    "glib/2.68.2": "glib/2.68.3",
 
     "cpp-taskflow/2.2.0": "taskflow/2.2.0",
     "cpp-taskflow/2.4.0": "taskflow/2.4.0",
@@ -1039,6 +1051,8 @@ REFERENCES = {
 
     "libepoxy/1.5.4@bincrafters/stable": "libepoxy/1.5.4",
     "libepoxy/1.5.4": "libepoxy/1.5.5",
+    "libepoxy/1.5.5": "libepoxy/1.5.7",
+    "libepoxy/1.5.7": "libepoxy/1.5.8",
 
     "cxxopts/v2.1.2@inexorgame/stable": "cxxopts/2.2.0",
     "cxxopts/2.2.0": "cxxopts/2.2.1",
@@ -1053,6 +1067,7 @@ REFERENCES = {
     "xkbcommon/1.0.1": "xkbcommon/1.0.3",
     "xkbcommon/1.0.3": "xkbcommon/1.1.0",
     "xkbcommon/1.1.0": "xkbcommon/1.2.1",
+    "xkbcommon/1.2.1": "xkbcommon/1.3.0",
 
     "libyaml/0.2.2@bincrafters/stable": "libyaml/0.2.5",
 
@@ -1093,6 +1108,7 @@ REFERENCES = {
     "lief/0.9.0@bincrafters/stable": "lief/0.10.1",
 
     "pkg-config_installer/0.29.2@bincrafters/stable": "pkgconf/1.7.3",
+    "pkgconf/1.7.3": "pkgconf/1.7.4",
 
     "libzip/1.2.0@bincrafters/stable": "libzip/1.7.3",
     "libzip/1.4.0@bincrafters/stable": "libzip/1.7.3",
@@ -1122,6 +1138,7 @@ REFERENCES = {
     "gstreamer/1.16.2": "gstreamer/1.18.0",
     "gstreamer/1.18.0": "gstreamer/1.18.3",
     "gstreamer/1.18.3": "gstreamer/1.18.4",
+    "gstreamer/1.18.4": "gstreamer/1.19.1",
 
     "mongo-c-driver/1.9.4@bincrafters/stable": "mongo-c-driver/1.17.2",
     "mongo-c-driver/1.11.0@bincrafters/stable": "mongo-c-driver/1.17.2",
@@ -1161,6 +1178,7 @@ REFERENCES = {
     "pango/1.48.1": "pango/1.48.2",
     "pango/1.48.2": "pango/1.48.3",
     "pango/1.48.3": "pango/1.48.4",
+    "pango/1.48.4": "pango/1.48.5",
 
     "java_installer/8.0.144@bincrafters/stable": "zulu-openjdk/11.0.8",
     "java_installer/8.0.153@bincrafters/stable": "zulu-openjdk/11.0.8",
@@ -1218,6 +1236,7 @@ REFERENCES = {
     "at-spi2-core/2.38.0@bincrafters/stable": "at-spi2-core/2.38.0",
     "at-spi2-core/2.38.0": "at-spi2-core/2.39.1",
     "at-spi2-core/2.39.1": "at-spi2-core/2.40.0",
+    "at-spi2-core/2.40.0": "at-spi2-core/2.40.1",
 
     "wiringpi/2.46@conan/stable": "wiringpi/2.50",
     "wiringpi/2.50@conan/stable": "wiringpi/2.50",
@@ -1370,6 +1389,7 @@ REFERENCES = {
     "qt/6.0.0": "qt/6.0.3",
     "qt/6.0.1": "qt/6.0.3",
     "qt/6.0.2": "qt/6.0.3",
+    "qt/6.1.0": "qt/6.1.1",
 
     "theora/1.1.1@bincrafters/stable": "theora/1.1.1",
 
@@ -1386,6 +1406,28 @@ REFERENCES = {
     "pcapplusplus/18.08@bincrafters/stable": "pcapplusplus/20.08",
     "pcapplusplus/19.04@bincrafters/stable": "pcapplusplus/20.08",
     "pcapplusplus/19.12@bincrafters/stable": "pcapplusplus/20.08",
+
+    "gRPC/1.1.0-dev@inexorgame/stable": "grpc/1.37.1",
+    "gRPC/1.1.0@inexorgame/stable": "grpc/1.37.1",
+    "gRPC/1.8.3@inexorgame/stable": "grpc/1.37.1",
+    "gRPC/1.9.1@inexorgame/stable": "grpc/1.37.1",
+
+    "grpc/1.14.0@inexorgame/stable": "grpc/1.37.1",
+    "grpc/1.14.1@inexorgame/stable": "grpc/1.37.1",
+    "grpc/1.17.2@inexorgame/stable": "grpc/1.37.1",
+    "grpc/1.20.0@inexorgame/stable": "grpc/1.37.1",
+    "grpc/1.23.0@inexorgame/stable": "grpc/1.37.1",
+    "grpc/1.25.0@inexorgame/stable": "grpc/1.37.1",
+    "grpc/1.27.3@inexorgame/stable": "grpc/1.37.1",
+    "grpc/1.29.1@inexorgame/stable": "grpc/1.37.1",
+    "grpc/1.34.0@inexorgame/stable": "grpc/1.37.1",
+    "grpc/1.34.1@inexorgame/stable": "grpc/1.37.1",
+
+    "libui/0.4.1@bincrafters/stable": "libui/0.4.1",
+
+    "cassandra-driver/2.13.0@bincrafters/stable": "cassandra-cpp-driver/2.15.3",
+
+    "immer/0.6.2@bincrafters/stable": "immer/0.6.2",
 }
 
 
@@ -1474,6 +1516,8 @@ def update_c_recipe_references(main, conanfile):
         "mingw_installer": "mingw-w64",
         "Qt": "qt",
         "bazel_installer": "bazel",
+        "gRPC": "grpc",
+        "cassandra-driver": "cassandra-cpp-driver",
     }
 
     for old_name, new_name in reference_names.items():
