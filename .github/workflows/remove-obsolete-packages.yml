@@ -21,6 +21,7 @@ jobs:
         CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD }}
         CONAN_REQUEST_TIMEOUT: 3600
       run: |
+        conan config set general.revisions_enabled=1
         conan remote add bincrafters https://bincrafters.jfrog.io/artifactory/api/conan/conan
         conan user ${CONAN_LOGIN_USERNAME} -r bincrafters -p ${CONAN_PASSWORD}
         for x in {0..9}
