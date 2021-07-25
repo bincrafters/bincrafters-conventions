@@ -261,6 +261,7 @@ REFERENCES = {
     "meson/0.57.1": "meson/0.57.2",
     "meson/0.57.2": "meson/0.58.0",
     "meson/0.58.0": "meson/0.58.1",
+    "meson/0.58.1": "meson/0.59.0",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -1223,6 +1224,9 @@ REFERENCES = {
     "sdl2/2.0.10@bincrafters/stable": "sdl2/2.0.14@bincrafters/stable",
     "sdl2/2.0.12@bincrafters/stable": "sdl2/2.0.14@bincrafters/stable",
 
+    "sdl2_image/2.0.3@bincrafters/stable": "sdl2_image/2.0.5@bincrafters/stable",
+    "sdl2_image/2.0.4@bincrafters/stable": "sdl2_image/2.0.5@bincrafters/stable",
+
     "android_ndk_installer/r16b@bincrafters/stable": "android-ndk/r21d",
     "android_ndk_installer/r19b@bincrafters/stable": "android-ndk/r21d",
     "android_ndk_installer/r19c@bincrafters/stable": "android-ndk/r21d",
@@ -1428,6 +1432,10 @@ REFERENCES = {
     "cassandra-driver/2.13.0@bincrafters/stable": "cassandra-cpp-driver/2.15.3",
 
     "immer/0.6.2@bincrafters/stable": "immer/0.6.2",
+
+    "tinymidi/20130325@bincrafters/stable": "tinymidi/cci.20130325",
+
+    "sfml/2.5.0@bincrafters/stable": "sfml/2.5.1@bincrafters/stable",
 }
 
 
