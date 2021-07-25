@@ -267,7 +267,7 @@ REFERENCES = {
 
     "libmount/2.33.1@bincrafters/stable": "libmount/2.33.1",
     "libmount/2.33.1": "libmount/2.36.2",
-    # this is a problem because libmount/2.36.2 gets migrated
+    # TODO: this is a problem because libmount/2.36.2 gets migrated
     # into libmount/2.36.2.2, etc.
     # "libmount/2.36": "libmount/2.36.2",
 
