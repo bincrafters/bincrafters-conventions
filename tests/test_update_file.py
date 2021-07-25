@@ -91,6 +91,21 @@ def test_conanfile_2():
     assert _compare_file(path_old, path_expected)
 
 
+def test_conanfile_3_update_multiple_times():
+    """ Even more reference update tests; run multiple times
+    """
+
+    path_old, path_expected = _prepare_old_file("conan_3_references", ".py")
+
+    args = ['--conanfile', path_old]
+    command = Command()
+    command.run(args)
+    command.run(args)
+    command.run(args)
+
+    assert _compare_file(path_old, path_expected)
+
+
 def test_appveyor_update_up_to_date():
     """ Try to update an up-to-date AppVeyor file
     """
