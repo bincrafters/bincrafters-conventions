@@ -475,6 +475,7 @@ REFERENCES = {
 
     "libfdk_aac/2.0.0@bincrafters/stable": "libfdk_aac/2.0.0",
     "libfdk_aac/2.0.0": "libfdk_aac/2.0.1",
+    "libfdk_aac/2.0.1": "libfdk_aac/2.0.2",
 
     "libiberty/9.1.0@bincrafters/stable": "libiberty/9.1.0",
 
@@ -571,6 +572,8 @@ REFERENCES = {
     "cmake/3.20.1": "cmake/3.20.3",
     "cmake/3.20.2": "cmake/3.20.3",
     "cmake/3.20.3": "cmake/3.20.4",
+    
+    "cmake/3.21.0": "cmake/3.21.1",
 
     "opus/1.2.1@bincrafters/stable": "opus/1.3.1",
     "opus/1.3.1@bincrafters/stable": "opus/1.3.1",
