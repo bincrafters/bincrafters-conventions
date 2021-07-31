@@ -1441,6 +1441,12 @@ REFERENCES = {
     "tinymidi/20130325@bincrafters/stable": "tinymidi/cci.20130325",
 
     "sfml/2.5.0@bincrafters/stable": "sfml/2.5.1@bincrafters/stable",
+
+    "fluidsynth/2.0.5@bincrafters/stable": "fluidsynth/2.2.2",
+    "fluidsynth/2.1.1@bincrafters/stable": "fluidsynth/2.2.2",
+    "fluidsynth/2.1.2@bincrafters/stable": "fluidsynth/2.2.2",
+    "fluidsynth/2.1.4@bincrafters/stable": "fluidsynth/2.2.2",
+    "fluidsynth/2.1.5@bincrafters/stable": "fluidsynth/2.2.2",
 }
 
 
