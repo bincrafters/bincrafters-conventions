@@ -88,6 +88,7 @@ REFERENCES = {
     "libjpeg-turbo/2.0.4": "libjpeg-turbo/2.0.5",
     "libjpeg-turbo/2.0.5": "libjpeg-turbo/2.0.6",
     "libjpeg-turbo/2.0.6": "libjpeg-turbo/2.1.0",
+    "libjpeg-turbo/2.1.0": "libjpeg-turbo/2.1.1",
 
     "libpng/1.6.32@bincrafters/stable": "libpng/1.6.37",
     "libpng/1.6.34@bincrafters/stable": "libpng/1.6.37",
@@ -1228,6 +1229,7 @@ REFERENCES = {
     "sdl2/2.0.9@bincrafters/stable": "sdl2/2.0.14@bincrafters/stable",
     "sdl2/2.0.10@bincrafters/stable": "sdl2/2.0.14@bincrafters/stable",
     "sdl2/2.0.12@bincrafters/stable": "sdl2/2.0.14@bincrafters/stable",
+    "sdl2/2.0.14@bincrafters/stable": "sdl2/2.0.16@bincrafters/stable",
 
     "sdl2_image/2.0.3@bincrafters/stable": "sdl2_image/2.0.5@bincrafters/stable",
     "sdl2_image/2.0.4@bincrafters/stable": "sdl2_image/2.0.5@bincrafters/stable",
@@ -1412,9 +1414,10 @@ REFERENCES = {
     "ruby_installer/2.5.5@bincrafters/stable": "ruby_installer/2.7.3@bincrafters/stable",
     "ruby_installer/2.6.3@bincrafters/stable": "ruby_installer/2.7.3@bincrafters/stable",
 
-    "pcapplusplus/18.08@bincrafters/stable": "pcapplusplus/20.08",
-    "pcapplusplus/19.04@bincrafters/stable": "pcapplusplus/20.08",
-    "pcapplusplus/19.12@bincrafters/stable": "pcapplusplus/20.08",
+    "pcapplusplus/18.08@bincrafters/stable": "pcapplusplus/20.08@bincrafters/stable",
+    "pcapplusplus/19.04@bincrafters/stable": "pcapplusplus/20.08@bincrafters/stable",
+    "pcapplusplus/19.12@bincrafters/stable": "pcapplusplus/20.08@bincrafters/stable",
+    "pcapplusplus/20.08@bincrafters/stable": "pcapplusplus/21.05",
 
     "gRPC/1.1.0-dev@inexorgame/stable": "grpc/1.37.1",
     "gRPC/1.1.0@inexorgame/stable": "grpc/1.37.1",
@@ -1447,6 +1450,8 @@ REFERENCES = {
     "fluidsynth/2.1.2@bincrafters/stable": "fluidsynth/2.2.2",
     "fluidsynth/2.1.4@bincrafters/stable": "fluidsynth/2.2.2",
     "fluidsynth/2.1.5@bincrafters/stable": "fluidsynth/2.2.2",
+
+    "libgpg-error/1.36@bincrafters/stable": "libgpg-error/1.36",
 }
 
 
