@@ -263,6 +263,7 @@ REFERENCES = {
     "meson/0.57.2": "meson/0.58.0",
     "meson/0.58.0": "meson/0.58.1",
     "meson/0.58.1": "meson/0.59.0",
+    "meson/0.59.0": "meson/0.59.1",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
@@ -1454,6 +1455,8 @@ REFERENCES = {
     "fluidsynth/2.1.5@bincrafters/stable": "fluidsynth/2.2.2",
 
     "libgpg-error/1.36@bincrafters/stable": "libgpg-error/1.36",
+
+    "libgcrypt/1.8.4@bincrafters/stable": "libgcrypt/1.8.4",
 }
 
 
