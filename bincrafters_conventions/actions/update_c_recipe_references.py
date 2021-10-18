@@ -801,6 +801,7 @@ REFERENCES = {
     "libpqxx/7.0.6": "libpqxx/7.0.7",
 
     "m4_installer/1.4.18@bincrafters/stable": "m4/1.4.18",
+    "m4/1.4.18": "m4/1.4.19",
 
     "websocketpp/0.7.0@bincrafters/stable": "websocketpp/0.8.1",
     "websocketpp/0.8.0@bincrafters/stable": "websocketpp/0.8.1",
@@ -1457,6 +1458,9 @@ REFERENCES = {
     "libgpg-error/1.36@bincrafters/stable": "libgpg-error/1.36",
 
     "libgcrypt/1.8.4@bincrafters/stable": "libgcrypt/1.8.4",
+
+    "imagemagick/7.0.8-44@bincrafters/stable": "imagemagick/7.0.11-44",
+    "imagemagick/7.0.8-10@bincrafters/stable": "imagemagick/7.0.11-44",
 }
 
 
