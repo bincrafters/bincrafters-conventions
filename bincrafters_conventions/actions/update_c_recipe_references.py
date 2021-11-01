@@ -264,6 +264,8 @@ REFERENCES = {
     "meson/0.58.0": "meson/0.58.1",
     "meson/0.58.1": "meson/0.59.0",
     "meson/0.59.0": "meson/0.59.1",
+    "meson/0.59.1": "meson/0.59.3",
+    "meson/0.59.2": "meson/0.59.3",
 
     "lcms/2.9@bincrafters/stable": "lcms/2.9",
 
