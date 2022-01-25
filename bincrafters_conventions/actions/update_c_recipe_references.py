@@ -89,6 +89,7 @@ REFERENCES = {
     "libjpeg-turbo/2.0.5": "libjpeg-turbo/2.0.6",
     "libjpeg-turbo/2.0.6": "libjpeg-turbo/2.1.0",
     "libjpeg-turbo/2.1.0": "libjpeg-turbo/2.1.1",
+    "libjpeg-turbo/2.1.1": "libjpeg-turbo/2.1.2",
 
     "libpng/1.6.32@bincrafters/stable": "libpng/1.6.37",
     "libpng/1.6.34@bincrafters/stable": "libpng/1.6.37",
@@ -1463,6 +1464,8 @@ REFERENCES = {
 
     "imagemagick/7.0.8-44@bincrafters/stable": "imagemagick/7.0.11-44",
     "imagemagick/7.0.8-10@bincrafters/stable": "imagemagick/7.0.11-44",
+
+    "whereami/20190107@bincrafters/stable": "whereami/20220112",
 }
 
 
