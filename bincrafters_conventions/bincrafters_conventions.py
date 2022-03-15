@@ -87,7 +87,7 @@ class Command(object):
 
         :param args: User arguments
         """
-        parser = argparse.ArgumentParser(description="Bincrafters Conventions")
+        parser = argparse.ArgumentParser(description="Bincrafters Conventions {}".format(__version__))
         group = parser.add_mutually_exclusive_group()
         group.add_argument('--remote', type=str, help='Github repo to be updated e.g. bincrafters/conan-foobar')
         group.add_argument('--remote-add-gha-secrets', type=str,
