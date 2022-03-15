@@ -1,11 +1,11 @@
-# bincrafters-conventions:gha-workflow-version:10
+# bincrafters-conventions:gha-workflow-version:13
 # You can add custom environment variables above the version tag
 # Do not modify the tag or anything below the tag
 # This script gets automatically updated
 #
 # Possible configurations:
 # env:
-#   splitByBuildTypes: "false"  # Possible values "false", "true", default: false
+#   BPT_MATRIX_SPLIT_BY_BUILD_TYPES: "false"  # Possible values "false", "true", default: false
 #
 # You can furthermore set any environment variable understood by Conan and Conan Package Tools
 #
@@ -20,11 +20,13 @@ jobs:
     runs-on: ubuntu-20.04
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
+    env:
+      BPT_CONFIG_FILE_VERSION: "12"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: "0"
-      - uses: actions/setup-python@v1
+      - uses: actions/setup-python@v3
         with:
           python-version: "3.8"
       - name: Install Package Tools
@@ -33,8 +35,6 @@ jobs:
           conan user
       - name: Generate Job Matrix
         id: set-matrix
-        env:
-          splitByBuildTypes: ${{ env.splitByBuildTypes }}
         run: |
           MATRIX=$(bincrafters-package-tools generate-ci-jobs --platform gha)
           echo "${MATRIX}"
@@ -46,11 +46,13 @@ jobs:
       fail-fast: false
       matrix: ${{fromJson(needs.generate-matrix.outputs.matrix)}}
     name: ${{ matrix.config.name }}
+    env:
+      BPT_CONFIG_FILE_VERSION: "12"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: "0"
-      - uses: actions/setup-python@v1
+      - uses: actions/setup-python@v3
         with:
           python-version: "3.8"
       - name: Install Conan
@@ -68,3 +70,11 @@ jobs:
           CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD }}
         run: |
           bincrafters-package-tools --auto
+  finished:
+    needs: conan
+    runs-on: ubuntu-20.04
+    name: "All GitHub Actions Jobs Finished"
+    steps:
+      - name: Finish
+        run: |
+          echo "All GitHub Actions jobs finished"
