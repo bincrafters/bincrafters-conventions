@@ -1,5 +1,5 @@
 env:
-  splitByBuildTypes: "true"
+  BPT_MATRIX_SPLIT_BY_BUILD_TYPES: "true"
 
 # bincrafters-conventions:gha-workflow-version:0
 
