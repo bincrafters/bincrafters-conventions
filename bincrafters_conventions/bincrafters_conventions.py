@@ -94,8 +94,6 @@ class Command(object):
                            help='Add secrets to all Conan GitHub repositories of an organisation.'
                                 'Set env vars CONAN_LOGIN_USERNAME and CONAN_PASSSWORD and argument --remote-token')
         group.add_argument('--local', action='store_true', help='Update current local repository')
-        group.add_argument('-t', '--travisfile', type=str, nargs='?', const='.travis.yml',
-                           help='Travis file to be updated e.g. .travis.yml')
         group.add_argument('-a', '--appveyorfile', type=str, nargs='?', const='appveyor.yml',
                            help='Appveyor file to be updated e.g. appveyor.yml')
         group.add_argument('-azp', '--azpfile', type=str, nargs='?', const='azure-pipelines.yml',
@@ -148,8 +146,6 @@ class Command(object):
                 else:
                     if arguments.conanfile:
                         self._update_conanfile(arguments.conanfile)
-                    if arguments.travisfile:
-                        self._update_compiler_jobs(arguments.travisfile)
                     if arguments.appveyorfile:
                         self._update_appveyor_file(arguments.appveyorfile)
                     if arguments.azpfile:
