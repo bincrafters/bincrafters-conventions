@@ -31,7 +31,6 @@ from .actions.update_c_delete_meta_lines import update_c_delete_meta_lines
 from .actions.update_c_tools_version import update_c_tools_version
 from .actions.update_c_recipe_references import update_c_recipe_references
 from .actions.update_c_remove_compiler_cppstd import update_c_remove_compiler_cppstd
-from .actions.update_readme_travis_url import update_readme_travis_url
 from .actions.update_migrate_travis_to_import_and_gha import update_migrate_travis_to_import_and_gha
 from .actions.update_travis_import_to_fixed_commit import update_travis_import_to_fixed_commit
 
@@ -363,9 +362,7 @@ class Command(object):
         if not os.path.isfile(readme):
             return [False, ]
 
-        return [
-            update_readme_travis_url(self, readme)
-        ]
+        return [True, ]
 
     def _run_conventions_checks(self, conanfile="conanfile.py"):
         """ Checks for conventions which we can't automatically update
