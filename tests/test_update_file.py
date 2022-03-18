@@ -1,25 +1,33 @@
 #!/usr/bin/env python
 
-from bincrafters_conventions.bincrafters_conventions import Command
+from bincrafters_conventions.bincrafters_conventions import chdir, main
 
 import tempfile
+import os
 from shutil import copyfile
 
 
-def _prepare_old_file(file_name: str, suffix: str, old = "", expected=""):
+def _prepare_old_file(file_name: str, suffix: str, file_target_name: str = "", old: str = "", expected: str = ""):
     if old == "":
         old = file_name + "_old"
 
     if expected == "":
         expected = file_name + "_expected"
 
-    _, path_old = tempfile.mkstemp(prefix=old, suffix=suffix)
-    copyfile("files/{}{}".format(old, suffix), path_old)
+    if file_target_name == "":
+        file_target_name = old
 
-    _, expected_path = tempfile.mkstemp(prefix=expected, suffix=suffix)
-    copyfile("files/{}{}".format(expected, suffix), expected_path)
+    tmp_dir = tempfile.mkdtemp(prefix=old) # , suffix=suffix
 
-    return path_old, expected_path
+    test_file_src = os.path.join("files", "{}{}".format(old, suffix))
+    expected_file_src = os.path.join("files", "{}{}".format(expected, suffix))
+    target_test_file = os.path.join(tmp_dir, "{}{}".format(file_target_name, suffix))
+    target_expected_file = os.path.join(tmp_dir, "{}{}".format(expected, suffix))
+
+    copyfile(test_file_src, target_test_file)
+    copyfile(expected_file_src, target_expected_file)
+
+    return target_test_file, target_expected_file
 
 
 def _compare_file(path_old: str, expected_path: str):
@@ -46,8 +54,7 @@ def test_updated_conanfile():
     path_old, path_expected = _prepare_old_file("conan_1", ".py", old="conan_1_expected")
 
     args = ['--conanfile', path_old]
-    command = Command()
-    command.run(args)
+    main(args)
 
     assert _compare_file(path_old, path_expected)
 
@@ -59,8 +66,7 @@ def test_conanfile_default_options():
     path_old, path_expected = _prepare_old_file("conan_1", ".py")
 
     args = ['--conanfile', path_old]
-    command = Command()
-    command.run(args)
+    main(args)
 
     assert _compare_file(path_old, path_expected)
 
@@ -72,8 +78,7 @@ def test_conanfile_default_options_mutiline():
     path_old, path_expected = _prepare_old_file("conan_multiline_options", ".py", expected="conan_1_expected")
 
     args = ['--conanfile', path_old]
-    command = Command()
-    command.run(args)
+    main(args)
 
     assert _compare_file(path_old, path_expected)
 
@@ -85,8 +90,7 @@ def test_conanfile_2():
     path_old, path_expected = _prepare_old_file("conan_2", ".py")
 
     args = ['--conanfile', path_old]
-    command = Command()
-    command.run(args)
+    main(args)
 
     assert _compare_file(path_old, path_expected)
 
@@ -98,8 +102,7 @@ def test_appveyor_update_up_to_date():
     path_old, path_expected = _prepare_old_file("appveyor_1", ".yml", old="appveyor_1_expected")
 
     args = ['--appveyorfile', path_old]
-    command = Command()
-    command.run(args)
+    main(args)
 
     assert _compare_file(path_old, path_expected)
 
@@ -111,8 +114,7 @@ def test_appveyor_update():
     path_old, path_expected = _prepare_old_file("appveyor_1", ".yml")
 
     args = ['--appveyorfile', path_old]
-    command = Command()
-    command.run(args)
+    main(args)
 
     assert _compare_file(path_old, path_expected)
 
@@ -124,8 +126,7 @@ def test_appveyor_update_new_compiler_jobs():
     path_old, path_expected = _prepare_old_file("appveyor_2", ".yml")
 
     args = ['--appveyorfile', path_old]
-    command = Command()
-    command.run(args)
+    main(args)
 
     assert _compare_file(path_old, path_expected)
 
@@ -137,8 +138,7 @@ def test_appveyor_3_32bit_builds_update():
     path_old, path_expected = _prepare_old_file("appveyor_3_32bit_builds", ".yml")
 
     args = ['--appveyorfile', path_old]
-    command = Command()
-    command.run(args)
+    main(args)
 
     assert _compare_file(path_old, path_expected)
 
@@ -147,51 +147,51 @@ def test_update_travis_file():
     """ Create a standard travis file and update it.
     """
 
-    path_old, path_expected = _prepare_old_file("travis_1", ".yml")
+    path_old, path_expected = _prepare_old_file("travis_1", ".yml", file_target_name=".travis")
 
-    args = ['--travisfile', path_old]
-    command = Command()
-    command.run(args)
+    with chdir(os.path.dirname(path_old)):
+        args = []
+        main(args)
 
     assert _compare_file(path_old, path_expected)
 
 
 def test_update_travis_2_pages():
-    path_old, path_expected = _prepare_old_file("travis_2", ".yml")
+    path_old, path_expected = _prepare_old_file("travis_2", ".yml", file_target_name=".travis")
 
-    args = ['--travisfile', path_old]
-    command = Command()
-    command.run(args)
+    with chdir(os.path.dirname(path_old)):
+        args = []
+        main(args)
 
     assert _compare_file(path_old, path_expected)
 
 
 def test_update_travis_4_pages():
-    path_old, path_expected = _prepare_old_file("travis_3", ".yml")
+    path_old, path_expected = _prepare_old_file("travis_3", ".yml", file_target_name=".travis")
 
-    args = ['--travisfile', path_old]
-    command = Command()
-    command.run(args)
+    with chdir(os.path.dirname(path_old)):
+        args = []
+        main(args)
 
     assert _compare_file(path_old, path_expected)
 
 
 def test_update_travis_import_to_fixed_hash():
-    path_old, path_expected = _prepare_old_file("travis_4", ".yml")
+    path_old, path_expected = _prepare_old_file("travis_4", ".yml", file_target_name=".travis")
 
-    args = ['--travisfile', path_old]
-    command = Command()
-    command.run(args)
+    with chdir(os.path.dirname(path_old)):
+        args = []
+        main(args)
 
     assert _compare_file(path_old, path_expected)
 
 
 def test_update_travis_installer_only_import_to_fixed_hash():
-    path_old, path_expected = _prepare_old_file("travis_5", ".yml")
+    path_old, path_expected = _prepare_old_file("travis_5", ".yml", file_target_name=".travis")
 
-    args = ['--travisfile', path_old]
-    command = Command()
-    command.run(args)
+    with chdir(os.path.dirname(path_old)):
+        args = []
+        main(args)
 
     assert _compare_file(path_old, path_expected)
 
@@ -203,7 +203,6 @@ def test_gha():
     path_old, path_expected = _prepare_old_file("gha_1", ".yml")
 
     args = ['--ghafile', path_old]
-    command = Command()
-    command.run(args)
+    main(args)
 
     assert _compare_file(path_old, path_expected)
