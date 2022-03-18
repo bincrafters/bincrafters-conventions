@@ -122,7 +122,7 @@ class Command(object):
         :param args: User arguments
         """
         arguments = self._parse_arguments(*args)
-        if not len(sys.argv) > 1 or arguments.local:
+        if not len(*args) > 1 or arguments.local:
             self._update_compiler_jobs(".travis.yml")
             self._update_appveyor_file("appveyor.yml")
             self._update_azp_file("azure-pipelines.yml")
