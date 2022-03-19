@@ -188,7 +188,7 @@ class Command(object):
         if not os.path.isfile(file):
             return [False, ]
 
-        result = [ ]
+        result = []
 
         return result
 
@@ -353,7 +353,7 @@ class Command(object):
         if not os.path.isfile(readme):
             return [False, ]
 
-        return [True, ]
+        return []
 
     def _run_conventions_checks(self, conanfile="conanfile.py"):
         """ Checks for conventions which we can't automatically update
