@@ -54,10 +54,6 @@ To update and check **LOCAL** everything
 To check **LOCAL** everything
 
     $ bincrafters_conventions --check
-    
-To update a **LOCAL** file
-
-    $ bincrafters_conventions --travisfile=.travis.yml
 
 To apply Conan conventions in a local file:
 
