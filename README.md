@@ -9,21 +9,24 @@
 This project contains scripts to update CI files, to
 update Conan conventions in general and to perform some linting.
 
-#### INSTALL
-To install by pip is just one step
+### INSTALL
 
-##### Local
-If you want to install via a local git clone
+You can install `bincrafters-conventions` via `pip` like this:
 
-    pip install .
+    $ pip install bincrafters_conventions
 
-##### Remote
-Or if you want to install a release version
+### RUN
 
-    pip install bincrafters_conventions
+> 💡 Bincrafters Conventions is a command line tool.
+> 
+> Execute `bincrafters-conventions --help` to see all options.
+> 
+> `bincrafters-conventions` has also the alias `bcon` for convince.
 
-#### RUN
-To update **ALL** Conan projects on GitHub https://github.com/bincrafters
+
+#### EXAMPLES
+
+To update **ALL** Conan projects on GitHub for https://github.com/bincrafters
 
     $ bincrafters_conventions --remote=bincrafters
 
@@ -64,25 +67,22 @@ To update AppVeyor file:
     $ bincrafters_conventions --appveryorfile=appveyor.yml
 
 
-##### Testing and Development
+### Testing and Development
+
+If you want to install `bincrafters-conventions` via a local git clone
+
+    pip install --user -U .
+
 To install extra packages required to test
 
     pip install .[test]
 
-
-#### TESTING
 To run all unit test + code coverage, execute:
 
-    pip install .[test]
     cd tests
     pytest -v --cov=bincrafters_conventions
 
 
-#### REQUIREMENTS and DEVELOPMENT
-To develop or run bincrafters-conventions:
+### LICENSE
 
-    pip install --user -U .
-    bincrafters-conventions
-
-#### LICENSE
 [MIT](LICENSE.md)
