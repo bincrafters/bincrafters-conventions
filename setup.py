@@ -121,6 +121,7 @@ setup(
     entry_points={
         'console_scripts': [
             'bincrafters-conventions=bincrafters_conventions.main:run',
+            'bcon=bincrafters_conventions.main:run',
         ],
     },
 )
