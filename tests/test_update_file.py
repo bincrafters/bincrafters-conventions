@@ -71,8 +71,8 @@ def test_conanfile_default_options():
     assert _compare_file(path_old, path_expected)
 
 
-def test_conanfile_default_options_mutiline():
-    """ Try to update an conanfile which has old styled multiline default options
+def test_conanfile_default_options_multiline():
+    """ Try to update a conanfile which has old styled multiline default options
     """
 
     path_old, path_expected = _prepare_old_file("conan_multiline_options", ".py", expected="conan_1_expected")
@@ -84,7 +84,7 @@ def test_conanfile_default_options_mutiline():
 
 
 def test_conanfile_2():
-    """ Try to update an conanfile which old Conan recipe references
+    """ Try to update a conanfile which old Conan recipe references
     """
 
     path_old, path_expected = _prepare_old_file("conan_2", ".py")
