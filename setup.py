@@ -69,7 +69,7 @@ setup(
 
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
         'License :: OSI Approved :: MIT License',
@@ -78,7 +78,7 @@ setup(
 
     # What does your project relate to?
     keywords=['conan', 'C/C++', 'package', 'libraries', 'developer', 'manager',
-              'dependency', 'tool', 'c', 'c++', 'cpp'],
+              'dependency', 'tool', 'c', 'c++', 'cpp', 'convention', 'updates'],
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
@@ -111,7 +111,7 @@ setup(
 
     # Although 'package_data' is the preferred approach, in some case you may
     # need to place data files outside of your packages. See:
-    # http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files # noqa
+    # https://docs.python.org/3.10/distutils/setupscript.html#installing-additional-files # noqa
     # In this case, 'data_file' will be installed into '<sys.prefix>/my_data'
     # data_files=[('my_data', ['data/data_file'])],
 
