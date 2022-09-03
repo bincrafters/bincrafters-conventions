@@ -7,11 +7,11 @@ git config --global user.email "bincrafters@gmail.com"
 git config --global user.name "bincrafters-user"
 
 
-# Install GitHub CLI tool
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 > /dev/null
-sudo apt-add-repository https://cli.github.com/packages > /dev/null
-sudo apt-get -qq update
-sudo apt-get -qq install gh
+# # Install GitHub CLI tool
+# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0 > /dev/null
+# sudo apt-add-repository https://cli.github.com/packages > /dev/null
+# sudo apt-get -qq update
+# sudo apt-get -qq install gh
 
 # Authenticate on GitHub with the CLI tool
 echo ${GIT_GITHUB_TOKEN} | gh auth login --with-token
