@@ -9,7 +9,7 @@ jobs:
     name: "Remove Outdated Packages For Bincrafters"
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/setup-python@v2
+    - uses: actions/setup-python@v4
       with:
         python-version: "3.8"
     - name: "Install Conan"
