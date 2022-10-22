@@ -1,4 +1,4 @@
-# bincrafters-conventions:gha-workflow-version:13
+# bincrafters-conventions:gha-workflow-version:14
 # You can add custom environment variables above the version tag
 # Do not modify the tag or anything below the tag
 # This script gets automatically updated
@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: "0"
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v4
         with:
           python-version: "3.8"
       - name: Install Package Tools
@@ -52,7 +52,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: "0"
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v4
         with:
           python-version: "3.8"
       - name: Install Conan
