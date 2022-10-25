@@ -11,7 +11,8 @@ def check_for_required_attributes(main, file):
     not_found = []
     for field in ["name", "description", "topics", "url", "homepage", "license"]:
         try:
-            if conan_instance.inspect(path=file, attributes=[field])[field] is None:
+            value = conan_instance.inspect(path=file, attributes=[field])[field]
+            if value is None or not value:
                 not_found.append(field)
         except ConanException:
             not_found.append(field)
