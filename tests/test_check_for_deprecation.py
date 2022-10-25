@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
 import os
+import tempfile
 
-from conans import tools
-from conans.util.files import mkdir_tmp
+from conan.tools import files
 
 from bincrafters_conventions.actions.check_for_deprecated_generators import check_for_deprecated_generators
 from bincrafters_conventions.actions.check_for_deprecated_methods import check_for_deprecated_methods
@@ -50,9 +50,13 @@ class MockOutputResultCheck(object):
         return command.file_contains(file, word)
 
 
+class MockDummy:
+    pass
+
+
 def _create_recipe(content):
-    conanfile = os.path.join(mkdir_tmp(), 'conanfile.py')
-    tools.save(conanfile, content)
+    conanfile = os.path.join(tempfile.mkdtemp(prefix="bcon"), 'conanfile.py')
+    files.save(MockDummy(), conanfile, content)
     return conanfile
 
 

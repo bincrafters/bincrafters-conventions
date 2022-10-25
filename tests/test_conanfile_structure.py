@@ -1,6 +1,5 @@
-from conans import tools
-
 from .test_check_for_deprecation import _create_recipe, MockOutputResultCheck
+from bincrafters_conventions.bincrafters_conventions import Command
 from bincrafters_conventions.actions.check_for_download_hash import check_for_download_hash
 from bincrafters_conventions.actions.check_for_required_attributes import check_for_required_attributes
 from bincrafters_conventions.actions.update_c_attributes import update_c_topics, update_c_delete_author
@@ -56,7 +55,8 @@ class MockCommand(object):
         self.titles.append(title)
 
     def replace_in_file(self, file, original, change):
-        tools.replace_in_file(file, original, change)
+        command = Command()
+        return command.replace_in_file(file, original, change)
 
 
 def test_missing_topics():

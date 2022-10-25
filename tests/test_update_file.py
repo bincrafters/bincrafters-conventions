@@ -17,7 +17,7 @@ def _prepare_old_file(file_name: str, suffix: str, file_target_name: str = "", o
     if file_target_name == "":
         file_target_name = old
 
-    tmp_dir = tempfile.mkdtemp(prefix=old) # , suffix=suffix
+    tmp_dir = tempfile.mkdtemp(prefix=old)  # , suffix=suffix
 
     test_file_src = os.path.join("files", "{}{}".format(old, suffix))
     expected_file_src = os.path.join("files", "{}{}".format(expected, suffix))
