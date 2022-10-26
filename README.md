@@ -28,43 +28,43 @@ You can install `bincrafters-conventions` via `pip` like this:
 
 To update **ALL** Conan projects on GitHub for https://github.com/bincrafters
 
-    $ bincrafters_conventions --remote=bincrafters
+    $ bcon --remote=bincrafters
 
 To update **ONLY** one project on GitHub https://github.com/bincrafters/conan-conversion
 
-    $ bincrafters_conventions --remote=bincrafters/conan-double-conversion
+    $ bcon --remote=bincrafters/conan-double-conversion
 
 To **AVOID** to execute push command after to update
 
-    $ bincrafters_conventions --remote=bincrafters/conan-libusb --dry-run
+    $ bcon --remote=bincrafters/conan-libusb --dry-run
 
 To filter **PROJECTS** by pattern
 
-    $ bincrafters_conventions --remote=bincrafters --project-pattern bincrafters/conan-*
+    $ bcon --remote=bincrafters --project-pattern bincrafters/conan-*
 
 To filter **BRANCHES** by pattern
 
-    $ bincrafters_conventions --remote=bincrafters --branch-pattern stable/*
+    $ bcon --remote=bincrafters --branch-pattern stable/*
 
 or
 
-    $ bincrafters_conventions --remote=bincrafters/conan-libzip --branch-pattern stable/*
+    $ bcon --remote=bincrafters/conan-libzip --branch-pattern stable/*
 
 To update and check **LOCAL** everything
 
-    $ bincrafters_conventions
+    $ bcon
     
 To check **LOCAL** everything
 
-    $ bincrafters_conventions --check
+    $ bcon --check
 
 To apply Conan conventions in a local file:
 
-    $ bincrafters_conventions --conanfile=conanfile.py
+    $ bcon --conanfile=conanfile.py
 
 To update AppVeyor file:
 
-    $ bincrafters_conventions --appveryorfile=appveyor.yml
+    $ bcon --appveryorfile=appveyor.yml
 
 
 ### Testing and Development
