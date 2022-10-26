@@ -1,6 +1,6 @@
 from conans import ConanFile, CMake, tools
 from conans.tools import Version
-from conans.errors import ConanInvalidConfiguration
+from conan.errors import ConanInvalidConfiguration
 import os
 
 # Conanfiles aren't executables, don't add a hashbang

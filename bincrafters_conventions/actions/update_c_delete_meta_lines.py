@@ -39,7 +39,6 @@ def update_c_delete_meta_lines(main, file):
                 else:
                     content += line
 
-
         if updated:
             with open(file, 'w') as fd:
                 fd.write(content)
