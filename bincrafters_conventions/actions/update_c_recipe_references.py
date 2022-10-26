@@ -1468,6 +1468,8 @@ REFERENCES = {
     "imagemagick/7.0.8-10@bincrafters/stable": "imagemagick/7.0.11-44",
 
     "whereami/20190107@bincrafters/stable": "whereami/20220112",
+
+    "parson/0.1@bincrafters/stable": "parson/1.4.0",
 }
 
 
