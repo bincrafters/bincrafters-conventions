@@ -1470,6 +1470,9 @@ REFERENCES = {
     "whereami/20190107@bincrafters/stable": "whereami/20220112",
 
     "parson/0.1@bincrafters/stable": "parson/1.4.0",
+
+    "exprtk/20181117@bincrafters/stable": "exprtk/0.0.1",
+    "exprtk/20181202@bincrafters/stable": "exprtk/0.0.1",
 }
 
 
