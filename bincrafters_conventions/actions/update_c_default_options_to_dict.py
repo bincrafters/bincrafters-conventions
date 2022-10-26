@@ -1,5 +1,5 @@
 import re
-from conans.errors import ConanException
+from conan.errors import ConanException
 from conans.client import conan_api
 
 

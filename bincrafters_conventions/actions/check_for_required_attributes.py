@@ -1,5 +1,5 @@
 from conans.client import conan_api
-from conans.errors import ConanException
+from conan.errors import ConanException
 
 
 def check_for_required_attributes(main, file):
