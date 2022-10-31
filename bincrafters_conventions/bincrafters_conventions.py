@@ -34,7 +34,7 @@ from .actions.update_c_remove_compiler_cppstd import update_c_remove_compiler_cp
 from .actions.update_migrate_travis_to_import_and_gha import update_migrate_travis_to_import_and_gha
 from .actions.update_travis_import_to_fixed_commit import update_travis_import_to_fixed_commit
 
-__version__ = '1.0.0'
+__version__ = '1.1.0'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
