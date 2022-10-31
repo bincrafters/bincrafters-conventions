@@ -1473,6 +1473,15 @@ REFERENCES = {
 
     "exprtk/20181117@bincrafters/stable": "exprtk/0.0.1",
     "exprtk/20181202@bincrafters/stable": "exprtk/0.0.1",
+
+    "physfs/3.0.1@bincrafters/stable": "physfs/3.0.2",
+
+    "libmicrohttpd/0.9.59@bincrafters/stable": "libmicrohttpd/0.9.75",
+
+    "emsdk_installer/1.38.22@bincrafters/stable": "emsdk/2.0.34",
+    "emsdk_installer/1.38.29@bincrafters/stable": "emsdk/2.0.34",
+    "emsdk_installer/1.39.6@bincrafters/stable": "emsdk/2.0.34",
+    "emsdk_installer/1.39.13@bincrafters/stable": "emsdk/2.0.34",
 }
 
 
@@ -1563,6 +1572,7 @@ def update_c_recipe_references(main, conanfile):
         "bazel_installer": "bazel",
         "gRPC": "grpc",
         "cassandra-driver": "cassandra-cpp-driver",
+        "emsdk_installer": "emsdk",
     }
 
     for old_name, new_name in reference_names.items():
