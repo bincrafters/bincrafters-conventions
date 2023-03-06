@@ -41,7 +41,7 @@ jobs:
         git config --global user.email "bincrafters@gmail.com"
         git config --global user.name "bincrafters-user"
         pip install --quiet bincrafters-conventions
-        conan user
+        # conan user
         bincrafters-conventions --remote bincrafters --remote-max-repos 1 --remote-token="${GIT_GITHUB_USERNAME}:${GIT_GITHUB_TOKEN}";
   bincrafters-conventions-test:
     name: Test Conventions on ${{ matrix.os }}
