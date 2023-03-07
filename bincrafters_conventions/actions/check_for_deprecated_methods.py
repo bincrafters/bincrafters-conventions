@@ -7,6 +7,6 @@ def check_for_deprecated_methods(main, file):
                        'build_sln_command', 'msvc_build_command', 'cmake.build_type']:
         if deprecated in recipe:
             main.output_result_check(passed=False, title="Deprecated method",
-                                     reason="detected '{}' in recipe".format(deprecated))
+                                     reason=f"detected '{deprecated}' in recipe")
             return False
     return True

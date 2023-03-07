@@ -5,7 +5,7 @@ def check_for_deprecated_settings(main, file):
 
     if settings and "cppstd" in settings:
         main.output_result_check(passed=False, title="Deprecated settings",
-                                 reason="deprecated attribute(s): {}".format(settings))
+                                 reason=f"deprecated attribute(s): {settings}")
         return False
     else:
         main.output_result_check(passed=True, title="Deprecated settings")

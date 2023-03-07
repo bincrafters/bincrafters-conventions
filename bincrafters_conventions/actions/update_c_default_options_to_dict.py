@@ -40,14 +40,14 @@ def update_c_default_options_to_dict(main, file):
                     # searching for default options
                     if attribute in line:
                         found_default_options = True
-                        line = '    {} = {}\n'.format(attribute, default_options)
+                        line = f'    {attribute} = {default_options}\n'
                     # searching for multiline default options
                 elif found_default_options and not updated:
                     if ')' in line or re.search(r'".*=', line):
                         continue
                     else:
                         updated = True
-                ofd.write('{}'.format(line))
+                ofd.write(f'{line}')
             # ofd.write('\n')
 
     if updated:

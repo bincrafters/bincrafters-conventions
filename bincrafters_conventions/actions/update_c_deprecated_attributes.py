@@ -21,7 +21,7 @@ def update_c_deprecated_attributes(main, file):
         # Last checked for Conan versions up to 1.14.1
         deprecations = {  # Official Conan attributes
             # Conan 1.13.0
-            "self.cpp_info.cppflags": "self.cpp_info.cxxflags",  # 1.13.0
+            "self.cpp_info.cppflags": "self.cpp_info.cxxflags",
 
             # Custom attributes
             " install_subfolder =": " _install_subfolder =",
@@ -49,7 +49,7 @@ def update_c_deprecated_attributes(main, file):
         for deprecated, replacement in deprecations.items():
             if deprecated in recipe:
                 if main.replace_in_file(file, deprecated, replacement):
-                    main.output_result_update(title="Replace deprecated {} with {}".format(deprecated, replacement))
+                    main.output_result_update(title=f"Replace deprecated {deprecated} with {replacement}")
                 updated = True
 
     if updated:
