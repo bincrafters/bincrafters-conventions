@@ -15,8 +15,7 @@ class CompatGraphAPI:
             print(conanfile_class)
             print(f"higher than 2.0 value: {conanfile_class}")
         else:
-            conan_instance, _, _ = self.compat_api.ConanAPI.Conan.factory()
-            value = conan_instance.inspect(path=conanfile, attributes=[attribute])[attribute]
+            value = self.compat_api.ConanAPI.inspect(path=conanfile, attributes=[attribute])[attribute]
             print(f"lower than 2.0 value: {value}")
 
         return value
