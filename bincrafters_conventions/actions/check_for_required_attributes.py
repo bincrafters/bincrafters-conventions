@@ -1,20 +1,12 @@
-from conans.client import conan_api
-from conan.errors import ConanException
-
-
 def check_for_required_attributes(main, file):
     """  Check if the conan file has all attributes we do require from recipes
     If you want to validate the individual attributes please create own checks for it
     See check_for_spdx_license as a reference
     """
-    conan_instance, _, _ = conan_api.Conan.factory()
     not_found = []
     for field in ["name", "description", "topics", "url", "homepage", "license"]:
-        try:
-            value = conan_instance.inspect(path=file, attributes=[field])[field]
-            if value is None or not value:
-                not_found.append(field)
-        except ConanException:
+        value = main._compat_api.graph.compat_inspect_attribute(conanfile=file, attribute=field)
+        if value is None or not value:
             not_found.append(field)
 
     if len(not_found) >= 1:
