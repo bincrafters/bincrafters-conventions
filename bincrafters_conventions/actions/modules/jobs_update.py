@@ -64,16 +64,16 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
     # ARCH for installer, CONAN_ARCHS for libraries
     arch_marker32 = f"CONAN_ARCHS{platform['delimiter']}x86"
     arch_marker32_alt1 = f"CONAN_ARCHS{platform['delimiter']}'x86'"
-    arch_marker32_alt2 = f'CONAN_ARCHS{platform['delimiter']}"x86"'
+    arch_marker32_alt2 = f'CONAN_ARCHS{platform["delimiter"]}"x86"'
     arch_marker32_alt3 = f"CONAN_ARCHS{platform['delimiter']}x86"
-    arch_marker32_alt4 = f'ARCH{platform['delimiter']}"x86"'
+    arch_marker32_alt4 = f'ARCH{platform["delimiter"]}"x86"'
     arch_marker32_alt5 = f"ARCH{platform['delimiter']}'x86'"
     arch_marker32_alt6 = f"ARCH{platform['delimiter']}x86"
     arch_marker64 = f"CONAN_ARCHS{platform['delimiter']}x86_64"
     arch_marker64_alt1 = f"CONAN_ARCHS{platform['delimiter']}'x86_64'"
-    arch_marker64_alt2 = f'CONAN_ARCHS{platform['delimiter']}"x86_64"'
+    arch_marker64_alt2 = f'CONAN_ARCHS{platform["delimiter"]}"x86_64"'
     arch_marker64_alt3 = f"CONAN_ARCHS{platform['delimiter']}x86_64"
-    arch_marker64_alt4 = f'ARCH{platform['delimiter']}"x86_64"'
+    arch_marker64_alt4 = f'ARCH{platform["delimiter"]}"x86_64"'
     arch_marker64_alt5 = f"ARCH{platform['delimiter']}'x86_64'"
     arch_marker64_alt6 = f"ARCH{platform['delimiter']}x86_64"
 
