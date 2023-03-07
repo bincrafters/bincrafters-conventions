@@ -1,34 +1,28 @@
 import re
-from conan.errors import ConanException
-from conans.client import conan_api
 
 
 def _get_default_options(file):
-    conan_instance, _, _ = conan_api.Conan.factory()
-    try:
-        result = conan_instance.inspect(path=file, attributes=['default_options'])['default_options']
-        new_result = {}
-        # Tuple uses old combination: "value=key"
-        if isinstance(result, tuple):
-            for item in result:
-                # extract key,value from string
-                match = re.match(r'(.*)=(.*)', item)
-                if match:
-                    key = match.group(1)
-                    value = match.group(2)
-                    # to boolean
-                    if value == 'True' or value == 'False':
-                        value = value == 'True'
-                    new_result[key] = value
-            return new_result
-        # if we only have one option it is a string
-        if isinstance(result, str):
-            item = result.split("=")
-            new_result[item[0]] = item[1]
-            return new_result
-        return None
-    except ConanException:
-        return None
+    result = main._compat_api.graph.compat_inspect_attribute(conanfile=file, attribute="default_options")
+    new_result = {}
+    # Tuple uses old combination: "value=key"
+    if isinstance(result, tuple):
+        for item in result:
+            # extract key,value from string
+            match = re.match(r'(.*)=(.*)', item)
+            if match:
+                key = match.group(1)
+                value = match.group(2)
+                # to boolean
+                if value == 'True' or value == 'False':
+                    value = value == 'True'
+                new_result[key] = value
+        return new_result
+    # if we only have one option it is a string
+    if isinstance(result, str):
+        item = result.split("=")
+        new_result[item[0]] = item[1]
+        return new_result
+    return None
 
 
 def update_c_default_options_to_dict(main, file):
