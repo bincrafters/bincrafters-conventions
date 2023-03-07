@@ -57,6 +57,7 @@ jobs:
       with:
         python-version: "3.8"
     - name: "Build"
+      shell: bash
       run: |
         pip install conan=="2.*"
         pip install -e .[test]
@@ -67,6 +68,7 @@ jobs:
         cd ..
         codecov
     - name: "Test"
+      shell: bash
       run: |
         cd tests
         pytest -v -s --cov=bincrafters_conventions
@@ -87,6 +89,7 @@ jobs:
       with:
         python-version: "3.8"
     - name: "Build"
+      shell: bash
       run: |
         pip install conan=="1.*"
         pip install -e .[test]
@@ -97,6 +100,7 @@ jobs:
         cd ..
         codecov
     - name: "Test"
+      shell: bash
       run: |
         cd tests
         pytest -v -s --cov=bincrafters_conventions
