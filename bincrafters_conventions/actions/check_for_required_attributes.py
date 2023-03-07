@@ -10,8 +10,9 @@ def check_for_required_attributes(main, file):
             not_found.append(field)
 
     if len(not_found) >= 1:
+        missing_attributes = ', '.join(map(str, not_found))
         main.output_result_check(passed=False, title="Required recipe attributes",
-                                 reason="missing attribute(s): {}".format(', '.join(map(str, not_found))))
+                                 reason=f"missing attribute(s): {missing_attributes}")
         return False
     else:
         main.output_result_check(passed=True, title="Required recipe attributes")

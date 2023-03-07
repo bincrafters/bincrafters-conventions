@@ -36,7 +36,8 @@ def update_c_delete_author(main, file):
                 author = re.match('(?P<name>.*)\\s<(?P<mail>.*)>', match['author'])
                 if (author and author['name'].lower() == 'bincrafters')\
                         or match['author'].lower() == "conan community":
-                    main.output_result_update("Delete author attribute: {}".format(line.strip()))
+                    deleted_line_output = line.strip()
+                    main.output_result_update(f"Delete author attribute: {deleted_line_output}")
                     updated = True
                 else:
                     content += line
