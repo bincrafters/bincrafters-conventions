@@ -62,11 +62,6 @@ jobs:
         pip install conan=="2.*"
         pip install -e .[test]
         python setup.py sdist
-        cd tests
-        pytest -v -s --cov=bincrafters_conventions
-        mv .coverage ..
-        cd ..
-        codecov
     - name: "Test"
       shell: bash
       run: |
@@ -94,11 +89,6 @@ jobs:
         pip install conan=="1.*"
         pip install -e .[test]
         python setup.py sdist
-        cd tests
-        pytest -v -s --cov=bincrafters_conventions
-        mv .coverage ..
-        cd ..
-        codecov
     - name: "Test"
       shell: bash
       run: |
