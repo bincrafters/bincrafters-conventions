@@ -27,7 +27,8 @@ def update_c_delete_meta_lines(main, file):
                 if not first_lines_deleted:
                     for line_pattern in line_deleting:
                         if line.strip() == line_pattern.strip():
-                            main.output_result_update("Delete meta line: {}".format(line.strip()))
+                            deleted_line_output = line.strip()
+                            main.output_result_update(f"Delete meta line: {deleted_line_output}")
                             delete_line = True
                             updated = True
 

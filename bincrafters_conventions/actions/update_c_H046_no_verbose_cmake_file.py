@@ -12,7 +12,7 @@ def update_c_H046_no_verbose_cmake_file(main, file):
 
     for display_name, cmake_file in files.items():
         if main.replace_in_file(cmake_file, "set(CMAKE_VERBOSE_MAKEFILE TRUE)\n", ""):
-            main.output_result_update(title="H046: Removed set(CMAKE_VERBOSE_MAKEFILE TRUE) from {}".format(display_name))
+            main.output_result_update(title=f"H046: Removed set(CMAKE_VERBOSE_MAKEFILE TRUE) from {display_name}")
             return True
 
     return False

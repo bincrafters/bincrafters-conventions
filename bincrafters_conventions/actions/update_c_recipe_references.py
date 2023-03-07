@@ -1584,22 +1584,22 @@ def update_c_recipe_references(main, conanfile):
 
     for old_name, new_name in reference_names.items():
         update_cases = {
-            "self.deps_cpp_info['{}']".format(old_name): "self.deps_cpp_info['{}']".format(new_name),
-            'self.deps_cpp_info["{}"]'.format(old_name): 'self.deps_cpp_info["{}"]'.format(new_name),
-            "self.options['{}']".format(old_name): "self.options['{}']".format(new_name),
-            'self.options["{}"]'.format(old_name): 'self.options["{}"]'.format(new_name),
+            f"self.deps_cpp_info['{old_name}']": f"self.deps_cpp_info['{new_name}']",
+            f'self.deps_cpp_info["{old_name}"]': f'self.deps_cpp_info["{new_name}"]',
+            f"self.options['{old_name}']": f"self.options['{new_name}']",
+            f'self.options["{old_name}"]': f'self.options["{new_name}"]',
         }
         for old_ref, new_ref in update_cases.items():
             for file in files:
                 if main.replace_in_file(file, old_ref, new_ref):
-                    msg = "Update reference from {} to {}".format(old_ref, new_ref)
+                    msg = f"Update reference from {old_ref} to {new_ref}"
                     main.output_result_update(title=msg)
                     references_updated = True
 
     for old_ref, new_ref in REFERENCES.items():
         for file in files:
             if main.replace_in_file(file, old_ref, new_ref):
-                msg = "Update Conan recipe reference from {} to {}".format(old_ref, new_ref)
+                msg = f"Update Conan recipe reference from {old_ref} to {new_ref}"
                 main.output_result_update(title=msg)
                 references_updated = True
 
@@ -1607,4 +1607,3 @@ def update_c_recipe_references(main, conanfile):
         return True
 
     return False
-

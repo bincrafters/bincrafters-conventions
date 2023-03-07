@@ -8,6 +8,6 @@ def check_for_deprecated_generators(main, file):
     for generator in generators:
         if generator in ["gcc", "boost-build"]:
             main.output_result_check(passed=False, title="Deprecated generator",
-                                     reason="generator: {}".format(generator))
+                                     reason=f"generator: {generator}")
             return False
     return True

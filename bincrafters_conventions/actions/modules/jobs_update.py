@@ -6,15 +6,16 @@ def _leading_line_spaces(line):
 
 
 def _create_new_job(platform: dict, compiler: str, version, job: str, old_version, images_mapping: dict):
-    old_version_str = "CONAN_{}_VERSIONS{}{}".format(compiler.upper(), platform["delimiter"], old_version)
-    new_version_str = "CONAN_{}_VERSIONS{}{}".format(compiler.upper(), platform["delimiter"], version)
+    compiler_upper = compiler.upper()
+    old_version_str = f"CONAN_{compiler_upper}_VERSIONS{platform["delimiter"]}{old_version}"
+    new_version_str = f"CONAN_{compiler_upper}_VERSIONS{platform["delimiter"]}{version}"
     job = job.replace(old_version_str, new_version_str)
 
     if compiler == "visual":
         old_image = images_mapping[old_version]
         new_image = images_mapping[version]
-        old_image_str = "APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio {}".format(old_image)
-        new_image_str = "APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio {}".format(new_image)
+        old_image_str = f"APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio {old_image}"
+        new_image_str = f"APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio {new_image}"
         job = job.replace(old_image_str, new_image_str)
 
     return job
@@ -61,20 +62,20 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
 
     # Markers to categorize a single CI job
     # ARCH for installer, CONAN_ARCHS for libraries
-    arch_marker32 = "CONAN_ARCHS{}x86".format(platform["delimiter"])
-    arch_marker32_alt1 = "CONAN_ARCHS{}'x86'".format(platform["delimiter"])
-    arch_marker32_alt2 = 'CONAN_ARCHS{}"x86"'.format(platform["delimiter"])
-    arch_marker32_alt3 = "CONAN_ARCHS{}x86".format(platform["delimiter"])
-    arch_marker32_alt4 = 'ARCH{}"x86"'.format(platform["delimiter"])
-    arch_marker32_alt5 = "ARCH{}'x86'".format(platform["delimiter"])
-    arch_marker32_alt6 = "ARCH{}x86".format(platform["delimiter"])
-    arch_marker64 = "CONAN_ARCHS{}x86_64".format(platform["delimiter"])
-    arch_marker64_alt1 = "CONAN_ARCHS{}'x86_64'".format(platform["delimiter"])
-    arch_marker64_alt2 = 'CONAN_ARCHS{}"x86_64"'.format(platform["delimiter"])
-    arch_marker64_alt3 = "CONAN_ARCHS{}x86_64".format(platform["delimiter"])
-    arch_marker64_alt4 = 'ARCH{}"x86_64"'.format(platform["delimiter"])
-    arch_marker64_alt5 = "ARCH{}'x86_64'".format(platform["delimiter"])
-    arch_marker64_alt6 = "ARCH{}x86_64".format(platform["delimiter"])
+    arch_marker32 = f"CONAN_ARCHS{platform["delimiter"]}x86"
+    arch_marker32_alt1 = f"CONAN_ARCHS{platform["delimiter"]}'x86'"
+    arch_marker32_alt2 = f'CONAN_ARCHS{platform["delimiter"]}"x86"'
+    arch_marker32_alt3 = f"CONAN_ARCHS{platform["delimiter"]}x86"
+    arch_marker32_alt4 = f'ARCH{platform["delimiter"]}"x86"'
+    arch_marker32_alt5 = f"ARCH{platform["delimiter"]}'x86'"
+    arch_marker32_alt6 = f"ARCH{platform["delimiter"]}x86"
+    arch_marker64 = f"CONAN_ARCHS{platform["delimiter"]}x86_64"
+    arch_marker64_alt1 = f"CONAN_ARCHS{platform["delimiter"]}'x86_64'"
+    arch_marker64_alt2 = f'CONAN_ARCHS{platform["delimiter"]}"x86_64"'
+    arch_marker64_alt3 = f"CONAN_ARCHS{platform["delimiter"]}x86_64"
+    arch_marker64_alt4 = f'ARCH{platform["delimiter"]}"x86_64"'
+    arch_marker64_alt5 = f"ARCH{platform["delimiter"]}'x86_64'"
+    arch_marker64_alt6 = f"ARCH{platform["delimiter"]}x86_64"
 
     mingw_marker = "MINGW_CONFIGURATIONS"
 
@@ -100,16 +101,15 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                         versions_jobs[current_compiler].get("v" + current_compiler_version, "") + tmp_string
             else:
                 if current_compiler_version == 0:
-                    main.output_result_update(title="{}: Removed obsolete MinGW build job".format(platform_name))
+                    main.output_result_update(title=f"{platform_name}: Removed obsolete MinGW build job")
                 else:
-                    main.output_result_update(title="{}: Removed obsolete 32-bit build job for {} {}"
-                                          .format(platform_name, current_compiler, current_compiler_version))
+                    main.output_result_update(title=f"{platform_name}: Removed obsolete 32-bit build job for {current_compiler} {current_compiler_version}")
                 nonlocal manipulated_jobs
                 manipulated_jobs = True
 
     with open(file) as ifd:
         for line in ifd:
-            if "{}{}".format(convention_tag, convention_tag_no_new_compiler_versions) in line:
+            if f"{convention_tag}{convention_tag_no_new_compiler_versions}" in line:
                 tag_no_new_compiler_versions = True
 
             # search for the start of the actual jobs
@@ -183,13 +183,14 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                         or mingw_marker in line:
                     remove_current_job = True
 
-                if "{}{}".format(convention_tag, convention_tag_preserve_job) in line:
+                if f"{convention_tag}{convention_tag_preserve_job}" in line:
                     preserve_current_job = True
 
                 # What compiler are we currently looking at?
                 for compiler_name, _ in compiler_versions.items():
-                    regex_compiler = re.compile("CONAN_{}".format(compiler_name.upper())
-                                                + "_VERSIONS{}".format(platform["delimiter"])
+                    compiler_upper = compiler_name.upper()
+                    regex_compiler = re.compile(f"CONAN_{compiler_upper}"
+                                                + f"_VERSIONS{platform["delimiter"]}"
                                                 + r'([^\s]+)')
                     if regex_compiler.search(line):
                         current_compiler = compiler_name
@@ -222,8 +223,7 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                 # Meaning: If someone is removing older compiler versions we aren't going to re-add them
                 if float(latest_versions[compiler]) < float(version):
                     manipulated_jobs = True
-                    update_message = "{}: Add job(s) for new compiler version {} {}".format(platform_name, compiler,
-                                                                                            version)
+                    update_message = f"{platform_name}: Add job(s) for new compiler version {compiler} {version}"
                     main.output_result_update(title=update_message)
 
                     latest_version = latest_versions[compiler]
@@ -238,8 +238,7 @@ def update_add_new_compiler_versions(main, file, platform: dict, compiler_versio
                 # Check if we do have old compiler version which we want to delete
                 if key[1:] in compiler_deleting[compiler]:
                     manipulated_jobs = True
-                    update_message = "{}: Delete job(s) for old compiler version {} {}".format(platform_name, compiler,
-                                                                                               key[1:])
+                    update_message = f"{platform_name}: Delete job(s) for old compiler version {compiler} {key[1:]}"
                     main.output_result_update(title=update_message)
                 else:
                     compiler_jobs += versions_jobs[compiler][key]

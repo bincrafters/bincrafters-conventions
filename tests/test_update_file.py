@@ -19,10 +19,10 @@ def _prepare_old_file(file_name: str, suffix: str, file_target_name: str = "", o
 
     tmp_dir = tempfile.mkdtemp(prefix=old)  # , suffix=suffix
 
-    test_file_src = os.path.join("files", "{}{}".format(old, suffix))
-    expected_file_src = os.path.join("files", "{}{}".format(expected, suffix))
-    target_test_file = os.path.join(tmp_dir, "{}{}".format(file_target_name, suffix))
-    target_expected_file = os.path.join(tmp_dir, "{}{}".format(expected, suffix))
+    test_file_src = os.path.join("files", f"{old}{suffix}")
+    expected_file_src = os.path.join("files", f"{expected}{suffix}")
+    target_test_file = os.path.join(tmp_dir, f"{file_target_name}{suffix}")
+    target_expected_file = os.path.join(tmp_dir, f"{expected}{suffix}")
 
     copyfile(test_file_src, target_test_file)
     copyfile(expected_file_src, target_expected_file)

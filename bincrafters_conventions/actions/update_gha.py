@@ -38,11 +38,7 @@ def update_gha(main, file):
     with open(file, 'w', encoding="utf-8") as fd:
         fd.write(file_content)
 
-    update_message = "GitHub Actions: Update CI script to version {}".format(gha_workflow_version)
+    update_message = f"GitHub Actions: Update CI script to version {gha_workflow_version}"
     main.output_result_update(title=update_message)
 
     return True
-
-
-
-
