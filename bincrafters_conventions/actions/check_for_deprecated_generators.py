@@ -3,7 +3,7 @@ def check_for_deprecated_generators(main, file):
     :param main: Output stream
     :param file: Conanfile path
     """
-    main._compat_api.graph.compat_inspect_attribute(conanfile=file, attribute="generators")
+    generators = main._compat_api.graph.compat_inspect_attribute(conanfile=file, attribute="generators")
     generators = list(generators)
     for generator in generators:
         if generator in ["gcc", "boost-build"]:
