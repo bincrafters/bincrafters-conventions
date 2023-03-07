@@ -12,7 +12,9 @@ from bincrafters_conventions.bincrafters_conventions import Command
 from bincrafters_conventions.compat import CompatConanAPI
 
 CONANFILE_GENERATOR = """
-from conans import ConanFile
+from conan import ConanFile
+from conan.tools.cmake import CMake
+
 
 class FooConan(ConanFile):
     name = "foo"
