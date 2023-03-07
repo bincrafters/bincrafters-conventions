@@ -58,9 +58,8 @@ jobs:
         python-version: "3.8"
     - name: "Build & Test"
       run: |
-        pip install -e .[test]
-        pip uninstall -y conan
         pip install conan=="2.*"
+        pip install -e .[test]
         python setup.py sdist
         cd tests
         pytest -v -s --cov=bincrafters_conventions
@@ -82,9 +81,8 @@ jobs:
         python-version: "3.8"
     - name: "Build & Test"
       run: |
-        pip install -e .[test]
-        pip uninstall -y conan
         pip install conan=="1.*"
+        pip install -e .[test]
         python setup.py sdist
         cd tests
         pytest -v -s --cov=bincrafters_conventions
