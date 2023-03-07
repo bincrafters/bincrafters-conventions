@@ -11,10 +11,12 @@ class CompatConanAPI():
     def __init__(self):
         try:
             from conan import conan_version as client_version
-            from conan.api.conan_api import ConanAPI as conan_api
+            from conan.api.conan_api import ConanAPI as conan_api_v2
+            conan_api = conan_api_v2()
         except:
             from conans import __version__ as client_version
-            from conans.client import conan_api
+            from conans.client import conan_api as conan_api_v1
+            conan_api, _, _ = conan_api_v1.Conan.factory()
         
         from conan.tools.scm import Version
 
