@@ -1,7 +1,7 @@
 import re
 
 
-def _get_default_options(file):
+def _get_default_options(main, file):
     result = main._compat_api.graph.compat_inspect_attribute(conanfile=file, attribute="default_options")
     new_result = {}
     # Tuple uses old combination: "value=key"
@@ -27,7 +27,7 @@ def _get_default_options(file):
 
 def update_c_default_options_to_dict(main, file):
     attribute = 'default_options'
-    default_options = _get_default_options(file)
+    default_options = _get_default_options(main, file)
     if default_options is None:
         return False
     with open(file) as ifd:
