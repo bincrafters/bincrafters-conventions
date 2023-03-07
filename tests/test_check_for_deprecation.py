@@ -9,6 +9,7 @@ from bincrafters_conventions.actions.check_for_deprecated_generators import chec
 from bincrafters_conventions.actions.check_for_deprecated_methods import check_for_deprecated_methods
 from bincrafters_conventions.actions.check_for_deprecated_settings import check_for_deprecated_settings
 from bincrafters_conventions.bincrafters_conventions import Command
+from bincrafters_conventions.compat import CompatConanAPI
 
 CONANFILE_GENERATOR = """
 from conans import ConanFile
@@ -39,6 +40,9 @@ def build(self):
 
 
 class MockOutputResultCheck(object):
+    def __init__(self):
+        self._compat_api = CompatConanAPI()
+
     def output_result_check(self, passed: bool, title, reason="", skipped=False):
         self.passed = passed
         self.title = title
