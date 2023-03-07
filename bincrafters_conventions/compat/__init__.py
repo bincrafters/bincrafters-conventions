@@ -10,7 +10,7 @@ from bincrafters_conventions.compat.subapi.graph import CompatGraphAPI
 class CompatConanAPI():
     def __init__(self):
         try:
-            from conan import client_version
+            from conan import conan_version as client_version
             from conan.api.conan_api import ConanAPI as conan_api
         except:
             from conans import __version__ as client_version
