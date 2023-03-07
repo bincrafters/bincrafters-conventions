@@ -60,7 +60,7 @@ jobs:
       run: |
         pip install -e .[test]
         pip uninstall conan
-        pip install conan==2.*
+        pip install conan=="2.*"
         python setup.py sdist
         cd tests
         pytest -v -s --cov=bincrafters_conventions
@@ -84,7 +84,7 @@ jobs:
       run: |
         pip install -e .[test]
         pip uninstall conan
-        pip install conan==1.*
+        pip install conan=="1.*"
         python setup.py sdist
         cd tests
         pytest -v -s --cov=bincrafters_conventions
