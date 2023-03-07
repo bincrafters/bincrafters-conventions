@@ -33,6 +33,7 @@ from .actions.update_c_recipe_references import update_c_recipe_references
 from .actions.update_c_remove_compiler_cppstd import update_c_remove_compiler_cppstd
 from .actions.update_migrate_travis_to_import_and_gha import update_migrate_travis_to_import_and_gha
 from .actions.update_travis_import_to_fixed_commit import update_travis_import_to_fixed_commit
+from .compat import CompatConanAPI
 
 __version__ = '1.2.0-dev'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
@@ -81,12 +82,14 @@ class Command(object):
     def __init__(self):
         self._logger = logging.getLogger(__file__)
         self._logger.setLevel(logging.INFO)
+        self._compat_api = CompatConanAPI()
 
     def _parse_arguments(self, *args):
         """ Add program arguments
 
         :param args: User arguments
         """
+
         parser = argparse.ArgumentParser(description=f"Bincrafters Conventions {__version__}")
         group = parser.add_mutually_exclusive_group()
         group.add_argument('--remote', type=str, help='Github repo to be updated e.g. bincrafters/conan-foobar')
