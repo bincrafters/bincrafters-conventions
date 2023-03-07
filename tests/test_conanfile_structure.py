@@ -6,7 +6,8 @@ from bincrafters_conventions.actions.update_c_attributes import update_c_topics,
 from bincrafters_conventions.compat import CompatConanAPI
 
 CONANFILE_SRC_TOOLS_GET = '''
-from conans import ConanFile, tools
+from conan import ConanFile
+from conan.tools.files import get
 
 class FooConan(ConanFile):
     name = "foo"
@@ -25,21 +26,22 @@ def test_sha256_checksum_no_tools_get():
     assert res == True
     assert mock_output.passed == True
     assert mock_output.skipped == True
-    assert 'tools.get() isn\'t used' in mock_output.reason
+    assert 'get() isn\'t used' in mock_output.reason
 
 
+# FIXME: Add update to change tools.get() to new get()
 def test_sha256_checksum_tools_get_missing_checksum():
     mock_output = MockOutputResultCheck()
 
-    recipe = _create_recipe(CONANFILE_SRC_TOOLS_GET.format(source_body='tools.get("some_url")'))
+    recipe = _create_recipe(CONANFILE_SRC_TOOLS_GET.format(source_body='get(self, url="https://www.openssl.org/source/openssl-3.0.8.tar.gz", strip_root=True)'))
     res = check_for_download_hash(mock_output, recipe)
     assert res == False
     assert mock_output.passed == False
-    assert 'not used in tools.get()' in mock_output.reason
+    assert 'not used in get()' in mock_output.reason
 
 
 CONANFILE_SRC_ATTRIBUTE = '''
-from conans import ConanFile, tools
+from conan import ConanFile
 
 class FooConan(ConanFile):
     name = "foo"
