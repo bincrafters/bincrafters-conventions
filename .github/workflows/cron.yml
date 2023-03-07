@@ -59,7 +59,7 @@ jobs:
     - name: "Build & Test"
       run: |
         pip install -e .[test]
-        pip uninstall conan
+        pip uninstall -y conan
         pip install conan=="2.*"
         python setup.py sdist
         cd tests
@@ -83,7 +83,7 @@ jobs:
     - name: "Build & Test"
       run: |
         pip install -e .[test]
-        pip uninstall conan
+        pip uninstall -y conan
         pip install conan=="1.*"
         python setup.py sdist
         cd tests
