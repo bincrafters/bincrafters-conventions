@@ -97,9 +97,12 @@ REFERENCES = {
     "libpng/1.6.34@bincrafters/stable": "libpng/1.6.37",
     "libpng/1.6.36@bincrafters/stable": "libpng/1.6.37",
     "libpng/1.6.37@bincrafters/stable": "libpng/1.6.37",
+    "libpng/1.6.37": "libpng/1.6.39",
+    "libpng/1.6.38": "libpng/1.6.39",
 
     "libiconv/1.15@bincrafters/stable": "libiconv/1.16",
     "libiconv/1.15": "libiconv/1.16",
+    "libiconv/1.16": "libiconv/1.17",
 
     "glm/0.9.8.5@bincrafters/stable": "glm/0.9.9.6",
     "glm/0.9.8.5@g-truc/stable": "glm/0.9.9.6",
@@ -282,6 +285,10 @@ REFERENCES = {
     "libxml2/2.9.8@bincrafters/stable": "libxml2/2.9.9",
     "libxml2/2.9.9@bincrafters/stable": "libxml2/2.9.9",
     "libxml2/2.9.9": "libxml2/2.9.10",
+    "libxml2/2.9.10": "libxml2/2.10.3",
+    "libxml2/2.9.12": "libxml2/2.10.3",
+    "libxml2/2.9.13": "libxml2/2.10.3",
+    "libxml2/2.9.14": "libxml2/2.10.3",
 
     "nghttp2/1.38.0@bincrafters/stable": "libnghttp2/1.39.2",
 
