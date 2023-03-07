@@ -3,6 +3,7 @@ from bincrafters_conventions.bincrafters_conventions import Command
 from bincrafters_conventions.actions.check_for_download_hash import check_for_download_hash
 from bincrafters_conventions.actions.check_for_required_attributes import check_for_required_attributes
 from bincrafters_conventions.actions.update_c_attributes import update_c_topics, update_c_delete_author
+from bincrafters_conventions.compat import CompatConanAPI
 
 CONANFILE_SRC_TOOLS_GET = '''
 from conans import ConanFile, tools
@@ -50,6 +51,7 @@ class FooConan(ConanFile):
 class MockCommand(object):
     def __init__(self):
         self.titles = []
+        self._compat_api = CompatConanAPI()
 
     def output_result_update(self, title):
         self.titles.append(title)
