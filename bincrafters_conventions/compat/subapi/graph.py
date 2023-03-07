@@ -10,10 +10,16 @@ class CompatGraphAPI:
 
         value = None
         if self.compat_api.conan_version >= "2.0.0":
-            
+            import inspect as python_inspect
+
             conanfile_class = self.compat_api.ConanAPI.graph.load_conanfile_class(path=conanfile)
-            print(conanfile_class)
-            print(f"higher than 2.0 value: {conanfile_class}")
+
+            for attr_name, attr_value in python_inspect.getmembers(conanfile_class):
+                if attr_name == attribute:
+                    value = attr_value
+                    break
+
+            print(f"higher than 2.0 value: {value}")
         else:
             value = self.compat_api.ConanAPI.inspect(path=conanfile, attributes=[attribute])[attribute]
             print(f"lower than 2.0 value: {value}")
