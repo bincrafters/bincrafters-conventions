@@ -4,6 +4,8 @@ from bincrafters_conventions.bincrafters_conventions import chdir, main
 from .helpers import prepare_old_file, compare_file
 
 
+import os
+
 def test_updated_conanfile():
     """ Try to update an already up-to-date file, nothing should change
     """
