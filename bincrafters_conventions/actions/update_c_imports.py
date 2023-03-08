@@ -144,7 +144,6 @@ def update_c_imports(main, file):
     for iuc in imports_updates_conan:
         namespace, symbol = iuc[0]
         if namespace in imports:
-            # print(f"{namespace} is in imports")
             if symbol == "*":
                 # This is for update rules that update the namespace, but don't care which symbols are imported; just take all symbols to the new namespace
                 new_namespace, _ = iuc[1]
@@ -157,7 +156,6 @@ def update_c_imports(main, file):
                         imports[new_namespace].append(symb)
 
                     main.output_result_update(title=f"Update import: {namespace};{symb} -> {new_namespace};{symb}")
-
                     updated = True
 
             elif symbol in imports[namespace]:
@@ -171,9 +169,8 @@ def update_c_imports(main, file):
                 if not new_symbol in imports[new_namespace]:
                     imports[new_namespace].append(new_symbol)
 
-                    main.output_result_update(title=f"Update import: {namespace};{symbol} -> {new_namespace};{new_symbol}")
-
-                    updated = True
+                main.output_result_update(title=f"Update import: {namespace};{symbol} -> {new_namespace};{new_symbol}")
+                updated = True
 
     if not updated:
         return False
