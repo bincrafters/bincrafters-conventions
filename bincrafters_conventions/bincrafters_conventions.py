@@ -29,7 +29,6 @@ from .actions.update_c_deprecated_attributes import update_c_deprecated_attribut
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
 from .actions.update_c_default_options_to_dict import update_c_default_options_to_dict
 from .actions.update_c_delete_meta_lines import update_c_delete_meta_lines
-from .actions.update_c_tools_version import update_c_tools_version
 from .actions.update_c_recipe_references import update_c_recipe_references
 from .actions.update_c_remove_compiler_cppstd import update_c_remove_compiler_cppstd
 from .actions.update_migrate_travis_to_import_and_gha import update_migrate_travis_to_import_and_gha
@@ -338,7 +337,6 @@ class Command(object):
                 update_c_default_options_to_dict(self, conanfile),
                 update_c_imports(self, conanfile),
                 update_c_openssl_version_patch(self, conanfile, openssl_version_matrix),
-                update_c_tools_version(self, conanfile),
                 update_c_delete_author(self, conanfile),
                 update_c_topics(self, conanfile),
                 update_c_recipe_references(self, conanfile),
