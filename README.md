@@ -15,6 +15,8 @@ You can install `bincrafters-conventions` via `pip` like this:
 
     $ pip install bincrafters_conventions
 
+Minimum Python version: `3.8`
+
 ### RUN
 
 > 💡 Bincrafters Conventions is a command line tool.
