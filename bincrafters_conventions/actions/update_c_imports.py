@@ -10,9 +10,10 @@ def update_c_imports(main, file):
     updated = False
 
     imports = {}
-    # Dictionary Schema:
+    # Schema:
     #   first line: from original_X import original_Y -> ("original_X", "original_Y")
     #   second line: from updated_X import updated_Y -> ("updated_X", "updated_Y")
+    #   third line: ("min Conan version the new import works", "first Conan version the new import BREAKS, doesn't work anymore, add * if there is no such version yet")
     # for the imported symbols:
     #  * is both a literal * from imports, but also telling the script to just leave unchaged whatever was imported; useful for just changing from where you import
     imports_updates_conan = [
@@ -20,21 +21,30 @@ def update_c_imports(main, file):
         [
             ("conans.model.version", "Version"),
             ("conans.tools", "Version"),
+            ("1.15.0", "2.0.0")
+        ],
+        [
+            ("conans.model.version", "Version"),
+            ("conan.tools.scm", "Version"),
+            ("1.46.0", "*")
         ],
         # Conan Version unknown FIXME
         [
             ("conans", "ConanFile"),
-            ("conan", "ConanFile")
+            ("conan", "ConanFile"),
+            ("FIXME", "*")
         ],
         # Conan 1.46
         [
             ("conans.tools", "Version"),
             ("conan.tools.scm", "Version"),
+            ("1.46.0", "*")
         ],
         # Conan 1.47
         [
             ("conans.errors", "*"),
-            ("conan.errors", "*")
+            ("conan.errors", "*"),
+            ("1.47.0", "*")
         ]
     ]
     imports_namespace_order = [
