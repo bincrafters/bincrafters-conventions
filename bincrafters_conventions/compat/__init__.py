@@ -20,10 +20,7 @@ class CompatConanAPI():
         
         from conan.tools.scm import Version
 
-        # For sub APIs consumers
-        self._Version = Version
-
         # Public 
-        self.conan_version = self._Version(client_version)
+        self.conan_version = Version(client_version)
         self.ConanAPI = conan_api
         self.graph = CompatGraphAPI(self)
