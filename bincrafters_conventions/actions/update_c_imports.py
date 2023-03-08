@@ -10,15 +10,26 @@ def update_c_imports(main, file):
     updated = False
 
     imports = {}
+    # Dictionary Schema:
+    #   first line: from original_X import original_Y -> ("original_X", "original_Y")
+    #   second line: from updated_X import updated_Y -> ("updated_X", "updated_Y")
+    # for the imported symbols:
+    #  * is both a literal * from imports, but also telling the script to just leave unchaged whatever was imported; useful for just changing from where you import
     imports_updates_conan = [
-        # Dictionary Schema:
-        #   first line: from original_X import original_Y -> ("original_X", "original_Y")
-        #   second line: from updated_X import updated_Y -> ("updated_X", "updated_Y")
-        # for the imported symbols:
-        #  * is both a literal * from imports, but also telling the script to just leave unchaged whatever was imported; useful for just changing from where you import
+        # Conan 1.15
+        [
+            ("conans.model.version", "Version"),
+            ("conans.tools", "Version"),
+        ],
+        # Conan Version unknown FIXME
         [
             ("conans", "ConanFile"),
             ("conan", "ConanFile")
+        ],
+        # Conan 1.46
+        [
+            ("conans.tools", "Version"),
+            ("conan.tools.scm", "Version"),
         ],
         # Conan 1.47
         [
