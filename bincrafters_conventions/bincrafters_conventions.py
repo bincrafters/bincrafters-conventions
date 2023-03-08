@@ -23,6 +23,7 @@ from .actions.update_a_jobs import update_a_jobs
 from .actions.update_gha import update_gha
 from .actions.update_c_attributes import update_c_delete_author, update_c_topics, update_c_delete_licensemd_export
 from .actions.update_c_H046_no_verbose_cmake_file import update_c_H046_no_verbose_cmake_file
+from .actions.update_c_imports import update_c_imports
 from .actions.update_c_minimum_cmake_version_required import *
 from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
@@ -335,6 +336,7 @@ class Command(object):
         return [update_c_delete_meta_lines(self, conanfile),
                 update_c_deprecated_attributes(self, conanfile),
                 update_c_default_options_to_dict(self, conanfile),
+                update_c_imports(self, conanfile),
                 update_c_openssl_version_patch(self, conanfile, openssl_version_matrix),
                 update_c_tools_version(self, conanfile),
                 update_c_delete_author(self, conanfile),
