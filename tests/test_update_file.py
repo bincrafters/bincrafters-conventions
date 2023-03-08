@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from bincrafters_conventions.bincrafters_conventions import chdir, main
-from bincrafters_conventions.tests.helpers import prepare_old_file, compare_file
+from .helpers import prepare_old_file, compare_file
 
 
 def test_updated_conanfile():
