@@ -46,11 +46,11 @@ def update_c_deprecated_attributes(main, file):
     }
 
     deprecations_v1_and_v2 = deprecations_conan_v1.copy()
-    deprecations_v1_and_v2 = deprecations_v1_and_v2.update(deprecations_conan_v2)
+    deprecations_v1_and_v2.update(deprecations_conan_v2)
 
     for cfile in [file, test_v1_package, test_package]:
-        if file == test_v1_package or file == test_package:
-            if not os.path.exists(file):
+        if cfile == test_v1_package or cfile == test_package:
+            if not os.path.exists(cfile):
                 continue
 
         conanfile = open(cfile, 'r')
