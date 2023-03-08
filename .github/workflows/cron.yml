@@ -8,7 +8,7 @@ name: "conventions"
 jobs:
   update-cci-fork:
     name: "Update CCI fork"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: github.event_name != 'push' || github.ref == 'refs/heads/main'
     steps:
     - uses: actions/checkout@v3
@@ -27,12 +27,12 @@ jobs:
         source ./cci/update_from_upstream.sh
   run-conventions-for-bincrafters:
     name: "Run Conventions for Bincrafters"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: github.event_name != 'push' && github.repository_owner == 'bincrafters'
     steps:
     - uses: actions/setup-python@v4
       with:
-        python-version: "3.8"
+        python-version: "3.11"
     - name: "Run Conventions"
       env:
         GIT_GITHUB_USERNAME: ${{ secrets.GIT_GITHUB_USERNAME }}
@@ -41,10 +41,36 @@ jobs:
         git config --global user.email "bincrafters@gmail.com"
         git config --global user.name "bincrafters-user"
         pip install --quiet bincrafters-conventions
-        # conan user
         bincrafters-conventions --remote bincrafters --remote-max-repos 1 --remote-token="${GIT_GITHUB_USERNAME}:${GIT_GITHUB_TOKEN}";
-  bincrafters-conventions-test:
-    name: Test Conventions on ${{ matrix.os }}
+  bincrafters-conventions-test-v2:
+    name: Test with Conan v2 on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    if: github.event_name == 'push'
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-22.04", "windows-2022", "macos-11.0"]
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+    - name: "Build"
+      shell: bash
+      run: |
+        pip install conan=="2.*"
+        pip install -e .[test]
+        python setup.py sdist
+    - name: "Test"
+      shell: bash
+      run: |
+        cd tests
+        pytest -v -s --cov=bincrafters_conventions
+        mv .coverage ..
+        cd ..
+        codecov
+  bincrafters-conventions-test-v1:
+    name: Test with Conan v1 on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     if: github.event_name == 'push'
     strategy:
@@ -54,12 +80,19 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
+      # This should be considered the minimum Python version supported
+      # Don't just update this without reason
       with:
         python-version: "3.8"
-    - name: "Build & Test"
+    - name: "Build"
+      shell: bash
       run: |
+        pip install conan=="1.*"
         pip install -e .[test]
         python setup.py sdist
+    - name: "Test"
+      shell: bash
+      run: |
         cd tests
         pytest -v -s --cov=bincrafters_conventions
         mv .coverage ..
@@ -67,19 +100,19 @@ jobs:
         codecov
   bincrafers-conventions-deploy:
     name: Deploy Conventions to PyPi
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
-    needs: bincrafters-conventions-test
+    needs: [bincrafters-conventions-test-v1, bincrafters-conventions-test-v2]
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
       with:
-        python-version: "3.8"
+        python-version: "3.11"
     - name: Build
       run: |
         python setup.py sdist
     - name: Publish package
-      uses: pypa/gh-action-pypi-publish@master
+      uses: pypa/gh-action-pypi-publish@release/v1
       with:
         user: __token__
         password: ${{ secrets.PYPI_TOKEN }}

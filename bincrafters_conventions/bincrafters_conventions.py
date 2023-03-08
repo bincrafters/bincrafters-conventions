@@ -23,18 +23,19 @@ from .actions.update_a_jobs import update_a_jobs
 from .actions.update_gha import update_gha
 from .actions.update_c_attributes import update_c_delete_author, update_c_topics, update_c_delete_licensemd_export
 from .actions.update_c_H046_no_verbose_cmake_file import update_c_H046_no_verbose_cmake_file
+from .actions.update_c_imports import update_c_imports
 from .actions.update_c_minimum_cmake_version_required import *
 from .actions.update_c_deprecated_attributes import update_c_deprecated_attributes
 from .actions.update_c_openssl_version_patch import update_c_openssl_version_patch
 from .actions.update_c_default_options_to_dict import update_c_default_options_to_dict
 from .actions.update_c_delete_meta_lines import update_c_delete_meta_lines
-from .actions.update_c_tools_version import update_c_tools_version
 from .actions.update_c_recipe_references import update_c_recipe_references
 from .actions.update_c_remove_compiler_cppstd import update_c_remove_compiler_cppstd
 from .actions.update_migrate_travis_to_import_and_gha import update_migrate_travis_to_import_and_gha
 from .actions.update_travis_import_to_fixed_commit import update_travis_import_to_fixed_commit
+from .compat import CompatConanAPI
 
-__version__ = '1.1.1'
+__version__ = '1.2.0-dev'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
@@ -59,8 +60,8 @@ compiler_versions_deletion = {'visual': ('12', '14')}
 openssl_version_matrix = {'1.0.1': {'latest_patch': 'h', 'eol': True},
                           '1.0.2': {'latest_patch': 'u', 'eol': True},
                           '1.1.0': {'latest_patch': 'l', 'eol': True},
-                          '1.1.1': {'latest_patch': 'n', 'eol': False},
-                          '3.0.': {'latest_patch': '2', 'eol': False},
+                          '1.1.1': {'latest_patch': 't', 'eol': False},
+                          '3.0.': {'latest_patch': '8', 'eol': False},
                           }
 
 @contextlib.contextmanager
@@ -81,13 +82,15 @@ class Command(object):
     def __init__(self):
         self._logger = logging.getLogger(__file__)
         self._logger.setLevel(logging.INFO)
+        self._compat_api = CompatConanAPI()
 
     def _parse_arguments(self, *args):
         """ Add program arguments
 
         :param args: User arguments
         """
-        parser = argparse.ArgumentParser(description="Bincrafters Conventions {}".format(__version__))
+
+        parser = argparse.ArgumentParser(description=f"Bincrafters Conventions {__version__}")
         group = parser.add_mutually_exclusive_group()
         group.add_argument('--remote', type=str, help='Github repo to be updated e.g. bincrafters/conan-foobar')
         group.add_argument('--local', action='store_true', help='Update current local repository')
@@ -112,7 +115,7 @@ class Command(object):
                             help='Remote only, user:token pair for auth')
         parser.add_argument('--remote-max-repos', '-rmr', type=int, default=3,
                             help='Remote only, max amount of repositories which should get updated. Default: 3')
-        group.add_argument('--version', '-v', action='version', version='%(prog)s {}'.format(__version__))
+        group.add_argument('--version', '-v', action='version', version=f"%(prog)s {__version__}")
         args = parser.parse_args(*args)
         return args
 
@@ -221,7 +224,7 @@ class Command(object):
                 with open(file, 'w', newline="\n") as ofd:
                     ofd.write(content.replace(old, new))
         else:
-            self._logger.warning("Could not update {}: File does not exist".format(file))
+            self._logger.warning(f"Could not update {file}: File does not exist")
         return result
 
     def file_contains(self, file, word):
@@ -276,7 +279,7 @@ class Command(object):
         """
         git_repo.git.checkout(branch)
 
-        self.output_remote_update("On branch {}".format(git_repo.active_branch))
+        self.output_remote_update(f"On branch {git_repo.active_branch}")
 
         try:
             conanfile = "conanfile.py" if conanfile is None else conanfile
@@ -299,17 +302,17 @@ class Command(object):
                 changedFiles = [item.a_path for item in git_repo.index.diff(None)]
                 git_repo.git.add('--all')
 
-                self.output_remote_update("On branch {} committing files: {}".format(git_repo.active_branch,
-                                                                        " ".join(map(str, changedFiles))))
+                commiting_files = " ".join(map(str, changedFiles))
+                self.output_remote_update(f"On branch {git_repo.active_branch} committing files: {commiting_files}")
 
                 commitMsg = "Update Conan conventions\n\n"
-                commitMsg += "Automatically created by bincrafters-conventions {}\n\n".format(__version__)
+                commitMsg += f"Automatically created by bincrafters-conventions {__version__}\n\n"
 
-                self.output_remote_update("Commit message: {}".format(commitMsg))
+                self.output_remote_update(f"Commit message: {commitMsg}")
 
                 git_repo.index.commit(commitMsg)
                 if not skip_push:
-                    self.output_remote_update("Pushing branch {} to origin".format(git_repo.active_branch))
+                    self.output_remote_update(f"Pushing branch {git_repo.active_branch} to origin")
                     git_repo.git.push('origin', branch)
 
                 return True
@@ -330,10 +333,10 @@ class Command(object):
             return [False, ]
 
         return [update_c_delete_meta_lines(self, conanfile),
+                update_c_imports(self, conanfile),
                 update_c_deprecated_attributes(self, conanfile),
                 update_c_default_options_to_dict(self, conanfile),
                 update_c_openssl_version_patch(self, conanfile, openssl_version_matrix),
-                update_c_tools_version(self, conanfile),
                 update_c_delete_author(self, conanfile),
                 update_c_topics(self, conanfile),
                 update_c_recipe_references(self, conanfile),
@@ -371,21 +374,21 @@ class Command(object):
                 check_for_deprecated_settings(self, conanfile))
 
     def output_remote_update(self, title):
-        self._logger.info("[\033[1;35mREMOTE\033[0m]  {}".format(title))
+        self._logger.info(f"[\033[1;35mREMOTE\033[0m]  {title}")
 
     def output_result_update(self, title):
-        self._logger.info("[\033[1;32mUPDATED\033[0m]  {}".format(title))
+        self._logger.info(f"[\033[1;32mUPDATED\033[0m]  {title}")
 
     def output_result_check(self, passed: bool, title, reason="", skipped=False):
         if not reason == "":
-            reason = ": {}".format(reason)
+            reason = f": {reason}"
 
         if skipped:
-            self._logger.info("[SKIPPED]  {}{}".format(title, reason))
+            self._logger.info(f"[SKIPPED]  {title}{reason}")
         elif passed:
-            self._logger.info("[\033[1;32mPASSED\033[0m]   {}{}".format(title, reason))
+            self._logger.info(f"[\033[1;32mPASSED\033[0m]   {title}{reason}")
         else:
-            self._logger.error("[\033[1;31mFAILED\033[0m]   {}{}".format(title, reason))
+            self._logger.error(f"[\033[1;31mFAILED\033[0m]   {title}{reason}")
 
     def _clone_project(self, github_url):
         """ Clone Github project to temporary directory
@@ -396,7 +399,7 @@ class Command(object):
         project = github_url[(github_url.rfind('/') + 1):]
         project_path = os.path.join(temp_dir, project)
         repo = git.Repo.clone_from(github_url, project_path)
-        self.output_remote_update("Clone project {} to {}".format(github_url, project_path))
+        self.output_remote_update(f"Clone project {github_url} to {project_path}")
         return repo, project_path
 
     def _list_user_projects(self, user, token):
@@ -414,12 +417,11 @@ class Command(object):
 
         pages = (1, 2, 3, 4, 5, 6)
         for page in pages:
-            repos_url = 'https://api.github.com/users/{}/repos?sort=updated&direction=asc&per_page=100&page={}'\
-                .format(user, page)
+            repos_url = f"https://api.github.com/users/{user}/repos?sort=updated&direction=asc&per_page=100&page={page}"
 
             response = requests.get(repos_url, auth=auth)
             if page == 1 and not response.ok:
-                raise Exception("Could not retrieve {}".format(repos_url))
+                raise Exception(f"Could not retrieve {repos_url}")
             for project in response.json():
                 if project["name"].startswith("conan-") \
                         and not project["name"].startswith("conan-boost") \
@@ -438,7 +440,7 @@ class Command(object):
         """
         regex = re.compile(pattern)
         filtered_list = [name for name in names if regex.match(name)]
-        self._logger.debug("Filtered list: {}".format(filtered_list))
+        self._logger.debug(f"Filtered list: {filtered_list}")
         return filtered_list
 
     def _update_remote_project(self, remote, conanfile, skip_push, branch_pattern, all_branches, token=False):
@@ -450,12 +452,12 @@ class Command(object):
         :param branch_pattern: Filter to be applied over project branch names
         """
         result = []
-        github_url = "git@github.com:{}.git".format(remote)
+        github_url = f"git@github.com:{remote}.git"
 
         if skip_push:
-            github_url = "https://github.com/{}.git".format(remote)
+            github_url = f"https://github.com/{remote}.git"
         elif token:
-            github_url = "https://{}@github.com/{}".format(token, remote)
+            github_url = f"https://{token}@github.com/{remote}"
 
         git_repo, project_path = self._clone_project(github_url)
         with chdir(project_path):
@@ -470,7 +472,7 @@ class Command(object):
             if branch_pattern:
                 branches = self._filter_list(branches, branch_pattern)
             for branch in branches:
-                self._logger.debug("Current branch to be updated: {}".format(branch))
+                self._logger.debug(f"Current branch to be updated: {branch}")
                 result.append(self._update_branch(git_repo, branch, conanfile, skip_push))
 
         return True if True in result else False
@@ -500,7 +502,7 @@ class Command(object):
                     repos_updated += 1
             else:
                 print("\n")
-                self.output_remote_update("Reached max updated remote repositories amount of {}".format(max_repos))
+                self.output_remote_update(f"Reached max updated remote repositories amount of {max_repos}")
                 return True
 
     def _update_remote(self, remote, conanfile, skip_push, project_pattern, branch_pattern,
@@ -533,5 +535,5 @@ def main(args):
         command = Command()
         command.run(args)
     except Exception as error:
-        logging.error("ERROR: {}".format(error))
+        logging.error(f"ERROR: {error}")
         sys.exit(1)
