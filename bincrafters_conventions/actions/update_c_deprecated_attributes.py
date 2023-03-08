@@ -41,9 +41,6 @@ def update_c_deprecated_attributes(main, file):
             "self.build_requires.add": "self.build_requires",
 
             "tools.cross_building(self.settings)": "tools.cross_building(self)",
-
-            # Conan 1.47
-            "from conans.errors import": "from conan.errors import",
         }
 
         for deprecated, replacement in deprecations.items():
