@@ -1,3 +1,6 @@
+import os
+
+
 def update_c_deprecated_attributes(main, file):
     """ This updates deprecated attributes in the conanfile
         Only add attributes here which do have a 1:1 replacement
