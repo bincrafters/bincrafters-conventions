@@ -27,12 +27,12 @@ jobs:
         source ./cci/update_from_upstream.sh
   run-conventions-for-bincrafters:
     name: "Run Conventions for Bincrafters"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: github.event_name != 'push' && github.repository_owner == 'bincrafters'
     steps:
     - uses: actions/setup-python@v5
       with:
-        python-version: "3.8"
+        python-version: "3.11"
     - name: "Run Conventions"
       env:
         GIT_GITHUB_USERNAME: ${{ secrets.GIT_GITHUB_USERNAME }}
@@ -54,7 +54,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
       with:
-        python-version: "3.8"
+        python-version: "3.11"
     - name: "Build"
       shell: bash
       run: |
@@ -80,6 +80,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
+      # This should be considered the minimum Python version supported
+      # Don't just update this without reason
       with:
         python-version: "3.8"
     - name: "Build"
@@ -105,7 +107,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
       with:
-        python-version: "3.8"
+        python-version: "3.11"
     - name: Build
       run: |
         python setup.py sdist

@@ -7,14 +7,14 @@ name: "remove-outdated-packages"
 jobs:
   remove-outdated-packages:
     name: "Remove Outdated Packages For Bincrafters"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/setup-python@v5
       with:
-        python-version: "3.8"
+        python-version: "3.11"
     - name: "Install Conan"
       run: |
-        pip install "conan<2.0.0"
+        pip install conan=="1.*"
     - name: "Remove Outdated Packages"
       env:
         CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_LOGIN_USERNAME }}
