@@ -3,6 +3,14 @@ import os
 
 # noinspection SpellCheckingInspection
 REFERENCES = {
+    # Test cases only, otherwise we would need to adjust tests too often
+
+    "testtest-test/2.33.1@bincrafters/stable": "testtest-test/2.33.1",
+    "testtest-test/2.33.1": "testtest-test/2.36.2",
+    "testtest-test/2.36": "testtest-test/2.36.2",
+
+    # End of test cases
+
     "depot_tools_installer/master@bincrafters/stable": "depot_tools/20200407",
     "depot_tools_installer/20190909@bincrafters/stable": "depot_tools/20200407",
     "depot_tools_installer/20200207@bincrafters/stable": "depot_tools/20200407",
