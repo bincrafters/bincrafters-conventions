@@ -6,7 +6,7 @@
 
 ## A Script to update Conan projects following Conan conventions
 
-This project contains scripts to update CI files, to
+This project contains scripts to update recipes, CI files, to
 update Conan conventions in general and to perform some linting.
 
 ### INSTALL
