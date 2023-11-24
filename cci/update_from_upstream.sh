@@ -92,7 +92,7 @@ echo "${PR_IDS}"
 
 echo ""
 echo "Recently merged PR IDs from ${GIT_GITHUB_FORK_ACCOUNT}, according to the API:"
-RECENT_PRS=$(gh pr list --limit 800 --state merged | grep $'\t'"${GIT_GITHUB_FORK_ACCOUNT}:")
+RECENT_PRS=$(gh pr list --limit 800 --state merged | grep -q $'\t'"${GIT_GITHUB_FORK_ACCOUNT}:")
 echo "${RECENT_PRS}"
 echo ""
 
