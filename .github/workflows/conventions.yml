@@ -3,36 +3,8 @@ on: [push, pull_request]
 name: "conventions"
 
 jobs:
-  bincrafters-conventions-test-v2:
-    name: Test with Conan v2 on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    if: github.event_name == 'push'
-    continue-on-error: true
-    strategy:
-      fail-fast: false
-      matrix:
-        os: ["ubuntu-22.04", "windows-2022", "macos-11.0"]
-    steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v5
-      with:
-        python-version: "3.11"
-    - name: "Build"
-      shell: bash
-      run: |
-        pip install conan=="2.*"
-        pip install -e .[test]
-        python setup.py sdist
-    - name: "Test"
-      shell: bash
-      run: |
-        cd tests
-        pytest -v -s --cov=bincrafters_conventions
-        mv .coverage ..
-        cd ..
-        codecov
-  bincrafters-conventions-test-v1:
-    name: Test with Conan v1 on ${{ matrix.os }}
+  bincrafters-conventions-test:
+    name: Test with Conan v${{ matrix.conan_version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     if: github.event_name == 'push'
     strategy:
@@ -42,6 +14,9 @@ jobs:
         python_version:
           - "3.8"
           - "3.12"
+        conan_version:
+          - "1"
+          - "2"
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
@@ -50,9 +25,10 @@ jobs:
     - name: "Build"
       shell: bash
       run: |
-        pip install conan=="1.*"
+        pip install conan=="${{ matrix.conan_version }}.*"
         pip install -e .[test]
-        python setup.py sdist
+        python -m pip install build
+        python -m build
     - name: "Test"
       shell: bash
       run: |
@@ -73,9 +49,7 @@ jobs:
         python-version: "3.12"
     - name: Build
       run: |
-        python setup.py sdist
+        python -m pip install build
+        python -m build
     - name: Publish package
       uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_TOKEN }}
