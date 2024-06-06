@@ -10,7 +10,7 @@ name: "conventions"
 
 jobs:
   bincrafters-conventions-test:
-    name: Test Conan v${{ matrix.conan_version }}, ${{ matrix.os }}, ${{ matrix.python_version }} 
+    name: Test Conan v${{ matrix.conan_version }}, ${{ matrix.os }}, Py ${{ matrix.python_version }} 
     runs-on: ${{ matrix.os }}
     if: github.event_name == 'push'
     strategy:
