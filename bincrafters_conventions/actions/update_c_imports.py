@@ -11,11 +11,22 @@ def update_c_imports(main, file):
 
     imports = {}
     # Schema:
+    #
     #   first line: from original_X import original_Y -> ("original_X", "original_Y")
     #   second line: from updated_X import updated_Y -> ("updated_X", "updated_Y")
     #   third line: ("min Conan version the new import works", "first Conan version the new import BREAKS, doesn't work anymore, add * if there is no such version yet")
     # for the imported symbols:
+    #
     #  * is both a literal * from imports, but also telling the script to just leave unchaged whatever was imported; useful for just changing from where you import
+    #
+    # Another example, updating an import in the form of
+    #   import os
+    # to 
+    #   import shiny_new_os
+    # can be archived with
+    #   [("*", "os"), ("*", "shiny_new_os"), ("*", "*")]
+    #
+
     imports_updates_conan = [
         # Conan 1.15
         [
