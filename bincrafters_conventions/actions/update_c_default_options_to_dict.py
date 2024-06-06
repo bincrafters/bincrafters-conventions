@@ -2,7 +2,7 @@ import re
 
 
 def _get_default_options(main, file):
-    result = main._compat_api.graph.compat_inspect_attribute(conanfile=file, attribute="default_options")
+    result = main._compat_api.local.compat_inspect_attribute(conanfile=file, attribute="default_options")
     new_result = {}
     # Tuple uses old combination: "value=key"
     if isinstance(result, tuple):
