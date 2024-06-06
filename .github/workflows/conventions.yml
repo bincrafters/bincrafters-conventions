@@ -1,4 +1,10 @@
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+    # only run on pull_request trigger when they come from a fork
+    types: [opened, synchronize]
+    branches-ignore:
+      - '**'
 
 name: "conventions"
 
