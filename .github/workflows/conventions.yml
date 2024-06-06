@@ -38,10 +38,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["ubuntu-20.04", "windows-2019", "macos-11.0"]
+        os: ["ubuntu-22.04", "windows-2019", "macos-11.0"]
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
       # This should be considered the minimum Python version supported
       # Don't just update this without reason
       with:
