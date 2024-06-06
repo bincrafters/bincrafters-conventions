@@ -1,4 +1,4 @@
-from bincrafters_conventions.compat.subapi.graph import CompatGraphAPI
+from bincrafters_conventions.compat.subapi.local import CompatLocalAPI
 
 # Naming Convention:
 #   Class Names for sub APIs have to start with Compat
@@ -23,4 +23,4 @@ class CompatConanAPI():
         # Public 
         self.conan_version = Version(client_version)
         self.ConanAPI = conan_api
-        self.graph = CompatGraphAPI(self)
+        self.local = CompatLocalAPI(self)

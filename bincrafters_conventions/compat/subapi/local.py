@@ -1,4 +1,4 @@
-class CompatGraphAPI:
+class CompatLocalAPI:
 
     def __init__(self, compat_api):
         self.compat_api = compat_api
@@ -12,7 +12,7 @@ class CompatGraphAPI:
         if self.compat_api.conan_version >= "2.0.0":
             import inspect as python_inspect
 
-            conanfile_class = self.compat_api.ConanAPI.graph.load_conanfile_class(path=conanfile)
+            conanfile_class = self.compat_api.ConanAPI.local.inspect(conanfile_path=conanfile, remotes=None, lockfile=None)
 
             for attr_name, attr_value in python_inspect.getmembers(conanfile_class):
                 if attr_name == attribute:

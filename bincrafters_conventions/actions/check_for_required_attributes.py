@@ -5,7 +5,7 @@ def check_for_required_attributes(main, file):
     """
     not_found = []
     for field in ["name", "description", "topics", "url", "homepage", "license"]:
-        value = main._compat_api.graph.compat_inspect_attribute(conanfile=file, attribute=field)
+        value = main._compat_api.local.compat_inspect_attribute(conanfile=file, attribute=field)
         if value is None or not value:
             not_found.append(field)
 
