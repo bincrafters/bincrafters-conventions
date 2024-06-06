@@ -41,7 +41,7 @@ jobs:
     name: Deploy Conventions to PyPi
     runs-on: ubuntu-22.04
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
-    needs: [bincrafters-conventions-test-v1, bincrafters-conventions-test-v2]
+    needs: [bincrafters-conventions-test,]
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
