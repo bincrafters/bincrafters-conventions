@@ -39,7 +39,7 @@ class DoubleConversionConan(ConanFile):
            raise ConanInvalidConfiguration("Double Convertion could not be built by MSVC <14")
 
     def source(self):
-        tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version))
+        tools.get(f"{self.homepage}/archive/v{self.version}.tar.gz")
         extracted_dir = self.name + "-" + self.version
         os.rename(extracted_dir, self.source_subfolder)
 
