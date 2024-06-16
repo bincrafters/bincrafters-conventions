@@ -48,6 +48,8 @@ jobs:
     runs-on: ubuntu-22.04
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     needs: [bincrafters-conventions-test,]
+    permissions:
+      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5

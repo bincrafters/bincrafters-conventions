@@ -35,7 +35,7 @@ from .actions.update_migrate_travis_to_import_and_gha import update_migrate_trav
 from .actions.update_travis_import_to_fixed_commit import update_travis_import_to_fixed_commit
 from .compat import CompatConanAPI
 
-__version__ = '1.2.0'
+__version__ = '1.2.1'
 __author__ = 'Bincrafters <bincrafters@gmail.com>'
 __license__ = 'MIT'
 
