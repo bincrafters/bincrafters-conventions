@@ -1,0 +1,27 @@
+name: Run Conventions For Recipe
+
+on:
+  repository_dispatch:
+    types: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Run Conventions
+      run: |
+        ./cci/cci.sh
+      env:
+        BOT_GITHUB_NAME: ${{ secrets.BOT_GITHUB_NAME }}
+        BOT_GITHUB_EMAIL: ${{ secrets.BOT_GITHUB_EMAIL }}
+        BOT_GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+        REPO_NAME: ${{ github.event.client_payload.repository.full_name }}
+        REPO_REF: ${{ github.event.client_payload.ref }}
