@@ -2,13 +2,21 @@
 
 set -e
 
+if [[ "${REPO_REF}" != "refs/heads/"* ]]; then
+  echo "This is not a branch push. Exiting.";
+  exit 0 ;
+fi
+
+REPO_BRANCH=$(echo $REPO_REF | awk -F '/' '{print $NF}')
+echo ${REPO_BRANCH}
+
 git remote rm origin
-git remote add origin https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/${APPVEYOR_REPO_NAME}.git
+git remote add origin https://${BOT_GITHUB_NAME}:${BOT_GITHUB_TOKEN}@github.com/${REPO_NAME}.git
 
 git fetch origin master
-git fetch origin ${APPVEYOR_REPO_BRANCH}
-git checkout ${APPVEYOR_REPO_BRANCH}
-git push --set-upstream origin ${APPVEYOR_REPO_BRANCH}
+git fetch origin ${REPO_BRANCH}
+git checkout ${REPO_BRANCH}
+git push --set-upstream origin ${REPO_BRANCH}
 
 # Is this build triggered by a convention update?
 if [[ "$(git log -1 --pretty=%an)" == bincrafters* ]]; then
@@ -17,7 +25,7 @@ if [[ "$(git log -1 --pretty=%an)" == bincrafters* ]]; then
 fi
 
 dirpath="none"
-for directory in $(git diff --dirstat=files,0 `git merge-base origin/master ${APPVEYOR_REPO_BRANCH}`..${APPVEYOR_REPO_BRANCH} | sed 's/^[ 0-9.]\+% //g'); do
+for directory in $(git diff --dirstat=files,0 `git merge-base origin/master ${REPO_BRANCH}`..${REPO_BRANCH} | sed 's/^[ 0-9.]\+% //g'); do
   if [[ "${directory}" == recipes/* ]]; then
     count=$(echo "${directory}" | awk -F"/" '{print NF-1}');
     if [[ "${count}" -ge "3" ]]; then
@@ -44,13 +52,9 @@ echo ${recipename}
 echo ${recipepath}
 cd ${recipepath}
 
-source $HOME/venv3.7/bin/activate
 
-python --version
-pip --version
-
-git config --global user.email "bincrafters@gmail.com"
-git config --global user.name "bincrafters-user"
+git config --global user.email "${BOT_GITHUB_EMAIL}"
+git config --global user.name "${BOT_GITHUB_NAME}"
 
 pip install --quiet bincrafters-conventions
 conan user  # initialize Conan registry file
